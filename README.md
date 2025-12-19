@@ -4,4 +4,4 @@ This repository hosts my personal engineering portfolio website, built using Git
 
 The site highlights selected academic and team-based projects in CAD, simulation, and analysis.
 
-Live site: https://masoncanfield.github.io
+Live site: https://canfieldmason.github.io
