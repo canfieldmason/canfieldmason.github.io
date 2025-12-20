@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Baja SAE Roll Cage Structural Analysis</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      line-height: 1.6;
+      color: #222;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 50px;
+      color: #111;
+    }
+
+    p {
+      margin: 15px 0;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    img, video {
+      display: block;
+      margin: 25px auto 10px auto;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+
+    em {
+      display: block;
+      text-align: center;
+      color: #555;
+      font-size: 0.95em;
+      margin-bottom: 30px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 50px 0;
+    }
+
+    .nav-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #0066cc;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .tools {
+      font-style: italic;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="index.html" class="nav-link">← Back to Projects</a>
+
+<h1>Baja SAE Roll Cage Structural Analysis</h1>
+
+<p><em>ANSYS Innovation Space — Guided Structural Analysis Course</em></p>
+
+<p>
+This project documents the structural analysis of a Baja SAE roll cage performed using
+ANSYS Mechanical as part of an ANSYS Innovation Space engineering course.
+The chassis serves as the primary structural backbone of the vehicle, responsible for
+load transfer, stiffness, and driver safety under a variety of operating and impact conditions.
+</p>
+
+<p class="tools"><strong>Tools:</strong> ANSYS Mechanical, SpaceClaim</p>
+
+<hr>
+
+<h2>Model Preparation</h2>
+
+<p>
+The provided roll cage geometry was imported and reviewed in SpaceClaim prior to analysis.
+The tubular frame represents a welded steel space frame commonly used in Baja SAE vehicles.
+Beam and pipe elements were assigned to the chassis members using appropriate outer diameter
+and wall thickness values to accurately represent structural behavior while maintaining
+computational efficiency.
+</p>
+
+<img src="../images/baja-geometry.png" alt="Baja SAE roll cage geometry in SpaceClaim">
+<em>Imported roll cage geometry used for structural analysis.</em>
+
+<hr>
+
+<h2>Load Cases & Analysis Overview</h2>
+
+<p>
+Multiple static structural load cases were evaluated to assess chassis stiffness, deformation,
+and stress distribution under representative competition and safety scenarios:
+</p>
+
+<ul>
+  <li>Front impact</li>
+  <li>Rear impact</li>
+  <li>Side impact</li>
+  <li>Rollover</li>
+  <li>Torsional loading</li>
+</ul>
+
+<p>
+Each case was solved using linear static analysis. Total deformation and equivalent
+(von Mises) stress results were examined to identify load paths and critical regions
+within the roll cage.
+</p>
+
+<hr>
+
+<h2>Front Impact</h2>
+
+<img src="../images/baja-front-impact-deformation.png" alt="Front impact total deformation">
+<em>Total deformation under front impact loading.</em>
+
+<hr>
+
+<h2>Rear Impact</h2>
+
+<img src="../images/baja-rear-impact-deformation.png" alt="Rear impact total deformation">
+<em>Total deformation under rear impact loading.</em>
+
+<hr>
+
+<h2>Side Impact</h2>
+
+<img src="../images/baja-side-impact-deformation.png" alt="Side impact total deformation">
+<em>Total deformation under side impact loading.</em>
+
+<hr>
+
+<h2>Rollover</h2>
+
+<img src="../images/baja-rollover-deformation.png" alt="Rollover total deformation">
+<em>Total deformation under rollover loading.</em>
+
+<video controls>
+  <source src="../images/baja-rollover-stress-animation.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<em>Stress distribution animation during rollover loading.</em>
+
+<hr>
+
+<h2>Torsional Loading</h2>
+
+<img src="../images/baja-torsion-deformation.png" alt="Torsional deformation of chassis">
+<em>Chassis deformation under torsional loading.</em>
+
+<hr>
+
+<h2>Key Takeaways</h2>
+
+<p>
+This analysis highlights how different load cases activate distinct load paths within
+a tubular space frame. Impact scenarios concentrate stress near joint intersections,
+while torsional loading reveals overall chassis stiffness and resistance to twisting.
+</p>
+
+<p>
+Although the geometry was provided as part of a guided ANSYS course, this project demonstrates
+hands-on experience with chassis modeling strategies, boundary condition definition,
+result interpretation, and engineering judgment applied to vehicle structural systems.
+</p>
+
+<hr>
+
+<h2>Next Steps</h2>
+
+<p>
+Future work includes applying these analysis methods to student-designed chassis geometries,
+such as Formula SAE or Shell Eco-marathon vehicles, where design iteration and optimization
+will be performed from first principles.
+</p>
+
+</body>
+</html>
