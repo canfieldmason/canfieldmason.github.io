@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formula SAE Chassis Structural Analysis</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      line-height: 1.6;
+      color: #222;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 50px;
+      color: #111;
+    }
+
+    p {
+      margin: 15px 0;
+    }
+
+    img {
+      display: block;
+      margin: 25px auto 10px auto;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+
+    em {
+      display: block;
+      text-align: center;
+      color: #555;
+      font-size: 0.95em;
+      margin-bottom: 30px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 50px 0;
+    }
+
+    .nav-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #0066cc;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="index.html" class="nav-link">← Back to Projects</a>
+
+<h1>Formula SAE Chassis Structural Analysis</h1>
+
+<p><em>Completed through ANSYS Innovation Space</em></p>
+
+<p>
+This project follows an ANSYS Innovation Space course focused on structural analysis of a
+Formula SAE spaceframe chassis. The objective was to develop correct structural modeling,
+load case definition, and result interpretation workflows commonly used in motorsport
+engineering.
+</p>
+
+<p>
+The base chassis geometry was provided as a line network. The emphasis of the project was
+on proper geometry cleanup, tube property assignment, and evaluation under representative
+vehicle load cases rather than original chassis design.
+</p>
+
+<hr>
+
+<h2>Geometry Preparation</h2>
+
+<img src="../images/formula-sae-spaceclaim-geometry.png"
+     alt="Formula SAE spaceframe line geometry prepared in SpaceClaim">
+
+<em>
+Line-based chassis geometry prepared in SpaceClaim, including cleanup of false intersections
+and refinement of node connectivity prior to structural modeling.
+</em>
+
+<p>
+Tubular cross-sectional properties (outer and inner diameters) were assigned to each frame
+member to represent realistic chassis construction before meshing and analysis.
+</p>
+
+<hr>
+
+<h2>Torsional Stiffness Load Case</h2>
+
+<img src="../images/formula-sae-torsion-deformation.png"
+     alt="Formula SAE torsional stiffness test total deformation">
+
+<em>
+Torsional stiffness evaluation with equal and opposite vertical forces applied at the
+front lower wishbone pickup points.
+</em>
+
+<p>
+This load case simulates chassis twist during asymmetric wheel loading. Total deformation
+was examined to assess torsional compliance and identify highly loaded structural members.
+</p>
+
+<hr>
+
+<h2>Cornering Load Case</h2>
+
+<img src="../images/formula-sae-cornering-deformation.png"
+     alt="Formula SAE cornering load case total deformation">
+
+<em>
+Cornering load case with lateral acceleration applied at the center of mass and suspension
+pickup points constrained.
+</em>
+
+<p>
+This analysis represents steady-state cornering conditions, allowing evaluation of global
+chassis stiffness and load transfer through the spaceframe.
+</p>
+
+<hr>
+
+<h2>Aero + Cornering Load Case</h2>
+
+<img src="../images/formula-sae-aero-cornering-deformation.png"
+     alt="Formula SAE combined aerodynamic and cornering load case">
+
+<em>
+Combined aerodynamic and cornering load case with increased acceleration magnitude.
+</em>
+
+<p>
+A higher acceleration factor was applied to represent combined aerodynamic downforce and
+cornering loads. Results were compared against the baseline cornering case to observe
+load scaling and structural sensitivity.
+</p>
+
+<hr>
+
+<h2>Frontal Impact Load Case</h2>
+
+<img src="../images/formula-sae-frontal-deformation.png"
+     alt="Formula SAE frontal impact total deformation">
+
+<em>
+Frontal impact simulation with force applied at the front-most nodes and rear supports constrained.
+</em>
+
+<img src="../images/formula-sae-frontal-bending.png"
+     alt="Formula SAE frontal impact bending moment distribution">
+
+<em>
+Resulting bending moment distribution during frontal loading.
+</em>
+
+<p>
+This load case evaluates the structural response of the front chassis region under impact-like
+loading, highlighting load paths and critical members.
+</p>
+
+<hr>
+
+<h2>Engineering Takeaways</h2>
+
+<p>
+This project demonstrates applied use of ANSYS Mechanical for spaceframe chassis modeling,
+including line-body structural representation, realistic load case definition, and interpretation
+of deformation and internal force results within a Formula SAE context.
+</p>
+
+<p>
+While the base geometry was provided, the workflow closely mirrors professional motorsport
+analysis practices and provides a foundation for future custom chassis design work.
+</p>
+
+</body>
+</html>
