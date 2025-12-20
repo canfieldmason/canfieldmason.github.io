@@ -1,20 +1,126 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Two-Stroke Engine Mount Backplate Structural Analysis</title>
+  <meta charset="UTF-8">
+  <title>Engine Backplate Structural Analysis</title>
 </head>
+
 <body>
 
-<h1>Two-Stroke Engine Mount Backplate Structural Analysis</h1>
+<h1>Engine Mount Backplate – Structural Analysis</h1>
 
-<p><em>This project is currently in progress.</em></p>
+<p><em>Status: Pre-processing complete. Solution limited by student license constraints.</em></p>
+
+<hr>
+
+<h2>Project Overview</h2>
 
 <p>
-This project focuses on structural analysis of a small engine mounting backplate to evaluate
-stress distributions under representative loading conditions.
+This project investigates the structural behavior of a small 4-stroke internal combustion engine
+mounting backplate under representative operational loads.
+The objective is to evaluate stress concentrations, load paths, and mounting integrity
+using finite element methods.
 </p>
 
-<p><strong>Tools:</strong> Fusion 360, ANSYS Mechanical</p>
+<p>
+<strong>Tools:</strong> Fusion 360, ANSYS Mechanical (2025 R2 Student)
+</p>
+
+<hr>
+
+<h2>System Context & Geometry</h2>
+
+<p>
+The backplate is part of a 30&nbsp;cc model engine assembly. To establish realistic loading
+context, the component was first evaluated within the full engine geometry before being
+reduced to a standalone part for analysis.
+</p>
+
+<img src="../images/engine-context.png"
+     alt="Backplate shown in full engine assembly context"
+     width="700">
+
+<p><em>Backplate shown within the complete engine assembly.</em></p>
+
+<br>
+
+<img src="../images/backplate-geometry.png"
+     alt="Reduced backplate geometry prepared for finite element analysis"
+     width="700">
+
+<p><em>Reduced backplate geometry preserving bearing bores, fastener holes, and fillets.</em></p>
+
+<hr>
+
+<h2>Meshing Strategy</h2>
+
+<p>
+A tetrahedral solid mesh was generated with targeted refinement at stress-critical features,
+including bearing bores, fastener holes, counterbores, and outer fillets. Local sizing controls
+were applied to capture stress gradients while maintaining a reasonable global element count.
+</p>
+
+<img src="../images/backplate-mesh.png"
+     alt="Finite element mesh with local refinement around holes and fillets"
+     width="700">
+
+<p><em>Refined mesh highlighting bearing bores and fastener locations.</em></p>
+
+<p>
+Final mesh statistics:
+<ul>
+  <li>~75,000 nodes</li>
+  <li>~40,000 elements</li>
+</ul>
+</p>
+
+<hr>
+
+<h2>Loads & Boundary Conditions</h2>
+
+<p>
+The backplate was constrained at the mounting interfaces using remote displacement
+boundary conditions to represent attachment to the engine block.
+Bearing loads were applied using remote forces and moments aligned with a custom
+coordinate system representing the crankshaft axis.
+</p>
+
+<img src="../images/backplate-loads.png"
+     alt="Applied loads and boundary conditions in ANSYS Mechanical"
+     width="700">
+
+<p><em>Applied radial and axial bearing loads and mounting constraints.</em></p>
+
+<hr>
+
+<h2>Solver Limitations & Current Status</h2>
+
+<p>
+All geometry preparation, material assignment, meshing, and load application steps were
+completed successfully. However, solution execution was temporarily halted due to element type
+restrictions in the ANSYS Student license.
+</p>
+
+<img src="../images/ansys-solver-limitation.png"
+     alt="ANSYS solver error indicating element type restriction"
+     width="700">
+
+<p><em>Solver error encountered during solution stage due to license limitations.</em></p>
+
+<p>
+Despite this limitation, the pre-processing workflow demonstrates modeling
+decisions, boundary condition definition, and mesh refinement strategies.
+</p>
+
+<hr>
+
+<h2>Next Steps</h2>
+
+<ul>
+  <li>Re-run solution using a licensed commercial solver</li>
+  <li>Post-process stress, displacement, and safety factor results</li>
+  <li>Perform sensitivity study on fillet radii and fastener spacings</li>
+</ul>
 
 </body>
 </html>
