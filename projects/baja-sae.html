@@ -23,12 +23,12 @@
       color: #111;
     }
 
-    p {
-      margin: 15px 0;
+    h3 {
+      margin-top: 35px;
     }
 
-    ul {
-      margin-left: 20px;
+    p {
+      margin: 15px 0;
     }
 
     img, video {
@@ -64,124 +64,130 @@
     .nav-link:hover {
       text-decoration: underline;
     }
-
-    .tools {
-      font-style: italic;
-      color: #444;
-    }
   </style>
 </head>
 
 <body>
 
-<a href="index.html" class="nav-link">← Back to Projects</a>
+<a href="../projects/index.html" class="nav-link">← Back to Projects</a>
 
 <h1>Baja SAE Roll Cage Structural Analysis</h1>
 
-<p><em>ANSYS Innovation Space — Guided Structural Analysis Course</em></p>
+<p><em>ANSYS Innovation Space — Completed Guided Simulation Course</em></p>
 
 <p>
-This project documents the structural analysis of a Baja SAE roll cage performed using
-ANSYS Mechanical as part of an ANSYS Innovation Space engineering course.
-The chassis serves as the primary structural backbone of the vehicle, responsible for
-load transfer, stiffness, and driver safety under a variety of operating and impact conditions.
+The chassis and roll cage form the primary structural backbone of a Baja SAE vehicle,
+supporting drivetrain, suspension, and safety systems while protecting the driver.
+This project focuses on finite element analysis of a tubular roll cage to evaluate
+structural stiffness, load paths, and stress distributions under representative
+competition load cases.
 </p>
 
-<p class="tools"><strong>Tools:</strong> ANSYS Mechanical, SpaceClaim</p>
-
-<hr>
-
-<h2>Model Preparation</h2>
-
 <p>
-The provided roll cage geometry was imported and reviewed in SpaceClaim prior to analysis.
-The tubular frame represents a welded steel space frame commonly used in Baja SAE vehicles.
-Beam and pipe elements were assigned to the chassis members using appropriate outer diameter
-and wall thickness values to accurately represent structural behavior while maintaining
-computational efficiency.
-</p>
-
-<img src="../images/baja-geometry.png" alt="Baja SAE roll cage geometry in SpaceClaim">
-<em>Imported roll cage geometry used for structural analysis.</em>
-
-<hr>
-
-<h2>Load Cases & Analysis Overview</h2>
-
-<p>
-Multiple static structural load cases were evaluated to assess chassis stiffness, deformation,
-and stress distribution under representative competition and safety scenarios:
-</p>
-
-<ul>
-  <li>Front impact</li>
-  <li>Rear impact</li>
-  <li>Side impact</li>
-  <li>Rollover</li>
-  <li>Torsional loading</li>
-</ul>
-
-<p>
-Each case was solved using linear static analysis. Total deformation and equivalent
-(von Mises) stress results were examined to identify load paths and critical regions
-within the roll cage.
+While the baseline geometry was provided as part of an ANSYS instructional course,
+all geometry preparation, material definition, boundary conditions, and load
+applications were completed independently within ANSYS Mechanical.
 </p>
 
 <hr>
 
-<h2>Front Impact</h2>
+<h2>Geometry Preparation</h2>
 
-<img src="../images/baja-front-impact-deformation.png" alt="Front impact total deformation">
-<em>Total deformation under front impact loading.</em>
+<p>
+The roll cage geometry was imported as a line body network and cleaned to remove
+false intersections and redundant connections. Pipe cross-sectional properties
+were assigned to all members to accurately represent the tubular frame structure.
+</p>
 
-<hr>
+<img src="../images/baja-geometry.png"
+     alt="Baja SAE roll cage geometry preparation in SpaceClaim">
 
-<h2>Rear Impact</h2>
-
-<img src="../images/baja-rear-impact-deformation.png" alt="Rear impact total deformation">
-<em>Total deformation under rear impact loading.</em>
-
-<hr>
-
-<h2>Side Impact</h2>
-
-<img src="../images/baja-side-impact-deformation.png" alt="Side impact total deformation">
-<em>Total deformation under side impact loading.</em>
+<p><em>
+Cleaned roll cage line geometry with assigned tubular cross-sections.
+</em></p>
 
 <hr>
 
-<h2>Rollover</h2>
+<h2>Structural Load Cases</h2>
 
-<img src="../images/baja-rollover-deformation.png" alt="Rollover total deformation">
-<em>Total deformation under rollover loading.</em>
+<h3>Front Impact</h3>
+<p>
+A frontal impact load was applied at the forward-most nodes of the roll cage while
+rear support locations were constrained to simulate load transfer during a frontal collision.
+</p>
+
+<img src="../images/baja-front-impact-deformation.png"
+     alt="Front impact total deformation">
+
+<p><em>Total deformation under frontal impact loading.</em></p>
+
+<h3>Side Impact</h3>
+<p>
+Side impact loading was applied laterally to evaluate the roll cage’s ability to
+resist intrusion and maintain occupant protection during side collisions.
+</p>
+
+<img src="../images/baja-side-impact-deformation.png"
+     alt="Side impact total deformation">
+
+<p><em>Total deformation under side impact loading.</em></p>
+
+<h3>Rear Impact</h3>
+<p>
+Rear impact conditions were simulated by applying longitudinal loads at the rear
+of the chassis while constraining the front structure.
+</p>
+
+<img src="../images/baja-rear-impact-deformation.png"
+     alt="Rear impact total deformation">
+
+<p><em>Total deformation under rear impact loading.</em></p>
+
+<h3>Torsional Loading</h3>
+<p>
+Opposing vertical forces were applied at the suspension mounting locations to
+evaluate torsional stiffness of the roll cage under uneven terrain and dynamic loading.
+</p>
+
+<img src="../images/baja-torsion-deformation.png"
+     alt="Torsional loading total deformation">
+
+<p><em>Total deformation under torsional loading.</em></p>
+
+<hr>
+
+<h2>Rollover Analysis</h2>
+
+<p>
+Rollover loading was applied to simulate vehicle inversion scenarios and assess
+stress distribution throughout the primary and secondary structural members.
+</p>
 
 <video controls>
-  <source src="../images/baja-rollover-stress-animation.mp4" type="video/mp4">
+  <source src="../images/baja-rollover-stress.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-<em>Stress distribution animation during rollover loading.</em>
+
+<p><em>
+Rollover load case showing equivalent stress distribution in the roll cage.
+This animation illustrates load transfer paths through the primary and secondary
+structural members under simulated rollover conditions.
+</em></p>
 
 <hr>
 
-<h2>Torsional Loading</h2>
-
-<img src="../images/baja-torsion-deformation.png" alt="Torsional deformation of chassis">
-<em>Chassis deformation under torsional loading.</em>
-
-<hr>
-
-<h2>Key Takeaways</h2>
+<h2>Results & Interpretation</h2>
 
 <p>
-This analysis highlights how different load cases activate distinct load paths within
-a tubular space frame. Impact scenarios concentrate stress near joint intersections,
-while torsional loading reveals overall chassis stiffness and resistance to twisting.
+Across all load cases, the roll cage demonstrated effective load redistribution
+through triangulated members, with peak stresses occurring near major joints
+and suspension interfaces. Deformation patterns aligned with expected structural
+behavior for tubular spaceframe designs.
 </p>
 
 <p>
-Although the geometry was provided as part of a guided ANSYS course, this project demonstrates
-hands-on experience with chassis modeling strategies, boundary condition definition,
-result interpretation, and engineering judgment applied to vehicle structural systems.
+These analyses highlight the importance of load path continuity, joint integrity,
+and member orientation in achieving stiffness while minimizing unnecessary mass.
 </p>
 
 <hr>
@@ -189,9 +195,10 @@ result interpretation, and engineering judgment applied to vehicle structural sy
 <h2>Next Steps</h2>
 
 <p>
-Future work includes applying these analysis methods to student-designed chassis geometries,
-such as Formula SAE or Shell Eco-marathon vehicles, where design iteration and optimization
-will be performed from first principles.
+The workflows developed in this guided project will be applied to future
+fully custom chassis designs, including Formula SAE and Shell Eco-Marathon vehicles.
+Future efforts will incorporate manufacturing constraints, joint optimization,
+and correlation with physical testing data where available.
 </p>
 
 </body>
