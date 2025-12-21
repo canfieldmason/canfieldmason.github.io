@@ -46,7 +46,7 @@ and technical documentation supporting my coursework and extracurricular design 
 ---
 
 ## Portfolio Website
-➡️ https://canfieldmason.github.io
+https://canfieldmason.github.io
 
 Includes detailed project write-ups, images, and simulation results.
 
