@@ -53,6 +53,6 @@ https://canfieldmason.github.io
 
 ---
 
-## 📫 Contact
+## Contact
 - Email: canfieldmasone@gmail.com  
 - LinkedIn: https://www.linkedin.com/in/XXXX
