@@ -33,7 +33,7 @@ and technical documentation supporting my coursework and extracurricular design 
 - Line-body spaceframe modeling with tube property assignment
 - Evaluated torsional stiffness, cornering, aerodynamic, and frontal impact load cases
 - Interpreted deformation and internal force results within a motorsport context  
-  Project page: **[Portfolio Link]**
+  Project page: https://canfieldmason.github.io/projects/formula-sae.html
 
 ---
 
@@ -41,7 +41,7 @@ and technical documentation supporting my coursework and extracurricular design 
 - Conducted OpenRocket trade studies on fin geometry, mass distribution, and motor selection
 - Evaluated apogee, stability margins, and descent characteristics
 - Supported preliminary design selection for fabrication and flight testing  
-  Project page: **[Portfolio Link]**
+  Project page: https://canfieldmason.github.io/projects/rocket.html
 
 ---
 
