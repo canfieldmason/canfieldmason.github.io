@@ -25,7 +25,7 @@ and technical documentation supporting my coursework and extracurricular design 
   and representative static loading
 - Documented solver limitations under student licensing while maintaining
   commercial-transferable model fidelity  
-  Project page: **[Portfolio Link]**
+  Project page: https://canfieldmason.github.io/projects/backplate.html
 
 ---
 
