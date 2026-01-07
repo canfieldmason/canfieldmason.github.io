@@ -55,4 +55,6 @@ https://canfieldmason.github.io
 
 ## Contact
 - Email: canfieldmasone@gmail.com  
-- LinkedIn: https://www.linkedin.com/in/XXXX
+- LinkedIn: www.linkedin.com/in/mason-canfield
+
+
