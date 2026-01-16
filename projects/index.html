@@ -1,59 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Projects</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    line-height: 1.6;
+    color: #222;
+    padding: 0 20px;
+  }
 
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      max-width: 900px;
-      margin: 40px auto;
-      line-height: 1.6;
-      color: #222;
-      padding: 0 20px;
-    }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
 
-    h3 {
-      margin-top: 35px;
-      margin-bottom: 10px;
-    }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    p {
-      margin: 10px 0;
-    }
+  .nav-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+  }
 
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  .project-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 18px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-    .nav-link {
-      display: inline-block;
-      margin-bottom: 30px;
-      font-size: 0.95em;
-    }
+  .project-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 
-    .status-note {
-      font-style: italic;
-      color: #555;
-    }
+  .status-note {
+    font-style: italic;
+    color: #555;
+    margin-top: 8px;
+  }
 
-    hr {
-      border: none;
-      border-top: 1px solid #ddd;
-      margin: 40px 0;
-    }
-  </style>
-</head>
+  .tags {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #333;
+    padding: 4px 8px;
+    margin: 3px 3px 3px 0;
+    font-size: 0.85em;
+    border-radius: 4px;
+  }
+
+  .view-link {
+    margin-top: 12px;
+    font-weight: bold;
+  }
+</style>
 
 <body>
 
@@ -61,110 +82,154 @@
 
 <h1>Projects</h1>
 
-<h3>Engine Mount Backplate Structural Analysis</h3>
-<p>
-Structural finite element pre-processing of a small four-stroke engine mounting backplate,
-including geometry reduction, material assignment, localized mesh refinement at bolt holes
-and bearing interfaces, and application of representative static loads and constraints.
-</p>
-<p class="status-note">
-Note: Model setup is complete; solution execution was limited by ANSYS Student license
-element restrictions.
-</p>
-<p>
-<a href="backplate.html">View project →</a>
-</p>
+<div class="projects-grid">
 
-<hr>
-  
-<h3>SOLIDWORKS Certification & Design Practice</h3>
-<p>
-CSWA-certified parametric part and assembly modeling demonstrating robust design intent,
-fully constrained sketches, clean feature trees, and predictable rebuild behavior.
-Includes representative assemblies completed during structured certification preparation.
-</p>
-<p class="status-note">
-Status: CSWA completed (240 / 240). CSWP preparation in progress.
-</p>
-<p>
-<a href="SolidWorks.html">View project →</a>
-</p>
+  <div class="project-card">
+    <h3>Engine Mount Backplate Structural Analysis</h3>
 
-<hr>
+    <div class="tags">
+      <span class="tag">ANSYS</span>
+      <span class="tag">FEA</span>
+      <span class="tag">Meshing</span>
+      <span class="tag">Structural Analysis</span>
+    </div>
 
-<h3>Formula SAE Chassis Structural Analysis</h3>
-<p>
-Structural analysis of a Formula SAE tubular spaceframe chassis completed through ANSYS
-Innovation Space. The project focused on line-body modeling, tube property assignment,
-and evaluation under torsional stiffness, cornering, combined aerodynamic loading,
-and frontal impact load cases.
-</p>
-<p>
-<a href="formula-sae.html">View project →</a>
-</p>
+    <p>
+      Structural finite element pre-processing of a small four-stroke engine mounting backplate,
+      including geometry reduction, material assignment, localized mesh refinement, and application
+      of representative static loads and constraints.
+    </p>
 
-<hr>
+    <p class="status-note">
+      Model setup complete; solution limited by ANSYS Student element restrictions.
+    </p>
 
-<h3>Baja SAE Roll Cage Structural Analysis</h3>
-<p>
-Finite element analysis of a Baja SAE roll cage structure considering front, side, rear,
-rollover, and torsional loading scenarios. Emphasis was placed on structural load paths,
-driver safety, and interpretation of deformation and stress results under impact-like conditions.
-</p>
-<p>
-<a href="baja-sae.html">View project →</a>
-</p>
+    <a class="view-link" href="backplate.html">View project →</a>
+  </div>
 
-<hr>
 
-<h3>Shell Eco-Marathon Chassis Structural Analysis</h3>
-<p>
-Ongoing structural analysis of a prototype competition vehicle chassis focused on
-stiffness evaluation, load case development, and simulation-driven design iteration
-using ANSYS Mechanical.
-</p>
-<p>
-<em>Status: Work in progress</em>
-</p>
-<p>
-<a href="shell-eco-chassis.html">View project →</a>
-</p>
+  <div class="project-card">
+    <h3>SOLIDWORKS Certification & Design Practice</h3>
 
-<hr>
+    <div class="tags">
+      <span class="tag">SOLIDWORKS</span>
+      <span class="tag">CSWA</span>
+      <span class="tag">Parametric Modeling</span>
+      <span class="tag">Assemblies</span>
+    </div>
 
-<h3>Madison Aerospace Club – Rocket Design & Simulation</h3>
-<p>
-Preliminary rocket design and performance simulation using OpenRocket, including trade
-studies on fin geometry, mass distribution, body length, and motor selection to evaluate
-apogee, stability, and descent behavior in support of upcoming fabrication and flight testing.
-</p>
-<p>
-<a href="rocket.html">View project →</a>
-</p>
+    <p>
+      CSWA-certified parametric part and assembly modeling demonstrating robust design intent,
+      fully constrained sketches, clean feature trees, and predictable rebuild behavior.
+    </p>
 
-<hr>
+    <p class="status-note">
+      CSWA completed (240/240). CSWP preparation in progress.
+    </p>
 
-<h3>Automated Plant Watering System</h3>
-<p>
-Arduino-based embedded system that monitors soil moisture and autonomously controls
-water pumps using sensor feedback and MOSFET power switching. Features pulsed
-watering logic, manual override functionality, and real-time status indication.
-</p>
-<p>
-Project involved electrical prototyping, embedded C++ development, threshold tuning,
-and iterative hardware/software integration to create a reliable standalone system.
-</p>
-<p>
-<a href="watering-system.html">View project →</a>
-</p>
-  
-<hr>
-  
-<h3>Additional Projects</h3>
-<p>
-Further structural analysis and mechanical design projects will be added as work progresses,
-including original vehicle and chassis development efforts.
-</p>
+    <a class="view-link" href="SolidWorks.html">View project →</a>
+  </div>
+
+
+  <div class="project-card">
+    <h3>Formula SAE Chassis Structural Analysis</h3>
+
+    <div class="tags">
+      <span class="tag">ANSYS</span>
+      <span class="tag">Structural Simulation</span>
+      <span class="tag">Load Cases</span>
+      <span class="tag">FEA</span>
+    </div>
+
+    <p>
+      Structural analysis of a Formula SAE tubular spaceframe chassis focusing on torsional stiffness,
+      cornering, aerodynamic, and frontal impact load cases using ANSYS Innovation Space.
+    </p>
+
+    <a class="view-link" href="formula-sae.html">View project →</a>
+  </div>
+
+
+  <div class="project-card">
+    <h3>Baja SAE Roll Cage Structural Analysis</h3>
+
+    <div class="tags">
+      <span class="tag">FEA</span>
+      <span class="tag">ANSYS</span>
+      <span class="tag">Safety Analysis</span>
+      <span class="tag">Structural Design</span>
+    </div>
+
+    <p>
+      Finite element analysis of a Baja SAE roll cage structure considering front, side, rear,
+      rollover, and torsional loading scenarios with emphasis on driver safety and load paths.
+    </p>
+
+    <a class="view-link" href="baja-sae.html">View project →</a>
+  </div>
+
+
+  <div class="project-card">
+    <h3>Shell Eco-Marathon Chassis Structural Analysis</h3>
+
+    <div class="tags">
+      <span class="tag">ANSYS Mechanical</span>
+      <span class="tag">Optimization</span>
+      <span class="tag">Simulation</span>
+    </div>
+
+    <p>
+      Ongoing structural analysis of a prototype competition vehicle chassis focused on stiffness
+      evaluation and simulation-driven design iteration.
+    </p>
+
+    <p class="status-note">
+      Status: Work in progress
+    </p>
+
+    <a class="view-link" href="shell-eco-chassis.html">View project →</a>
+  </div>
+
+
+  <div class="project-card">
+    <h3>Madison Aerospace Club – Rocket Design & Simulation</h3>
+
+    <div class="tags">
+      <span class="tag">OpenRocket</span>
+      <span class="tag">Aerodynamics</span>
+      <span class="tag">Design Trades</span>
+    </div>
+
+    <p>
+      Preliminary rocket design and performance simulation including studies on fin geometry,
+      mass distribution, stability, and motor selection to support fabrication and flight testing.
+    </p>
+
+    <a class="view-link" href="rocket.html">View project →</a>
+  </div>
+
+
+  <div class="project-card">
+    <h3>Automated Plant Watering System</h3>
+
+    <div class="tags">
+      <span class="tag">Arduino</span>
+      <span class="tag">Embedded C++</span>
+      <span class="tag">Electronics</span>
+      <span class="tag">Sensors</span>
+      <span class="tag">Prototyping</span>
+    </div>
+
+    <p>
+      Embedded system that monitors soil moisture and autonomously controls water pumps using
+      pulsed logic, manual override, and real-time LED status feedback.
+    </p>
+
+    <a class="view-link" href="watering-system.html">View project →</a>
+  </div>
+
+</div>
 
 </body>
-</html>
+
+
