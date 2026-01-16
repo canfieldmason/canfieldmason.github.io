@@ -145,9 +145,103 @@ Key features of the control logic include:
 The full embedded control program used in the project is shown below.
 </p>
 
-<pre>
-[Arduino code block remains unchanged for brevity]
-</pre>
+<pre><code>
+const int sensor1Pin = A0;
+const int sensor2Pin = A2;
+const int pump1Pin = 3;
+const int pump2Pin = 5;
+const int buttonPin = 2;
+const int ledPin = 6;
+
+const int dryThreshold = 550;
+
+const unsigned long pumpOnTime = 500;
+const unsigned long pumpOffTime = 3000;
+const unsigned long manualDuration = 10000;
+
+bool manualMode = false;
+bool pumpRunning = false;
+unsigned long lastPulseTime = 0;
+unsigned long manualStartTime = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pump1Pin, OUTPUT);
+  pinMode(pump2Pin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
+
+  digitalWrite(pump1Pin, LOW);
+  digitalWrite(pump2Pin, LOW);
+  digitalWrite(ledPin, LOW);
+
+  Serial.println("System ready. Auto-pulsing active.");
+}
+
+void loop() {
+  int sensor1Value = analogRead(sensor1Pin);
+
+  if (digitalRead(buttonPin) == LOW && !manualMode) {
+    manualMode = true;
+    manualStartTime = millis();
+    Serial.println("MANUAL OVERRIDE: Pulsing mode activated");
+    delay(200);
+  }
+
+  if (!manualMode) {
+    if (sensor1Value > dryThreshold) {
+      if (millis() - lastPulseTime >= pumpOffTime && !pumpRunning) {
+        digitalWrite(pump1Pin, HIGH);
+        pumpRunning = true;
+        lastPulseTime = millis();
+        Serial.println("AUTO-PULSE: Pump ON");
+      }
+      else if (pumpRunning && millis() - lastPulseTime >= pumpOnTime) {
+        digitalWrite(pump1Pin, LOW);
+        pumpRunning = false;
+        Serial.println("AUTO-PULSE: Pump OFF");
+      }
+    }
+    else {
+      digitalWrite(pump1Pin, LOW);
+      pumpRunning = false;
+    }
+  }
+
+  if (manualMode) {
+    if (millis() - manualStartTime < manualDuration) {
+      if (millis() - lastPulseTime >= pumpOffTime && !pumpRunning) {
+        digitalWrite(pump1Pin, HIGH);
+        digitalWrite(pump2Pin, HIGH);
+        pumpRunning = true;
+        lastPulseTime = millis();
+        Serial.println("MANUAL-PULSE: Pumps ON");
+      }
+      else if (pumpRunning && millis() - lastPulseTime >= pumpOnTime) {
+        digitalWrite(pump1Pin, LOW);
+        digitalWrite(pump2Pin, LOW);
+        pumpRunning = false;
+        Serial.println("MANUAL-PULSE: Pumps OFF");
+      }
+    }
+    else {
+      manualMode = false;
+      digitalWrite(pump1Pin, LOW);
+      digitalWrite(pump2Pin, LOW);
+      Serial.println("MANUAL OVERRIDE: Timeout");
+    }
+  }
+
+  if (sensor1Value <= dryThreshold && !pumpRunning && !manualMode) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(50);
+}
+</code></pre>
+
 
 <hr>
 
