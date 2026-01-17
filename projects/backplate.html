@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      max-width: 900px;
+      max-width: 950px;
       margin: 40px auto;
       line-height: 1.6;
       color: #222;
@@ -19,7 +19,7 @@
     }
 
     h2 {
-      margin-top: 50px;
+      margin-top: 45px;
       color: #111;
     }
 
@@ -46,30 +46,41 @@
     hr {
       border: none;
       border-top: 1px solid #ddd;
-      margin: 50px 0;
-    }
-
-    .tools {
-      font-style: italic;
-      color: #444;
+      margin: 45px 0;
     }
 
     .nav-link {
-  display: inline-block;
-  margin-bottom: 30px;
-  color: #0066cc;
-  text-decoration: none;
-  font-size: 0.95em;
-}
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #0066cc;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
 
-.nav-link:hover {
-  text-decoration: underline;
-}
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .tools-box {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      background: #fafafa;
+      margin: 20px 0;
+    }
+
+    .section-intro {
+      font-style: italic;
+      color: #555;
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
   </style>
 </head>
 
 <body>
+
 <div style="
   text-align:center;
   margin-bottom:30px;
@@ -83,10 +94,15 @@
 </div>
 
 <a href="../projects/index.html" class="nav-link">← Back to Projects</a>
-  
+
 <h1>Engine Mount Backplate Structural Analysis</h1>
 
-<p><em>Pre-processing complete; model prepared for solution.</em></p>
+<p class="section-intro">
+Pre-processing complete; model prepared for solution.
+</p>
+
+
+<h2>Project Overview</h2>
 
 <p>
 This project focuses on the structural analysis of a small internal combustion engine
@@ -95,11 +111,32 @@ evaluate stress distribution, deformation behavior, and load transfer paths unde
 representative operational loading conditions.
 </p>
 
-<p class="tools">
-<strong>Tools:</strong> Fusion 360, ANSYS Mechanical
-</p>
+
+<div class="tools-box">
+  <strong>Tools Used</strong>
+  <p>
+    CAD Modeling: Fusion 360  
+    <br>Analysis: ANSYS Mechanical  
+    <br>Methods: Finite Element Preprocessing, Meshing, Boundary Condition Development
+  </p>
+</div>
+
 
 <hr>
+
+
+<h2>Engineering Objective</h2>
+
+<p>
+The goal of this analysis was to create a representative finite element model of the engine
+backplate capable of predicting structural response to crankshaft loads. Emphasis was placed
+on developing an accurate yet computationally efficient model through geometry simplification,
+targeted mesh refinement, and realistic boundary condition definition.
+</p>
+
+
+<hr>
+
 
 <h2>Geometry Preparation</h2>
 
@@ -118,22 +155,26 @@ bearing interfaces, and mounting features.
      alt="Reduced backplate geometry used for analysis">
 <em>Reduced backplate geometry prepared for structural analysis.</em>
 
+
 <hr>
+
 
 <h2>Mesh Strategy</h2>
 
 <p>
 Mesh refinement was applied selectively to regions of expected stress concentration,
-including bearing bores, bolt holes (both through and counterbored), and outer fillet
-transitions. A finer element size was used locally to capture stress gradients while
-maintaining a reasonable global element count.
+including bearing bores, bolt holes, and outer fillet transitions. A finer element size
+was used locally to capture stress gradients while maintaining a reasonable global element
+count and solution time.
 </p>
 
 <img src="../images/backplate-mesh-bearings.png"
      alt="Refined finite element mesh of backplate">
 <em>Refined mesh highlighting bearing bores, bolt holes, and filleted edges.</em>
 
+
 <hr>
+
 
 <h2>Boundary Conditions & Loading</h2>
 
@@ -148,9 +189,11 @@ applied moments consistent with engine operation.
      alt="Applied loads and boundary conditions in ANSYS Mechanical">
 <em>Applied constraints, forces, and moments representing engine operating loads.</em>
 
+
 <hr>
 
-<h2>Solver Limitations & Current Status</h2>
+
+<h2>Current Status & Limitations</h2>
 
 <p>
 All geometry preparation, material assignment, meshing, and load application steps were
@@ -167,17 +210,19 @@ restrictions imposed by the ANSYS Student license.
 <em>Solver error encountered during solution stage due to license limitations.</em>
 
 <p>
-Despite this limitation, the pre-processing workflow demonstrates sound modeling decisions,
-appropriate boundary condition definition, and targeted mesh refinement strategies consistent
+Despite this limitation, the completed pre-processing workflow demonstrates appropriate
+modeling decisions, boundary condition definition, and mesh refinement strategies consistent
 with industry-standard FEA practice.
 </p>
 
+
 <hr>
 
-<h2>Next Steps</h2>
+
+<h2>Takeaways & Next Steps</h2>
 
 <p>
-This model is fully prepared for solution under a commercial ANSYS license with little
+This model is fully prepared for solution under a commercial ANSYS license with minimal
 modification required. Planned next steps include solving for von Mises stress, total
 deformation, and reaction forces at the mounting interfaces, followed by evaluation of
 factor of safety and identification of potential design improvements.
@@ -185,10 +230,10 @@ factor of safety and identification of potential design improvements.
 
 <p>
 Future extensions of this work may include bolt preload modeling, contact refinement at
-bearing interfaces, and comparison against simplified analytical hand calculations. 
+bearing interfaces, and comparison against simplified analytical hand calculations.
 Results will be added once solution access is available.
 </p>
-</p>
+
 
 </body>
 </html>
