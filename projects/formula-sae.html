@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      max-width: 900px;
+      max-width: 950px;
       margin: 40px auto;
       line-height: 1.6;
       color: #222;
@@ -19,12 +19,12 @@
     }
 
     h2 {
-      margin-top: 50px;
+      margin-top: 45px;
       color: #111;
     }
 
     h3 {
-      margin-top: 35px;
+      margin-top: 30px;
     }
 
     p {
@@ -50,12 +50,12 @@
     hr {
       border: none;
       border-top: 1px solid #ddd;
-      margin: 50px 0;
+      margin: 45px 0;
     }
 
     .nav-link {
       display: inline-block;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       color: #0066cc;
       text-decoration: none;
       font-size: 0.95em;
@@ -64,10 +64,27 @@
     .nav-link:hover {
       text-decoration: underline;
     }
+
+    .tools-box {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      background: #fafafa;
+      margin: 20px 0;
+    }
+
+    .section-intro {
+      font-style: italic;
+      color: #555;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
   </style>
 </head>
 
 <body>
+
 <div style="
   text-align:center;
   margin-bottom:30px;
@@ -84,7 +101,12 @@
 
 <h1>Formula SAE Chassis Structural Analysis</h1>
 
-<p><em>ANSYS Innovation Space — Completed Guided Simulation Course</em></p>
+<p class="section-intro">
+ANSYS Innovation Space — Completed Guided Simulation Course
+</p>
+
+
+<h2>Project Overview</h2>
 
 <p>
 This project focuses on structural analysis of a Formula SAE tubular spaceframe chassis
@@ -99,7 +121,32 @@ all geometry cleanup, tube property assignment, boundary conditions, and load ap
 were completed independently to mirror real-world motorsport analysis practices.
 </p>
 
+
+<div class="tools-box">
+  <strong>Tools Used</strong>
+  <p>
+    CAD Preparation: ANSYS SpaceClaim  
+    <br>Analysis: ANSYS Mechanical  
+    <br>Methods: Line-Body FEA, Load Case Development, Structural Interpretation
+  </p>
+</div>
+
+
 <hr>
+
+
+<h2>Engineering Objective</h2>
+
+<p>
+The goal of this analysis was to evaluate global chassis stiffness and structural behavior
+under common Formula SAE loading scenarios. Emphasis was placed on understanding how
+triangulated tube structures transfer loads, how to correctly represent suspension
+interfaces, and how to interpret deformation and internal force results.
+</p>
+
+
+<hr>
+
 
 <h2>Geometry Preparation</h2>
 
@@ -112,16 +159,18 @@ to assigning structural properties.
 <img src="../images/formula-sae-spaceclaim-geometry.png"
      alt="Formula SAE spaceframe geometry preparation in SpaceClaim">
 
-<p><em>
+<em>
 Cleaned line-body chassis geometry prepared in SpaceClaim with consistent node connectivity.
-</em></p>
+</em>
 
 <p>
 Tubular cross-sectional properties, including outer and inner diameters, were assigned to
 all members to represent realistic steel tube construction before meshing and analysis.
 </p>
 
+
 <hr>
+
 
 <h2>Structural Load Cases</h2>
 
@@ -135,9 +184,10 @@ to evaluate chassis torsional stiffness under asymmetric wheel loading.
 <img src="../images/formula-sae-torsion-deformation.png"
      alt="Formula SAE torsional stiffness total deformation">
 
-<p><em>
+<em>
 Total deformation under torsional loading used to assess global chassis compliance.
-</em></p>
+</em>
+
 
 <h3>Cornering</h3>
 
@@ -149,9 +199,10 @@ points were constrained to represent steady-state cornering conditions.
 <img src="../images/formula-sae-cornering-deformation.png"
      alt="Formula SAE cornering load case total deformation">
 
-<p><em>
+<em>
 Chassis deformation under cornering load case.
-</em></p>
+</em>
+
 
 <h3>Aerodynamic + Cornering</h3>
 
@@ -164,9 +215,10 @@ cornering case to observe load scaling effects.
 <img src="../images/formula-sae-aero-cornering-deformation.png"
      alt="Formula SAE combined aero and cornering deformation">
 
-<p><em>
+<em>
 Total deformation under combined aerodynamic and cornering loading.
-</em></p>
+</em>
+
 
 <h3>Frontal Impact</h3>
 
@@ -178,18 +230,20 @@ were constrained to simulate impact-like loading conditions.
 <img src="../images/formula-sae-frontal-deformation.png"
      alt="Formula SAE frontal impact deformation">
 
-<p><em>
+<em>
 Total deformation under frontal impact loading.
-</em></p>
+</em>
 
 <img src="../images/formula-sae-frontal-bending.png"
      alt="Formula SAE frontal impact bending moment distribution">
 
-<p><em>
+<em>
 Bending moment distribution highlighting primary load paths during frontal loading.
-</em></p>
+</em>
+
 
 <hr>
+
 
 <h2>Results & Engineering Takeaways</h2>
 
@@ -206,7 +260,9 @@ realistic motorsport load case definition, and interpretation of deformation and
 force results within a Formula SAE context.
 </p>
 
+
 <hr>
+
 
 <h2>Next Steps</h2>
 
@@ -217,5 +273,7 @@ including Shell Eco-Marathon and student team competition vehicles, with increas
 on design iteration, manufacturability, and performance optimization.
 </p>
 
+
 </body>
 </html>
+
