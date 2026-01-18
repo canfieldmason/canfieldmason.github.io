@@ -99,8 +99,8 @@
 
 <p>
 This project documents my contributions to the Madison Aerospace Club rocket team,
-with a focus on early-stage vehicle design and performance prediction using
-OpenRocket simulations.
+with a focus on early-stage vehicle configuration, motor selection, and performance
+prediction using OpenRocket simulations.
 </p>
 
 <p class="tools"><strong>Tools:</strong> OpenRocket</p>
@@ -108,6 +108,62 @@ OpenRocket simulations.
 <img src="../images/openrocket-cad.png"
      alt="OpenRocket CAD model of competition rocket">
 <em>OpenRocket model used for preliminary performance and stability studies.</em>
+
+<hr>
+
+<h2>Motor Selection</h2>
+
+<p>
+After evaluating several propulsion options in simulation, the team selected the 
+<strong>AeroTech H100W-14A</strong> single-use composite motor as the baseline propulsion 
+system for the competition rocket. This decision was based on predicted apogee performance, 
+thrust profile characteristics, availability, and compatibility with airframe constraints.
+</p>
+
+<div style="
+  background:#fafafa;
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:20px;
+  margin:30px 0;
+">
+  <h3 style="margin-top:0;">Selected Motor: AeroTech H100W-14A</h3>
+
+  <p>
+    <strong>Type:</strong> 38 mm Disposable Motor System (DMS) – Single Use  
+    <br><strong>Propellant:</strong> White Lightning™ composite propellant  
+    <br><strong>Certification:</strong> TRA / NAR / CAR certified  
+  </p>
+
+  <p>
+    <strong>Key Specifications</strong>
+  </p>
+
+  <ul>
+    <li><strong>Motor Diameter:</strong> 1.5 in (38 mm)</li>
+    <li><strong>Casing Length:</strong> 6.12 in (155 mm)</li>
+    <li><strong>Total Impulse:</strong> 234 N·s</li>
+    <li><strong>Average Thrust:</strong> 100 N</li>
+    <li><strong>Peak Thrust:</strong> 131 N</li>
+    <li><strong>Thrust Duration:</strong> 2.3 s</li>
+    <li><strong>Delay Time:</strong> Adjustable up to 14 s</li>
+    <li><strong>Propellant Mass:</strong> 121 g</li>
+    <li><strong>Total Motor Mass:</strong> 261 g</li>
+  </ul>
+</div>
+
+<p>
+This motor was incorporated directly into the OpenRocket model to refine the vehicle’s
+mass properties, center-of-gravity location, and expected flight trajectory. Simulation
+results indicated that the H100W-14A provided a strong balance between achievable apogee
+and a manageable stability margin for the current airframe geometry.
+</p>
+
+<p>
+Selection of a commercially certified motor also ensured compliance with club safety
+requirements and competition regulations while enabling repeatable performance for
+future flight validation.
+</p>
 
 <hr>
 
@@ -137,21 +193,46 @@ OpenRocket simulations.
     Finalize rocket configuration and support fabrication and assembly efforts.
   </li>
   <li>
-    Compare OpenRocket-predicted apogee and descent time with experimental flight data.
+    Perform detailed OpenRocket simulations for the finalized geometry.
   </li>
   <li>
-    Quantify prediction error and refine simulation assumptions based on measured performance.
+    Support ground testing and pre-flight preparation.
+  </li>
+  <li>
+    Collect and analyze flight data from initial test launches.
   </li>
 </ul>
+
+<hr>
+
+<h2>Future Validation</h2>
+
+<p>
+Once fabrication and flight testing are completed, predicted performance from OpenRocket
+will be compared against measured flight data including apogee, acceleration profile,
+and descent time. Differences between simulation and real-world performance will be used
+to refine modeling assumptions such as drag coefficients, mass distribution, and recovery
+system behavior.
+</p>
+
+<p>
+This comparison will provide practical insight into the accuracy of early design models
+and help improve the simulation workflow for future rocket iterations within the club.
+</p>
+
+<p>
+This section will be updated with quantitative results, plots, and flight analysis
+following upcoming launch tests.
+</p>
 
 <hr>
 
 <h2>Current Status</h2>
 
 <p>
-The model and trade studies are complete and ready to support fabrication and
-flight validation. This project will be updated with flight data comparisons
-once testing is conducted.
+The initial model and motor selection are complete and ready to support detailed geometry
+development, fabrication, and flight validation. This project page will continue to evolve
+as simulations and real-world testing progress.
 </p>
 
 </body>
