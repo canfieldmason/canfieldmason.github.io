@@ -202,7 +202,106 @@ The full embedded control program used in the project is shown below.
 </p>
 
 <pre><code class="language-cpp">
-[code unchanged from original]
+const int sensor1Pin = A0;
+const int sensor2Pin = A2;
+const int pump1Pin = 3;
+const int pump2Pin = 5;
+const int buttonPin = 2;
+const int ledPin = 6;          // Added LED pin
+const int dryThreshold = 550;  // Adjust this based on your sensor
+
+// Pulsing settings
+const unsigned long pumpOnTime = 500;     // 0.5s ON per pulse
+const unsigned long pumpOffTime = 3000;   // 3s OFF between pulses
+const unsigned long manualDuration = 10000; // 10s total manual mode runtime
+
+// State variables
+bool manualMode = false;
+bool pumpRunning = false;
+unsigned long lastPulseTime = 0;
+unsigned long manualStartTime = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pump1Pin, OUTPUT);
+  pinMode(pump2Pin, OUTPUT);
+  pinMode(ledPin, OUTPUT);      // Initialize LED pin
+  pinMode(buttonPin, INPUT_PULLUP);
+  digitalWrite(pump1Pin, LOW);
+  digitalWrite(pump2Pin, LOW);
+  digitalWrite(ledPin, LOW);    // Start with LED off
+  Serial.println("System ready. Auto-pulsing active.");
+}
+
+void loop() {
+  int sensor1Value = analogRead(sensor1Pin);
+  
+  // Handle button press (with debounce)
+  if (digitalRead(buttonPin) == LOW && !manualMode) {
+    manualMode = true;
+    manualStartTime = millis();
+    Serial.println("MANUAL OVERRIDE: Pulsing mode activated");
+    delay(200); // Debounce
+  }
+
+  // Automatic Pulsing Mode
+  if (!manualMode) {
+    if (sensor1Value > dryThreshold) {
+      // Pulse the pump (ON/OFF cycle)
+      if (millis() - lastPulseTime >= pumpOffTime && !pumpRunning) {
+        digitalWrite(pump1Pin, HIGH);
+        pumpRunning = true;
+        lastPulseTime = millis();
+        Serial.print("AUTO-PULSE: Pump ON (Dryness: ");
+        Serial.print(sensor1Value);
+        Serial.println(")");
+      }
+      else if (pumpRunning && millis() - lastPulseTime >= pumpOnTime) {
+        digitalWrite(pump1Pin, LOW);
+        pumpRunning = false;
+        Serial.println("AUTO-PULSE: Pump OFF");
+      }
+    }
+    else {
+      digitalWrite(pump1Pin, LOW);
+      pumpRunning = false;
+    }
+  }
+
+  // Manual Pulsing Mode (with timeout)
+  if (manualMode) {
+    if (millis() - manualStartTime < manualDuration) {
+      if (millis() - lastPulseTime >= pumpOffTime && !pumpRunning) {
+        digitalWrite(pump1Pin, HIGH);
+        digitalWrite(pump2Pin, HIGH);
+        pumpRunning = true;
+        lastPulseTime = millis();
+        Serial.println("MANUAL-PULSE: Pumps ON");
+      }
+      else if (pumpRunning && millis() - lastPulseTime >= pumpOnTime) {
+        digitalWrite(pump1Pin, LOW);
+        digitalWrite(pump2Pin, LOW);
+        pumpRunning = false;
+        Serial.println("MANUAL-PULSE: Pumps OFF");
+      }
+    }
+    else {
+      manualMode = false;
+      digitalWrite(pump1Pin, LOW);
+      digitalWrite(pump2Pin, LOW);
+      Serial.println("MANUAL OVERRIDE: Timeout - Returning to auto mode");
+    }
+  }
+
+  // LED Control - ON when soil is wet AND pump isn't running
+  if (sensor1Value <= dryThreshold && !pumpRunning && !manualMode) {
+    digitalWrite(ledPin, HIGH);  // Turn LED on when conditions are met
+  } else {
+    digitalWrite(ledPin, LOW);   // Otherwise keep LED off
+  }
+
+  delay(50); // Small delay to reduce CPU load
+}
 </code></pre>
 
 <hr>
@@ -223,7 +322,6 @@ The project validated that low-cost capacitive sensors and simple timing-based c
 
 <ul>
   <li>Add independent moisture sensing and control for each pump channel</li>
-  <li>Implement software filtering or averaging to reduce sensor noise</li>
   <li>Add real-time clock scheduling for time-based watering modes</li>
   <li>Include a small LCD or wireless interface for user feedback</li>
   <li>Integrate current sensing to detect pump faults or dry-run conditions</li>
