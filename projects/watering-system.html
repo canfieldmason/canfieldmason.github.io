@@ -208,7 +208,7 @@ const int pump1Pin = 3;
 const int pump2Pin = 5;
 const int buttonPin = 2;
 const int ledPin = 6;          // Added LED pin
-const int dryThreshold = 550;  // Adjust this based on your sensor
+const int dryThreshold = 550;  // Adjust based on sensor
 
 // Pulsing settings
 const unsigned long pumpOnTime = 500;     // 0.5s ON per pulse
@@ -236,7 +236,7 @@ void setup() {
 void loop() {
   int sensor1Value = analogRead(sensor1Pin);
   
-  // Handle button press (with debounce)
+  // handle button press (with debounce)
   if (digitalRead(buttonPin) == LOW && !manualMode) {
     manualMode = true;
     manualStartTime = millis();
