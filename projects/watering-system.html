@@ -74,6 +74,11 @@
       border: 1px solid #ddd;
       overflow-x: auto;
     }
+
+    code {
+      font-family: Consolas, monospace;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 
@@ -98,7 +103,7 @@
 <p><em>Arduino-based embedded system for soil monitoring and autonomous pump control</em></p>
 
 <p>
-This project developed a fully autonomous embedded system capable of monitoring soil moisture and controlling water pumps without user intervention. The system integrates analog sensing, power electronics, and microcontroller logic to maintain plant health through closed-loop control, preventing both underwatering and surface runoff caused by oversaturation.
+This project developed a fully autonomous embedded system capable of monitoring soil moisture and controlling water pumps without user intervention. The system integrates analog sensing, power electronics, and microcontroller logic to maintain plant health through automated feedback-based control, preventing both underwatering and surface runoff caused by rapid oversaturation.
 </p>
 
 <div class="status">
@@ -107,8 +112,9 @@ This project developed a fully autonomous embedded system capable of monitoring 
   <li>Microcontroller: Arduino (5V logic)</li>
   <li>Soil Moisture Sensor: ST0160 capacitive sensor (DigiKey 4411-ST0160-ND)</li>
   <li>Operating Voltage: 5V system power</li>
-  <li>Actuators: 2x small DC water pumps</li>
+  <li>Actuators: 2x 5V DC water pumps (MOSFET-switched)</li>
   <li>Control Method: Timed pulse modulation</li>
+  <li>Input Method: Pushbutton using Arduino internal pull-up resistor</li>
   <li>User Interface: Status LED and manual override button</li>
 </ul>
 </div>
@@ -138,8 +144,19 @@ Initial testing focused on validating core functionality using a simplified brea
 <em>Initial breadboard prototype used to verify sensing and pump actuation logic.</em>
 
 <p>
-This configuration enabled rapid iteration of control strategies and allowed tuning of threshold values and timing behavior before permanent integration. Testing determined that a dryness threshold of approximately <strong>550</strong> on the Arduino’s 10-bit ADC scale provided reliable activation for the selected sensor.
+This configuration enabled rapid iteration of control strategies and allowed tuning of threshold values and timing behavior before permanent integration. Testing determined that a dryness threshold of approximately <strong>550</strong> on the Arduino’s 10-bit ADC scale (0–1023) provided reliable activation for the selected sensor.
 </p>
+
+<hr>
+
+<h2>System Architecture</h2>
+
+<p>
+A block diagram of the system will be added to illustrate signal flow between the moisture sensors, Arduino controller, MOSFET driver circuits, and pumps. This diagram will be developed and refined alongside upcoming coursework in control systems.
+</p>
+
+<img src="../images/watering-system-diagram-placeholder.png" alt="System block diagram placeholder">
+<em>Planned system block diagram showing sensors, controller, and pump drivers.</em>
 
 <hr>
 
@@ -202,6 +219,18 @@ The project validated that low-cost capacitive sensors and simple timing-based c
 
 <hr>
 
+<h2>Future Improvements</h2>
+
+<ul>
+  <li>Add independent moisture sensing and control for each pump channel</li>
+  <li>Implement software filtering or averaging to reduce sensor noise</li>
+  <li>Add real-time clock scheduling for time-based watering modes</li>
+  <li>Include a small LCD or wireless interface for user feedback</li>
+  <li>Integrate current sensing to detect pump faults or dry-run conditions</li>
+</ul>
+
+<hr>
+
 <h2>Lessons Learned</h2>
 
 <p>
@@ -226,4 +255,5 @@ Overall, this project strengthened skills in embedded programming, electrical in
 
 </body>
 </html>
+
 
