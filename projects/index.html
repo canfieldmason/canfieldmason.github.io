@@ -22,11 +22,7 @@
     margin-bottom: 10px;
   }
 
-  a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-
+  a { color: #0066cc; text-decoration: none; }
   a:hover { text-decoration: underline; }
 
   /* Header nav */
@@ -46,11 +42,7 @@
 
   .header-nav a:hover { text-decoration: underline; }
 
-  .nav-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-  }
+  .nav-link { display: inline-block; margin-bottom: 20px; font-size: 0.95em; }
 
   .projects-grid {
     display: grid;
@@ -88,9 +80,7 @@
   }
 
   .project-card h3 { margin-top: 0; margin-bottom: 10px; }
-
   .status-note { font-style: italic; color: #555; margin-top: 8px; }
-
   .tags { margin-top: 8px; margin-bottom: 10px; }
 
   .tag {
@@ -109,7 +99,6 @@
 
 <body>
 
-<!-- Header Navigation -->
 <div class="header-nav">
   <a href="/index.html">Home</a>
   <a href="/projects/index.html">Projects</a>
@@ -127,7 +116,7 @@
 
 <div class="projects-grid">
 
-  <!-- 1. Shell Eco Simulink -->
+  <!-- Featured Projects (star + highlight) -->
   <div class="project-card featured">
     <h3>Shell Eco-Marathon Vehicle Dynamics Simulation</h3>
     <div class="tags">
@@ -144,7 +133,6 @@
     <a class="view-link" href="shell-eco-simulink/">View project →</a>
   </div>
 
-  <!-- 2. Shell Eco Chassis -->
   <div class="project-card featured">
     <h3>Shell Eco-Marathon Chassis Structural Analysis</h3>
     <div class="tags">
@@ -160,7 +148,6 @@
     <a class="view-link" href="shell-eco-chassis.html">View project →</a>
   </div>
 
-  <!-- 3. Rocket -->
   <div class="project-card featured">
     <h3>Madison Aerospace Club – Rocket Design & Simulation</h3>
     <div class="tags">
@@ -175,11 +162,79 @@
     <a class="view-link" href="rocket.html">View project →</a>
   </div>
 
-  <!-- Remaining projects unchanged -->
-  <!-- Formula SAE, Baja SAE, Engine Backplate, Watering System, SolidWorks -->
-  <!-- ...same as before... -->
+  <!-- Remaining projects (same styling, but not featured) -->
+  <div class="project-card">
+    <h3>Formula SAE Chassis Structural Analysis</h3>
+    <div class="tags">
+      <span class="tag">ANSYS</span>
+      <span class="tag">Vehicle Structures</span>
+      <span class="tag">Load Case Development</span>
+      <span class="tag">Motorsports Engineering</span>
+    </div>
+    <p>Structural analysis of a tubular spaceframe chassis focusing
+      on torsional stiffness, cornering loads, aerodynamic forces,
+      and frontal impact scenarios.</p>
+    <a class="view-link" href="formula-sae.html">View project →</a>
+  </div>
+
+  <div class="project-card">
+    <h3>Baja SAE Roll Cage Structural Analysis</h3>
+    <div class="tags">
+      <span class="tag">FEA</span>
+      <span class="tag">Safety Engineering</span>
+      <span class="tag">Impact Analysis</span>
+      <span class="tag">Off-Road Vehicles</span>
+    </div>
+    <p>Finite element analysis of a Baja SAE roll cage structure
+      evaluating front, side, rollover, and torsional loading
+      for driver safety.</p>
+    <a class="view-link" href="baja-sae.html">View project →</a>
+  </div>
+
+  <div class="project-card">
+    <h3>Engine Mount Backplate Structural Analysis</h3>
+    <div class="tags">
+      <span class="tag">ANSYS</span>
+      <span class="tag">Finite Element Analysis</span>
+      <span class="tag">Meshing Strategy</span>
+      <span class="tag">Structural Mechanics</span>
+    </div>
+    <p>Finite element preprocessing of a small engine mounting
+      backplate including geometry reduction, material assignment,
+      and localized mesh refinement.</p>
+    <p class="status-note">Status: Preprocessing complete; license-limited</p>
+    <a class="view-link" href="backplate.html">View project →</a>
+  </div>
+
+  <div class="project-card">
+    <h3>Automated Plant Watering System</h3>
+    <div class="tags">
+      <span class="tag">Arduino</span>
+      <span class="tag">Embedded Systems</span>
+      <span class="tag">Control Logic</span>
+      <span class="tag">Sensors</span>
+    </div>
+    <p>Embedded system that monitors soil moisture and autonomously
+      controls water pumps using pulsed logic, manual override,
+      and LED status feedback.</p>
+    <a class="view-link" href="watering-system.html">View project →</a>
+  </div>
+
+  <div class="project-card">
+    <h3>SOLIDWORKS Certification & Design Practice</h3>
+    <div class="tags">
+      <span class="tag">SOLIDWORKS</span>
+      <span class="tag">Parametric Modeling</span>
+      <span class="tag">Design Intent</span>
+      <span class="tag">Assemblies</span>
+    </div>
+    <p>CSWA-certified parametric part and assembly modeling demonstrating
+      robust design intent, fully constrained sketches, and
+      predictable rebuild behavior.</p>
+    <p class="status-note">CSWA completed (240/240). CSWP preparation in progress.</p>
+    <a class="view-link" href="SolidWorks.html">View project →</a>
+  </div>
 
 </div>
-
 </body>
 </html>
