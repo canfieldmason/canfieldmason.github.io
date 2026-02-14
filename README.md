@@ -3,58 +3,62 @@
 Mechanical Engineering student at James Madison University (Class of 2027) with interests in
 structural analysis, mechanical design, and simulation-driven engineering.
 
-This GitHub serves as a technical portfolio supporting my coursework and extracurricular
-engineering projects, with emphasis on finite element analysis and CAD-based design workflows.
+This GitHub serves as a technical portfolio showcasing coursework and extracurricular engineering projects,
+with emphasis on finite element analysis, CAD-based design workflows, and simulation-driven optimization.
 
 ---
 
 ## Technical Focus
-- Finite Element Analysis (ANSYS Mechanical)
-- Structural Modeling & Load Case Definition
-- Mechanical Design & CAD (Fusion 360, SolidWorks)
-- Simulation-Based Trade Studies
-- Engineering Documentation
+- Finite Element Analysis & Structural Modeling (ANSYS Mechanical)
+- Load Case Development & Validation
+- Mechanical Design & CAD (SolidWorks, Fusion 360)
+- Vehicle & Aerospace System Simulation (MATLAB, Simulink, OpenRocket)
+- Embedded Control Systems (Arduino)
+- Engineering Documentation & Trade Study Analysis
 
 ---
 
-## Selected Projects
+## Featured Projects
 
-### Engine Mount Backplate — Structural Analysis
-- Simplified a small engine assembly to isolate a structurally critical backplate
-- Built a solve-ready FEA model with refined meshing at fastener and bearing interfaces
-- Documented solver limitations under student licensing while preserving commercial-transferable setup  
-  Portfolio write-up: **https://canfieldmason.github.io/projects/backplate.html**
+### Shell Eco-Marathon Vehicle Dynamics Simulation
+- Developed a physics-based 1D vehicle dynamics and energy consumption model in MATLAB/Simulink
+- Automated performance analysis, parameter sweeps, and visualization of efficiency tradeoffs
+- Supported iterative optimization for ultra-low energy prototype vehicles  
+  Portfolio write-up: **https://canfieldmason.github.io/projects/shell-eco-simulink/**
 
----
+### Shell Eco-Marathon Chassis — Structural Analysis
+- Performed structural analysis of a lightweight competition vehicle chassis
+- Evaluated torsional stiffness, load case response, and mass optimization strategies
+- Used simulation-driven iteration to refine design choices  
+  Portfolio write-up: **https://canfieldmason.github.io/projects/shell-eco-chassis.html**
 
-### Formula SAE Chassis — Structural Analysis
-- Line-body spaceframe modeling with tube property assignment in ANSYS Mechanical
-- Evaluated torsional stiffness, cornering, aerodynamic, and frontal impact load cases
-- Interpreted deformation and internal force distributions in a motorsport context  
-  Portfolio write-up: **https://canfieldmason.github.io/projects/formula-sae.html**
-
----
-
-### Rocket Design & Flight Performance Simulation
-- Conducted OpenRocket trade studies on fin geometry, mass distribution, and motor selection
-- Evaluated apogee, stability margins, and descent performance
-- Supported preliminary design selection for upcoming fabrication and flight testing  
+### Madison Aerospace Club — Rocket Design & Simulation
+- Conducted trade studies for fin geometry, mass distribution, and motor selection in OpenRocket
+- Assessed stability margins, flight performance, and apogee predictions
+- Supported preliminary design selection for fabrication and flight testing  
   Portfolio write-up: **https://canfieldmason.github.io/projects/rocket.html**
 
 ---
 
+## Additional Projects
+- Formula SAE Chassis — Spaceframe structural analysis in ANSYS Mechanical  
+- Baja SAE Roll Cage — Safety and torsional load evaluation  
+- Engine Mount Backplate — Preprocessed FEA setup and mesh refinement  
+- Automated Plant Watering System — Embedded control with Arduino  
+- SOLIDWORKS Certification & Design Practice — Parametric assemblies and design intent  
+
+---
+
 ## Tools & Software
-ANSYS Mechanical · Fusion 360 · SolidWorks · OpenRocket · MATLAB · Arduino · LaTeX
+ANSYS Mechanical · SolidWorks · Fusion 360 · MATLAB · Simulink · OpenRocket · Arduino · LaTeX
 
 ---
 
 ## Portfolio Website
-https://canfieldmason.github.io
+[https://canfieldmason.github.io](https://canfieldmason.github.io)
 
 ---
 
 ## Contact
 - Email: canfieldmasone@gmail.com  
-- LinkedIn: www.linkedin.com/in/mason-canfield
-
-
+- LinkedIn: [www.linkedin.com/in/mason-canfield](https://www.linkedin.com/in/mason-canfield)
