@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Mason Canfield | Mechanical Engineering Portfolio</title>
 
   <style>
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       max-width: 1100px;
@@ -88,7 +94,7 @@
     }
 
     .mini-project {
-      border-left: 3px solid #ddd;
+      border-left: 3px solid #0066cc;
       padding-left: 15px;
       margin: 15px 0;
     }
@@ -110,156 +116,143 @@
       text-decoration: underline;
     }
 
+    /* Header Navigation */
+    .header-nav {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-nav a {
+      margin: 0 14px;
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .header-nav a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
 <body>
-<div style="
-  text-align:center;
-  margin-bottom:30px;
-  padding-bottom:10px;
-  border-bottom:1px solid #ddd;
-">
-  <a href="/index.html" style="margin:0 14px; color:#0066cc; text-decoration:none; font-weight:bold;">Home</a>
-  <a href="/projects/index.html" style="margin:0 14px; color:#0066cc; text-decoration:none; font-weight:bold;">Projects</a>
-  <a href="/resume.pdf" target="_blank" style="margin:0 14px; color:#0066cc; text-decoration:none; font-weight:bold;">Resume</a>
-  <a href="https://www.linkedin.com/in/mason-canfield" target="_blank" style="margin:0 14px; color:#0066cc; text-decoration:none; font-weight:bold;">LinkedIn</a>
-</div>
 
-<div class="hero">
+  <!-- Header Navigation -->
+  <div class="header-nav">
+    <a href="/index.html">Home</a>
+    <a href="/projects/index.html">Projects</a>
+    <a href="/resume.pdf" target="_blank">Resume</a>
+    <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+  </div>
 
-  <img src="images/profilev1.jpg" style="
-    display: block;
-    margin: 0 auto 15px auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ddd;
-  ">
+  <!-- Hero Section -->
+  <div class="hero">
+    <img src="images/profilev1.jpg" alt="Mason Canfield"
+         style="display: block; margin: 0 auto 15px auto; width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #ddd;">
+    <h1>Mason Canfield</h1>
+    <h2>Mechanical Engineering Student | Structural Analysis & Design</h2>
+  </div>
 
-  <h1>Mason Canfield</h1>
-  <h2>Mechanical Engineering Student | Structural Analysis & Design</h2>
-
-</div>
-
-
-<div class="intro">
-  <p>
-    Mechanical Engineering student focused on structural analysis, finite element modeling,
-    and simulation-driven mechanical design. My work centers on applying engineering fundamentals
-    to practical systems including vehicles, small engines, rockets, and competition structures.
-  </p>
-
-  <p>
-    This portfolio documents selected technical projects, analysis workflows, and design decisions
-    developed through coursework, independent projects, and engineering organizations.
-  </p>
-</div>
-
-
-<div class="cta-buttons">
-  <a href="projects/index.html">View Engineering Projects →</a>
-  <a href="resume.pdf">Download Resume</a>
-</div>
-
-
-<h2 class="section-title">Core Technical Areas</h2>
-
-<div class="grid">
-
-  <div class="card">
-    <h3>📐 Structural Analysis</h3>
+  <!-- Intro -->
+  <div class="intro">
     <p>
-      Finite element modeling and validation using ANSYS Mechanical, including
-      meshing strategy, boundary condition development, and interpretation of results.
+      Mechanical Engineering student focused on structural analysis, finite element modeling,
+      and simulation-driven mechanical design. My work centers on applying engineering fundamentals
+      to practical systems including vehicles, small engines, rockets, and competition structures.
+    </p>
+    <p>
+      This portfolio documents selected technical projects, analysis workflows, and design decisions
+      developed through coursework, independent projects, and engineering organizations.
     </p>
   </div>
 
-  <div class="card">
-    <h3>⚙ Mechanical Design</h3>
-    <p>
-      Parametric component and assembly design in SolidWorks and Fusion 360 with
-      emphasis on design intent, manufacturability, and real-world constraints.
-    </p>
+  <!-- Call to Action -->
+  <div class="cta-buttons">
+    <a href="projects/index.html">View Engineering Projects →</a>
+    <a href="resume.pdf">Download Resume</a>
   </div>
 
-  <div class="card">
-    <h3>💻 Systems & Simulation</h3>
-    <p>
-      Performance modeling for aerospace and automotive systems, integrating
-      analytical calculations with simulation tools to guide design decisions.
-    </p>
+  <!-- Core Technical Areas -->
+  <h2 class="section-title">Core Technical Areas</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>📐 Structural Analysis</h3>
+      <p>
+        Finite element modeling and validation using ANSYS Mechanical, including
+        meshing strategy, boundary condition development, and interpretation of results.
+      </p>
+    </div>
+    <div class="card">
+      <h3>⚙ Mechanical Design</h3>
+      <p>
+        Parametric component and assembly design in SolidWorks and Fusion 360 with
+        emphasis on design intent, manufacturability, and real-world constraints.
+      </p>
+    </div>
+    <div class="card">
+      <h3>💻 Systems & Simulation</h3>
+      <p>
+        Performance modeling for aerospace and automotive systems, integrating
+        analytical calculations with MATLAB and Simulink simulations to guide design decisions.
+      </p>
+    </div>
   </div>
 
-</div>
-
-
-<h2 class="section-title">Technical Toolchain</h2>
-
-<div class="grid">
-
-  <div class="card">
-    <h3>🧮 Analysis</h3>
-    <p>
-      ANSYS Mechanical  
-      <br>MATLAB  
-      <br>OpenRocket
-    </p>
+  <!-- Technical Toolchain -->
+  <h2 class="section-title">Technical Toolchain</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>🧮 Analysis & Simulation</h3>
+      <p>
+        MATLAB & Simulink<br>
+        ANSYS Mechanical<br>
+        OpenRocket<br>
+        Excel / VBA
+      </p>
+    </div>
+    <div class="card">
+      <h3>🛠 CAD & Mechanical Design</h3>
+      <p>
+        SolidWorks<br>
+        Fusion 360<br>
+        AutoCAD
+      </p>
+    </div>
+    <div class="card">
+      <h3>🔌 Programming & Embedded</h3>
+      <p>
+        Arduino<br>
+        Embedded C++<br>
+        Python (basic scripting)
+      </p>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>🛠 CAD & Design</h3>
-    <p>
-      SolidWorks  
-      <br>Fusion 360
-    </p>
+  <!-- Featured Work -->
+  <h2 class="section-title">Featured Work</h2>
+  <div class="mini-projects">
+    <div class="mini-project">
+      <strong>Shell Eco-Marathon Vehicle Simulation</strong><br>
+      Physics-based 1D vehicle dynamics and energy modeling with iterative development.
+    </div>
+    <div class="mini-project">
+      <strong>Formula SAE Chassis Analysis</strong><br>
+      Torsional stiffness and impact load case evaluation of a tubular spaceframe for student motorsport applications.
+    </div>
+    <div class="mini-project">
+      <strong>Engine Mount Backplate Structural Analysis</strong><br>
+      Geometry simplification, meshing, and load case development for a small-engine mounting plate using ANSYS.
+    </div>
   </div>
 
-  <div class="card">
-    <h3>🔌 Programming</h3>
-    <p>
-      Arduino  
-      <br>Embedded C++  
-      <br>Basic scripting
-    </p>
+  <!-- Footer Navigation -->
+  <div class="footer-nav">
+    <a href="projects/index.html">Projects</a>
+    <a href="resume.pdf">Resume</a>
+    <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
   </div>
-
-</div>
-
-
-<h2 class="section-title">Featured Work</h2>
-
-<div class="mini-projects">
-
-  <div class="mini-project">
-    <strong>Engine Mount Backplate Structural Analysis</strong>  
-    <br>
-    Geometry simplification, meshing, and load case development for a small-engine mounting plate using ANSYS.
-  </div>
-
-  <div class="mini-project">
-    <strong>Formula SAE Chassis Analysis</strong>  
-    <br>
-    Torsional stiffness and impact load case evaluation of a tubular spaceframe for student motorsport applications.
-  </div>
-
-  <div class="mini-project">
-    <strong>Automated Plant Watering System</strong>  
-    <br>
-    Arduino-based embedded system integrating sensors, pumps, and control logic.
-  </div>
-
-</div>
-
-
-<div class="footer-nav">
-  <a href="projects/index.html">Projects</a>
-  <a href="resume.pdf">Resume</a>
-  <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
-</div>
-
-
 
 </body>
 </html>
