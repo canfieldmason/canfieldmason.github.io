@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shell Eco-Marathon Simulation – Version 3</title>
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; max-width: 950px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.6; }
+  h1 { text-align: center; margin-bottom: 10px; }
+  h2 { margin-top: 35px; color: #111; }
+  .section-intro { text-align: center; font-style: italic; color: #555; margin-bottom: 25px; }
+  .box { border: 1px solid #ddd; border-radius: 8px; padding: 18px; background: #fafafa; margin: 25px 0; }
+  a { color: #0066cc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- Navigation Header -->
+<div style="text-align:center; margin-bottom:30px; padding-bottom:10px; border-bottom:1px solid #ddd;">
+  <a href="/index.html" style="margin:0 14px; font-weight:bold;">Home</a>
+  <a href="/projects/index.html" style="margin:0 14px; font-weight:bold;">Projects</a>
+  <a href="/resume.pdf" target="_blank" style="margin:0 14px; font-weight:bold;">Resume</a>
+  <a href="https://www.linkedin.com/in/mason-canfield" target="_blank" style="margin:0 14px; font-weight:bold;">LinkedIn</a>
+</div>
+
+<h1>Shell Eco-Marathon Vehicle Simulation – Version 3 (Temp)</h1>
+<p class="section-intro">
+Future enhancements for the 1D vehicle dynamics and energy modeling framework.
+</p>
+
+<hr>
+
+<h2>Current Status</h2>
+<div class="box">
+  <ul>
+    <li>Modular framework for V3 development initialized</li>
+    <li>V2 scripts and structure being adapted</li>
+    <li>Placeholders for advanced driver, powertrain, and environmental modeling</li>
+  </ul>
+</div>
+
+<h2>Planned Features</h2>
+<div class="box">
+  <ul>
+    <li>Closed-loop driver and throttle control</li>
+    <li>Transient engine and drivetrain modeling</li>
+    <li>Higher-resolution parameter sweeps and optimization heatmaps</li>
+    <li>Track elevation and environmental condition modeling</li>
+    <li>Automated post-processing and CSV export of simulation results</li>
+  </ul>
+</div>
+
+<h2>Placeholder Gallery</h2>
+<div class="box" style="text-align:center;">
+  <p>V3 simulation screenshots, scripts, and documentation will appear here as development progresses.</p>
+</div>
+
+</body>
+</html>
