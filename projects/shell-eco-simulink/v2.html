@@ -245,34 +245,85 @@ data-driven engineering decision-making.
 
 const galleryImages = [
 
+  /* System Architecture */
+
   {
-    src: "images/v2/powertrain.png",
-    caption: "Updated powertrain and DriverStrat subsystem"
+    src: "images/v2/system_overview.png",
+    caption: "Top-level V2 Simulink system architecture"
   },
 
   {
-    src: "images/v2/energy.png",
-    caption: "Energy modeling subsystem with cumulative integration"
+    src: "images/v2/powertrain_block.png",
+    caption: "Enhanced powertrain and DriverStrat subsystem"
   },
 
   {
-    src: "images/v2/analyze_velocity.png",
-    caption: "Velocity output from analyze_shell_eco.m"
+    src: "images/v2/engine_speed.png",
+    caption: "Engine speed response during simulation"
   },
 
   {
-    src: "images/v2/analyze_fuel.png",
-    caption: "Fuel usage over time"
+    src: "images/v2/vehicle_speed_time.png",
+    caption: "Vehicle velocity vs time"
   },
 
   {
-    src: "images/v2/sweep1d.png",
-    caption: "1D parameter sweep results"
+    src: "images/v2/energy_distance.png",
+    caption: "Cumulative energy consumption vs distance"
+  },
+
+
+  /* Analysis Script Outputs */
+
+  {
+    src: "images/v2/analyze_summary.png",
+    caption: "Automated performance summary from analyze_shell_eco.m"
   },
 
   {
-    src: "images/v2/heatmap.png",
-    caption: "2D heatmap with optimal design point"
+    src: "images/v2/analyze_fuel_mass.png",
+    caption: "Fuel consumption vs vehicle mass"
+  },
+
+  {
+    src: "images/v2/analyze_distance_drag.png",
+    caption: "Distance traveled vs aerodynamic drag coefficient"
+  },
+
+
+  /* SuperSweep Results */
+
+  {
+    src: "images/v2/sweep_fuel_mass.png",
+    caption: "SuperSweep: Fuel consumption vs mass"
+  },
+
+  {
+    src: "images/v2/sweep_distance_drag.png",
+    caption: "SuperSweep: Distance vs drag coefficient"
+  },
+
+  {
+    src: "images/v2/sweep_fuel_drag.png",
+    caption: "SuperSweep: Fuel consumption vs drag coefficient"
+  },
+
+
+  /* SweepHeat Visualizations */
+
+  {
+    src: "images/v2/heat_fuel_per_distance.png",
+    caption: "Fuel per distance heatmap (Cd vs mass)"
+  },
+
+  {
+    src: "images/v2/heat_distance.png",
+    caption: "Distance heatmap (Cd vs mass)"
+  },
+
+  {
+    src: "images/v2/heat_summary.png",
+    caption: "SweepHeat optimization summary"
   }
 
 ];
@@ -299,6 +350,3 @@ galleryImages.forEach(item => {
 });
 
 </script>
-
-</body>
-</html>
