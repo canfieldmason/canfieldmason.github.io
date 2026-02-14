@@ -16,8 +16,29 @@ body {
 
 h1 {
   text-align: center;
+  margin-bottom: 10px;
 }
 
+/* Header Nav */
+.header-nav {
+  text-align:center;
+  margin-bottom:30px;
+  padding-bottom:10px;
+  border-bottom:1px solid #ddd;
+}
+
+.header-nav a {
+  margin:0 14px;
+  color:#0066cc;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.header-nav a:hover {
+  text-decoration:underline;
+}
+
+/* Version Toggle Bar */
 .version-bar {
   text-align: center;
   margin: 30px 0;
@@ -54,46 +75,51 @@ iframe {
 
 <body>
 
+<!-- Header Nav -->
+<div class="header-nav">
+  <a href="/index.html">Home</a>
+  <a href="/projects/index.html">Projects</a>
+  <a href="/resume.pdf" target="_blank">Resume</a>
+  <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+</div>
+
+<!-- Back to Projects Link -->
+<a href="../projects/index.html" class="nav-link">← Back to Projects</a>
+
 <h1>Shell Eco-Marathon Vehicle Simulation</h1>
 
 <p style="text-align:center;">
 Physics-based 1D vehicle dynamics and energy modeling with iterative development.
 </p>
 
+<!-- Version Toggle -->
 <div class="version-bar">
   <button id="btnV2" onclick="showVersion('v2')">Version 2 (Current)</button>
   <button id="btnV1" onclick="showVersion('v1')">Version 1</button>
 </div>
 
+<!-- Iframes for V1 / V2 -->
 <iframe id="frameV2" src="v2.html"></iframe>
 <iframe id="frameV1" src="v1.html"></iframe>
 
 <script>
 
 function showVersion(ver) {
-
   const f1 = document.getElementById("frameV1");
   const f2 = document.getElementById("frameV2");
-
   const b1 = document.getElementById("btnV1");
   const b2 = document.getElementById("btnV2");
 
   if (ver === "v1") {
-
     f1.style.display = "block";
     f2.style.display = "none";
-
     b1.classList.add("active");
     b2.classList.remove("active");
-
   } else {
-
     f2.style.display = "block";
     f1.style.display = "none";
-
     b2.classList.add("active");
     b1.classList.remove("active");
-
   }
 }
 
@@ -104,4 +130,3 @@ showVersion("v2");
 
 </body>
 </html>
-
