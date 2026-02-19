@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Madison Aerospace Club – Rocket Design & Simulation</title>
+  <title>Madison Aerospace Club – Level 1 Rocket Trade Study & Propulsion Analysis</title>
 
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      max-width: 900px;
+      max-width: 950px;
       margin: 40px auto;
-      line-height: 1.6;
-      color: #222;
+      line-height: 1.65;
+      color: #1f1f1f;
       padding: 0 20px;
     }
 
@@ -19,16 +19,21 @@
     }
 
     h2 {
-      margin-top: 50px;
+      margin-top: 60px;
       color: #111;
     }
 
+    h3 {
+      margin-top: 35px;
+      color: #222;
+    }
+
     p {
-      margin: 15px 0;
+      margin: 16px 0;
     }
 
     ul {
-      margin: 15px 0 15px 20px;
+      margin: 15px 0 15px 25px;
     }
 
     li {
@@ -37,7 +42,7 @@
 
     img {
       display: block;
-      margin: 25px auto 10px auto;
+      margin: 30px auto 10px auto;
       max-width: 100%;
       height: auto;
       border: 1px solid #ddd;
@@ -54,7 +59,7 @@
     hr {
       border: none;
       border-top: 1px solid #ddd;
-      margin: 50px 0;
+      margin: 60px 0;
     }
 
     .tools {
@@ -73,10 +78,27 @@
     .nav-link:hover {
       text-decoration: underline;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95em;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    th {
+      background: #f2f2f2;
+    }
   </style>
 </head>
 
 <body>
+
 <div style="
   text-align:center;
   margin-bottom:30px;
@@ -91,138 +113,267 @@
 
 <a href="../projects/index.html" class="nav-link">← Back to Projects</a>
 
-<h1>Madison Aerospace Club – Rocket Design & Simulation</h1>
+<h1>Level 1 High-Power Rocket Certification – Trade Study & Propulsion Analysis</h1>
 
-<p><em>Preliminary design and simulation work supporting a competitive student rocket program.</em></p>
-
-<h2>Project Overview</h2>
-
-<p>
-This project documents my contributions to the Madison Aerospace Club rocket team,
-with a focus on early-stage vehicle configuration, motor selection, and performance
-prediction using OpenRocket simulations.
-</p>
-
-<p class="tools"><strong>Tools:</strong> OpenRocket</p>
-
-<img src="../images/openrocket-cad.png"
-     alt="OpenRocket CAD model of competition rocket">
-<em>OpenRocket model used for preliminary performance and stability studies.</em>
+<p><em>
+Structured vehicle trade study and propulsion selection supporting NAR Level 1 certification,
+with planned aerodynamic refinement via CFD.
+</em></p>
 
 <hr>
 
-<h2>Motor Selection</h2>
+<h2>Program Objective</h2>
 
 <p>
-After evaluating several propulsion options in simulation, the team selected the 
-<strong>AeroTech H100W-14A</strong> single-use composite motor as the baseline propulsion 
-system for the competition rocket. This decision was based on predicted apogee performance, 
-thrust profile characteristics, availability, and compatibility with airframe constraints.
-</p>
-
-<div style="
-  background:#fafafa;
-  border:1px solid #ddd;
-  border-radius:8px;
-  padding:20px;
-  margin:30px 0;
-">
-  <h3 style="margin-top:0;">Selected Motor: AeroTech H100W-14A</h3>
-
-  <p>
-    <strong>Type:</strong> 38 mm Disposable Motor System (DMS) – Single Use  
-    <br><strong>Propellant:</strong> White Lightning™ composite propellant  
-    <br><strong>Certification:</strong> TRA / NAR / CAR certified  
-  </p>
-
-  <p>
-    <strong>Key Specifications</strong>
-  </p>
-
-  <ul>
-    <li><strong>Motor Diameter:</strong> 1.5 in (38 mm)</li>
-    <li><strong>Casing Length:</strong> 6.12 in (155 mm)</li>
-    <li><strong>Total Impulse:</strong> 234 N·s</li>
-    <li><strong>Average Thrust:</strong> 100 N</li>
-    <li><strong>Peak Thrust:</strong> 131 N</li>
-    <li><strong>Thrust Duration:</strong> 2.3 s</li>
-    <li><strong>Delay Time:</strong> Adjustable up to 14 s</li>
-    <li><strong>Propellant Mass:</strong> 121 g</li>
-    <li><strong>Total Motor Mass:</strong> 261 g</li>
-  </ul>
-</div>
-
-<p>
-This motor was incorporated directly into the OpenRocket model to refine the vehicle’s
-mass properties, center-of-gravity location, and expected flight trajectory. Simulation
-results indicated that the H100W-14A provided a strong balance between achievable apogee
-and a manageable stability margin for the current airframe geometry.
+This effort supports National Association of Rocketry (NAR) Level 1 High Power
+Certification through structured vehicle selection, propulsion evaluation,
+and trajectory modeling.
 </p>
 
 <p>
-Selection of a commercially certified motor also ensured compliance with club safety
-requirements and competition regulations while enabling repeatable performance for
-future flight validation.
+Rather than selecting a certification platform solely on availability,
+a controlled trade study was conducted to evaluate multiple commercially
+available kit rockets under a common propulsion configuration.
+The objective was to select a vehicle providing sufficient apogee margin,
+safe deployment conditions, and flexibility for aerodynamic modification
+while remaining above a 2200 ft certification target altitude.
 </p>
+
+<p class="tools"><strong>Modeling Tools:</strong> OpenRocket (6-DOF trajectory simulation), SolidWorks Flow Simulation (planned CFD analysis)</p>
 
 <hr>
 
-<h2>Completed Work</h2>
+<h2>Propulsion System Selection</h2>
+
+<h3>AeroTech H169WS – White Lightning™</h3>
+
+<p>
+All candidate vehicles were simulated using the AeroTech H169WS composite motor
+to ensure propulsion consistency across the trade space.
+The H169WS falls within Level 1 impulse limits while providing
+a strong thrust-to-weight ratio suitable for stable rail departure
+and predictable ascent dynamics.
+</p>
 
 <ul>
-  <li>
-    Explored the effects of fin geometry, body length, mass distribution, and motor selection
-    on rocket stability and performance using OpenRocket.
-  </li>
-  <li>
-    Conducted trade studies to evaluate predicted apogee, stability margin, and descent behavior
-    against competition requirements.
-  </li>
-  <li>
-    Contributed to preliminary configuration selection to support fabrication and
-    flight testing in the upcoming semester.
-  </li>
+  <li><strong>Motor Diameter:</strong> 29 mm</li>
+  <li><strong>Total Impulse:</strong> 239 N·s (Level 1 Range)</li>
+  <li><strong>Average Thrust:</strong> 169 N</li>
+  <li><strong>Propellant Type:</strong> White Lightning™ composite</li>
+  <li><strong>Certification:</strong> NAR / TRA certified</li>
+</ul>
+
+<p>
+The motor’s thrust curve provides a short-duration, high-thrust boost phase
+followed by sustained impulse delivery, balancing rapid rail exit velocity
+with manageable structural loading.
+</p>
+
+
+<img src="../images/h169ws-burnplot.png" alt="AeroTech H169WS thrust curve">
+<em>Manufacturer thrust curve and performance data for AeroTech H169WS.</em>
+
+
+<hr>
+
+<h2>Vehicle Trade Study</h2>
+
+<p>
+Three commercially available kit rockets were modeled and compared:
+</p>
+
+<ul>
+  <li><strong>YIRIS 338</strong></li>
+  <li><strong>Kronos</strong></li>
+  <li><strong>HI-TECH PK-56</strong></li>
+</ul>
+
+<p>
+Each vehicle was simulated under identical environmental assumptions,
+launch rail conditions, recovery configurations, and propulsion parameters.
+This ensured that performance differences were attributable to geometric
+and aerodynamic characteristics rather than modeling variance.
+</p>
+
+<h3>Evaluation Criteria</h3>
+
+<ul>
+  <li>Launch rail exit velocity (stability threshold assurance)</li>
+  <li>Apogee relative to 2200 ft certification target</li>
+  <li>Maximum velocity and dynamic loading</li>
+  <li>Maximum acceleration (structural consideration)</li>
+  <li>Time to apogee</li>
+  <li>Total flight time</li>
+  <li>Velocity at deployment</li>
+  <li>Ground impact velocity (recovery safety metric)</li>
 </ul>
 
 <hr>
 
-<h2>Planned Next Steps</h2>
+<h3>Simulation Comparison Summary</h3>
 
-<ul>
-  <li>
-    Finalize rocket configuration and support fabrication and assembly efforts.
-  </li>
-  <li>
-    Perform detailed OpenRocket simulations for the finalized geometry.
-  </li>
-  <li>
-    Support ground testing and pre-flight preparation.
-  </li>
-  <li>
-    Collect and analyze flight data from initial test launches.
-  </li>
-</ul>
+<p>
+The table below summarizes simulation outputs for each candidate vehicle.
+Quantitative values will be inserted following final validation runs.
+</p>
+
+<table>
+  <tr>
+    <th>Vehicle</th>
+    <th>Velocity Off Rail (ft/s)</th>
+    <th>Apogee (ft)</th>
+    <th>Max Velocity (ft/s)</th>
+    <th>Max Accel (ft/s²)</th>
+    <th>Time to Apogee (s)</th>
+    <th>Total Flight Time (s)</th>
+    <th>Ground Impact Velocity (ft/s)</th>
+  </tr>
+
+  <tr>
+    <td><strong>YIRIS 338</strong></td>
+    <td>59.1</td>
+    <td>2310</td>
+    <td>479</td>
+    <td>515</td>
+    <td>11.3</td>
+    <td>84.1</td>
+    <td>22.7</td>
+  </tr>
+
+  <tr>
+    <td><strong>Kronos</strong></td>
+    <td>74.5</td>
+    <td>2258</td>
+    <td>701</td>
+    <td>863</td>
+    <td>7.26</td>
+    <td>139</td>
+    <td>17.9</td>
+  </tr>
+
+  <tr style="background:#fafafa;">
+    <td><strong>HI-TECH PK-56 (Selected)</strong></td>
+    <td>80.0</td>
+    <td><strong>3170</strong></td>
+    <td>804</td>
+    <td>974</td>
+    <td>11.7</td>
+    <td>113</td>
+    <td>21.3</td>
+  </tr>
+</table>
 
 <hr>
 
-<h2>Future Validation</h2>
+<h2>Trajectory Simulation Outputs</h2>
 
 <p>
-Once fabrication and flight testing are completed, predicted performance from OpenRocket
-will be compared against measured flight data including apogee, acceleration profile,
-and descent time. Differences between simulation and real-world performance will be used
-to refine modeling assumptions such as drag coefficients, mass distribution, and recovery
-system behavior.
+Full-flight trajectory outputs were reviewed for each candidate configuration
+to assess ascent profile, peak velocity timing, coast phase duration,
+and recovery deployment conditions.
 </p>
 
 <p>
-This comparison will provide practical insight into the accuracy of early design models
-and help improve the simulation workflow for future rocket iterations within the club.
+Plots below show altitude, velocity, and acceleration histories
+as generated by OpenRocket under identical launch assumptions.
+</p>
+
+<h3>YIRIS 338 – Flight Profile</h3>
+
+<img src="../images/YIRIS_Sim.png"
+     alt="YIRIS 338 altitude, velocity, and acceleration vs time">
+
+<em>
+OpenRocket simulation output for YIRIS 338 using AeroTech H169WS.
+</em>
+
+
+<h3>Kronos – Flight Profile</h3>
+
+<img src="../images/KRONOS_Sim.png"
+     alt="Kronos altitude, velocity, and acceleration vs time">
+
+<em>
+OpenRocket simulation output for Kronos using AeroTech H169WS.
+</em>
+
+
+<h3>HI-TECH PK-56 – Flight Profile (Selected)</h3>
+
+<img src="../images/HITECH_Sim.png"
+     alt="HI-TECH PK-56 altitude, velocity, and acceleration vs time">
+
+<em>
+OpenRocket simulation output for HI-TECH PK-56 using AeroTech H169WS.
+</em>
+
+<p>
+Time-history analysis confirmed that the HI-TECH PK-56 maintains
+favorable ascent stability, moderate peak acceleration loading,
+and predictable deployment timing relative to motor burnout.
+</p>
+ 
+<hr>
+
+<h2>Selection Rationale</h2>
+
+<p>
+Among the evaluated configurations, the HI-TECH PK-56 demonstrated
+the highest predicted apogee while maintaining acceptable peak
+acceleration and recovery velocities.
 </p>
 
 <p>
-This section will be updated with quantitative results, plots, and flight analysis
-following upcoming launch tests.
+The additional altitude margin above the 2200 ft requirement
+provides controlled flexibility for aerodynamic modification,
+specifically fin geometry adjustments intended to reduce total
+flight time while preserving certification altitude compliance.
+</p>
+
+<p>
+Based on quantitative performance margin and modification potential,
+the HI-TECH PK-56 was selected as the Level 1 certification platform.
+The kit has been ordered, and launch is scheduled for April 4th.
+</p>
+
+<hr>
+
+<h2>Planned Aerodynamic Refinement</h2>
+
+<p>
+Following baseline validation, SolidWorks Flow Simulation will be used
+to estimate drag coefficient sensitivity to fin planform modifications.
+</p>
+
+<p>
+The objective of this phase is to:
+</p>
+
+<ul>
+  <li>Reduce overall flight time</li>
+  <li>Maintain apogee above 2200 ft</li>
+  <li>Preserve adequate static stability margin</li>
+  <li>Limit adverse increases in peak dynamic pressure</li>
+</ul>
+
+<p>
+CFD-informed drag adjustments will be re-integrated into the OpenRocket
+trajectory model to quantify system-level performance impact prior to launch.
+</p>
+
+<hr>
+
+<h2>Validation Plan</h2>
+
+<p>
+Post-flight data (altitude, acceleration profile, and descent rate)
+will be compared against predicted simulation outputs to evaluate
+model fidelity and refine drag and mass distribution assumptions.
+</p>
+
+<p>
+This closed-loop modeling and validation process supports iterative
+improvement of simulation accuracy for future vehicle development.
 </p>
 
 <hr>
@@ -230,9 +381,9 @@ following upcoming launch tests.
 <h2>Current Status</h2>
 
 <p>
-The initial model and motor selection are complete and ready to support detailed geometry
-development, fabrication, and flight validation. This project page will continue to evolve
-as simulations and real-world testing progress.
+Baseline propulsion selection and vehicle trade study are complete.
+Certification launch is scheduled for April 4th.
+CFD refinement and final configuration validation are in progress.
 </p>
 
 </body>
