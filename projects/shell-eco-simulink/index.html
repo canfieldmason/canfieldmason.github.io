@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shell Eco-Marathon Simulation</title>
+<title>Shell Eco-Marathon Vehicle Simulation</title>
 
 <style>
 
@@ -16,10 +16,18 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
-/* Header Nav */
+.subtitle {
+  text-align:center;
+  color:#555;
+  margin-bottom:25px;
+  font-style:italic;
+}
+
+/* Header Navigation */
+
 .header-nav {
   text-align:center;
   margin-bottom:30px;
@@ -38,106 +46,249 @@ h1 {
   text-decoration:underline;
 }
 
-/* Version Toggle Bar */
+<hr>
+
+<h2 style="text-align:center;">
+Simulation Development Workflow
+</h2>
+
+<p style="text-align:center; max-width:750px; margin:auto;">
+
+The vehicle model is developed through an iterative engineering workflow
+combining experimental data, physics-based modeling, and parameter tuning.
+
+</p>
+
+<div style="
+text-align:center;
+font-size:1.1em;
+margin-top:25px;
+margin-bottom:35px;
+line-height:2.2;
+">
+
+Dyno Testing Data  
+⬇  
+Engine Torque Map Generation (MATLAB)  
+⬇  
+Simulink Vehicle Model  
+⬇  
+Driver Strategy Development  
+⬇  
+Parameter Tuning & Validation  
+⬇  
+Performance Analysis
+
+</div>
+
+/* Version Buttons */
+
 .version-bar {
-  text-align: center;
-  margin: 30px 0;
+  text-align:center;
+  margin:35px 0;
 }
 
 .version-bar button {
-  padding: 10px 20px;
-  margin: 0 8px;
-  border: none;
-  border-radius: 6px;
-  background: #0066cc;
-  color: white;
-  font-size: 1em;
-  cursor: pointer;
+
+  padding:12px 22px;
+  margin:8px;
+  border:none;
+  border-radius:7px;
+  background:#0066cc;
+  color:white;
+  font-size:1em;
+  cursor:pointer;
 }
 
 .version-bar button:hover {
-  background: #004c99;
+  background:#004c99;
 }
 
 .version-bar button.active {
-  background: #333;
+  background:#333;
 }
 
-/* Iframe Styling */
+/* Highlight Current Version */
+
+.current {
+
+  background:#2a7a2a !important;
+
+}
+
+/* Iframes */
+
 iframe {
-  width: 100%;
-  height: 1400px;
-  border: none;
-  display: none;
+  width:100%;
+  height:1400px;
+  border:none;
+  display:none;
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- Header Nav -->
+
+<!-- Header Navigation -->
+
 <div class="header-nav">
-  <a href="/index.html">Home</a>
-  <a href="/projects/index.html">Projects</a>
-  <a href="/resume.pdf" target="_blank">Resume</a>
-  <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+
+<a href="/index.html">Home</a>
+<a href="/projects/index.html">Projects</a>
+<a href="/resume.pdf" target="_blank">Resume</a>
+<a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+
 </div>
 
-<!-- Back to Projects Link -->
-<a href="/projects/index.html" class="nav-link">← Back to Projects</a>
+
+<a href="/projects/index.html">
+← Back to Projects
+</a>
+
 
 <h1>Shell Eco-Marathon Vehicle Simulation</h1>
 
-<p style="text-align:center;">
-Physics-based 1D vehicle dynamics and energy modeling with iterative development.
+<p class="subtitle">
+Physics-based MATLAB & Simulink vehicle model for ultra-low energy prototype vehicles.
 </p>
 
-<!-- Version Toggle -->
+
+<p style="text-align:center; max-width:750px; margin:0 auto 30px auto;">
+
+This project develops a physics-based MATLAB and Simulink vehicle model
+used to analyze energy consumption and optimize drivetrain and driver
+control strategies for a Shell Eco-Marathon prototype vehicle.
+
+Key vehicle parameters including mass, aerodynamic drag, rolling
+resistance, gear ratio, and control thresholds were iteratively tuned to
+study efficiency tradeoffs and realistic operating behavior.
+
+The model evolved through multiple versions, progressing from a simple
+force-balance model into a realistic burn-coast driver strategy validated
+using experimental dyno data.
+
+</p>
+
+
+
+<!-- Version Selector -->
+
+
 <div class="version-bar">
-  <button id="btnV3" onclick="showVersion('v3-5')">Version 3 (Upcoming)</button>
-  <button id="btnV2" onclick="showVersion('v2')">Version 2 (Current)</button>
-  <button id="btnV1" onclick="showVersion('v1')">Version 1</button>
+
+
+<button id="btnV6"
+onclick="showVersion('v6')"
+class="current">
+
+Version 6 – Burn-Coast Control (Current)
+
+</button>
+
+
+
+<button id="btnV3"
+onclick="showVersion('v3')">
+
+Versions 3–5 – Control Development
+
+</button>
+
+
+
+<button id="btnV2"
+onclick="showVersion('v2')">
+
+Version 2 – Modeling Platform
+
+</button>
+
+
+
+<button id="btnV1"
+onclick="showVersion('v1')">
+
+Version 1 – Baseline Physics
+
+</button>
+
+
 </div>
 
-<!-- Iframes for V1 / V2 / V3 -->
-<iframe id="frameV3" src="v3/index.html"></iframe>
+
+
+<!-- Iframes -->
+
+
+<iframe id="frameV6" src="v6.html"></iframe>
+
+<iframe id="frameV3" src="v3.html"></iframe>
+
 <iframe id="frameV2" src="v2.html"></iframe>
+
 <iframe id="frameV1" src="v1.html"></iframe>
 
+
+
 <script>
+
+
 function showVersion(ver) {
+
   const f1 = document.getElementById("frameV1");
   const f2 = document.getElementById("frameV2");
   const f3 = document.getElementById("frameV3");
-  
+  const f6 = document.getElementById("frameV6");
+
   const b1 = document.getElementById("btnV1");
   const b2 = document.getElementById("btnV2");
   const b3 = document.getElementById("btnV3");
+  const b6 = document.getElementById("btnV6");
 
   f1.style.display = "none";
   f2.style.display = "none";
   f3.style.display = "none";
+  f6.style.display = "none";
 
   b1.classList.remove("active");
   b2.classList.remove("active");
   b3.classList.remove("active");
+  b6.classList.remove("active");
+
 
   if (ver === "v1") {
     f1.style.display = "block";
     b1.classList.add("active");
-  } else if (ver === "v2") {
+  }
+
+  else if (ver === "v2") {
     f2.style.display = "block";
     b2.classList.add("active");
-  } else if (ver === "v3") {
+  }
+
+  else if (ver === "v3") {
     f3.style.display = "block";
     b3.classList.add("active");
   }
+
+  else if (ver === "v6") {
+    f6.style.display = "block";
+    b6.classList.add("active");
+  }
+
 }
 
-/* Default: show V2 */
-showVersion("v2");
+
+/* Default Page */
+
+showVersion("v6");
+
+
 </script>
+
 
 </body>
 </html>
