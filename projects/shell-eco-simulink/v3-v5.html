@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shell Eco-Marathon Simulation — Versions 3–5</title>
+
+<title>Shell Eco-Marathon Simulation – Versions 3–5</title>
 
 <style>
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   max-width: 950px;
   margin: 40px auto;
   padding: 0 20px;
-  line-height: 1.6;
   color: #222;
+  line-height: 1.6;
 }
 
 h1 {
@@ -20,57 +22,78 @@ h1 {
 }
 
 h2 {
-  margin-top: 35px;
+  margin-top: 45px;
   color: #111;
 }
 
 h3 {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
-p {
-  margin: 15px 0;
-}
-
-em {
-  display: block;
+.section-intro {
   text-align: center;
+  font-style: italic;
   color: #555;
-  font-size: 0.95em;
   margin-bottom: 25px;
-}
-
-img {
-  display:block;
-  margin:20px auto;
-  max-width:90%;
-  border-radius:6px;
-}
-
-.nav-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #0066cc;
-  text-decoration: none;
-  font-size: 0.95em;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
 }
 
 hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 35px 0;
+  margin: 45px 0;
 }
 
-.highlight {
-  background:#fafafa;
-  padding:15px;
-  border-radius:8px;
-  border:1px solid #ddd;
-  margin:20px 0;
+/* Info Boxes */
+
+.box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 18px;
+  background: #fafafa;
+  margin: 25px 0;
+}
+
+/* Gallery */
+
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.gallery-item {
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.gallery-item em {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Buttons */
+
+.download-btn {
+  display: inline-block;
+  background: #0066cc;
+  color: white;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.download-btn:hover {
+  background: #004c99;
 }
 
 </style>
@@ -78,170 +101,156 @@ hr {
 
 <body>
 
-<!-- Navigation -->
-<div style="
-text-align:center;
-margin-bottom:30px;
-padding-bottom:10px;
-border-bottom:1px solid #ddd;
-">
-<a href="/index.html">Home</a>
-<a href="/projects/index.html">Projects</a>
-<a href="/resume.pdf" target="_blank">Resume</a>
-<a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
-</div>
+<h1>Shell Eco-Marathon Vehicle Simulation – Versions 3–5</h1>
 
-<a href="/projects/index.html" class="nav-link">← Back to Projects</a>
-
-
-<h1>Shell Eco-Marathon Simulation — Versions 3–5</h1>
-
-<p style="text-align:center;">
-Development of closed-loop driver control and realistic engine modeling.
+<p class="section-intro">
+Closed-loop driver control development and dyno-based engine modeling.
 </p>
 
 <hr>
 
-
 <h2>Overview</h2>
 
 <p>
-Versions 3 through 5 introduced automated driver control and a realistic 
-powertrain model for the Shell Eco-Marathon prototype vehicle.
+
+Versions 3 through 5 expanded the simulation from a parameter study tool
+into a closed-loop vehicle model capable of autonomous speed control
+and realistic engine behavior.
+
 </p>
 
 <p>
-These versions established the core simulation architecture used in later
-versions of the model.
+
+These versions introduced automated driver control, real engine
+performance data, and physically realistic torque modeling.
+
 </p>
 
-<div class="highlight">
+<p>
 
-<b>Major Additions</b>
+Together these improvements established the core simulation
+architecture used in later versions.
+
+</p>
+
+<hr>
+
+<h2>Key Enhancements</h2>
+
+<div class="box">
+
+<h3>Driver Strategy (V3)</h3>
 
 <ul>
 
-<li>Closed-loop driver control</li>
+<li>Closed-loop driver model implemented</li>
 
-<li>Pulse-and-coast control concepts</li>
+<li>PID speed controller added</li>
 
-<li>Real dyno-based engine model</li>
+<li>Automatic throttle control (0–1 range)</li>
 
-<li>Torque vs RPM lookup tables</li>
+<li>Target speed tracking</li>
 
-<li>Vehicle resistive force modeling</li>
+<li>Velocity feedback integration</li>
 
-<li>Energy consumption modeling</li>
+</ul>
+
+
+<h3>Engine Modeling (V4)</h3>
+
+<ul>
+
+<li>Dynamometer data imported into MATLAB</li>
+
+<li>Horsepower converted to torque</li>
+
+<li>Torque vs RPM lookup tables generated</li>
+
+<li>Realistic engine operating limits</li>
+
+<li>Gear ratio linked to engine speed</li>
+
+</ul>
+
+
+<h3>Driver Strategy Refinement (V5)</h3>
+
+<ul>
+
+<li>Speed bands added around target velocity</li>
+
+<li>Hysteresis thresholds implemented</li>
+
+<li>Reduced control oscillation</li>
+
+<li>Extended simulation time support</li>
+
+<li>Improved parameter organization</li>
 
 </ul>
 
 </div>
 
-
 <hr>
 
+<h2>MATLAB & Simulink Scripts</h2>
 
-<h2>Version 3 — PID Driver Control</h2>
-
-<p>
-
-Version 3 introduced a closed-loop driver model using a PID controller to 
-maintain a target vehicle speed.
-
-</p>
+<div class="box">
 
 <p>
 
-The controller adjusted throttle based on the difference between target
-speed and vehicle speed.
+The Versions 3–5 workflow introduced modular scripts supporting
+driver control development and dyno-based engine modeling.
 
 </p>
 
-<p>
+<ul>
 
-This version demonstrated stable vehicle behavior and provided a baseline
-for later control strategies.
+<li><strong>shell_eco_paramsV4.m</strong> — Parameter configuration</li>
 
-</p>
+<li><strong>build_engine_mapV4.m</strong> — Dyno processing</li>
 
+<li><strong>engine_mapV4.mat</strong> — Torque lookup table</li>
 
-<img src="pid_speed_plot.png">
+<li><strong>analyzeV4.m</strong> — Automated analysis</li>
 
-<em>Figure V3-1 — PID Speed Response</em>
-
-
-<img src="pid_throttle_plot.png">
-
-<em>Figure V3-2 — PID Throttle Response</em>
+</ul>
 
 
+<p style="text-align:center;">
 
-<hr>
+<a href="https://github.com/canfieldmason/shell-eco-simulink"
+target="_blank"
+class="download-btn">
 
+View Source Code on Github - MATLAB Files
 
-<h2>Version 4 — Real Engine Model</h2>
-
-<p>
-
-Version 4 replaced the constant-power engine approximation with a 
-realistic torque model derived from dynamometer testing data.
+</a>
 
 </p>
 
-<p>
-
-Engine torque was calculated from measured horsepower and engine speed
-and stored in a lookup table for use during simulation.
-
-</p>
-
-
-<img src="engine_map.png">
-
-<em>Figure V4-1 — Engine Torque Map</em>
-
-
-
-<p>
-
-This version introduced physically realistic acceleration behavior and
-accurate engine operating regions.
-
-</p>
+</div>
 
 
 <hr>
 
-
-<h2>Version 5 — Improved Driver Strategy</h2>
-
-<p>
-
-Version 5 refined the driver strategy by introducing speed bands and
-hysteresis to reduce throttle oscillations.
-
-</p>
+<h2>Simulation Gallery</h2>
 
 <p>
 
-The controller attempted to maintain vehicle speed within a defined
-range around the target speed.
+Representative outputs from the closed-loop driver model and engine
+integration are shown below.
 
 </p>
 
-
-<img src="v5_speed_plot.png">
-
-<em>Figure V5-1 — Speed Control with Hysteresis</em>
-
+<div id="gallery"></div>
 
 
 <hr>
 
+<h2>Limitations</h2>
 
-<h2>Limitations of Versions 3–5</h2>
-
-<div class="highlight">
+<div class="box">
 
 <ul>
 
@@ -253,28 +262,110 @@ range around the target speed.
 
 <li>Model behaved like cruise control</li>
 
-<li>Did not match Shell Eco driving strategy</li>
+<li>Did not represent true pulse-and-coast driving</li>
 
 </ul>
 
 </div>
 
 
+<hr>
+
+<h2>Future Work (V6)</h2>
+
+<ul>
+
+<li>True pulse-and-coast driver behavior</li>
+
+<li>Engine on/off cycling</li>
+
+<li>Throttle switching control</li>
+
+<li>Energy-optimal speed oscillations</li>
+
+<li>Improved realism for Shell Eco strategy</li>
+
+</ul>
+
+
+<hr>
+
+<h2>Conclusion</h2>
+
 <p>
 
-These limitations motivated the development of Version 6.
+Versions 3 through 5 transformed the simulation into a realistic
+closed-loop vehicle model with experimental engine data integration.
+
+</p>
+
+<p>
+
+These developments provided the foundation for the Version 6
+pulse-and-coast driver model.
 
 </p>
 
 
-<p style="text-align:center; margin-top:40px;">
 
-<a href="v6.html">
-View Version 6 → True Pulse and Coast
-</a>
+<script>
 
-</p>
+const galleryImages = [
 
+{
+src: "images/v3/pid_speed.png",
+caption: "PID-controlled vehicle speed response"
+},
+
+{
+src: "images/v3/pid_throttle.png",
+caption: "Throttle response under PID control"
+},
+
+{
+src: "images/v3/engine_map.png",
+caption: "Engine torque map derived from dynamometer data"
+},
+
+{
+src: "images/v3/v5_speed_control.png",
+caption: "Speed control using hysteresis thresholds"
+},
+
+{
+src: "images/v3/engine_speed.png",
+caption: "Engine speed during closed-loop operation"
+},
+
+{
+src: "images/v3/energy_distance.png",
+caption: "Energy consumption vs distance"
+}
+
+];
+
+const gallery = document.getElementById("gallery");
+
+galleryImages.forEach(item => {
+
+const div = document.createElement("div");
+div.className = "gallery-item";
+
+const img = document.createElement("img");
+img.src = item.src;
+img.alt = item.caption;
+
+const cap = document.createElement("em");
+cap.textContent = item.caption;
+
+div.appendChild(img);
+div.appendChild(cap);
+
+gallery.appendChild(div);
+
+});
+
+</script>
 
 
 </body>
