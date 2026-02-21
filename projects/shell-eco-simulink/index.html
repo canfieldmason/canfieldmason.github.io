@@ -46,46 +46,121 @@ h1 {
   text-decoration:underline;
 }
 
-<hr>
+/* Development Timeline */
 
-<h2 style="text-align:center;">
-Simulation Development Workflow
-</h2>
+.timeline {
 
-<p style="text-align:center; max-width:750px; margin:auto;">
+  margin:40px auto;
+  max-width:900px;
+  border-left:3px solid #0066cc;
+  padding-left:25px;
 
-The vehicle model is developed through an iterative engineering workflow
-combining experimental data, physics-based modeling, and parameter tuning.
+}
 
-</p>
+.timeline-item {
 
-<div style="
-text-align:center;
-font-size:1.1em;
-margin-top:25px;
-margin-bottom:35px;
-line-height:2.2;
-">
+  margin-bottom:25px;
+  position:relative;
 
-Dyno Testing Data  
-⬇  
-Engine Torque Map Generation (MATLAB)  
-⬇  
-Simulink Vehicle Model  
-⬇  
-Driver Strategy Development  
-⬇  
-Parameter Tuning & Validation  
-⬇  
-Performance Analysis
+}
 
-</div>
+.timeline-item::before {
+
+  content:"";
+  position:absolute;
+  left:-33px;
+  top:5px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#0066cc;
+
+}
+
+.timeline-title {
+
+  font-weight:bold;
+  margin-bottom:5px;
+
+}
+
+.timeline-current::before {
+
+  background:#2a7a2a;
+
+}
+
+/* Architecture Diagram */
+
+.architecture {
+
+  max-width:900px;
+  margin:40px auto;
+  text-align:center;
+  line-height:2;
+
+}
+
+.arch-row {
+
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin:10px 0;
+
+}
+
+.arch-box {
+
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:14px 18px;
+  background:#fafafa;
+  min-width:150px;
+  font-weight:bold;
+
+}
+
+.arch-arrow {
+
+  font-size:22px;
+  margin:0 6px;
+}
+  
+/* Workflow Section */
+
+.workflow-title {
+  text-align:center;
+  margin-top:25px;
+}
+
+.workflow-text {
+  text-align:center;
+  max-width:750px;
+  margin:15px auto;
+}
+
+.workflow-steps {
+
+  text-align:center;
+  font-size:1.1em;
+  margin-top:25px;
+  margin-bottom:35px;
+  line-height:2.2;
+
+}
+
 
 /* Version Buttons */
 
 .version-bar {
   text-align:center;
   margin:35px 0;
+}
+
+.version-row {
+  margin-bottom:10px;
 }
 
 .version-bar button {
@@ -108,13 +183,13 @@ Performance Analysis
   background:#333;
 }
 
-/* Highlight Current Version */
+
+/* Current Version Highlight */
 
 .current {
-
   background:#2a7a2a !important;
-
 }
+
 
 /* Iframes */
 
@@ -173,11 +248,216 @@ using experimental dyno data.
 </p>
 
 
+<hr>
+
+<hr>
+
+<h2 style="text-align:center;">
+Model Development Timeline
+</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="timeline-title">
+Version 1 — Baseline Physics Model
+</div>
+
+Simple force-balance vehicle model with constant throttle and
+basic energy calculations.
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-title">
+Version 2 — Modeling Platform
+</div>
+
+Structured MATLAB parameter system, improved powertrain model,
+automated analysis scripts, and design sweeps.
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-title">
+Versions 3–5 — Driver Strategy Development
+</div>
+
+Closed-loop throttle control, dyno-based torque maps,
+and PID-based speed regulation development.
+
+</div>
+
+
+<div class="timeline-item timeline-current">
+
+<div class="timeline-title">
+Version 6 — Burn-Coast Driver Strategy (Current)
+</div>
+
+Realistic pulse-and-coast throttle strategy with torque-map-driven
+powertrain modeling and validated burn-coast behavior.
+
+</div>
+
+<hr>
+
+<h2 style="text-align:center;">
+Simulation Architecture
+</h2>
+
+<div class="architecture">
+
+<div class="arch-row">
+
+<div class="arch-box">
+Dyno Testing
+</div>
+
+<div class="arch-arrow">→</div>
+
+<div class="arch-box">
+Engine Torque Map<br>
+(MATLAB)
+</div>
+
+<div class="arch-arrow">→</div>
+
+<div class="arch-box">
+Parameter Files<br>
+(paramsV#)
+</div>
+
+</div>
+
+
+<div class="arch-row">
+
+<div class="arch-arrow">↓</div>
+
+</div>
+
+
+<div class="arch-row">
+
+<div class="arch-box">
+Simulink Model
+</div>
+
+<div class="arch-arrow">→</div>
+
+<div class="arch-box">
+Driver Strategy
+</div>
+
+<div class="arch-arrow">→</div>
+
+<div class="arch-box">
+Powertrain Model
+</div>
+
+</div>
+
+
+<div class="arch-row">
+
+<div class="arch-arrow">↓</div>
+
+</div>
+
+
+<div class="arch-row">
+
+<div class="arch-box">
+Simulation Results
+</div>
+
+<div class="arch-arrow">→</div>
+
+<div class="arch-box">
+Analyze Scripts
+</div>
+
+<div class="arch-arrow">→</div>
+
+<div class="arch-box">
+Performance Metrics
+</div>
+
+</div>
+
+</div>
+
+<h2 class="workflow-title">
+Simulation Development Workflow
+</h2>
+
+<p class="workflow-text">
+
+The vehicle model is developed through an iterative engineering workflow
+combining experimental data, physics-based modeling, and parameter tuning.
+
+</p>
+
+
+<div class="workflow-steps">
+
+Dyno Testing Data  
+⬇  
+Engine Torque Map Generation (MATLAB)  
+⬇  
+Simulink Vehicle Model  
+⬇  
+Driver Strategy Development  
+⬇  
+Parameter Tuning & Validation  
+⬇  
+Performance Analysis
+
+</div>
+
+
+<hr>
+
 
 <!-- Version Selector -->
 
-
 <div class="version-bar">
+
+
+<div class="version-row">
+
+<button id="btnV1"
+onclick="showVersion('v1')">
+
+Version 1 – Baseline Physics
+
+</button>
+
+
+<button id="btnV2"
+onclick="showVersion('v2')">
+
+Version 2 – Modeling Platform
+
+</button>
+
+</div>
+
+
+<div class="version-row">
+
+<button id="btnV3"
+onclick="showVersion('v3')">
+
+Versions 3–5 – Control Development
+
+</button>
 
 
 <button id="btnV6"
@@ -188,32 +468,7 @@ Version 6 – Burn-Coast Control (Current)
 
 </button>
 
-
-
-<button id="btnV3"
-onclick="showVersion('v3')">
-
-Versions 3–5 – Control Development
-
-</button>
-
-
-
-<button id="btnV2"
-onclick="showVersion('v2')">
-
-Version 2 – Modeling Platform
-
-</button>
-
-
-
-<button id="btnV1"
-onclick="showVersion('v1')">
-
-Version 1 – Baseline Physics
-
-</button>
+</div>
 
 
 </div>
