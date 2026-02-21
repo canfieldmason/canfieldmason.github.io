@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shell Eco-Marathon Simulation — Versions 3–5</title>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 0 20px;
+  line-height: 1.6;
+  color: #222;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 35px;
+  color: #111;
+}
+
+h3 {
+  margin-top: 25px;
+}
+
+p {
+  margin: 15px 0;
+}
+
+em {
+  display: block;
+  text-align: center;
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 25px;
+}
+
+img {
+  display:block;
+  margin:20px auto;
+  max-width:90%;
+  border-radius:6px;
+}
+
+.nav-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 0.95em;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 35px 0;
+}
+
+.highlight {
+  background:#fafafa;
+  padding:15px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  margin:20px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<div style="
+text-align:center;
+margin-bottom:30px;
+padding-bottom:10px;
+border-bottom:1px solid #ddd;
+">
+<a href="/index.html">Home</a>
+<a href="/projects/index.html">Projects</a>
+<a href="/resume.pdf" target="_blank">Resume</a>
+<a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+</div>
+
+<a href="/projects/index.html" class="nav-link">← Back to Projects</a>
+
+
+<h1>Shell Eco-Marathon Simulation — Versions 3–5</h1>
+
+<p style="text-align:center;">
+Development of closed-loop driver control and realistic engine modeling.
+</p>
+
+<hr>
+
+
+<h2>Overview</h2>
+
+<p>
+Versions 3 through 5 introduced automated driver control and a realistic 
+powertrain model for the Shell Eco-Marathon prototype vehicle.
+</p>
+
+<p>
+These versions established the core simulation architecture used in later
+versions of the model.
+</p>
+
+<div class="highlight">
+
+<b>Major Additions</b>
+
+<ul>
+
+<li>Closed-loop driver control</li>
+
+<li>Pulse-and-coast control concepts</li>
+
+<li>Real dyno-based engine model</li>
+
+<li>Torque vs RPM lookup tables</li>
+
+<li>Vehicle resistive force modeling</li>
+
+<li>Energy consumption modeling</li>
+
+</ul>
+
+</div>
+
+
+<hr>
+
+
+<h2>Version 3 — PID Driver Control</h2>
+
+<p>
+
+Version 3 introduced a closed-loop driver model using a PID controller to 
+maintain a target vehicle speed.
+
+</p>
+
+<p>
+
+The controller adjusted throttle based on the difference between target
+speed and vehicle speed.
+
+</p>
+
+<p>
+
+This version demonstrated stable vehicle behavior and provided a baseline
+for later control strategies.
+
+</p>
+
+
+<img src="pid_speed_plot.png">
+
+<em>Figure V3-1 — PID Speed Response</em>
+
+
+<img src="pid_throttle_plot.png">
+
+<em>Figure V3-2 — PID Throttle Response</em>
+
+
+
+<hr>
+
+
+<h2>Version 4 — Real Engine Model</h2>
+
+<p>
+
+Version 4 replaced the constant-power engine approximation with a 
+realistic torque model derived from dynamometer testing data.
+
+</p>
+
+<p>
+
+Engine torque was calculated from measured horsepower and engine speed
+and stored in a lookup table for use during simulation.
+
+</p>
+
+
+<img src="engine_map.png">
+
+<em>Figure V4-1 — Engine Torque Map</em>
+
+
+
+<p>
+
+This version introduced physically realistic acceleration behavior and
+accurate engine operating regions.
+
+</p>
+
+
+<hr>
+
+
+<h2>Version 5 — Improved Driver Strategy</h2>
+
+<p>
+
+Version 5 refined the driver strategy by introducing speed bands and
+hysteresis to reduce throttle oscillations.
+
+</p>
+
+<p>
+
+The controller attempted to maintain vehicle speed within a defined
+range around the target speed.
+
+</p>
+
+
+<img src="v5_speed_plot.png">
+
+<em>Figure V5-1 — Speed Control with Hysteresis</em>
+
+
+
+<hr>
+
+
+<h2>Limitations of Versions 3–5</h2>
+
+<div class="highlight">
+
+<ul>
+
+<li>Vehicle speed remained nearly constant</li>
+
+<li>Throttle rarely reached zero</li>
+
+<li>Engine operated continuously</li>
+
+<li>Model behaved like cruise control</li>
+
+<li>Did not match Shell Eco driving strategy</li>
+
+</ul>
+
+</div>
+
+
+<p>
+
+These limitations motivated the development of Version 6.
+
+</p>
+
+
+<p style="text-align:center; margin-top:40px;">
+
+<a href="v6.html">
+View Version 6 → True Pulse and Coast
+</a>
+
+</p>
+
+
+
+</body>
+</html>
