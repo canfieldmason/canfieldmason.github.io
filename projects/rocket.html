@@ -338,23 +338,50 @@ The kit has been ordered, and launch is scheduled for April 4th.
 
 <hr>
 
-<h2>Additional Analysis</h2>
+<h2>Additional Structural Analysis</h2>
 
 <p>
-While waiting for the rocket kit to arive, Finite Element Analysis
-studies were conducted to identify load bearing components.
-A major identified object was the mounting eye bolt for the parachute.
-The eye bolt will have to remain uncompromised despite the large
-"snatch" force induced when the parachute deploys at a high velocity.
+While awaiting delivery of the flight hardware kit, a series of
+Finite Element Analysis (FEA) studies were conducted to evaluate
+critical load-bearing components within the recovery system.
+Particular attention was given to the parachute mounting eye bolt,
+as it is subjected to a transient "snatch" load during high-velocity
+deployment. This load case represents a worst-case impulsive tensile
+condition that must not result in yielding or structural compromise.
 </p>
-<h3>SOLIDWORKS FEA for Eye Bolt Component</h3>
 
-<img src="../images/rocket_eyebolt_fea.png"
-     alt="HI-TECH PK-56 altitude, velocity, and acceleration vs time">
+<h3>SOLIDWORKS Finite Element Evaluation – Eye Bolt</h3>
 
-<em>
-FEA displaying high stress areas when a 456 lbf load is applied.
-</em>
+<div style="display: flex; gap: 40px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+
+  <figure style="text-align: center; max-width: 480px;">
+    <img src="../images/rocket_eyebolt_vonmises.png"
+         alt="Von Mises stress contour plot of eye bolt under 456 lbf tensile load"
+         style="width: 100%; height: auto;">
+    <figcaption>
+      <em>
+      Figure 1: Von Mises stress distribution under a 456 lbf axial tensile load 
+      representing parachute deployment. Peak stresses localize at the geometric 
+      transition between the eye loop and threaded shank, consistent with expected 
+      stress concentration behavior.
+      </em>
+    </figcaption>
+  </figure>
+
+  <figure style="text-align: center; max-width: 480px;">
+    <img src="../images/rocket_eyebolt_ures.png"
+         alt="Resultant displacement (URES) contour plot of eye bolt under 456 lbf load"
+         style="width: 100%; height: auto;">
+    <figcaption>
+      <em>
+      Figure 2: Resultant displacement (URES) contour under the same 456 lbf load case. 
+      Maximum deformation occurs at the eye loop, with displacement magnitude remaining 
+      within acceptable elastic limits for the selected material.
+      </em>
+    </figcaption>
+  </figure>
+
+</div>
 
   
 <h2>Planned Aerodynamic Refinement</h2>
