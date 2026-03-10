@@ -551,24 +551,14 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   </div>
 </div>
 
-<!-- Fig 5: Track Grade & Elevation Profile -->
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">📈</div>
-      <strong>Fig 5 — Track Grade &amp; Elevation Profile</strong>
-      <em>images/v9/track_profile_v9.png</em>
-      <em>Grade % (left axis) and reconstructed relative elevation m (right axis)
-      vs position in lap. Pink shading = turn zones.</em>
-    </div>
+    <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation profile">
+    <em>Fig 5 — Grade % (left axis) and relative elevation m (right axis) vs position in lap. Pink = turn zones.</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🗺️</div>
-      <strong>Track Zone Map (overhead)</strong>
-      <em>images/v9/track_zone_map_v9.png</em>
-      <em>Optional: GPS coordinates plotted with zone color coding.</em>
-    </div>
+    <img src="images/v9/track_zone_map_v9.png" alt="Track zone map overhead view">
+    <em>GPS track overhead with zone color coding — white=burn-coast, grey=cruise, pink=turns.</em>
   </div>
 </div>
 
@@ -616,21 +606,12 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🔀</div>
-      <strong>Zone-Aware Driver Strategy Block Diagram</strong>
-      <em>images/v9/driver_strat_v9.png</em>
-      <em>Simulink diagram showing zone lookup, mode selector, and Stateflow integration.</em>
-    </div>
+    <img src="images/v9/driverstrat_v9.png" alt="Zone-aware driver strategy Simulink block diagram">
+    <em>Zone-Aware Driver Strategy — track zone lookup, mode selector, Stateflow integration.</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">📊</div>
-      <strong>Fig 4 — Throttle Command &amp; RPM vs Time</strong>
-      <em>images/v9/throttle_rpm_v9.png</em>
-      <em>Top: throttle (Burn/Coast). Bottom: engine RPM with idle/max limits.
-      Lap markers shown. Zone transitions visible in throttle pattern.</em>
-    </div>
+    <img src="images/v9/throttle_rpm_v9.png" alt="Throttle command and engine RPM vs time">
+    <em>Fig 4 — Throttle (Burn/Coast, top) and engine RPM with idle/max limits (bottom). Lap markers shown.</em>
   </div>
 </div>
 
@@ -697,13 +678,9 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   while turn zones show a tighter, held speed profile.
 </p>
 
-<div class="media-placeholder" style="min-height:280px;">
-  <div class="icon">🚗</div>
-  <strong>Fig 1 — Vehicle Speed vs Time</strong>
-  <em>images/v9/speed_time_v9.png</em>
-  <em>Full race speed trace. Reference lines: v_high_on (red), v_low_on (blue),
-  v_target (green), v_min_avg (magenta). Lap markers (dashed black).
-  Title shows avg speed, Shell Score, pass/fail, and time margin.</em>
+<div>
+  <img src="images/v9/speed_time_v9.png" alt="Vehicle speed vs time full race">
+  <em>Fig 1 — Full race speed trace. v_high_on (red), v_low_on (blue), v_target (green), v_min_avg (magenta). Lap markers dashed. Title shows avg speed, Shell Score, pass/fail, time margin.</em>
 </div>
 
 <h3>Fig 2 — Speed vs Distance, All 4 Laps Overlaid</h3>
@@ -714,13 +691,9 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   Legend shows only the 4 named lap lines.
 </p>
 
-<div class="media-placeholder" style="min-height:280px;">
-  <div class="icon">🔁</div>
-  <strong>Fig 2 — Lap Overlay, Speed vs Distance</strong>
-  <em>images/v9/lap_overlay_v9.png</em>
-  <em>All 4 laps overlaid on one distance axis. Background shading by zone.
-  Legend: Lap 1–4 only. Consistent lap profiles confirm steady-state operation
-  from lap 1.</em>
+<div>
+  <img src="images/v9/lap_overlay_v9.png" alt="All 4 laps overlaid speed vs distance">
+  <em>Fig 2 — All 4 laps on one distance axis. Zone shading in background. Legend: Lap 1–4 only. Consistent profiles confirm steady-state from lap 1.</em>
 </div>
 
 <h3>Fig 3 — Fuel &amp; Rolling Shell Score</h3>
@@ -731,34 +704,21 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   The rolling km/L converges after ~1–2 laps once startup transients clear.
 </p>
 
-<div class="media-placeholder" style="min-height:320px;">
-  <div class="icon">⛽</div>
-  <strong>Fig 3 — Fuel &amp; Efficiency vs Distance</strong>
-  <em>images/v9/fuel_efficiency_v9.png</em>
-  <em>Top: cumulative fuel (g) vs distance. Bottom: rolling Shell Score (km/L)
-  vs distance with final score dashed. Lap boundaries marked on both panels.</em>
+<div>
+  <img src="images/v9/fuel_efficiency_v9.png" alt="Fuel consumption and rolling Shell Score vs distance">
+  <em>Fig 3 — Cumulative fuel (g) top, rolling Shell Score (km/L) bottom. Stepped fuel profile confirms no coast leakage. km/L converges after lap 2.</em>
 </div>
 
 <h3>Fig 4 — Throttle Command &amp; Engine RPM</h3>
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🔌</div>
-      <strong>Fig 4 — Throttle &amp; RPM</strong>
-      <em>images/v9/throttle_rpm_v9.png</em>
-      <em>Top panel: throttle command (0 = Coast, 1 = Burn).
-      Bottom panel: engine RPM with idle/max limits.</em>
-    </div>
+    <img src="images/v9/throttle_rpm_v9.png" alt="Throttle and RPM vs time">
+    <em>Fig 4 — Throttle command (top) and engine RPM with idle/max limits (bottom).</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">⚙️</div>
-      <strong>Powertrain Subsystem — V9</strong>
-      <em>images/v9/drivetrain_v9.png</em>
-      <em>Simulink drivetrain block: torque map lookup, gear ratio G,
-      drivetrain efficiency, wheel force output.</em>
-    </div>
+    <img src="images/v9/drivetrain_v9.png" alt="Powertrain subsystem block diagram">
+    <em>Powertrain Subsystem — torque map lookup, gear ratio G, drivetrain efficiency, wheel force output.</em>
   </div>
 </div>
 
@@ -773,22 +733,12 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">⛰️</div>
-      <strong>Fig 5 — Grade &amp; Elevation Profile</strong>
-      <em>images/v9/track_profile_v9.png</em>
-      <em>Left axis: Grade (%). Right axis: Relative elevation (m), reconstructed
-      from grade integration. X axis: position in lap (m). Pink = turn zones.</em>
-    </div>
+    <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation profile">
+    <em>Fig 5 — Grade % (left axis), relative elevation m (right axis) vs position. Pink = turn zones.</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">📉</div>
-      <strong>Grade Force Contribution</strong>
-      <em>images/v9/grade_force_v9.png (optional)</em>
-      <em>F_grade = m × g × grade vs position — shows peak resistive / assistive
-      grade force values around the lap.</em>
-    </div>
+    <img src="images/v9/grade_force_v9.png" alt="Grade force vs position around lap">
+    <em>F_grade = m × g × grade vs position — peak resistive/assistive values around the lap.</em>
   </div>
 </div>
 
@@ -809,16 +759,10 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
 </p>
 
 <div class="video-wrap">
-  <!-- Replace src with your exported MP4 path once rendered -->
-  <!-- <video controls><source src="videos/v9/track_animation_v9.mp4" type="video/mp4"></video>
-  <em>Track Animation — Single Run, V9 Baseline</em> -->
-  <div class="media-placeholder" style="min-height:320px; border:none; border-radius:0;">
-    <div class="icon">🎬</div>
-    <strong>Animation 1 — Single Run Track Playback</strong>
-    <em>videos/v9/track_animation_v9.mp4</em>
-    <em>Vehicle position on IMS infield GPS track, colored by speed or strategy zone.
-    Throttle state annotated. Replace comment block above once MP4 is exported.</em>
-  </div>
+  <video controls>
+    <source src="images/v9/track_animation_v9.mp4" type="video/mp4">
+  </video>
+  <em>Animation 1 — Single Run Track Playback, V9 Baseline (6× speed)</em>
 </div>
 
 <h3>Animation 2 — Ghost Comparison Run</h3>
@@ -830,17 +774,10 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
 </p>
 
 <div class="video-wrap">
-  <!-- Replace src with your exported MP4 path once rendered -->
-  <!-- <video controls><source src="videos/v9/ghost_comparison_v9.mp4" type="video/mp4"></video>
-  <em>Ghost Comparison — V9 Zone Strategy vs Alternative</em> -->
-  <div class="media-placeholder" style="min-height:320px; border:none; border-radius:0;">
-    <div class="icon">👻</div>
-    <strong>Animation 2 — Ghost Comparison Run</strong>
-    <em>videos/v9/ghost_comparison_v9.mp4</em>
-    <em>Two vehicles overlaid on track: V9 zone strategy (blue) vs comparison
-    strategy (orange). Live HUD: Δfuel, Δtime, lap number.
-    Replace comment block above once MP4 is exported.</em>
-  </div>
+  <video controls>
+    <source src="images/v9/ghost_comparison_v9.mp4" type="video/mp4">
+  </video>
+  <em>Animation 2 — Ghost Comparison: BYU-class Cd=0.12 (cyan) vs Current Cd=0.35 (yellow), 8× speed</em>
 </div>
 
 <hr>
@@ -1028,30 +965,16 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <div class="compare-3">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🧩</div>
-      <strong>Full System Overview</strong>
-      <em>images/v9/sys_overview_v9.png</em>
-      <em>DriverStrat (zone-aware), Powertrain, VehicleDynamics (with F_grade),
-      EnergyModeling, lap counter / stop logic.</em>
-    </div>
+    <img src="images/v9/sys_overview_v9.png" alt="Full system Simulink overview V9">
+    <em>Full System Overview — DriverStrat (zone-aware), Powertrain, VehicleDynamics (F_grade), EnergyModeling, lap counter.</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">⚙️</div>
-      <strong>Powertrain Subsystem</strong>
-      <em>images/v9/drivetrain_v9.png</em>
-      <em>Torque map lookup, gear ratio, drivetrain efficiency, wheel force output.</em>
-    </div>
+    <img src="images/v9/drivetrain_v9.png" alt="Powertrain subsystem V9">
+    <em>Powertrain Subsystem — torque map lookup, gear ratio, drivetrain efficiency, wheel force output.</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🗂️</div>
-      <strong>Zone-Aware Driver Strategy</strong>
-      <em>images/v9/driverstrat_v9.png</em>
-      <em>Track zone lookup → mode selector → Stateflow burn-coast
-      or cruise/corner hold output.</em>
-    </div>
+    <img src="images/v9/driverstrat_v9.png" alt="Zone-aware driver strategy V9">
+    <em>Zone-Aware Driver Strategy — track zone lookup → mode selector → Stateflow burn-coast or cruise/corner hold.</em>
   </div>
 </div>
 
@@ -1085,22 +1008,12 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🌡️</div>
-      <strong>Sweep 1 — Speed Band Efficiency Map</strong>
-      <em>images/v9/sweep_band_kmL_v9.png</em>
-      <em>2D heat map: v_low (y-axis) vs v_high (x-axis), color = km/L.
-      Optimum at lower-left (widest, lowest band).</em>
-    </div>
+    <img src="images/v9/sweep_band_kmL_v9.png" alt="Burn-coast speed band efficiency heat map">
+    <em>Sweep 1 — 2D heat map: v_low (y) vs v_high (x), color = km/L. Optimum at lower-left.</em>
   </div>
   <div>
-    <div class="media-placeholder">
-      <div class="icon">⏱️</div>
-      <strong>Sweep 1 — Time Margin Map</strong>
-      <em>images/v9/sweep_band_time_v9.png (optional)</em>
-      <em>Same axes, color = time margin vs 2100 s limit.
-      Shows feasibility boundary for aggressive (low) speed bands.</em>
-    </div>
+    <img src="images/v9/sweep_G_kmL_v9.png" alt="Gear ratio vs Shell Score">
+    <em>Sweep 2 — Near-flat plot confirming gear ratio has minimal efficiency impact across G=7–14.</em>
   </div>
 </div>
 
@@ -1122,13 +1035,8 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">⚙️</div>
-      <strong>Sweep 2 — Gear Ratio vs Shell Score</strong>
-      <em>images/v9/sweep_G_kmL_v9.png</em>
-      <em>Near-flat plot confirming gear ratio has minimal efficiency impact.
-      RPM at operating speed shown on secondary axis.</em>
-    </div>
+    <img src="images/v9/sweep_G_kmL_v9.png" alt="Gear ratio vs Shell Score">
+    <em>Sweep 2 — Near-flat plot confirming gear ratio has minimal efficiency impact. RPM at operating speed on secondary axis.</em>
   </div>
   <div>
     <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
@@ -1166,13 +1074,8 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">⚖️</div>
-      <strong>Sweep 3 — Mass vs Shell Score</strong>
-      <em>images/v9/sweep_mass_kmL_v9.png</em>
-      <em>Monotonically decreasing. 80 kg gives 697.9 km/L vs 432.7 km/L at 180 kg.
-      Each 10 kg ≈ 25–30 km/L penalty.</em>
-    </div>
+    <img src="images/v9/sweep_mass_kmL_v9.png" alt="Mass vs Shell Score">
+    <em>Sweep 3 — Monotonically decreasing. 80 kg = 697.9 km/L vs 432.7 km/L at 180 kg. Each 10 kg ≈ 25–30 km/L penalty.</em>
   </div>
   <div>
     <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
@@ -1211,13 +1114,8 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🌬️</div>
-      <strong>Sweep 4 — Drag Coefficient vs Shell Score</strong>
-      <em>images/v9/sweep_cd_kmL_v9.png</em>
-      <em>Near-linear improvement with reduced drag. Cd=0.05 crosses 1000 km/L;
-      Cd=0.15 reaches Mater Dei 2025 territory.</em>
-    </div>
+    <img src="images/v9/sweep_cd_kmL_v9.png" alt="Drag coefficient vs Shell Score">
+    <em>Sweep 4 — Near-linear improvement with reduced drag. Cd=0.05 crosses 1000 km/L; Cd=0.15 reaches Mater Dei 2025 territory.</em>
   </div>
   <div>
     <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
@@ -1259,13 +1157,8 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <div class="compare">
   <div>
-    <div class="media-placeholder">
-      <div class="icon">🔥</div>
-      <strong>Sweep 5 — Engine Efficiency vs Shell Score</strong>
-      <em>images/v9/sweep_eta_kmL_v9.png</em>
-      <em>Perfectly linear — score ∝ efficiency. 20% = 621 km/L baseline.
-      Horizontal reference lines at key competitor scores.</em>
-    </div>
+    <img src="images/v9/sweep_eta_kmL_v9.png" alt="Engine efficiency vs Shell Score">
+    <em>Sweep 5 — Perfectly linear, score ∝ efficiency. 20% = 621 km/L baseline. Each 2% = ~62 km/L.</em>
   </div>
   <div>
     <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
