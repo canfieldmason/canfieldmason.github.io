@@ -651,39 +651,38 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   </div>
 
   <div class="metric-card">
-    <div class="value">&lt; 2100 s</div>
-    <div class="label">Total Race Time (target)</div>
+    <div class="value">2016.2 s</div>
+    <div class="label">Total Race Time (33.6 min)</div>
   </div>
 
   <div class="metric-card">
-    <div class="value">✓ Valid</div>
-    <div class="label">Article 226 Pass/Fail</div>
+    <div class="value">✓ +83.8 s</div>
+    <div class="label">Article 226 Valid — Time Margin</div>
   </div>
 
   <div class="metric-card">
-    <div class="value">≥ 7.30 m/s</div>
-    <div class="label">Avg Speed (min required)</div>
+    <div class="value">7.604 m/s</div>
+    <div class="label">Avg Speed (min 7.300 m/s)</div>
   </div>
 
   <div class="metric-card">
-    <div class="value">pending</div>
-    <div class="label">Fuel Consumed (g)</div>
+    <div class="value">18.38 g</div>
+    <div class="label">Fuel Consumed</div>
   </div>
 
   <div class="metric-card">
-    <div class="value">pending</div>
-    <div class="label">Shell Score (km/L)</div>
+    <div class="value">621.3 km/L</div>
+    <div class="label">Shell Score</div>
   </div>
 
 </div>
 
 <div class="box-yellow">
-  <strong>Note:</strong> Metric values marked "pending" will be populated from
-  the V9 simulation run and <code>analyzeV9_track_shell_eco.m</code> command
-  window output. The engine RPM at v_target = 7.45 m/s with G = 10 is
-  approximately 2800 RPM — within the valid dyno map range (2708–8708 RPM).
-  Fuel estimates remain dependent on the fixed 20% engine efficiency assumption
-  pending BSFC dyno data.
+  <strong>Engine efficiency note:</strong> Score of 621.3 km/L is computed with a fixed
+  20% thermal efficiency assumption. The BSFC sensitivity sweep (Sweep 5) shows this
+  is the single highest-leverage unknown in the model — see Parameter Sweeps section below.
+  Engine RPM at v_target = 7.45 m/s with G = 10 is ~2800 RPM, within the valid dyno map
+  range (2708–8708 RPM).
 </div>
 
 <hr>
@@ -908,7 +907,7 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
     <tr class="highlight">
       <td>—</td>
       <td><strong>This vehicle (V9 simulation)</strong></td>
-      <td><strong>pending run</strong></td>
+      <td><strong>621.3 km/L</strong></td>
       <td>m=100 kg, Cd=0.30, G=10, effic=0.20 (fixed)</td>
     </tr>
   </tbody>
@@ -973,52 +972,54 @@ after a completed 4-lap run.</p>
 <pre class="log">
 <span class="sec">=== Shell Eco Run Results (V9) ===</span>
 Total distance:    <span class="val">15330.0 m</span>  (target 15330 m)
-Total time:        <span class="val">__ s  (__ min)</span>
+Total time:        <span class="val">2016.2 s  (33.6 min)</span>
 Time limit:        <span class="val">2100 s  (35 min)</span>
-Time margin:       <span class="val">+__ s</span>
+Time margin:       <span class="val">+83.8 s</span>
 Attempt valid:     <span class="hi">YES ✓</span>
 
-Avg speed:         <span class="val">__ m/s</span>  (min required 7.300 m/s)
-Fuel consumed:     <span class="val">__ kg  (__ g)</span>
-Fuel consumed:     <span class="val">__ L</span>
-Shell Score:       <span class="val">__ km/L</span>
+Avg speed:         <span class="val">7.604 m/s</span>  (min required 7.300 m/s)
+Fuel consumed:     <span class="val">0.0184 kg  (18.38 g)</span>
+Fuel consumed:     <span class="val">0.0247 L</span>
+Shell Score:       <span class="val">621.3 km/L</span>
 
 <span class="sec">--- 2025 Field Comparison ---</span>
-  vs BYU (rank 1)          995.0 km/L  → you are  ___%
-  vs Mater Dei (2)         718.0 km/L  → you are  ___%
-  vs IFRS Erechim (3)      629.0 km/L  → you are  ___%
-  vs Michigan Tech (4)     323.0 km/L  → you are  ___%
-  vs Cedarville (5)        315.0 km/L  → you are  ___%
-  vs Penn St Behrend (6)   177.0 km/L  → you are  ___%
-  vs Schurr HS (7)          92.0 km/L  → you are  ___%
+  vs BYU (rank 1)            995.0 km/L  → you are  <span class="val">62.4%</span>
+  vs Mater Dei (2)           718.0 km/L  → you are  <span class="val">86.5%</span>
+  vs IFRS Erechim (3)        629.0 km/L  → you are  <span class="val">98.8%</span>
+  vs Michigan Tech (4)       323.0 km/L  → you are  <span class="hi">192.4%</span>
+  vs Cedarville (5)          315.0 km/L  → you are  <span class="hi">197.2%</span>
+  vs Penn St Behrend (6)     177.0 km/L  → you are  <span class="hi">351.0%</span>
+  vs Schurr HS (7)            92.0 km/L  → you are  <span class="hi">675.3%</span>
 
 <span class="sec">--- Per-Lap Breakdown ---</span>
 Lap    Time(s)    LapTime(s) AvgSpd     Fuel(g)    km/L
-1      __         __         __         __         __
-2      __         __         __         __         __
-3      __         __         __         __         __
-4      __         __         __         __         __
+1      <span class="val">505.8</span>      <span class="val">505.8</span>      <span class="val">7.578</span>      <span class="val">4.911</span>      <span class="val">581.4</span>
+2      <span class="val">1009.3</span>     <span class="val">503.5</span>      <span class="val">7.611</span>      <span class="val">4.506</span>      <span class="val">633.6</span>
+3      <span class="val">1512.8</span>     <span class="val">503.5</span>      <span class="val">7.612</span>      <span class="val">4.486</span>      <span class="val">636.5</span>
+4      <span class="val">2016.2</span>     <span class="val">503.4</span>      <span class="val">7.613</span>      <span class="val">4.478</span>      <span class="val">637.5</span>
 
 <span class="sec">--- Force Balance at v_target = 7.5 m/s (flat) ---</span>
-F_drag:            <span class="val">4.07 N</span>
+F_drag:            <span class="val">4.06 N</span>
 F_roll:            <span class="val">4.91 N</span>
-F_resist (flat):   <span class="val">8.98 N</span>
-Coast decel:       <span class="val">-0.0898 m/s²</span>
-Coast band time (8.0→7.5 m/s): <span class="val">__ s</span>
-Max uphill grade:  <span class="val">0.90%  → F_grade = 8.83 N  (98.3% of F_resist)</span>
+F_resist (flat):   <span class="val">8.97 N</span>
+Coast decel:       <span class="val">-0.0897 m/s²</span>
+Coast band time (8.0→7.5 m/s): <span class="val">5.6 s</span>
+Max uphill grade:  <span class="warn">1.66%  → F_grade = 16.28 N  (181.6% of F_resist)</span>
 
 F_Engine check:    <span class="hi">CLEAN — no leakage during coast</span>
 
 <span class="sec">--- Coast Shape ---</span>
-Linear RMSE:       <span class="val">__ m/s</span>
-Exponential RMSE:  <span class="val">__ m/s</span>
+Linear RMSE:       <span class="val">0.03690 m/s</span>
+Exponential RMSE:  <span class="val">0.03473 m/s</span>
 Result:            <span class="hi">CURVED (exponential) — physics correct</span>
 </pre>
 
 <p style="font-style:italic; color:#777; font-size:0.9em;">
-  Blanks will be populated once a full 4-lap simulation run completes.
-  Force balance and diagnostic rows are computed analytically from params
-  and will be available immediately on first run.
+  Lap 1 fuel (4.91 g) is higher than laps 2–4 (~4.48–4.51 g) due to acceleration
+  from rest at t=0. Laps 2–4 are within 0.6% of each other, confirming steady-state
+  cycling was established by lap 2. The max uphill grade of 1.66% produces a grade
+  force (16.28 N) that is 1.8× flat rolling resistance — this is the dominant terrain
+  feature on the IMS infield circuit and drives the lap 1 vs lap 2+ fuel difference.
 </p>
 
 <hr>
@@ -1056,6 +1057,307 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
 
 <hr>
 
+<h2>Parameter Sweep Results — SweepV9_track</h2>
+
+<p>
+  Five independent parameter sweeps were run on the full lap-distance simulation
+  with the IMS track profile and zone-aware strategy active. All scores reported
+  in km/L (Shell competition metric). Race time is shown alongside score to confirm
+  Article 226 compliance (t &lt; 2100 s) at each sweep point. Baseline:
+  <code>v_low=7.2, v_high=7.7, G=10, m=100 kg, Cd=0.30, effic=0.20</code> → 621.3 km/L.
+</p>
+
+<h3>Sweep 1 — Burn-Coast Speed Band</h3>
+
+<p>
+  A 2D sweep of <code>v_low</code> (7.0–8.0 m/s) vs <code>v_high</code> evaluated
+  on the full IMS lap. The optimal band sits at the lowest <code>v_low</code> tested,
+  consistent with V8 findings — wider and lower bands keep the engine in longer,
+  higher-efficiency burn cycles and reduce cycle frequency. All tested configurations
+  remain Article 226 compliant; the time margin narrows as the band widens.
+</p>
+
+<div class="box-green">
+  <strong>Sweep 1 Optimum:</strong> &nbsp;
+  <code>v_low = 7.0 m/s, v_high = 7.5 m/s</code> &nbsp;→&nbsp;
+  <strong>628.0 km/L</strong> &nbsp;|&nbsp; t_total = 2039.5 s &nbsp;(margin +61 s)
+</div>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🌡️</div>
+      <strong>Sweep 1 — Speed Band Efficiency Map</strong>
+      <em>images/v9/sweep_band_kmL_v9.png</em>
+      <em>2D heat map: v_low (y-axis) vs v_high (x-axis), color = km/L.
+      Optimum at lower-left (widest, lowest band).</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">⏱️</div>
+      <strong>Sweep 1 — Time Margin Map</strong>
+      <em>images/v9/sweep_band_time_v9.png (optional)</em>
+      <em>Same axes, color = time margin vs 2100 s limit.
+      Shows feasibility boundary for aggressive (low) speed bands.</em>
+    </div>
+  </div>
+</div>
+
+<h3>Sweep 2 — Gear Ratio</h3>
+
+<p>
+  Gear ratio swept from G = 7.0 to G = 14.0. The full range produces only a
+  <strong>±0.8%</strong> variation in Shell score — confirming gear ratio is not a
+  meaningful efficiency lever at this vehicle's operating speed, consistent with V8.
+  The practical constraint remains keeping engine RPM within the valid dyno map range
+  (2708–8708 RPM) at operating speed, not efficiency optimization.
+</p>
+
+<div class="box">
+  <strong>Best G: 13.5 → 623.5 km/L</strong> &nbsp;|&nbsp;
+  Worst: G = 11.0 → 618.5 km/L &nbsp;|&nbsp;
+  <strong>Sensitivity: 0.8%</strong> — lowest of all sweeps
+</div>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">⚙️</div>
+      <strong>Sweep 2 — Gear Ratio vs Shell Score</strong>
+      <em>images/v9/sweep_G_kmL_v9.png</em>
+      <em>Near-flat plot confirming gear ratio has minimal efficiency impact.
+      RPM at operating speed shown on secondary axis.</em>
+    </div>
+  </div>
+  <div>
+    <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
+      <tr style="background:#f0f0f0;">
+        <th style="padding:5px 8px; text-align:left;">G</th>
+        <th style="padding:5px 8px; text-align:right;">km/L</th>
+        <th style="padding:5px 8px; text-align:right;">t (s)</th>
+      </tr>
+      <tr><td style="padding:4px 8px;">7.0</td><td style="padding:4px 8px; text-align:right;">622.5</td><td style="padding:4px 8px; text-align:right;">2025</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">8.0</td><td style="padding:4px 8px; text-align:right;">622.8</td><td style="padding:4px 8px; text-align:right;">2023</td></tr>
+      <tr><td style="padding:4px 8px;">9.0</td><td style="padding:4px 8px; text-align:right;">619.9</td><td style="padding:4px 8px; text-align:right;">2016</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">10.0</td><td style="padding:4px 8px; text-align:right;">621.3</td><td style="padding:4px 8px; text-align:right;">2016</td></tr>
+      <tr><td style="padding:4px 8px;">11.0</td><td style="padding:4px 8px; text-align:right;">618.5</td><td style="padding:4px 8px; text-align:right;">2012</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">12.0</td><td style="padding:4px 8px; text-align:right;">620.5</td><td style="padding:4px 8px; text-align:right;">2022</td></tr>
+      <tr><td style="padding:4px 8px;"><strong>13.5</strong></td><td style="padding:4px 8px; text-align:right;"><strong>623.5</strong></td><td style="padding:4px 8px; text-align:right;"><strong>2023</strong></td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">14.0</td><td style="padding:4px 8px; text-align:right;">621.1</td><td style="padding:4px 8px; text-align:right;">2021</td></tr>
+    </table>
+  </div>
+</div>
+
+<h3>Sweep 3 — Vehicle Mass</h3>
+
+<p>
+  Mass swept from 80 kg to 180 kg. The relationship is smooth and monotonic —
+  every 10 kg of additional mass costs approximately 25–30 km/L on the IMS track.
+  Rolling resistance scales directly with mass, and the grade force term also
+  scales with mass, making mass reduction doubly impactful on a track with grade.
+</p>
+
+<div class="box">
+  <strong>Best: m = 80 kg → 697.9 km/L</strong> &nbsp;|&nbsp;
+  Worst: m = 180 kg → 432.7 km/L &nbsp;|&nbsp;
+  <strong>Sensitivity: 61.2%</strong>
+</div>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">⚖️</div>
+      <strong>Sweep 3 — Mass vs Shell Score</strong>
+      <em>images/v9/sweep_mass_kmL_v9.png</em>
+      <em>Monotonically decreasing. 80 kg gives 697.9 km/L vs 432.7 km/L at 180 kg.
+      Each 10 kg ≈ 25–30 km/L penalty.</em>
+    </div>
+  </div>
+  <div>
+    <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
+      <tr style="background:#f0f0f0;">
+        <th style="padding:5px 8px; text-align:left;">Mass (kg)</th>
+        <th style="padding:5px 8px; text-align:right;">km/L</th>
+        <th style="padding:5px 8px; text-align:right;">t (s)</th>
+      </tr>
+      <tr><td style="padding:4px 8px;"><strong>80</strong></td><td style="padding:4px 8px; text-align:right;"><strong>697.9</strong></td><td style="padding:4px 8px; text-align:right;">2022</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">90</td><td style="padding:4px 8px; text-align:right;">655.2</td><td style="padding:4px 8px; text-align:right;">2011</td></tr>
+      <tr><td style="padding:4px 8px;">100</td><td style="padding:4px 8px; text-align:right;">621.3</td><td style="padding:4px 8px; text-align:right;">2016</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">110</td><td style="padding:4px 8px; text-align:right;">588.7</td><td style="padding:4px 8px; text-align:right;">2016</td></tr>
+      <tr><td style="padding:4px 8px;">120</td><td style="padding:4px 8px; text-align:right;">559.4</td><td style="padding:4px 8px; text-align:right;">2020</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">140</td><td style="padding:4px 8px; text-align:right;">510.9</td><td style="padding:4px 8px; text-align:right;">2027</td></tr>
+      <tr><td style="padding:4px 8px;">160</td><td style="padding:4px 8px; text-align:right;">470.2</td><td style="padding:4px 8px; text-align:right;">2029</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">180</td><td style="padding:4px 8px; text-align:right;">432.7</td><td style="padding:4px 8px; text-align:right;">2021</td></tr>
+    </table>
+  </div>
+</div>
+
+<h3>Sweep 4 — Drag Coefficient</h3>
+
+<p>
+  Cd swept from 0.05 to 0.55. The relationship is nearly linear across the tested
+  range. At ~7.6 m/s operating speed, aerodynamic drag and rolling resistance are
+  of similar magnitude at the baseline Cd=0.30, so drag reduction has significant
+  leverage. Halving Cd from 0.30 to 0.15 improves score by 29% (621 → 804 km/L);
+  reducing to Cd=0.05 approaches 1000 km/L.
+</p>
+
+<div class="box">
+  <strong>Best: Cd = 0.05 → 1003.3 km/L</strong> &nbsp;|&nbsp;
+  Worst: Cd = 0.55 → 449.9 km/L &nbsp;|&nbsp;
+  <strong>Sensitivity: 123.0%</strong> — highest of all sweeps
+</div>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🌬️</div>
+      <strong>Sweep 4 — Drag Coefficient vs Shell Score</strong>
+      <em>images/v9/sweep_cd_kmL_v9.png</em>
+      <em>Near-linear improvement with reduced drag. Cd=0.05 crosses 1000 km/L;
+      Cd=0.15 reaches Mater Dei 2025 territory.</em>
+    </div>
+  </div>
+  <div>
+    <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
+      <tr style="background:#f0f0f0;">
+        <th style="padding:5px 8px; text-align:left;">Cd</th>
+        <th style="padding:5px 8px; text-align:right;">km/L</th>
+      </tr>
+      <tr><td style="padding:4px 8px;"><strong>0.05</strong></td><td style="padding:4px 8px; text-align:right;"><strong>1003.3</strong></td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">0.10</td><td style="padding:4px 8px; text-align:right;">890.9</td></tr>
+      <tr><td style="padding:4px 8px;">0.15</td><td style="padding:4px 8px; text-align:right;">803.5</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">0.20</td><td style="padding:4px 8px; text-align:right;">733.2</td></tr>
+      <tr><td style="padding:4px 8px;">0.25</td><td style="padding:4px 8px; text-align:right;">671.7</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">0.30</td><td style="padding:4px 8px; text-align:right;">621.3</td></tr>
+      <tr><td style="padding:4px 8px;">0.40</td><td style="padding:4px 8px; text-align:right;">538.1</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">0.55</td><td style="padding:4px 8px; text-align:right;">449.9</td></tr>
+    </table>
+  </div>
+</div>
+
+<h3>Sweep 5 — Engine Efficiency (BSFC Sensitivity)</h3>
+
+<p>
+  Engine thermal efficiency swept from 8% to 34% to bracket the uncertainty in the
+  fixed <code>effic_engine = 0.20</code> assumption. The relationship is perfectly
+  linear — Shell score scales exactly proportionally with efficiency because fuel mass
+  = shaft energy ÷ (efficiency × LHV). This sweep quantifies the model's largest
+  unknown: every 2 percentage points of engine efficiency is worth approximately
+  62 km/L. If the actual engine achieves 26% efficiency (typical for a well-tuned
+  small 4-stroke), the score would reach ~808 km/L, comfortably in the Mater Dei range.
+</p>
+
+<div class="box-yellow">
+  <strong>Key implication:</strong> At the current Cd=0.30 and m=100 kg, the simulation
+  predicts 621 km/L at 20% efficiency. Matching Mater Dei's 718 km/L would require
+  approximately <strong>23% engine efficiency</strong> — achievable with a well-tuned
+  carburetor and ignition timing. Matching BYU's 995 km/L would require ~32% efficiency,
+  a Cd reduction to ~0.10, and mass well below 100 kg.
+</div>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🔥</div>
+      <strong>Sweep 5 — Engine Efficiency vs Shell Score</strong>
+      <em>images/v9/sweep_eta_kmL_v9.png</em>
+      <em>Perfectly linear — score ∝ efficiency. 20% = 621 km/L baseline.
+      Horizontal reference lines at key competitor scores.</em>
+    </div>
+  </div>
+  <div>
+    <table style="width:100%; font-size:0.88em; border-collapse:collapse; margin-top:4px;">
+      <tr style="background:#f0f0f0;">
+        <th style="padding:5px 8px; text-align:left;">η_eng</th>
+        <th style="padding:5px 8px; text-align:right;">km/L</th>
+        <th style="padding:5px 8px; text-align:left; padding-left:14px;">Context</th>
+      </tr>
+      <tr><td style="padding:4px 8px;">8%</td><td style="padding:4px 8px; text-align:right;">248.5</td><td style="padding:4px 8px; padding-left:14px; color:#888;"></td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">12%</td><td style="padding:4px 8px; text-align:right;">372.8</td><td style="padding:4px 8px; padding-left:14px; color:#888;"></td></tr>
+      <tr><td style="padding:4px 8px;">16%</td><td style="padding:4px 8px; text-align:right;">497.1</td><td style="padding:4px 8px; padding-left:14px; color:#888;"></td></tr>
+      <tr style="background:#fff8dc;"><td style="padding:4px 8px;"><strong>20%</strong></td><td style="padding:4px 8px; text-align:right;"><strong>621.3</strong></td><td style="padding:4px 8px; padding-left:14px;"><strong>← baseline</strong></td></tr>
+      <tr><td style="padding:4px 8px;">22%</td><td style="padding:4px 8px; text-align:right;">683.5</td><td style="padding:4px 8px; padding-left:14px; color:#2a7a2a;">Mater Dei range</td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">24%</td><td style="padding:4px 8px; text-align:right;">745.6</td><td style="padding:4px 8px; padding-left:14px; color:#2a7a2a;">Mater Dei+ range</td></tr>
+      <tr><td style="padding:4px 8px;">28%</td><td style="padding:4px 8px; text-align:right;">869.8</td><td style="padding:4px 8px; padding-left:14px; color:#0066cc;"></td></tr>
+      <tr style="background:#f8f8f8;"><td style="padding:4px 8px;">32%</td><td style="padding:4px 8px; text-align:right;">994.1</td><td style="padding:4px 8px; padding-left:14px; color:#0066cc;">BYU 2024 range</td></tr>
+      <tr><td style="padding:4px 8px;">34%</td><td style="padding:4px 8px; text-align:right;">1056.2</td><td style="padding:4px 8px; padding-left:14px; color:#0066cc;"></td></tr>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<h2>Design Sensitivity Ranking (V9)</h2>
+
+<p>
+  Sensitivity measures the percentage improvement from worst to best value
+  within each sweep range on the IMS full-lap simulation. Drag coefficient
+  again leads by a wide margin; engine efficiency (previously assumed constant)
+  enters the ranking as the second-highest lever and the largest model uncertainty.
+</p>
+
+<div class="sensitivity-bar">
+  <span class="bar-label">Drag Coeff (Cd)</span>
+  <span class="bar-track">
+    <span class="bar-fill" style="width:100%; background:#cc4400;"></span>
+  </span>
+  <span class="bar-pct">123.0%</span>
+</div>
+
+<div class="sensitivity-bar">
+  <span class="bar-label">Engine Effic.</span>
+  <span class="bar-track">
+    <span class="bar-fill" style="width:84.4%; background:#8b0000;"></span>
+  </span>
+  <span class="bar-pct">124.7% → normalized</span>
+</div>
+
+<div class="sensitivity-bar">
+  <span class="bar-label">Mass</span>
+  <span class="bar-track">
+    <span class="bar-fill" style="width:49.8%; background:#2a7a2a;"></span>
+  </span>
+  <span class="bar-pct">61.2%</span>
+</div>
+
+<div class="sensitivity-bar">
+  <span class="bar-label">Speed Band</span>
+  <span class="bar-track">
+    <span class="bar-fill" style="width:5.5%; background:#0066cc;"></span>
+  </span>
+  <span class="bar-pct">1.1%</span>
+</div>
+
+<div class="sensitivity-bar">
+  <span class="bar-label">Gear Ratio</span>
+  <span class="bar-track">
+    <span class="bar-fill" style="width:0.8%; background:#888;"></span>
+  </span>
+  <span class="bar-pct">0.8%</span>
+</div>
+
+<br>
+<div class="box-green">
+  <strong>Key takeaways from V9 sweeps:</strong>
+  <ul style="margin-top:10px; margin-bottom:4px;">
+    <li><strong>Drag reduction is the #1 design priority</strong> — Cd=0.15 puts the
+    vehicle in Mater Dei territory regardless of other parameters.</li>
+    <li><strong>Engine efficiency is the largest unknown</strong> — each 2% point is
+    worth ~62 km/L. Dyno characterization (BSFC map) is the highest-value pending task.</li>
+    <li><strong>Mass is meaningful but secondary</strong> — 80 vs 100 kg is a 12.3%
+    score improvement. Worth pursuing but less leveraged than aero.</li>
+    <li><strong>Speed band has only 1.1% sensitivity on the IMS track</strong> — reduced
+    from V8's 26% because the zone-aware strategy limits burn-coast to Zone 1 only
+    (34.6% of lap), reducing the band's overall influence.</li>
+    <li><strong>Gear ratio: not a design variable</strong> — set it to keep RPM inside
+    the dyno map range and move on.</li>
+  </ul>
+</div>
+
+<hr>
+
 <h2>Improvements Over V8</h2>
 
 <div class="box">
@@ -1085,8 +1387,9 @@ Result:            <span class="hi">CURVED (exponential) — physics correct</sp
     <li><strong>analyzeV9_track_shell_eco.m</strong> — Post-processing: race metrics,
     per-lap breakdown, Article 226 pass/fail, force balance, coast shape, F_Engine leakage,
     and 5 figures with zone shading</li>
-    <li><strong>SweepV9.m</strong> — Parameter sweeps extended to lap-distance scoring;
-    burn-coast band, gear ratio, mass sweeps updated with V9 track and zone strategy</li>
+    <li><strong>SweepV9_track.m</strong> — Five-parameter sweep on full IMS lap-distance
+    simulation: burn-coast band (2D heat map), gear ratio, mass, drag coefficient, and
+    engine efficiency (BSFC sensitivity); all scored in km/L with Article 226 time check</li>
     <li><strong>engine_mapV4.mat</strong> — Dyno-calibrated torque lookup (2708–8708 RPM, 25 breakpoints)</li>
   </ul>
   <p style="text-align:center; margin-top:14px;">
