@@ -191,12 +191,21 @@ iframe {
     replaced with threshold-based on/off switching.
   </div>
 
-  <div class="timeline-item timeline-current">
-    <div class="timeline-title">Version 8 — Accuracy Overhaul &amp; Sweep Optimization (Current)</div>
+  <div class="timeline-item">
+    <div class="timeline-title">Version 8 — Accuracy Overhaul &amp; Sweep Optimization</div>
     Corrected wheel radius, RPM bounds, and fuel accounting. Stateflow
     hysteresis replaces single-threshold driver strategy. Shaft-power
     fuel model and four-parameter km/L sweep with design sensitivity
     ranking completed.
+  </div>
+
+  <div class="timeline-item timeline-current">
+    <div class="timeline-title">Version 9 — Real Track Integration &amp; Race Simulation (Current)</div>
+    IMS Infield Road Course GPS + elevation profile (767 breakpoints, 5 m resolution).
+    Zone-aware three-mode driver strategy (burn-coast / cruise-hold / corner-hold).
+    Grade force in vehicle dynamics. Lap-based race simulation with Article 226
+    pass/fail. Five-parameter sweep including BSFC sensitivity.
+    Baseline result: 621.3 km/L, 2016.2 s, attempt valid ✓.
   </div>
 
 </div>
@@ -225,12 +234,14 @@ iframe {
     </button>
   </div>
 
-  <div class="version-row">
-    <button id="btnV8" onclick="showVersion('v8')" class="current">
-      Version 8 – Accuracy Overhaul &amp; Sweeps (Current)
+<div class="version-row">
+    <button id="btnV8" onclick="showVersion('v8')">
+      Version 8 – Accuracy Overhaul &amp; Sweeps
+    </button>
+    <button id="btnV9" onclick="showVersion('v9')" class="current">
+      Version 9 – Track Integration &amp; Race Sim (Current)
     </button>
   </div>
-
 </div>
 
 <!-- Iframes -->
@@ -240,6 +251,7 @@ iframe {
 <iframe id="frameV3" src="v3.html"></iframe>
 <iframe id="frameV6" src="v6.html"></iframe>
 <iframe id="frameV8" src="v8.html"></iframe>
+<iframe id="frameV9" src="v9.html"></iframe>
 
 <script>
 
@@ -250,7 +262,8 @@ function showVersion(ver) {
     v2: document.getElementById("frameV2"),
     v3: document.getElementById("frameV3"),
     v6: document.getElementById("frameV6"),
-    v8: document.getElementById("frameV8")
+    v8: document.getElementById("frameV8"),
+    v8: document.getElementById("frameV9")
   };
 
   const buttons = {
@@ -258,7 +271,8 @@ function showVersion(ver) {
     v2: document.getElementById("btnV2"),
     v3: document.getElementById("btnV3"),
     v6: document.getElementById("btnV6"),
-    v8: document.getElementById("btnV8")
+    v8: document.getElementById("btnV8"),
+    v9: document.getElementById("btnV9")
   };
 
   // Hide all frames and deactivate all buttons
@@ -272,7 +286,7 @@ function showVersion(ver) {
 }
 
 // Default to V8
-showVersion("v8");
+showVersion("v9");
 
 </script>
 
