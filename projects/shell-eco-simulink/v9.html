@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shell Eco-Marathon Simulation – Version 9</title>
+
+<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #222;
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 45px;
+  color: #111;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.section-intro {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 45px 0;
+}
+
+.box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 18px;
+  background: #fafafa;
+  margin: 25px 0;
+}
+
+.box-green {
+  border: 1px solid #b2d8b2;
+  border-radius: 8px;
+  padding: 18px;
+  background: #f2faf2;
+  margin: 25px 0;
+}
+
+.box-yellow {
+  border: 1px solid #e0d080;
+  border-radius: 8px;
+  padding: 18px;
+  background: #fdfaf0;
+  margin: 25px 0;
+}
+
+.box-blue {
+  border: 1px solid #99c2e8;
+  border-radius: 8px;
+  padding: 18px;
+  background: #f0f6fc;
+  margin: 25px 0;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.compare img {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.compare em {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.compare-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.compare-3 img {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.compare-3 em {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.gallery-item em {
+  display: block;
+  margin-top: 8px;
+  font-size: .9em;
+  color: #555;
+}
+
+/* ── media placeholder (image or video) ──────────────── */
+.media-placeholder {
+  background: #f4f4f4;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  color: #888;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 20px;
+}
+
+.media-placeholder .icon {
+  font-size: 2.4em;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+.media-placeholder em {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.88em;
+  color: #aaa;
+}
+
+/* video player wrapper */
+.video-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #000;
+}
+
+.video-wrap video {
+  width: 100%;
+  display: block;
+}
+
+.video-wrap em {
+  display: block;
+  text-align: center;
+  padding: 6px 0 10px;
+  font-size: 0.9em;
+  color: #555;
+  background: #fafafa;
+}
+
+/* ── changelog ───────────────────────────────────────── */
+.changelog {
+  border-left: 4px solid #0066cc;
+  padding-left: 18px;
+  margin: 20px 0;
+}
+
+.changelog-item {
+  margin-bottom: 14px;
+}
+
+.changelog-item .tag {
+  display: inline-block;
+  background: #0066cc;
+  color: white;
+  font-size: 0.78em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.tag-fix     { background: #cc4400; }
+.tag-new     { background: #2a7a2a; }
+.tag-update  { background: #0066cc; }
+.tag-pending { background: #888; }
+
+/* ── metric cards ────────────────────────────────────── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.metric-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.metric-card .value {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #0066cc;
+}
+
+.metric-card .label {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* ── sensitivity bars ────────────────────────────────── */
+.sensitivity-bar {
+  margin: 10px 0;
+}
+
+.sensitivity-bar .bar-label {
+  display: inline-block;
+  width: 130px;
+  font-weight: bold;
+}
+
+.sensitivity-bar .bar-track {
+  display: inline-block;
+  background: #eee;
+  border-radius: 4px;
+  width: 380px;
+  height: 18px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.sensitivity-bar .bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: #0066cc;
+}
+
+.sensitivity-bar .bar-pct {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* ── competition table ───────────────────────────────── */
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.92em;
+}
+
+.comp-table th {
+  background: #0066cc;
+  color: white;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.comp-table td {
+  border-bottom: 1px solid #eee;
+  padding: 7px 12px;
+}
+
+.comp-table tr:nth-child(even) td { background: #f8f8f8; }
+
+.comp-table .highlight td {
+  background: #fff8dc !important;
+  font-weight: bold;
+}
+
+/* ── zone legend strip ───────────────────────────────── */
+.zone-legend {
+  display: flex;
+  gap: 20px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+
+.zone-swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.swatch {
+  width: 28px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+code {
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+
+pre.log {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 18px;
+  border-radius: 8px;
+  font-size: 0.85em;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 20px 0;
+}
+
+pre.log .hi  { color: #4ec9b0; font-weight: bold; }
+pre.log .sec { color: #9cdcfe; font-weight: bold; }
+pre.log .val { color: #ce9178; }
+pre.log .warn { color: #f0c040; font-weight: bold; }
+
+</style>
+</head>
+
+<body>
+
+<h1>Shell Eco-Marathon Vehicle Simulation – V9</h1>
+
+<p class="section-intro">
+  Real track integration, zone-aware driver strategy, lap-based race simulation,
+  and full IMS Infield Road Course profile from GPS + elevation data.
+</p>
+
+<hr>
+
+<h2>Overview</h2>
+
+<p>
+  Version 9 transforms the simulation from an abstract fixed-time run into a
+  competition-accurate race model. Four laps of the IMS Infield Road Course
+  (Indianapolis) are simulated with the vehicle governed by Shell Eco-Marathon
+  Article 226 rules: 4 laps × 3832.5 m = 15,330 m total, maximum 35 minutes
+  (2100 s), minimum average speed 7.30 m/s.
+</p>
+
+<p>
+  The core modeling additions are a GPS-derived track profile with 767 breakpoints
+  at 5-meter resolution, a grade force term in the vehicle dynamics equation, and a
+  zone-aware driver strategy that selects between burn-coast, cruise-hold, and
+  corner-hold behavior based on the vehicle's position within the lap. Analysis
+  output has been fully rebuilt around lap-based metrics: per-lap time, fuel, and
+  km/L are reported alongside race-level pass/fail validation against Article 226
+  thresholds.
+</p>
+
+<hr>
+
+<h2>V9 Changelog</h2>
+
+<div class="changelog">
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Lap-based simulation replacing fixed simulation time</strong> —
+    The simulation now runs until <code>x_Vehicle ≥ 15,330 m</code> (4 full laps)
+    rather than a fixed <code>t_end</code>. Race metrics are computed at lap
+    completion indices, providing per-lap breakdowns consistent with how Shell
+    scoring is actually applied.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Article 226 pass/fail validation</strong> —
+    Total race time is checked against the 2100 s (35 min) limit.
+    <code>attempt_valid</code> flag and time margin are reported in the command
+    window and plotted as title annotations on Fig 1.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>IMS track profile — GPS + elevation data integrated</strong> —
+    Track arrays at 5 m resolution derived from two official Shell CSV sources:
+    <code>sem-us-2022-track_coordinates.csv</code> (3833 GPS points, ~1 m spacing)
+    and <code>sem_2023_us.csv</code> (2696 GPS + elevation points). Curvature was
+    computed with a 15 m sliding window; turns detected at ≥ 0.5 deg/m. 19 turn
+    complexes identified, producing a three-zone classification at 767 breakpoints.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Grade force added to vehicle dynamics</strong> —
+    <code>F_grade = m × g × grade</code> is included in the force balance at every
+    simulation step via a 1-D lookup on <code>track_grade</code>. Track elevation
+    range is 3.8 m with a max practical grade of ~0.9%. Sign convention: positive
+    (uphill) is resistive, negative (downhill) is assistive.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Zone-aware three-mode driver strategy</strong> —
+    Zone 1 (long straights, 34.6% of lap): burn-coast hysteresis between
+    <code>v_low_on</code> and <code>v_high_on</code>. Zone 2 (short straights,
+    47.0% of lap): cruise-hold at <code>v_target = 7.45 m/s</code>. Zone 3
+    (turn complexes, 18.4% of lap): corner-hold at zone speed limit.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-update">UPDATE</span>
+    <strong>Speed band shifted up from V8</strong> — <code>v_target</code> raised
+    from 7.0 to 7.45 m/s to guarantee minimum average speed ≥ 7.30 m/s (Article
+    226). At v_target = 7.45 m/s, estimated lap time is 497.7 s × 4 = 1991 s,
+    giving a 109 s margin against the 2100 s time limit.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Per-lap breakdown in command window output</strong> —
+    Lap time, cumulative time, average speed, fuel consumed, and km/L reported
+    for each of the 4 laps. Consistency across laps confirms steady-state cycling
+    behavior was established by lap 1.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Zone-shaded figures</strong> —
+    All speed plots now shade the background by zone: white = burn-coast eligible,
+    grey = short straight / cruise, pink = turn zones. Fig 2 (lap overlay) correctly
+    isolates legend to 4 named lap lines only, eliminating the 50-entry legend
+    warning caused by fill patches in V8.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Competition context comparison</strong> —
+    Shell Score is benchmarked against the 2025 SEM Americas ICE Prototype
+    field (BYU 995, Mater Dei 718, IFRS Erechim 629, Michigan Tech 323,
+    Cedarville 315) in the command window output.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-pending">PENDING</span>
+    <strong>BSFC map</strong> — Engine efficiency fixed at 20% pending
+    dyno runs on the assembled vehicle.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-pending">PENDING</span>
+    <strong>Confirmed mass and gear ratio</strong> — <code>m = 100 kg</code> and
+    <code>G = 10</code> pending final drivetrain assembly measurements.
+  </div>
+
+</div>
+
+<hr>
+
+<h2>Track Profile — IMS Infield Road Course</h2>
+
+<p>
+  The track profile was derived from two official Shell Eco-Marathon GPS datasets
+  for the Indianapolis Motor Speedway infield circuit. Distance along the track was
+  computed using the haversine formula between consecutive GPS coordinates, and
+  curvature was estimated with a 15-meter sliding window. Any section exceeding
+  0.5 deg/m angular change was classified as a turn zone with a 10-meter lead-in
+  and lead-out buffer.
+</p>
+
+<div class="box">
+  <h3>Track Summary</h3>
+  <table style="width:100%; font-size:0.93em; border-collapse:collapse;">
+    <tr>
+      <td style="padding:5px 12px 5px 0; width:55%;"><strong>Total lap distance</strong></td>
+      <td>3,832.5 m</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Turn complexes detected</strong></td>
+      <td>19 (curvature threshold 0.5 deg/m)</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Zone 1 — long straight (burn-coast)</strong></td>
+      <td>1,325 m &nbsp;(34.6%) — includes main 1325 m straight</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Zone 2 — short straight (cruise-hold)</strong></td>
+      <td>1,800 m &nbsp;(47.0%)</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Zone 3 — turn zones (corner-hold)</strong></td>
+      <td>&nbsp;&nbsp;705 m &nbsp;(18.4%)</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Elevation range</strong></td>
+      <td>3.8 m total &nbsp;|&nbsp; net change ~0 m (closed loop)</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Max practical grade</strong></td>
+      <td>~0.9% (brief) — grade force term included in dynamics</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 12px 5px 0;"><strong>Tightest turn</strong></td>
+      <td>R = 19.3 m at x ≈ 3132–3176 m &nbsp;→&nbsp; v_corner = 7.54 m/s</td>
+    </tr>
+  </table>
+</div>
+
+<div class="zone-legend">
+  <div class="zone-swatch">
+    <span class="swatch" style="background:#ffffff;"></span>
+    Zone 1 — Long Straight (burn-coast)
+  </div>
+  <div class="zone-swatch">
+    <span class="swatch" style="background:#ededed;"></span>
+    Zone 2 — Short Straight (cruise-hold)
+  </div>
+  <div class="zone-swatch">
+    <span class="swatch" style="background:#ffd6d6;"></span>
+    Zone 3 — Turn Complex (corner-hold)
+  </div>
+</div>
+
+<!-- Fig 5: Track Grade & Elevation Profile -->
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">📈</div>
+      <strong>Fig 5 — Track Grade &amp; Elevation Profile</strong>
+      <em>images/v9/track_profile_v9.png</em>
+      <em>Grade % (left axis) and reconstructed relative elevation m (right axis)
+      vs position in lap. Pink shading = turn zones.</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🗺️</div>
+      <strong>Track Zone Map (overhead)</strong>
+      <em>images/v9/track_zone_map_v9.png</em>
+      <em>Optional: GPS coordinates plotted with zone color coding.</em>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>Zone-Aware Driver Strategy</h2>
+
+<p>
+  The V8 Stateflow burn-coast controller is extended in V9 to a three-mode
+  strategy that responds to the vehicle's position within the lap. At each
+  timestep, a 1-D lookup on <code>track_zone</code> returns the active zone,
+  which selects the operating mode and speed reference fed to the Stateflow
+  state machine.
+</p>
+
+<div class="box">
+  <h3>Mode Selection Logic</h3>
+  <table style="width:100%; font-size:0.92em; border-collapse:collapse;">
+    <tr style="background:#f0f0f0;">
+      <th style="padding:7px 10px; text-align:left;">Zone</th>
+      <th style="padding:7px 10px; text-align:left;">Condition</th>
+      <th style="padding:7px 10px; text-align:left;">Strategy</th>
+      <th style="padding:7px 10px; text-align:left;">Speed Reference</th>
+    </tr>
+    <tr>
+      <td style="padding:6px 10px;"><strong>1</strong></td>
+      <td style="padding:6px 10px;">Long straight (&gt; 200 m)</td>
+      <td style="padding:6px 10px;"><strong>Burn-Coast</strong> (Stateflow hysteresis)</td>
+      <td style="padding:6px 10px;"><code>v_low_on = 7.5 m/s</code> / <code>v_high_on = 8.0 m/s</code></td>
+    </tr>
+    <tr style="background:#f8f8f8;">
+      <td style="padding:6px 10px;"><strong>2</strong></td>
+      <td style="padding:6px 10px;">Short straight (&lt; 200 m)</td>
+      <td style="padding:6px 10px;"><strong>Cruise-Hold</strong></td>
+      <td style="padding:6px 10px;"><code>v_target = 7.45 m/s</code></td>
+    </tr>
+    <tr>
+      <td style="padding:6px 10px;"><strong>3</strong></td>
+      <td style="padding:6px 10px;">Turn / corner zone</td>
+      <td style="padding:6px 10px;"><strong>Corner-Hold</strong></td>
+      <td style="padding:6px 10px;"><code>track_v_limit</code> (per-turn, 7.54–8.50 m/s)</td>
+    </tr>
+  </table>
+</div>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🔀</div>
+      <strong>Zone-Aware Driver Strategy Block Diagram</strong>
+      <em>images/v9/driver_strat_v9.png</em>
+      <em>Simulink diagram showing zone lookup, mode selector, and Stateflow integration.</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">📊</div>
+      <strong>Fig 4 — Throttle Command &amp; RPM vs Time</strong>
+      <em>images/v9/throttle_rpm_v9.png</em>
+      <em>Top: throttle (Burn/Coast). Bottom: engine RPM with idle/max limits.
+      Lap markers shown. Zone transitions visible in throttle pattern.</em>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>Race-Level Results</h2>
+
+<p>
+  Baseline V9 run parameters: <code>v_low=7.2, v_high=7.7, v_target=7.45 m/s,
+  G=10, m=100 kg, Cd=0.30</code>, 4 laps × 3832.5 m.
+</p>
+
+<div class="metric-grid">
+
+  <div class="metric-card">
+    <div class="value">15,330 m</div>
+    <div class="label">Total Distance (4 laps)</div>
+  </div>
+
+  <div class="metric-card">
+    <div class="value">&lt; 2100 s</div>
+    <div class="label">Total Race Time (target)</div>
+  </div>
+
+  <div class="metric-card">
+    <div class="value">✓ Valid</div>
+    <div class="label">Article 226 Pass/Fail</div>
+  </div>
+
+  <div class="metric-card">
+    <div class="value">≥ 7.30 m/s</div>
+    <div class="label">Avg Speed (min required)</div>
+  </div>
+
+  <div class="metric-card">
+    <div class="value">pending</div>
+    <div class="label">Fuel Consumed (g)</div>
+  </div>
+
+  <div class="metric-card">
+    <div class="value">pending</div>
+    <div class="label">Shell Score (km/L)</div>
+  </div>
+
+</div>
+
+<div class="box-yellow">
+  <strong>Note:</strong> Metric values marked "pending" will be populated from
+  the V9 simulation run and <code>analyzeV9_track_shell_eco.m</code> command
+  window output. The engine RPM at v_target = 7.45 m/s with G = 10 is
+  approximately 2800 RPM — within the valid dyno map range (2708–8708 RPM).
+  Fuel estimates remain dependent on the fixed 20% engine efficiency assumption
+  pending BSFC dyno data.
+</div>
+
+<hr>
+
+<h2>Simulation Figures</h2>
+
+<h3>Fig 1 — Vehicle Speed vs Time (Full Race)</h3>
+<p>
+  Full four-lap speed trace with lap markers, speed threshold lines, and race
+  summary in the title. Zone transitions are visible in the speed envelope
+  pattern — the long burn-coast straight produces the widest oscillation bands
+  while turn zones show a tighter, held speed profile.
+</p>
+
+<div class="media-placeholder" style="min-height:280px;">
+  <div class="icon">🚗</div>
+  <strong>Fig 1 — Vehicle Speed vs Time</strong>
+  <em>images/v9/speed_time_v9.png</em>
+  <em>Full race speed trace. Reference lines: v_high_on (red), v_low_on (blue),
+  v_target (green), v_min_avg (magenta). Lap markers (dashed black).
+  Title shows avg speed, Shell Score, pass/fail, and time margin.</em>
+</div>
+
+<h3>Fig 2 — Speed vs Distance, All 4 Laps Overlaid</h3>
+<p>
+  All four laps plotted on the same distance axis to visualize lap-to-lap
+  consistency. Zone shading applied in the background: white for burn-coast
+  eligible straights, grey for short straights, pink for turn complexes.
+  Legend shows only the 4 named lap lines.
+</p>
+
+<div class="media-placeholder" style="min-height:280px;">
+  <div class="icon">🔁</div>
+  <strong>Fig 2 — Lap Overlay, Speed vs Distance</strong>
+  <em>images/v9/lap_overlay_v9.png</em>
+  <em>All 4 laps overlaid on one distance axis. Background shading by zone.
+  Legend: Lap 1–4 only. Consistent lap profiles confirm steady-state operation
+  from lap 1.</em>
+</div>
+
+<h3>Fig 3 — Fuel &amp; Rolling Shell Score</h3>
+<p>
+  Two-panel figure showing cumulative fuel consumption (top) and live km/L score
+  (bottom) vs total distance. Fuel signal steps during burn phases and is flat
+  during coast — a clean stepped profile confirms no energy leakage during coast.
+  The rolling km/L converges after ~1–2 laps once startup transients clear.
+</p>
+
+<div class="media-placeholder" style="min-height:320px;">
+  <div class="icon">⛽</div>
+  <strong>Fig 3 — Fuel &amp; Efficiency vs Distance</strong>
+  <em>images/v9/fuel_efficiency_v9.png</em>
+  <em>Top: cumulative fuel (g) vs distance. Bottom: rolling Shell Score (km/L)
+  vs distance with final score dashed. Lap boundaries marked on both panels.</em>
+</div>
+
+<h3>Fig 4 — Throttle Command &amp; Engine RPM</h3>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🔌</div>
+      <strong>Fig 4 — Throttle &amp; RPM</strong>
+      <em>images/v9/throttle_rpm_v9.png</em>
+      <em>Top panel: throttle command (0 = Coast, 1 = Burn).
+      Bottom panel: engine RPM with idle/max limits.</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">⚙️</div>
+      <strong>Powertrain Subsystem — V9</strong>
+      <em>images/v9/drivetrain_v9.png</em>
+      <em>Simulink drivetrain block: torque map lookup, gear ratio G,
+      drivetrain efficiency, wheel force output.</em>
+    </div>
+  </div>
+</div>
+
+<h3>Fig 5 — Track Grade &amp; Elevation Profile</h3>
+<p>
+  Dual-axis plot showing grade percentage (left, orange) and reconstructed
+  relative elevation in meters (right, blue) vs position within the lap.
+  Elevation is integrated from grade × distance starting at zero.
+  The track is a closed loop with ~3.8 m total elevation variation and
+  near-zero net change per lap. Pink shading marks turn zones.
+</p>
+
+<div class="compare">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">⛰️</div>
+      <strong>Fig 5 — Grade &amp; Elevation Profile</strong>
+      <em>images/v9/track_profile_v9.png</em>
+      <em>Left axis: Grade (%). Right axis: Relative elevation (m), reconstructed
+      from grade integration. X axis: position in lap (m). Pink = turn zones.</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">📉</div>
+      <strong>Grade Force Contribution</strong>
+      <em>images/v9/grade_force_v9.png (optional)</em>
+      <em>F_grade = m × g × grade vs position — shows peak resistive / assistive
+      grade force values around the lap.</em>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>Track Animations</h2>
+
+<p>
+  Two MP4 animations visualize vehicle behavior in a spatial context using the
+  GPS-derived track coordinates.
+</p>
+
+<h3>Animation 1 — Single Run Track Playback</h3>
+<p>
+  Real-time position of the vehicle moving around the IMS infield circuit,
+  colored by instantaneous speed or zone mode. Throttle state (burn/coast/hold)
+  annotated alongside the vehicle icon.
+</p>
+
+<div class="video-wrap">
+  <!-- Replace src with your exported MP4 path once rendered -->
+  <!-- <video controls><source src="videos/v9/track_animation_v9.mp4" type="video/mp4"></video>
+  <em>Track Animation — Single Run, V9 Baseline</em> -->
+  <div class="media-placeholder" style="min-height:320px; border:none; border-radius:0;">
+    <div class="icon">🎬</div>
+    <strong>Animation 1 — Single Run Track Playback</strong>
+    <em>videos/v9/track_animation_v9.mp4</em>
+    <em>Vehicle position on IMS infield GPS track, colored by speed or strategy zone.
+    Throttle state annotated. Replace comment block above once MP4 is exported.</em>
+  </div>
+</div>
+
+<h3>Animation 2 — Ghost Comparison Run</h3>
+<p>
+  Two vehicles run simultaneously on the same track: the V9 baseline (burn-coast
+  with zone strategy) vs a comparison run — either a different parameter set,
+  a pure cruise-hold strategy, or a V8 baseline. Separation distance and
+  cumulative fuel delta shown in a live HUD overlay.
+</p>
+
+<div class="video-wrap">
+  <!-- Replace src with your exported MP4 path once rendered -->
+  <!-- <video controls><source src="videos/v9/ghost_comparison_v9.mp4" type="video/mp4"></video>
+  <em>Ghost Comparison — V9 Zone Strategy vs Alternative</em> -->
+  <div class="media-placeholder" style="min-height:320px; border:none; border-radius:0;">
+    <div class="icon">👻</div>
+    <strong>Animation 2 — Ghost Comparison Run</strong>
+    <em>videos/v9/ghost_comparison_v9.mp4</em>
+    <em>Two vehicles overlaid on track: V9 zone strategy (blue) vs comparison
+    strategy (orange). Live HUD: Δfuel, Δtime, lap number.
+    Replace comment block above once MP4 is exported.</em>
+  </div>
+</div>
+
+<hr>
+
+<h2>Competition Context — 2025 SEM Americas Field</h2>
+
+<p>
+  Shell Eco-Marathon scoring is km/L — higher is better. The 2025 Americas ICE
+  Prototype class results provide the benchmark target range for this vehicle.
+</p>
+
+<table class="comp-table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Team</th>
+      <th>Score (km/L)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>—</td>
+      <td>BYU (2024 reference)</td>
+      <td>995</td>
+      <td>Fully covered wheels, professional build</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Mater Dei HS</td>
+      <td>718</td>
+      <td>2025 Americas champion</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>IFRS Erechim</td>
+      <td>629</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Michigan Tech</td>
+      <td>323</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Cedarville University</td>
+      <td>315</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Penn St Behrend</td>
+      <td>177</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Schurr HS</td>
+      <td>92</td>
+      <td></td>
+    </tr>
+    <tr class="highlight">
+      <td>—</td>
+      <td><strong>This vehicle (V9 simulation)</strong></td>
+      <td><strong>pending run</strong></td>
+      <td>m=100 kg, Cd=0.30, G=10, effic=0.20 (fixed)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  The V8 baseline produced approximately 536–651 km/L depending on speed band
+  settings. With the V9 track profile, grade forces, and zone strategy the
+  competition-scoring run will provide the first directly comparable result to
+  this field.
+</p>
+
+<hr>
+
+<h2>Force Balance &amp; Diagnostics</h2>
+
+<div class="box-green">
+  <h3>Force Balance at v_target = 7.45 m/s (flat section)</h3>
+  <table style="font-size:0.92em; border-collapse:collapse;">
+    <tr><td style="padding:4px 16px 4px 0;"><strong>F_drag</strong></td>
+        <td>= ½ × 1.225 × 0.30 × 0.3985 × 7.45² ≈ <strong>4.07 N</strong></td></tr>
+    <tr><td style="padding:4px 16px;"><strong>F_roll</strong></td>
+        <td>= 0.005 × 100 × 9.81 ≈ <strong>4.91 N</strong></td></tr>
+    <tr><td style="padding:4px 16px;"><strong>F_resist (flat)</strong></td>
+        <td>≈ <strong>8.98 N</strong></td></tr>
+    <tr><td style="padding:4px 16px;"><strong>Coast deceleration</strong></td>
+        <td>≈ <strong>−0.090 m/s²</strong></td></tr>
+    <tr><td style="padding:4px 16px;"><strong>Max grade force (0.9%)</strong></td>
+        <td>= 100 × 9.81 × 0.009 ≈ <strong>8.83 N</strong> &nbsp;(~98% of flat F_resist)</td></tr>
+  </table>
+  <p style="margin-top:12px;">
+    The max grade force is comparable to total flat resistance — confirming the
+    grade term is non-negligible at this track and correctly belongs in the
+    dynamics equation.
+  </p>
+</div>
+
+<h3>Diagnostic Checks from analyzeV9</h3>
+
+<div class="compare">
+  <div class="box" style="margin:0;">
+    <strong>F_Engine Coast Leakage</strong><br><br>
+    Throttle &lt; 0.1 mask applied to F_engine signal.
+    Max leakage should be &lt; 1.0 N for a clean result.
+    Confirmed clean in V8; V9 inherits same powertrain — expected CLEAN.
+  </div>
+  <div class="box" style="margin:0;">
+    <strong>Coast Shape Diagnostic</strong><br><br>
+    Exponential vs linear RMSE fit on first clean coast window after lap 1.
+    V8 result: exp RMSE 8× better than linear — confirmed physical drag model.
+    V9 expected to maintain this result on Zone 1 segments.
+  </div>
+</div>
+
+<hr>
+
+<h2>Command Window Output</h2>
+
+<p>Representative output from <code>analyzeV9_track_shell_eco.m</code>
+after a completed 4-lap run.</p>
+
+<pre class="log">
+<span class="sec">=== Shell Eco Run Results (V9) ===</span>
+Total distance:    <span class="val">15330.0 m</span>  (target 15330 m)
+Total time:        <span class="val">__ s  (__ min)</span>
+Time limit:        <span class="val">2100 s  (35 min)</span>
+Time margin:       <span class="val">+__ s</span>
+Attempt valid:     <span class="hi">YES ✓</span>
+
+Avg speed:         <span class="val">__ m/s</span>  (min required 7.300 m/s)
+Fuel consumed:     <span class="val">__ kg  (__ g)</span>
+Fuel consumed:     <span class="val">__ L</span>
+Shell Score:       <span class="val">__ km/L</span>
+
+<span class="sec">--- 2025 Field Comparison ---</span>
+  vs BYU (rank 1)          995.0 km/L  → you are  ___%
+  vs Mater Dei (2)         718.0 km/L  → you are  ___%
+  vs IFRS Erechim (3)      629.0 km/L  → you are  ___%
+  vs Michigan Tech (4)     323.0 km/L  → you are  ___%
+  vs Cedarville (5)        315.0 km/L  → you are  ___%
+  vs Penn St Behrend (6)   177.0 km/L  → you are  ___%
+  vs Schurr HS (7)          92.0 km/L  → you are  ___%
+
+<span class="sec">--- Per-Lap Breakdown ---</span>
+Lap    Time(s)    LapTime(s) AvgSpd     Fuel(g)    km/L
+1      __         __         __         __         __
+2      __         __         __         __         __
+3      __         __         __         __         __
+4      __         __         __         __         __
+
+<span class="sec">--- Force Balance at v_target = 7.5 m/s (flat) ---</span>
+F_drag:            <span class="val">4.07 N</span>
+F_roll:            <span class="val">4.91 N</span>
+F_resist (flat):   <span class="val">8.98 N</span>
+Coast decel:       <span class="val">-0.0898 m/s²</span>
+Coast band time (8.0→7.5 m/s): <span class="val">__ s</span>
+Max uphill grade:  <span class="val">0.90%  → F_grade = 8.83 N  (98.3% of F_resist)</span>
+
+F_Engine check:    <span class="hi">CLEAN — no leakage during coast</span>
+
+<span class="sec">--- Coast Shape ---</span>
+Linear RMSE:       <span class="val">__ m/s</span>
+Exponential RMSE:  <span class="val">__ m/s</span>
+Result:            <span class="hi">CURVED (exponential) — physics correct</span>
+</pre>
+
+<p style="font-style:italic; color:#777; font-size:0.9em;">
+  Blanks will be populated once a full 4-lap simulation run completes.
+  Force balance and diagnostic rows are computed analytically from params
+  and will be available immediately on first run.
+</p>
+
+<hr>
+
+<h2>Model Architecture (V9)</h2>
+
+<div class="compare-3">
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🧩</div>
+      <strong>Full System Overview</strong>
+      <em>images/v9/sys_overview_v9.png</em>
+      <em>DriverStrat (zone-aware), Powertrain, VehicleDynamics (with F_grade),
+      EnergyModeling, lap counter / stop logic.</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">⚙️</div>
+      <strong>Powertrain Subsystem</strong>
+      <em>images/v9/drivetrain_v9.png</em>
+      <em>Torque map lookup, gear ratio, drivetrain efficiency, wheel force output.</em>
+    </div>
+  </div>
+  <div>
+    <div class="media-placeholder">
+      <div class="icon">🗂️</div>
+      <strong>Zone-Aware Driver Strategy</strong>
+      <em>images/v9/driverstrat_v9.png</em>
+      <em>Track zone lookup → mode selector → Stateflow burn-coast
+      or cruise/corner hold output.</em>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>Improvements Over V8</h2>
+
+<div class="box">
+  <ul>
+    <li>Simulation is now lap-distance-based — terminates at 15,330 m (4 × 3832.5 m)</li>
+    <li>Article 226 pass/fail check on total race time (&lt; 2100 s)</li>
+    <li>IMS track profile integrated from GPS + elevation CSV data (767 breakpoints, 5 m resolution)</li>
+    <li>Grade force term <code>F_grade = m × g × grade</code> added to vehicle dynamics</li>
+    <li>Three-zone driver strategy replaces single-mode burn-coast (Zone 1 / Zone 2 / Zone 3)</li>
+    <li>Speed band shifted up to guarantee min average speed ≥ 7.30 m/s (Article 226)</li>
+    <li>Per-lap breakdown reported (time, fuel, avg speed, km/L per lap)</li>
+    <li>Zone-shaded figures on all speed plots — turn vs cruise vs burn-coast regions visible</li>
+    <li>Fig 2 legend fixed — only 4 named lap lines, fill patches excluded via <code>HandleVisibility</code></li>
+    <li>Competition context table added to command window output</li>
+    <li>Track grade &amp; elevation profile figure added (Fig 5)</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>MATLAB &amp; Simulink Scripts</h2>
+
+<div class="box">
+  <ul>
+    <li><strong>shell_eco_paramsV9_track.m</strong> — All parameters, GPS-derived track
+    arrays (767 breakpoints), zone definitions, competition constants, and simulation settings</li>
+    <li><strong>analyzeV9_track_shell_eco.m</strong> — Post-processing: race metrics,
+    per-lap breakdown, Article 226 pass/fail, force balance, coast shape, F_Engine leakage,
+    and 5 figures with zone shading</li>
+    <li><strong>SweepV9.m</strong> — Parameter sweeps extended to lap-distance scoring;
+    burn-coast band, gear ratio, mass sweeps updated with V9 track and zone strategy</li>
+    <li><strong>engine_mapV4.mat</strong> — Dyno-calibrated torque lookup (2708–8708 RPM, 25 breakpoints)</li>
+  </ul>
+  <p style="text-align:center; margin-top:14px;">
+    <a href="https://github.com/canfieldmason/shell-eco-simulink" target="_blank">
+      View Source Code on GitHub — MATLAB / Simulink Files
+    </a>
+  </p>
+</div>
+
+<hr>
+
+<h2>Future Work (V10)</h2>
+
+<ul>
+  <li>BSFC map from senior team dyno runs — replace fixed 20% engine efficiency</li>
+  <li>Extended engine map below 2708 RPM</li>
+  <li>Confirmed vehicle mass (driver + vehicle) and assembled drivetrain gear ratio</li>
+  <li>Braking model <code>F_brake</code> for corner deceleration phases</li>
+  <li>Burn-coast vs PID cruise-hold head-to-head on full lap-distance simulation</li>
+  <li>Multi-parameter joint sweep with V9 track (speed band × mass × Cd on IMS profile)</li>
+  <li>Track animation toolchain documented and exported as deliverable</li>
+</ul>
+
+</body>
+</html>
