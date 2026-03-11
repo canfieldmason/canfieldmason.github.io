@@ -96,6 +96,87 @@ hr {
   font-size: 0.9em;
 }
 
+/* Solo full-width figures — constrained so they don't blow out the layout */
+.fig-solo {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.fig-solo img {
+  max-width: 100%;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+.fig-solo em {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  color: #555;
+  font-size: 0.9em;
+}
+
+/* Ghost result comparison card */
+.ghost-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.92em;
+}
+
+.ghost-result .ghost-col {
+  padding: 16px 20px;
+}
+
+.ghost-result .ghost-col-a {
+  background: #1a1a0a;
+  border-right: 1px solid #444;
+}
+
+.ghost-result .ghost-col-b {
+  background: #081820;
+}
+
+.ghost-result .ghost-label {
+  font-weight: bold;
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #333;
+}
+
+.ghost-result .ghost-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  color: #ccc;
+}
+
+.ghost-result .ghost-row .ghost-val {
+  font-weight: bold;
+  color: #eee;
+}
+
+.ghost-result .ghost-winner {
+  grid-column: 1 / -1;
+  background: #111;
+  padding: 10px 20px;
+  border-top: 1px solid #333;
+  color: #aaa;
+  font-size: 0.88em;
+  text-align: center;
+}
+
 .compare-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -558,7 +639,7 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   </div>
   <div>
     <img src="images/v9/track_zone_map_v9.png" alt="Track zone map overhead view">
-    <em>Shell's provided track outline, with red outline being the competitor track.</em>
+    <em>GPS track overhead with zone color coding — white=burn-coast, grey=cruise, pink=turns.</em>
   </div>
 </div>
 
@@ -678,7 +759,7 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   while turn zones show a tighter, held speed profile.
 </p>
 
-<div>
+<div class="fig-solo">
   <img src="images/v9/speed_time_v9.png" alt="Vehicle speed vs time full race">
   <em>Fig 1 — Full race speed trace. v_high_on (red), v_low_on (blue), v_target (green), v_min_avg (magenta). Lap markers dashed. Title shows avg speed, Shell Score, pass/fail, time margin.</em>
 </div>
@@ -691,7 +772,7 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   Legend shows only the 4 named lap lines.
 </p>
 
-<div>
+<div class="fig-solo">
   <img src="images/v9/lap_overlay_v9.png" alt="All 4 laps overlaid speed vs distance">
   <em>Fig 2 — All 4 laps on one distance axis. Zone shading in background. Legend: Lap 1–4 only. Consistent profiles confirm steady-state from lap 1.</em>
 </div>
@@ -704,7 +785,7 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   The rolling km/L converges after ~1–2 laps once startup transients clear.
 </p>
 
-<div>
+<div class="fig-solo">
   <img src="images/v9/fuel_efficiency_v9.png" alt="Fuel consumption and rolling Shell Score vs distance">
   <em>Fig 3 — Cumulative fuel (g) top, rolling Shell Score (km/L) bottom. Stepped fuel profile confirms no coast leakage. km/L converges after lap 2.</em>
 </div>
@@ -765,19 +846,41 @@ pre.log .warn { color: #f0c040; font-weight: bold; }
   <em>Animation 1 — Single Run Track Playback, V9 Baseline (6× speed)</em>
 </div>
 
-<h3>Animation 2 — Ghost Comparison Run</h3>
+<h3>Animation 2 — Ghost Comparison: Aerodynamic Drag (Cd=0.12 vs Cd=0.35)</h3>
 <p>
-  Two vehicles run simultaneously on the same track: the V9 baseline (burn-coast
-  with zone strategy) vs a comparison run — either a different parameter set,
-  a pure cruise-hold strategy, or a V8 baseline. Separation distance and
-  cumulative fuel delta shown in a live HUD overlay.
+  BYU-class aerodynamics (Cd=0.12, cyan) vs current estimated drag (Cd=0.35, yellow)
+  running simultaneously on the IMS lap. Lower drag means longer coast phases, fewer
+  burn cycles, and a real position gap that opens over the lap. Fuel and km/L diverge
+  visibly in the HUD — this is the #1 design priority visualized.
 </p>
+
+<div class="ghost-result">
+  <div class="ghost-col ghost-col-a">
+    <div class="ghost-label" style="color:#ffdd33;">▶ BYU-class &nbsp; Cd = 0.12</div>
+    <div class="ghost-row"><span>Fuel burned</span><span class="ghost-val" style="color:#ffdd33;">3.656 g</span></div>
+    <div class="ghost-row"><span>Shell Score</span><span class="ghost-val" style="color:#ffdd33;">777.9 km/L</span></div>
+    <div class="ghost-row"><span>Lap time</span><span class="ghost-val">~497 s</span></div>
+    <div class="ghost-row"><span>Gap at finish</span><span class="ghost-val" style="color:#4fc3f7;">+2.3 m ahead</span></div>
+  </div>
+  <div class="ghost-col ghost-col-b">
+    <div class="ghost-label" style="color:#4fc3f7;">▶ Current &nbsp; Cd = 0.35</div>
+    <div class="ghost-row"><span>Fuel burned</span><span class="ghost-val" style="color:#4fc3f7;">5.247 g</span></div>
+    <div class="ghost-row"><span>Shell Score</span><span class="ghost-val" style="color:#4fc3f7;">541.6 km/L</span></div>
+    <div class="ghost-row"><span>Lap time</span><span class="ghost-val">~505 s</span></div>
+    <div class="ghost-row"><span>Gap at finish</span><span class="ghost-val" style="color:#888;">—</span></div>
+  </div>
+  <div class="ghost-winner">
+    Reducing Cd from 0.35 → 0.12 saves <strong>1.591 g of fuel per lap</strong> and gains
+    <strong>236.3 km/L</strong> (+43.6%) — equivalent to raising engine efficiency from 20% to 28.7%.
+    Over 4 competition laps: <strong>6.4 g saved</strong>.
+  </div>
+</div>
 
 <div class="video-wrap">
   <video controls>
     <source src="images/v9/ghost_comparison_v9.mp4" type="video/mp4">
   </video>
-  <em>Animation 2 — Ghost Comparison: TOP-class Cd=0.12 (cyan) vs Current Cd=0.35 (yellow), 8× speed</em>
+  <em>Animation 2 — Ghost Comparison: BYU-class Cd=0.12 (yellow) vs Current Cd=0.35 (cyan), 8× speed</em>
 </div>
 
 <hr>
