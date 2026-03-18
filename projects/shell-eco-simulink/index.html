@@ -2,210 +2,213 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shell Eco-Marathon Vehicle Simulation</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shell Eco-Marathon Vehicle Simulation | Mason Canfield</title>
+<link rel="stylesheet" href="/portfolio.css">
 <style>
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #222;
-}
-
-h1 {
+.sim-intro {
+  max-width: 720px;
+  margin: 0 auto 36px;
   text-align: center;
-  margin-bottom: 5px;
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  line-height: 1.8;
 }
 
-.subtitle {
-  text-align: center;
-  color: #555;
-  margin-bottom: 25px;
-  font-style: italic;
-}
-
-/* Header Navigation */
-
-.header-nav {
-  text-align: center;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.header-nav a {
-  margin: 0 14px;
-  color: #0066cc;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.header-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Development Timeline */
-
+/* Timeline override for this page */
 .timeline {
-  margin: 40px auto;
-  max-width: 900px;
-  border-left: 3px solid #0066cc;
-  padding-left: 25px;
+  max-width: 820px;
+  margin: 0 auto 48px;
 }
 
 .timeline-item {
-  margin-bottom: 25px;
-  position: relative;
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  margin-left: 16px;
+  box-shadow: var(--shadow-xs);
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -33px;
-  top: 5px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #0066cc;
+.timeline-item:hover {
+  border-color: var(--blue-mid);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-item.timeline-current {
+  border-color: var(--blue);
+  background: var(--blue-light);
 }
 
 .timeline-title {
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--ink);
+  margin-bottom: 4px;
 }
 
-.timeline-current::before {
-  background: #2a7a2a;
+.timeline-item p,
+.timeline-item div {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* Version Buttons */
+/* Version selector */
+.version-section {
+  max-width: 860px;
+  margin: 0 auto;
+}
 
 .version-bar {
-  text-align: center;
-  margin: 35px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 28px 0;
 }
 
 .version-row {
-  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .version-bar button {
-  padding: 12px 22px;
-  margin: 8px;
-  border: none;
-  border-radius: 7px;
-  background: #0066cc;
-  color: white;
-  font-size: 1em;
+  flex: 1;
+  min-width: 180px;
+  padding: 11px 16px;
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s;
+  color: var(--ink-soft);
+  text-align: left;
+  box-shadow: var(--shadow-xs);
 }
 
 .version-bar button:hover {
-  background: #004c99;
+  background: var(--blue-light);
+  border-color: var(--blue-mid);
+  color: var(--blue);
 }
 
 .version-bar button.active {
-  background: #333;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
 }
 
-.current {
-  background: #2a7a2a !important;
+.version-bar button.current {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
 }
-
-/* Iframes */
 
 iframe {
-  width: 100%;
-  height: 1400px;
-  border: none;
   display: none;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-top: 16px;
+  min-height: 1400px;
+  box-shadow: var(--shadow-sm);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
 }
 
 </style>
 </head>
-
 <body>
 
-<!-- Header Navigation -->
+<!-- Navigation -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <span class="site-nav-brand">Mason Canfield</span>
+    <div class="site-nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html" class="active">Projects</a>
+      <a href="/resume.pdf" target="_blank">Resume</a>
+      <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</nav>
 
-<div class="header-nav">
-  <a href="/index.html">Home</a>
-  <a href="/projects/index.html">Projects</a>
-  <a href="/resume.pdf" target="_blank">Resume</a>
-  <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+<div class="page-wrapper-wide" style="padding-top: 44px;">
+
+<a href="/projects/index.html" class="back-link">Back to Projects</a>
+
+<div class="project-header">
+  <h1>Shell Eco-Marathon Vehicle Simulation</h1>
+  <p class="project-subtitle">Physics-based MATLAB &amp; Simulink vehicle model for ultra-low energy prototype vehicles</p>
+  <div class="tags" style="margin-top: 14px;">
+    <span class="tag">MATLAB</span>
+    <span class="tag">Simulink</span>
+    <span class="tag">Stateflow</span>
+    <span class="tag">Vehicle Dynamics</span>
+    <span class="tag">Energy Modeling</span>
+    <span class="tag">GPS Track Integration</span>
+    <span class="tag">Systems Engineering</span>
+  </div>
 </div>
 
-<a href="/projects/index.html">← Back to Projects</a>
-
-<h1>Shell Eco-Marathon Vehicle Simulation</h1>
-
-<p class="subtitle">
-  Physics-based MATLAB &amp; Simulink vehicle model for ultra-low energy prototype vehicles.
-</p>
-
-<p style="text-align:center; max-width:750px; margin:0 auto 30px auto;">
-  This project develops a physics-based MATLAB and Simulink vehicle model
-  used to analyze energy consumption and optimize drivetrain and driver
-  control strategies for a Shell Eco-Marathon prototype vehicle.
-
-  Key vehicle parameters including mass, aerodynamic drag, rolling
-  resistance, gear ratio, and control thresholds were iteratively tuned to
-  study efficiency tradeoffs and realistic operating behavior.
-
-  The model evolved through multiple versions, progressing from a simple
-  force-balance model into a Stateflow-controlled burn-coast strategy
-  validated using experimental dyno data and scored using the Shell
+<p class="sim-intro">
+  This project develops a physics-based MATLAB and Simulink vehicle model used to analyze
+  energy consumption and optimize drivetrain and driver control strategies for a Shell
+  Eco-Marathon prototype vehicle. Key vehicle parameters including mass, aerodynamic drag,
+  rolling resistance, gear ratio, and control thresholds were iteratively tuned to study
+  efficiency tradeoffs and realistic operating behavior. The model evolved through multiple
+  versions, progressing from a simple force-balance model into a Stateflow-controlled
+  burn-coast strategy validated using experimental dyno data and scored using the Shell
   competition km/L metric.
 </p>
 
 <hr>
 
-<h2 style="text-align:center;">Model Development Timeline</h2>
+<h2 style="text-align:center; border: none; padding: 0; margin-bottom: 28px;">Model Development Timeline</h2>
 
 <div class="timeline">
 
   <div class="timeline-item">
     <div class="timeline-title">Version 1 — Baseline Physics Model</div>
-    Simple force-balance vehicle model with constant throttle and
-    basic energy calculations.
+    <div>Simple force-balance vehicle model with constant throttle and basic energy calculations.</div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-title">Version 2 — Modeling Platform</div>
-    Structured MATLAB parameter system, improved powertrain model,
-    automated analysis scripts, and design sweeps.
+    <div>Structured MATLAB parameter system, improved powertrain model, automated analysis scripts, and design sweeps.</div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-title">Versions 3–5 — Driver Strategy Development</div>
-    Closed-loop throttle control, dyno-based torque maps,
-    and PID-based speed regulation development.
+    <div>Closed-loop throttle control, dyno-based torque maps, and PID-based speed regulation development.</div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-title">Version 6 — Burn-Coast Driver Strategy</div>
-    Realistic pulse-and-coast throttle strategy with torque-map-driven
-    powertrain modeling and validated burn-coast behavior. PID controller
-    replaced with threshold-based on/off switching.
+    <div>Realistic pulse-and-coast throttle strategy with torque-map-driven powertrain modeling and validated burn-coast behavior. PID controller replaced with threshold-based on/off switching.</div>
   </div>
 
   <div class="timeline-item">
     <div class="timeline-title">Version 8 — Accuracy Overhaul &amp; Sweep Optimization</div>
-    Corrected wheel radius, RPM bounds, and fuel accounting. Stateflow
-    hysteresis replaces single-threshold driver strategy. Shaft-power
-    fuel model and four-parameter km/L sweep with design sensitivity
-    ranking completed.
+    <div>Corrected wheel radius, RPM bounds, and fuel accounting. Stateflow hysteresis replaces single-threshold driver strategy. Shaft-power fuel model and four-parameter km/L sweep with design sensitivity ranking completed.</div>
   </div>
 
   <div class="timeline-item timeline-current">
     <div class="timeline-title">Version 9 — Real Track Integration &amp; Race Simulation (Current)</div>
-    IMS Infield Road Course GPS + elevation profile (767 breakpoints, 5 m resolution).
-    Zone-aware three-mode driver strategy (burn-coast / cruise-hold / corner-hold).
-    Grade force in vehicle dynamics. Lap-based race simulation with Article 226
-    pass/fail. Five-parameter sweep including BSFC sensitivity.
-    Baseline result: 621.3 km/L, 2016.2 s, attempt valid.
+    <div>IMS Infield Road Course GPS + elevation profile (767 breakpoints, 5 m resolution). Zone-aware three-mode driver strategy (burn-coast / cruise-hold / corner-hold). Grade force in vehicle dynamics. Lap-based race simulation with Article 226 pass/fail. Five-parameter sweep including BSFC sensitivity. Baseline result: 621.3 km/L, 2016.2 s, attempt valid.</div>
   </div>
 
 </div>
@@ -213,81 +216,77 @@ iframe {
 <hr>
 
 <!-- Version Selector -->
+<div class="version-section">
+  <h2 style="text-align:center; border: none; padding: 0; margin-bottom: 6px;">Select a Version</h2>
+  <p style="text-align:center; color: var(--ink-muted); font-size: 0.88rem; margin-bottom: 24px; font-family: var(--font-display);">Click any version below to expand its full technical writeup.</p>
 
-<div class="version-bar">
-
-  <div class="version-row">
-    <button id="btnV1" onclick="showVersion('v1')">
-      Version 1 – Baseline Physics
-    </button>
-    <button id="btnV2" onclick="showVersion('v2')">
-      Version 2 – Modeling Platform
-    </button>
+  <div class="version-bar">
+    <div class="version-row">
+      <button id="btnV1" onclick="showVersion('v1')">
+        Version 1 — Baseline Physics
+      </button>
+      <button id="btnV2" onclick="showVersion('v2')">
+        Version 2 — Modeling Platform
+      </button>
+    </div>
+    <div class="version-row">
+      <button id="btnV3" onclick="showVersion('v3')">
+        Versions 3–5 — Control Development
+      </button>
+      <button id="btnV6" onclick="showVersion('v6')">
+        Version 6 — Burn-Coast Control
+      </button>
+    </div>
+    <div class="version-row">
+      <button id="btnV8" onclick="showVersion('v8')">
+        Version 8 — Accuracy Overhaul &amp; Sweeps
+      </button>
+      <button id="btnV9" onclick="showVersion('v9')" class="current">
+        Version 9 — Track Integration &amp; Race Sim ★
+      </button>
+    </div>
   </div>
 
-  <div class="version-row">
-    <button id="btnV3" onclick="showVersion('v3')">
-      Versions 3–5 – Control Development
-    </button>
-    <button id="btnV6" onclick="showVersion('v6')">
-      Version 6 – Burn-Coast Control
-    </button>
-  </div>
-
-<div class="version-row">
-    <button id="btnV8" onclick="showVersion('v8')">
-      Version 8 – Accuracy Overhaul &amp; Sweeps
-    </button>
-    <button id="btnV9" onclick="showVersion('v9')" class="current">
-      Version 9 – Track Integration &amp; Race Sim (Current)
-    </button>
-  </div>
+  <iframe id="frameV1" src="v1.html"></iframe>
+  <iframe id="frameV2" src="v2.html"></iframe>
+  <iframe id="frameV3" src="v3.html"></iframe>
+  <iframe id="frameV6" src="v6.html"></iframe>
+  <iframe id="frameV8" src="v8.html"></iframe>
+  <iframe id="frameV9" src="v9.html"></iframe>
 </div>
 
-<!-- Iframes -->
+<div class="footer-nav">
+  <a href="/projects/index.html">← All Projects</a>
+  <a href="/index.html">Home</a>
+  <a href="/resume.pdf" target="_blank">Resume</a>
+  <a href="https://github.com/canfieldmason/shell-eco-simulink" target="_blank">GitHub</a>
+</div>
 
-<iframe id="frameV1" src="v1.html"></iframe>
-<iframe id="frameV2" src="v2.html"></iframe>
-<iframe id="frameV3" src="v3.html"></iframe>
-<iframe id="frameV6" src="v6.html"></iframe>
-<iframe id="frameV8" src="v8.html"></iframe>
-<iframe id="frameV9" src="v9.html"></iframe>
+</div>
 
 <script>
-
 function showVersion(ver) {
+  const frames  = { v1:'frameV1', v2:'frameV2', v3:'frameV3', v6:'frameV6', v8:'frameV8', v9:'frameV9' };
+  const buttons = { v1:'btnV1',   v2:'btnV2',   v3:'btnV3',   v6:'btnV6',   v8:'btnV8',   v9:'btnV9'   };
 
-  const frames = {
-    v1: document.getElementById("frameV1"),
-    v2: document.getElementById("frameV2"),
-    v3: document.getElementById("frameV3"),
-    v6: document.getElementById("frameV6"),
-    v8: document.getElementById("frameV8"),
-    v9: document.getElementById("frameV9")
-  };
+  Object.values(frames).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  Object.values(buttons).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+    // restore current badge on v9 button
+    if (id === 'btnV9' && el) el.classList.add('current');
+  });
 
-  const buttons = {
-    v1: document.getElementById("btnV1"),
-    v2: document.getElementById("btnV2"),
-    v3: document.getElementById("btnV3"),
-    v6: document.getElementById("btnV6"),
-    v8: document.getElementById("btnV8"),
-    v9: document.getElementById("btnV9")
-  };
-
-  // Hide all frames and deactivate all buttons
-  Object.values(frames).forEach(f  => f.style.display  = "none");
-  Object.values(buttons).forEach(b => b.classList.remove("active"));
-
-  // Show selected
-  if (frames[ver])  frames[ver].style.display  = "block";
-  if (buttons[ver]) buttons[ver].classList.add("active");
-
+  const f = document.getElementById(frames[ver]);
+  const b = document.getElementById(buttons[ver]);
+  if (f) f.style.display = 'block';
+  if (b) { b.classList.add('active'); if (ver === 'v9') b.classList.add('current'); }
 }
 
-// Default to V8
-showVersion("v9");
-
+showVersion('v9');
 </script>
 
 </body>
