@@ -5,6 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Engineering Projects | Mason Canfield</title>
   <link rel="stylesheet" href="/portfolio.css">
+  <style>
+    .page-intro {
+      color: var(--ink-soft);
+      margin-bottom: 40px;
+      font-size: 0.97rem;
+    }
+
+    /* Override project card h3 for projects page */
+    .projects-grid .project-card h3 {
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-complete {
+      background: var(--green-light);
+      color: #166534;
+      border: 1px solid #a3dbbe;
+    }
+
+    .badge-wip {
+      background: var(--amber-light);
+      color: #92400e;
+      border: 1px solid #f0c080;
+    }
+
+    .badge-partial {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+
+    /* Category divider */
+    .category-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 44px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .category-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+  </style>
 </head>
 <body>
 
@@ -21,20 +85,23 @@
   </div>
 </nav>
 
-<div class="page-wrapper-wide">
+<div class="page-wrapper-wide" style="padding-top: 44px;">
 
   <a href="/index.html" class="back-link">Back to Home</a>
 
-  <h1 style="margin-bottom: 6px;">Engineering Projects</h1>
-  <p style="color: var(--text-muted); margin-bottom: 36px;">
-    Selected projects in vehicle dynamics, structural analysis, simulation, embedded systems, and mechanical design.
+  <h1 style="margin-bottom: 8px;">Engineering Projects</h1>
+  <p class="page-intro">
+    Selected work in vehicle dynamics simulation, structural analysis, aerodynamics,
+    embedded systems, and mechanical design — documented with full technical writeups.
   </p>
 
+  <!-- Featured Projects -->
+  <div class="category-label">Featured</div>
   <div class="projects-grid">
 
-    <!-- Featured: Shell Eco-Marathon Simulation -->
     <div class="project-card featured">
       <div>
+        <span class="status-badge badge-complete">V9 Complete</span>
         <h3>Shell Eco-Marathon Vehicle Dynamics Simulation</h3>
         <div class="tags">
           <span class="tag">MATLAB</span>
@@ -42,138 +109,149 @@
           <span class="tag">Stateflow</span>
           <span class="tag">Vehicle Dynamics</span>
           <span class="tag">Energy Modeling</span>
-          <span class="tag">GPS Track Integration</span>
-          <span class="tag">Systems Engineering</span>
+          <span class="tag">GPS Integration</span>
         </div>
-        <p>Physics-based longitudinal vehicle dynamics and fuel consumption model for a Shell Eco-Marathon prototype. Evolved through nine versions from a simple force-balance model to a full competition race simulation on the IMS Infield Road Course — including GPS-derived track profile, zone-aware three-mode driver strategy, grade force dynamics, and five-parameter design sensitivity sweeps.</p>
-        <p class="status-note">Status: V9 complete — BSFC dyno map pending for V10</p>
+        <p>Physics-based longitudinal vehicle dynamics and fuel consumption model evolved through nine versions. V9 simulates four IMS Infield laps with GPS-derived track profile, zone-aware three-mode driver strategy, and five-parameter sweep. Baseline: 621.3 km/L, Article 226 valid.</p>
       </div>
       <a class="view-link" href="shell-eco-simulink/">View project →</a>
     </div>
 
-    <!-- Featured: Shell Eco-Marathon Chassis -->
     <div class="project-card featured">
       <div>
+        <span class="status-badge badge-wip">In Progress</span>
         <h3>Shell Eco-Marathon Chassis Structural Analysis</h3>
         <div class="tags">
           <span class="tag">ANSYS Mechanical</span>
           <span class="tag">SolidWorks</span>
           <span class="tag">Structural Optimization</span>
           <span class="tag">Lightweight Design</span>
-          <span class="tag">Vehicle Structures</span>
         </div>
-        <p>Structural analysis of a prototype competition vehicle chassis focused on stiffness, mass optimization, and simulation-driven design iteration. Serving as Frame Lead for the Junior Team at JMU — responsible for chassis layout, FEA validation, and integration with suspension, powertrain, and body systems.</p>
-        <p class="status-note">Status: Work in progress</p>
+        <p>Structural analysis of a prototype competition vehicle chassis focused on stiffness, mass optimization, and simulation-driven design iteration. Serving as Frame Lead for the Junior Team at JMU — responsible for chassis layout, FEA validation, and system integration.</p>
       </div>
       <a class="view-link" href="shell-eco-chassis.html">View project →</a>
     </div>
 
-    <!-- Featured: Rocket -->
     <div class="project-card featured">
       <div>
+        <span class="status-badge badge-wip">In Progress</span>
         <h3>Madison Aerospace Club – Rocket Design &amp; Simulation</h3>
         <div class="tags">
           <span class="tag">OpenRocket</span>
+          <span class="tag">SolidWorks FEA</span>
           <span class="tag">Aerodynamics</span>
-          <span class="tag">Flight Simulation</span>
           <span class="tag">Stability Analysis</span>
         </div>
-        <p>Rocket vehicle design and performance simulation including fin geometry optimization, mass distribution, stability margin analysis, and motor selection trade studies. Supporting model selection, fabrication, and flight test preparation for the Madison Aerospace Club.</p>
-        <p class="status-note">Status: Work in progress</p>
+        <p>Level 1 HPR certification trade study across three kit vehicles using OpenRocket. HI-TECH PK-56 selected at 3,170 ft predicted apogee. Eye bolt FEA completed under 456 lbf parachute snatch load. Launch scheduled April 4.</p>
       </div>
       <a class="view-link" href="rocket.html">View project →</a>
     </div>
 
-    <!-- Formula SAE -->
+  </div>
+
+  <!-- Structural Analysis -->
+  <div class="category-label">Structural Analysis &amp; FEA</div>
+  <div class="projects-grid">
+
     <div class="project-card">
       <div>
+        <span class="status-badge badge-complete">Complete</span>
         <h3>Formula SAE Chassis Structural Analysis</h3>
         <div class="tags">
           <span class="tag">ANSYS</span>
           <span class="tag">Vehicle Structures</span>
           <span class="tag">Load Case Development</span>
-          <span class="tag">Motorsports Engineering</span>
+          <span class="tag">Motorsports</span>
         </div>
-        <p>Structural analysis of a tubular spaceframe chassis focusing on torsional stiffness, cornering loads, aerodynamic forces, and frontal impact scenarios.</p>
+        <p>Structural analysis of a tubular spaceframe chassis: torsional stiffness, cornering loads, aerodynamic downforce, and frontal impact scenarios using beam element FEA.</p>
       </div>
       <a class="view-link" href="formula-sae.html">View project →</a>
     </div>
 
-    <!-- Baja SAE -->
     <div class="project-card">
       <div>
+        <span class="status-badge badge-complete">Complete</span>
         <h3>Baja SAE Roll Cage Structural Analysis</h3>
         <div class="tags">
-          <span class="tag">FEA</span>
+          <span class="tag">ANSYS</span>
           <span class="tag">Safety Engineering</span>
           <span class="tag">Impact Analysis</span>
           <span class="tag">Off-Road Vehicles</span>
         </div>
-        <p>Finite element analysis of a Baja SAE roll cage structure evaluating front, side, rollover, and torsional loading for driver safety.</p>
+        <p>FEA of a Baja SAE roll cage under front, side, rear, rollover, and torsional loading. Includes video animation of rollover stress distribution across primary structural members.</p>
       </div>
       <a class="view-link" href="baja-sae.html">View project →</a>
     </div>
 
-    <!-- Engine Mount Backplate -->
     <div class="project-card">
       <div>
+        <span class="status-badge badge-partial">Preprocessing Complete</span>
         <h3>Engine Mount Backplate Structural Analysis</h3>
         <div class="tags">
           <span class="tag">ANSYS</span>
-          <span class="tag">Finite Element Analysis</span>
+          <span class="tag">Fusion 360</span>
           <span class="tag">Meshing Strategy</span>
           <span class="tag">Structural Mechanics</span>
         </div>
-        <p>Finite element preprocessing of a small engine mounting backplate including geometry reduction, material assignment, and localized mesh refinement for multi-load case evaluation.</p>
-        <p class="status-note">Status: Preprocessing complete; license-limited</p>
+        <p>FE preprocessing of a small engine mounting backplate — geometry simplification, material assignment, localized mesh refinement, and multi-load case setup. Solution pending license access.</p>
       </div>
       <a class="view-link" href="backplate.html">View project →</a>
     </div>
 
-    <!-- Aerodynamics / Streamline -->
+  </div>
+
+  <!-- Aero & Design -->
+  <div class="category-label">Aerodynamics &amp; Design</div>
+  <div class="projects-grid">
+
     <div class="project-card">
       <div>
+        <span class="status-badge badge-complete">Complete</span>
         <h3>Project Streamline – Aerodynamic Vehicle Design</h3>
         <div class="tags">
           <span class="tag">CFD</span>
           <span class="tag">Fusion 360</span>
-          <span class="tag">SolidWorks Flow Simulation</span>
-          <span class="tag">Wind Tunnel Testing</span>
+          <span class="tag">SolidWorks Flow Sim</span>
+          <span class="tag">Wind Tunnel</span>
         </div>
-        <p>Team-based aerodynamic body design and drag optimization for a small-scale vehicle model — full cycle from CFD analysis to 3D-printed fabrication and experimental wind tunnel validation.</p>
+        <p>Full aerodynamic design cycle — CFD-driven geometry iteration, 3D-printed fabrication, and low-speed wind tunnel experimental validation comparing simulated vs measured drag.</p>
       </div>
       <a class="view-link" href="streamline.html">View project →</a>
     </div>
 
-    <!-- Watering System -->
     <div class="project-card">
       <div>
-        <h3>Automated Plant Watering System</h3>
-        <div class="tags">
-          <span class="tag">Arduino</span>
-          <span class="tag">Embedded Systems</span>
-          <span class="tag">Control Logic</span>
-          <span class="tag">Sensors</span>
-        </div>
-        <p>Embedded system that monitors soil moisture and autonomously controls water pumps using pulsed logic, manual override, and LED status feedback. Calibrated via iterative experimental testing.</p>
-      </div>
-      <a class="view-link" href="watering-system.html">View project →</a>
-    </div>
-
-    <!-- SolidWorks -->
-    <div class="project-card">
-      <div>
+        <span class="status-badge badge-complete">CSWA 240/240</span>
         <h3>SOLIDWORKS Certification &amp; Design Practice</h3>
         <div class="tags">
-          <span class="tag">SOLIDWORKS</span>
+          <span class="tag">SolidWorks</span>
           <span class="tag">Parametric Modeling</span>
           <span class="tag">Design Intent</span>
           <span class="tag">Assemblies</span>
         </div>
-        <p>CSWA-certified parametric part and assembly modeling demonstrating robust design intent, fully constrained sketches, and predictable rebuild behavior.</p>
-        <p class="status-note">CSWA completed (240/240) — CSWP preparation in progress</p>
+        <p>CSWA-certified parametric modeling demonstrating fully constrained sketches, robust feature trees, and design intent for predictable rebuild behavior. CSWP preparation in progress.</p>
       </div>
       <a class="view-link" href="SolidWorks.html">View project →</a>
+    </div>
+
+  </div>
+
+  <!-- Embedded -->
+  <div class="category-label">Embedded Systems</div>
+  <div class="projects-grid" style="max-width:640px;">
+
+    <div class="project-card">
+      <div>
+        <span class="status-badge badge-complete">Complete</span>
+        <h3>Automated Plant Watering System</h3>
+        <div class="tags">
+          <span class="tag">Arduino</span>
+          <span class="tag">Embedded C++</span>
+          <span class="tag">Control Logic</span>
+          <span class="tag">Sensors</span>
+        </div>
+        <p>Dual-pump autonomous watering system with capacitive moisture sensing, pulsed control logic, MOSFET driver circuit, and manual override. Calibrated via iterative experimental testing.</p>
+      </div>
+      <a class="view-link" href="watering-system.html">View project →</a>
     </div>
 
   </div>
