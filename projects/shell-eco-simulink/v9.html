@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shell Eco-Marathon Simulation – V8</title>
+<title>Shell Eco-Marathon Simulation – V9</title>
 <link rel="stylesheet" href="/portfolio.css">
 <style>
-body { padding: 28px 32px 60px; max-width: 960px; }
+body { padding: 28px 32px 60px; max-width: 980px; }
 h2 { margin-top: 40px; }
 
 .section-intro {
@@ -25,328 +25,487 @@ h2 { margin-top: 40px; }
 .compare img { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); margin: 0; }
 .compare em { text-align: left; font-size: 0.85rem; margin-top: 6px; }
 
+.compare-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+.compare-3 img { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); margin: 0; }
+.compare-3 em { text-align: left; font-size: 0.82rem; }
+
+.fig-solo { text-align: center; margin: 28px 0; }
+.fig-solo img { max-width: 100%; border-radius: var(--radius-lg); margin: 0 auto 8px; }
+.fig-solo em { font-size: 0.85rem; }
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
   margin-top: 16px;
 }
-#gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
-
 .gallery-item { text-align: center; }
 .gallery-item img { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); margin: 0 0 6px; }
 .gallery-item em { text-align: left; font-size: 0.82rem; }
+
+.video-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  margin: 20px 0;
+}
+.video-wrap video { width: 100%; display: block; }
+.video-wrap em {
+  display: block;
+  text-align: center;
+  padding: 8px 0 12px;
+  font-size: 0.87rem;
+  color: var(--ink-muted);
+  background: var(--paper-warm);
+  font-style: italic;
+}
+
+.zone-legend { display: flex; gap: 20px; flex-wrap: wrap; margin: 14px 0; }
+.zone-swatch { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-family: var(--font-display); }
+.swatch { width: 28px; height: 18px; border-radius: 4px; border: 1px solid var(--border); display: inline-block; }
+
+/* Track summary table inside a box */
+.track-table { width: 100%; font-size: 0.9rem; border-collapse: collapse; }
+.track-table td { padding: 5px 12px 5px 0; border: none; background: transparent !important; }
+.track-table td:first-child { width: 55%; font-weight: 600; color: var(--ink); }
 </style>
 </head>
 <body>
 
-<h1 style="text-align:center; margin-bottom:6px;">Shell Eco-Marathon Vehicle Simulation — V8</h1>
-<p class="section-intro">Stateflow hysteresis control, corrected powertrain geometry, shaft-power fuel accounting, and parameter sweep optimization.</p>
+<h1 style="text-align:center; margin-bottom:6px;">Shell Eco-Marathon Vehicle Simulation — V9</h1>
+<p class="section-intro">Real track integration, zone-aware driver strategy, lap-based race simulation, and full IMS Infield Road Course profile from GPS + elevation data.</p>
 
 <hr>
 
 <h2>Overview</h2>
 <p>
-  Version 8 represents a major accuracy overhaul across three independent subsystems. While V6
-  introduced the burn-coast control philosophy, several fundamental modeling errors were identified
-  and corrected in V8 that significantly affect simulation fidelity and fuel predictions.
+  Version 9 transforms the simulation from an abstract fixed-time run into a competition-accurate
+  race model. Four laps of the IMS Infield Road Course are simulated under Shell Eco-Marathon
+  Article 226 rules: 4 laps × 3832.5 m = 15,330 m total, maximum 35 minutes, minimum average
+  speed 7.30 m/s.
 </p>
 <p>
-  The most impactful corrections were a wheel radius error that had been halving the engine RPM
-  throughout the powertrain, a driver strategy that lacked an upper speed cutoff causing the engine
-  to run continuously, and an energy model computing fuel consumption from net vehicle force rather
-  than engine shaft power. Each of these issues independently produced incorrect results — together
-  they made quantitative fuel predictions unreliable.
-</p>
-<p>
-  V8 also introduces the first full parameter sweep with Shell competition scoring (km/L), producing
-  actionable design sensitivity rankings for the engineering team.
+  The core additions are a GPS-derived track profile with 767 breakpoints at 5-meter resolution,
+  a grade force term in the vehicle dynamics equation, and a zone-aware driver strategy that
+  selects between burn-coast, cruise-hold, and corner-hold behavior based on the vehicle's
+  position within the lap.
 </p>
 
 <hr>
 
-<h2>V8 Changelog</h2>
+<h2>V9 Changelog</h2>
 
 <div class="changelog">
 
   <div class="changelog-item">
-    <span class="tag tag-fix">FIX</span>
-    <strong>Wheel radius corrected</strong> — <code>r_w</code> was set to 0.508 m (the wheel diameter)
-    instead of 0.254 m (the radius). This caused engine RPM to be calculated at half the true value,
-    pushing the operating point below the valid engine map range and returning NaN torque values.
-  </div>
-
-  <div class="changelog-item">
-    <span class="tag tag-fix">FIX</span>
-    <strong>RPM idle limit corrected</strong> — <code>RPM_idle</code> was set to 1800 RPM, below
-    the engine map minimum of 2708 RPM. Updated to match the dyno map lower bound.
+    <span class="tag tag-new">NEW</span>
+    <strong>Lap-based simulation replacing fixed simulation time</strong> — runs until
+    <code>x_Vehicle ≥ 15,330 m</code> (4 full laps). Per-lap breakdowns reported consistent
+    with how Shell scoring is actually applied.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-new">NEW</span>
-    <strong>Stateflow hysteresis driver strategy</strong> — The V6 burn-coast controller only
-    implemented a lower speed threshold, meaning the engine had no upper cutoff and ran continuously
-    past the target speed. A Stateflow state machine replaces the comparator-switch logic with a
-    proper two-state hysteresis controller. The engine burns when velocity drops below
-    <code>v_low_on</code> and coasts when velocity exceeds <code>v_high_on</code>.
-  </div>
-
-  <div class="changelog-item">
-    <span class="tag tag-fix">FIX</span>
-    <strong>Energy model rebuilt on shaft power</strong> — The V6 energy model computed fuel from
-    <code>F_net × v</code>, which underestimates fuel input. The corrected path integrates engine
-    shaft power (<code>T_engine × ω_engine</code>), then divides by engine efficiency and fuel LHV.
-  </div>
-
-  <div class="changelog-item">
-    <span class="tag tag-fix">FIX</span>
-    <strong>LHV constant corrected</strong> — The EnergyModeling block contained 4,400,000 J/kg
-    instead of the correct 44,000,000 J/kg, producing fuel estimates 10× too high.
+    <strong>Article 226 pass/fail validation</strong> — total race time checked against the
+    2100 s (35 min) limit. <code>attempt_valid</code> flag and time margin reported in command
+    window and plotted as title annotations on Fig 1.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-new">NEW</span>
-    <strong>Shell scoring metric (km/L)</strong> — All parameter sweeps now report km/L equivalent,
-    matching the Shell Eco-Marathon competition scoring formula.
+    <strong>IMS track profile — GPS + elevation data integrated</strong> — track arrays at 5 m
+    resolution derived from two official Shell CSV sources. Curvature computed with a 15 m sliding
+    window; 19 turn complexes identified producing a three-zone classification at 767 breakpoints.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-new">NEW</span>
-    <strong>Four-parameter sweep with sensitivity ranking</strong> — SweepV8b evaluates burn-coast
-    speed band, gear ratio, vehicle mass, and drag coefficient independently using a middle-80%
-    window averaging method to eliminate startup and end-cycle artifacts.
+    <strong>Grade force added to vehicle dynamics</strong> — <code>F_grade = m × g × grade</code>
+    included in the force balance at every simulation step. Track elevation range is 3.8 m with
+    max practical grade of ~0.9%.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Zone-aware three-mode driver strategy</strong> — Zone 1 (long straights, 34.6%):
+    burn-coast hysteresis. Zone 2 (short straights, 47.0%): cruise-hold at 7.45 m/s. Zone 3
+    (turn complexes, 18.4%): corner-hold at per-turn speed limit.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-update">UPDATE</span>
+    <strong>Speed band shifted up from V8</strong> — <code>v_target</code> raised to 7.45 m/s
+    to guarantee minimum average speed ≥ 7.30 m/s (Article 226). Estimated lap time 497.7 s × 4
+    = 1991 s, giving a 109 s margin against the 2100 s limit.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-new">NEW</span>
+    <strong>Competition context comparison</strong> — Shell Score benchmarked against the 2025
+    SEM Americas ICE Prototype field in command window output.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-pending">PENDING</span>
-    <strong>BSFC map</strong> — Engine efficiency is currently fixed at 20%. A 2D brake-specific
-    fuel consumption map will replace this once the senior team completes dyno runs.
+    <strong>BSFC map</strong> — Engine efficiency fixed at 20% pending dyno runs on the assembled vehicle.
+  </div>
+
+  <div class="changelog-item">
+    <span class="tag tag-pending">PENDING</span>
+    <strong>Confirmed mass and gear ratio</strong> — <code>m = 100 kg</code> and <code>G = 10</code>
+    pending final drivetrain assembly measurements.
   </div>
 
 </div>
 
 <hr>
 
-<h2>Driver Strategy — Stateflow Hysteresis</h2>
+<h2>Track Profile — IMS Infield Road Course</h2>
 
 <div class="box">
-  <h3>V6 Strategy — Single Threshold (Incomplete)</h3>
-  <ul>
-    <li>Only lower threshold (<code>v_low_on</code>) implemented</li>
-    <li>Engine had no upper speed cutoff — vehicle overshot target speed continuously</li>
-    <li>Coast phases never properly initiated</li>
-  </ul>
-  <h3>V8 Strategy — Stateflow Two-State Machine</h3>
-  <ul>
-    <li>Two discrete states: <strong>BURN</strong> and <strong>COAST</strong></li>
-    <li>BURN → COAST transition when <code>v_actual ≥ v_high_on</code></li>
-    <li>COAST → BURN transition when <code>v_actual ≤ v_low_on</code></li>
-    <li>State held between thresholds — no chattering; sample time 0.1s</li>
-  </ul>
+  <table class="track-table">
+    <tr><td>Total lap distance</td><td>3,832.5 m</td></tr>
+    <tr><td>Turn complexes detected</td><td>19 (curvature threshold 0.5 deg/m)</td></tr>
+    <tr><td>Zone 1 — long straight (burn-coast)</td><td>1,325 m (34.6%) — includes main 1325 m straight</td></tr>
+    <tr><td>Zone 2 — short straight (cruise-hold)</td><td>1,800 m (47.0%)</td></tr>
+    <tr><td>Zone 3 — turn zones (corner-hold)</td><td>705 m (18.4%)</td></tr>
+    <tr><td>Elevation range</td><td>3.8 m total | net change ~0 m (closed loop)</td></tr>
+    <tr><td>Max practical grade</td><td>~0.9% (brief) — grade force term included in dynamics</td></tr>
+    <tr><td>Tightest turn</td><td>R = 19.3 m at x ≈ 3132–3176 m → v_corner = 7.54 m/s</td></tr>
+  </table>
+</div>
+
+<div class="zone-legend">
+  <div class="zone-swatch"><span class="swatch" style="background:#ffffff;"></span> Zone 1 — Long Straight (burn-coast)</div>
+  <div class="zone-swatch"><span class="swatch" style="background:#ededed;"></span> Zone 2 — Short Straight (cruise-hold)</div>
+  <div class="zone-swatch"><span class="swatch" style="background:#ffd6d6;"></span> Zone 3 — Turn Complex (corner-hold)</div>
 </div>
 
 <div class="compare">
   <div>
-    <img src="images/v8/stateflow_chart.png" alt="Stateflow chart">
-    <em>Stateflow State Machine — V8 DriverStrat</em>
+    <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation profile">
+    <em>Fig 5 — Grade % (left axis) and relative elevation m (right axis) vs position. Pink = turn zones.</em>
   </div>
   <div>
-    <img src="images/v8/throttle_v8.png" alt="Throttle command square wave">
-    <em>Throttle Command — clean square wave with correct upper cutoff</em>
+    <img src="images/v9/track_zone_map_v9.png" alt="Track zone map">
+    <em>GPS track overhead with zone color coding — white=burn-coast, grey=cruise, pink=turns.</em>
   </div>
 </div>
 
 <hr>
 
-<h2>Velocity Profile — Coast Curve Validation</h2>
-<p>With the corrected wheel radius and Stateflow upper cutoff, the velocity profile now behaves physically correctly — the vehicle accelerates during burn, peaks at <code>v_high_on</code>, then decelerates along an exponential decay curve during coast.</p>
+<h2>Zone-Aware Driver Strategy</h2>
 
-<div class="box-green">
-  <strong>Coast Shape Diagnostic Result (V8)</strong><br><br>
-  Linear fit RMSE: &nbsp;&nbsp;&nbsp;&nbsp;0.00525 m/s<br>
-  Exponential fit RMSE: 0.00066 m/s<br><br>
-  <strong>Result: CURVED (exponential) — physics correct ✓</strong><br>
-  The exponential fit is 8× more accurate than linear, confirming aerodynamic and rolling resistance forces are correctly modeled.
+<div class="box">
+  <table style="font-size: 0.9rem;">
+    <thead>
+      <tr>
+        <th>Zone</th>
+        <th>Condition</th>
+        <th>Strategy</th>
+        <th>Speed Reference</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td>Long straight (&gt;200 m)</td><td><strong>Burn-Coast</strong> (Stateflow hysteresis)</td><td><code>v_low=7.5 m/s</code> / <code>v_high=8.0 m/s</code></td></tr>
+      <tr><td><strong>2</strong></td><td>Short straight (&lt;200 m)</td><td><strong>Cruise-Hold</strong></td><td><code>v_target = 7.45 m/s</code></td></tr>
+      <tr><td><strong>3</strong></td><td>Turn / corner zone</td><td><strong>Corner-Hold</strong></td><td><code>track_v_limit</code> (per-turn, 7.54–8.50 m/s)</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="compare">
   <div>
-    <img src="images/v8/velocity_v8.png" alt="Vehicle velocity vs time">
-    <em>Velocity vs Time — correct oscillation between v_low_on and v_high_on</em>
+    <img src="images/v9/driverstrat_v9.png" alt="Zone-aware driver strategy">
+    <em>Zone-Aware Driver Strategy — track zone lookup, mode selector, Stateflow integration.</em>
   </div>
   <div>
-    <img src="images/v8/coast_shape.png" alt="Coast shape diagnostic">
-    <em>Coast Shape Diagnostic — exponential fit confirms correct physics</em>
+    <img src="images/v9/throttle_rpm_v9.png" alt="Throttle and RPM vs time">
+    <em>Fig 4 — Throttle (Burn/Coast, top) and engine RPM with idle/max limits (bottom). Lap markers shown.</em>
   </div>
 </div>
 
 <hr>
 
-<h2>Baseline Simulation Results (V8)</h2>
-<p>Standard run: <code>v_low=6.5, v_high=7.5, G=10, m=100 kg, Cd=0.30, t_end=200s</code></p>
+<h2>Race-Level Results</h2>
+<p>Baseline: <code>v_low=7.2, v_high=7.7, v_target=7.45 m/s, G=10, m=100 kg, Cd=0.30</code>, 4 laps × 3832.5 m.</p>
 
 <div class="metric-grid">
-  <div class="metric-card"><div class="value">1451 m</div><div class="label">Distance Covered</div></div>
-  <div class="metric-card"><div class="value">7.23 m/s</div><div class="label">Average Speed</div></div>
-  <div class="metric-card"><div class="value">7.91 m/s</div><div class="label">Max Speed</div></div>
-  <div class="metric-card"><div class="value">2.8 kJ</div><div class="label">Mechanical Energy</div></div>
-  <div class="metric-card"><div class="value">2.02 g</div><div class="label">Fuel Consumed</div></div>
-  <div class="metric-card"><div class="value">651 km/L</div><div class="label">Shell Score (est.)</div></div>
+  <div class="metric-card"><div class="value">15,330 m</div><div class="label">Total Distance (4 laps)</div></div>
+  <div class="metric-card"><div class="value">2016.2 s</div><div class="label">Total Race Time (33.6 min)</div></div>
+  <div class="metric-card"><div class="value">✓ +83.8 s</div><div class="label">Article 226 Valid — Time Margin</div></div>
+  <div class="metric-card"><div class="value">7.604 m/s</div><div class="label">Avg Speed (min 7.300 m/s)</div></div>
+  <div class="metric-card"><div class="value">18.38 g</div><div class="label">Fuel Consumed</div></div>
+  <div class="metric-card"><div class="value">621.3 km/L</div><div class="label">Shell Score</div></div>
 </div>
 
 <div class="box-yellow">
-  <strong>Note on fuel estimate:</strong> Engine RPM at v_target = 7 m/s with G = 10 and r_w = 0.254 m
-  is approximately 2632 — just below the map minimum of 2708 RPM. The RPM saturation block clamps to
-  the map boundary. Fuel estimates will improve once dyno data below 2708 RPM and a BSFC map are available.
+  <strong>Engine efficiency note:</strong> Score of 621.3 km/L computed with fixed 20% thermal efficiency.
+  The BSFC sensitivity sweep shows this is the single highest-leverage unknown in the model — see
+  Parameter Sweeps below. Engine RPM at v_target = 7.45 m/s with G = 10 is ~2800 RPM, within
+  the valid dyno map range (2708–8708 RPM).
 </div>
 
 <hr>
 
-<h2>Parameter Sweep Results</h2>
-<p>SweepV8b evaluated four design parameters independently across a 1000s simulation window. Middle-80% window averaging eliminates startup transients and incomplete end-cycles.</p>
+<h2>Simulation Figures</h2>
 
-<h3>Sweep 1 — Burn-Coast Speed Band</h3>
-<div class="gallery">
-  <div class="gallery-item">
-    <img src="images/v8/sweep_band_kmL.png" alt="Speed band efficiency map">
-    <em>Speed Band Efficiency Map (km/L) — optimum at v_low=5.5, v_high=7.0</em>
+<h3>Fig 1 — Vehicle Speed vs Time (Full Race)</h3>
+<div class="fig-solo">
+  <img src="images/v9/speed_time_v9.png" alt="Vehicle speed vs time full race">
+  <em>Fig 1 — Full race speed trace. v_high_on (red), v_low_on (blue), v_target (green), v_min_avg (magenta). Lap markers dashed. Title shows avg speed, Shell Score, pass/fail, time margin.</em>
+</div>
+
+<h3>Fig 2 — Speed vs Distance, All 4 Laps Overlaid</h3>
+<div class="fig-solo">
+  <img src="images/v9/lap_overlay_v9.png" alt="All 4 laps overlaid">
+  <em>Fig 2 — All 4 laps on one distance axis. Zone shading in background. Consistent profiles confirm steady-state from lap 1.</em>
+</div>
+
+<h3>Fig 3 — Fuel &amp; Rolling Shell Score</h3>
+<div class="fig-solo">
+  <img src="images/v9/fuel_efficiency_v9.png" alt="Fuel and Shell Score vs distance">
+  <em>Fig 3 — Cumulative fuel (g) top, rolling Shell Score (km/L) bottom. Stepped fuel profile confirms no coast leakage. km/L converges after lap 2.</em>
+</div>
+
+<h3>Fig 4 — Throttle Command &amp; Engine RPM</h3>
+<div class="compare">
+  <div>
+    <img src="images/v9/throttle_rpm_v9.png" alt="Throttle and RPM">
+    <em>Fig 4 — Throttle command (top) and engine RPM with idle/max limits (bottom).</em>
   </div>
-  <div class="gallery-item">
-    <img src="images/v8/sweep_band_fuel.png" alt="Speed band fuel map">
-    <em>Speed Band Fuel Map (g) — wider band consistently reduces fuel</em>
+  <div>
+    <img src="images/v9/drivetrain_v9.png" alt="Powertrain subsystem">
+    <em>Powertrain Subsystem — torque map lookup, gear ratio G, drivetrain efficiency, wheel force output.</em>
   </div>
 </div>
 
-<h3>Sweep 2 — Gear Ratio</h3>
-<p>Gear ratio swept from G=7 to G=14. The km/L variation across this entire range was only ±3.3%, confirming gear ratio has minimal effect on efficiency. The practical constraint is keeping engine RPM within the valid dyno map range (2708–8708 RPM) at operating speed.</p>
-<div class="gallery">
-  <div class="gallery-item">
-    <img src="images/v8/sweep_G_kmL.png" alt="Gear ratio vs km/L">
-    <em>Gear Ratio Sweep — km/L (left) and engine RPM at v_target (right). Red lines mark valid map RPM bounds.</em>
+<h3>Fig 5 — Track Grade &amp; Elevation Profile</h3>
+<div class="compare">
+  <div>
+    <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation">
+    <em>Fig 5 — Grade % (left axis), relative elevation m (right axis) vs position. Pink = turn zones.</em>
   </div>
-  <div class="gallery-item">
-    <img src="images/v8/sweep_G_fuel.png" alt="Gear ratio vs fuel">
-    <em>Gear Ratio vs Fuel — minimal variation confirms low design sensitivity</em>
+  <div>
+    <img src="images/v9/grade_force_v9.png" alt="Grade force vs position">
+    <em>F_grade = m × g × grade vs position — peak resistive/assistive values around the lap.</em>
   </div>
+</div>
+
+<hr>
+
+<h2>Track Animations</h2>
+
+<h3>Animation 1 — Single Run Track Playback</h3>
+<div class="video-wrap">
+  <video controls>
+    <source src="images/v9/track_animation_v9.mp4" type="video/mp4">
+  </video>
+  <em>Animation 1 — Single Run Track Playback, V9 Baseline (4× speed)</em>
+</div>
+
+<h3>Animation 2 — Ghost Comparison: Cd=0.12 vs Cd=0.35</h3>
+<p>TOP-class aerodynamics (Cd=0.12) vs current estimated drag (Cd=0.35) running simultaneously on the IMS lap. Lower drag means longer coast phases, fewer burn cycles, and a real position gap that opens over the lap.</p>
+
+<div class="ghost-result">
+  <div class="ghost-col ghost-col-a">
+    <div class="ghost-label" style="color:#ffdd33;">▶ TOP-class &nbsp; Cd = 0.12</div>
+    <div class="ghost-row"><span>Fuel burned</span><span class="ghost-val" style="color:#ffdd33;">3.656 g</span></div>
+    <div class="ghost-row"><span>Shell Score</span><span class="ghost-val" style="color:#ffdd33;">777.9 km/L</span></div>
+    <div class="ghost-row"><span>Lap time</span><span class="ghost-val">~497 s</span></div>
+    <div class="ghost-row"><span>Gap at finish</span><span class="ghost-val" style="color:#4fc3f7;">+2.3 m ahead</span></div>
+  </div>
+  <div class="ghost-col ghost-col-b">
+    <div class="ghost-label" style="color:#4fc3f7;">▶ Current &nbsp; Cd = 0.35</div>
+    <div class="ghost-row"><span>Fuel burned</span><span class="ghost-val" style="color:#4fc3f7;">5.247 g</span></div>
+    <div class="ghost-row"><span>Shell Score</span><span class="ghost-val" style="color:#4fc3f7;">541.6 km/L</span></div>
+    <div class="ghost-row"><span>Lap time</span><span class="ghost-val">~505 s</span></div>
+    <div class="ghost-row"><span>Gap at finish</span><span class="ghost-val" style="color:#888;">—</span></div>
+  </div>
+  <div class="ghost-winner">
+    Reducing Cd from 0.35 → 0.12 saves <strong>1.591 g of fuel per lap</strong> and gains
+    <strong>236.3 km/L</strong> (+43.6%). Over 4 competition laps: <strong>6.4 g saved</strong>.
+  </div>
+</div>
+
+<div class="video-wrap">
+  <video controls>
+    <source src="images/v9/ghost_comparison_v9.mp4" type="video/mp4">
+  </video>
+  <em>Animation 2 — Ghost Comparison: TOP-class Cd=0.12 (yellow) vs Current Cd=0.35 (cyan), 8× speed</em>
+</div>
+
+<hr>
+
+<h2>Competition Context — 2025 SEM Americas Field</h2>
+
+<table class="comp-table">
+  <thead>
+    <tr><th>Rank</th><th>Team</th><th>Score (km/L)</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>—</td><td>BYU (2024 reference)</td><td>995</td><td>Fully covered wheels, professional build</td></tr>
+    <tr><td>1</td><td>Mater Dei HS</td><td>718</td><td>2025 Americas champion</td></tr>
+    <tr><td>2</td><td>IFRS Erechim</td><td>629</td><td></td></tr>
+    <tr><td>3</td><td>Michigan Tech</td><td>323</td><td></td></tr>
+    <tr><td>4</td><td>Cedarville University</td><td>315</td><td></td></tr>
+    <tr><td>5</td><td>Penn St Behrend</td><td>177</td><td></td></tr>
+    <tr><td>6</td><td>Schurr HS</td><td>92</td><td></td></tr>
+    <tr class="highlight"><td>—</td><td><strong>This vehicle (V9 simulation)</strong></td><td><strong>621.3 km/L</strong></td><td>m=100 kg, Cd=0.30, G=10, effic=0.20 (fixed)</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Parameter Sweep Results — SweepV9_track</h2>
+<p>Five independent sweeps on the full IMS lap-distance simulation. All scored in km/L. Baseline: 621.3 km/L.</p>
+
+<h3>Sweep 1 — Burn-Coast Speed Band</h3>
+<div class="box-green">
+  <strong>Optimum:</strong> <code>v_low = 7.0 m/s, v_high = 7.5 m/s</code> → <strong>628.0 km/L</strong> | t_total = 2039.5 s (margin +61 s)
+</div>
+<div class="compare">
+  <div><img src="images/v9/sweep_band_kmL_v9.png" alt="Speed band heat map"><em>Sweep 1 — 2D heat map: v_low (y) vs v_high (x), color = km/L.</em></div>
+  <div><img src="images/v9/sweep_G_kmL_v9.png" alt="Gear ratio vs Shell Score"><em>Sweep 2 — Near-flat plot confirming gear ratio has minimal efficiency impact across G=7–14.</em></div>
 </div>
 
 <h3>Sweep 3 — Vehicle Mass</h3>
-<p>Mass swept from 80 kg to 200 kg. Every 10 kg of additional mass costs approximately 30–40 km/L. Rolling resistance scales directly with mass, requiring more frequent and longer burn cycles to maintain speed.</p>
-<div class="gallery">
-  <div class="gallery-item">
-    <img src="images/v8/sweep_mass_kmL.png" alt="Mass vs km/L">
-    <em>Mass vs Shell Score — monotonic penalty; 80 kg gives 735 km/L vs 419 km/L at 200 kg</em>
-  </div>
-  <div class="gallery-item">
-    <img src="images/v8/sweep_mass_fuel.png" alt="Mass vs fuel">
-    <em>Mass vs Fuel — near-linear relationship confirms rolling resistance dominance</em>
-  </div>
+<div class="box"><strong>Best: m = 80 kg → 697.9 km/L</strong> | Worst: m = 180 kg → 432.7 km/L | <strong>Sensitivity: 61.2%</strong></div>
+<div class="compare">
+  <div><img src="images/v9/sweep_mass_kmL_v9.png" alt="Mass vs Shell Score"><em>Sweep 3 — Monotonically decreasing. Each 10 kg ≈ 25–30 km/L penalty.</em></div>
+  <div><img src="images/v9/sweep_cd_kmL_v9.png" alt="Cd vs Shell Score"><em>Sweep 4 — Near-linear improvement with reduced drag. Cd=0.15 reaches Mater Dei territory.</em></div>
 </div>
 
 <h3>Sweep 4 — Drag Coefficient</h3>
-<p>Cd swept from 0.10 to 0.50. Reducing Cd from 0.50 to 0.10 nearly doubles the Shell score from 500 to 933 km/L.</p>
-<div class="gallery">
-  <div class="gallery-item">
-    <img src="images/v8/sweep_cd_kmL.png" alt="Cd vs km/L">
-    <em>Cd vs Shell Score — near-linear improvement with reduced drag</em>
-  </div>
-  <div class="gallery-item">
-    <img src="images/v8/sweep_cd_fuel.png" alt="Cd vs fuel">
-    <em>Cd vs Fuel — smooth monotonic relationship</em>
+<div class="box"><strong>Best: Cd = 0.05 → 1003.3 km/L</strong> | Worst: Cd = 0.55 → 449.9 km/L | <strong>Sensitivity: 123.0%</strong> — highest of all sweeps</div>
+
+<h3>Sweep 5 — Engine Efficiency (BSFC Sensitivity)</h3>
+<p>Engine efficiency swept from 8% to 34%. The relationship is perfectly linear — Shell score scales proportionally with efficiency. Every 2 percentage points of engine efficiency is worth approximately 62 km/L.</p>
+<div class="box-yellow">
+  <strong>Key implication:</strong> At the current Cd=0.30 and m=100 kg, matching Mater Dei's 718 km/L
+  requires approximately <strong>23% engine efficiency</strong> — achievable with a well-tuned carburetor
+  and ignition timing. Matching BYU's 995 km/L requires ~32% efficiency, Cd near 0.10, and mass well
+  below 100 kg.
+</div>
+<div class="compare">
+  <div><img src="images/v9/sweep_eta_kmL_v9.png" alt="Engine efficiency vs Shell Score"><em>Sweep 5 — Perfectly linear, score ∝ efficiency. 20% = 621 km/L baseline. Each 2% = ~62 km/L.</em></div>
+  <div>
+    <table style="font-size: 0.85rem;">
+      <thead><tr><th>η_eng</th><th>km/L</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr><td>8%</td><td>248.5</td><td></td></tr>
+        <tr><td>16%</td><td>497.1</td><td></td></tr>
+        <tr style="background: var(--amber-light);"><td><strong>20%</strong></td><td><strong>621.3</strong></td><td><strong>← baseline</strong></td></tr>
+        <tr><td>22%</td><td>683.5</td><td style="color: var(--green);">Mater Dei range</td></tr>
+        <tr><td>24%</td><td>745.6</td><td style="color: var(--green);">Mater Dei+</td></tr>
+        <tr><td>32%</td><td>994.1</td><td style="color: var(--blue);">BYU 2024 range</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
 <hr>
 
-<h2>Design Sensitivity Ranking</h2>
-<p>Percentage improvement from worst to best value within each sweep range — higher value means higher design priority.</p>
+<h2>Design Sensitivity Ranking (V9)</h2>
 
 <div class="sensitivity-bar">
-  <span class="bar-label">Drag Coeff</span>
-  <span class="bar-track"><span class="bar-fill" style="width:86.5%; background:#cc4400;"></span></span>
-  <span class="bar-pct">86.5%</span>
+  <span class="bar-label">Drag Coeff (Cd)</span>
+  <span class="bar-track"><span class="bar-fill" style="width:100%; background:#cc4400;"></span></span>
+  <span class="bar-pct">123.0%</span>
+</div>
+<div class="sensitivity-bar">
+  <span class="bar-label">Engine Effic.</span>
+  <span class="bar-track"><span class="bar-fill" style="width:100%; background:#8b0000;"></span></span>
+  <span class="bar-pct">124.7%</span>
 </div>
 <div class="sensitivity-bar">
   <span class="bar-label">Mass</span>
-  <span class="bar-track"><span class="bar-fill" style="width:75.3%; background:#2a7a2a;"></span></span>
-  <span class="bar-pct">75.3%</span>
+  <span class="bar-track"><span class="bar-fill" style="width:49.8%; background:#2a7a2a;"></span></span>
+  <span class="bar-pct">61.2%</span>
 </div>
 <div class="sensitivity-bar">
   <span class="bar-label">Speed Band</span>
-  <span class="bar-track"><span class="bar-fill" style="width:26.0%; background:var(--blue);"></span></span>
-  <span class="bar-pct">26.0%</span>
+  <span class="bar-track"><span class="bar-fill" style="width:5.5%; background:var(--blue);"></span></span>
+  <span class="bar-pct">1.1%</span>
 </div>
 <div class="sensitivity-bar">
   <span class="bar-label">Gear Ratio</span>
-  <span class="bar-track"><span class="bar-fill" style="width:3.3%; background:#888;"></span></span>
-  <span class="bar-pct">3.3%</span>
+  <span class="bar-track"><span class="bar-fill" style="width:0.8%; background:#888;"></span></span>
+  <span class="bar-pct">0.8%</span>
 </div>
 
 <br>
 <div class="box-green">
-  <strong>Key takeaway:</strong> Aerodynamic drag reduction and mass minimization are nearly equal
-  in importance and both have far more impact than drivetrain tuning. Gear ratio only needs to keep
-  engine RPM within the valid map range — beyond that it is not a meaningful optimization lever.
-</div>
-
-<hr>
-
-<h2>Simulation Gallery</h2>
-<div id="gallery"></div>
-
-<hr>
-
-<h2>Model Architecture (V8)</h2>
-<div class="gallery">
-  <div class="gallery-item">
-    <img src="images/v8/sys_overview_v8.png" alt="Full system V8">
-    <em>Full System Overview — DriverStrat, Powertrain, VehicleDynamics, EnergyModeling</em>
-  </div>
-  <div class="gallery-item">
-    <img src="images/v8/drivetrain_v8.png" alt="Powertrain subsystem">
-    <em>Powertrain Subsystem — torque map lookup, gear ratio, drivetrain efficiency</em>
-  </div>
+  <strong>Key takeaways:</strong>
+  <ul style="margin-top: 8px;">
+    <li><strong>Drag reduction is the #1 design priority</strong> — Cd=0.15 puts the vehicle in Mater Dei territory regardless of other parameters.</li>
+    <li><strong>Engine efficiency is the largest unknown</strong> — each 2% point is worth ~62 km/L. Dyno characterization (BSFC map) is the highest-value pending task.</li>
+    <li><strong>Mass is meaningful but secondary</strong> — 80 vs 100 kg is a 12.3% score improvement.</li>
+    <li><strong>Speed band has only 1.1% sensitivity on the IMS track</strong> — reduced from V8's 26% because zone-aware strategy limits burn-coast to Zone 1 only (34.6% of lap).</li>
+    <li><strong>Gear ratio: not a design variable</strong> — set to keep RPM inside the dyno map range.</li>
+  </ul>
 </div>
 
 <hr>
 
 <h2>Command Window Output</h2>
-<p>Representative output from <code>analyzeV8_shell_eco.m</code> and <code>SweepV8b.m</code>.</p>
-
 <pre class="log">
-<span class="sec">=== Shell Eco Run Results (V8) ===</span>
-Distance:          <span class="val">1451.1 m</span>
-Energy (mech):     <span class="val">2.8 kJ</span>
-Fuel consumed:     <span class="val">2.02 g</span>
-Avg Speed:         <span class="val">7.23 m/s</span>
-Shell Score:       <span class="val">536.1 km/L</span>
+<span class="sec">=== Shell Eco Run Results (V9) ===</span>
+Total distance:    <span class="val">15330.0 m</span>
+Total time:        <span class="val">2016.2 s  (33.6 min)</span>
+Time margin:       <span class="val">+83.8 s</span>
+Attempt valid:     <span class="hi">YES ✓</span>
+Avg speed:         <span class="val">7.604 m/s</span>
+Shell Score:       <span class="val">621.3 km/L</span>
 
-<span class="sec">--- Coast Shape Fit ---</span>
-Linear RMSE:       <span class="val">0.00525 m/s</span>
-Exponential RMSE:  <span class="val">0.00066 m/s</span>
-Result:            <span class="hi">CURVED (exponential) — physics correct</span>
+<span class="sec">--- 2025 Field Comparison ---</span>
+  vs Mater Dei (1)   718.0 km/L  → <span class="val">86.5%</span>
+  vs IFRS Erechim    629.0 km/L  → <span class="val">98.8%</span>
+  vs Michigan Tech   323.0 km/L  → <span class="hi">192.4%</span>
 
-<span class="sec">--- Sweep Summary (V8b) ---</span>
-Speed band:   v_low=5.5, v_high=7.0 → <span class="hi">704.5 km/L</span>
-Gear ratio:   G=13.00 (RPM=3421)    → <span class="hi">659.3 km/L</span>
-Mass:         m=80 kg                → <span class="hi">734.7 km/L</span>
-Drag coeff:   Cd=0.10                → <span class="hi">933.2 km/L</span>
+<span class="sec">--- Per-Lap Breakdown ---</span>
+Lap  Time(s)  LapTime  AvgSpd  Fuel(g)  km/L
+1    <span class="val">505.8</span>    <span class="val">505.8</span>    <span class="val">7.578</span>   <span class="val">4.911</span>    <span class="val">581.4</span>
+2    <span class="val">1009.3</span>   <span class="val">503.5</span>    <span class="val">7.611</span>   <span class="val">4.506</span>    <span class="val">633.6</span>
+3    <span class="val">1512.8</span>   <span class="val">503.5</span>    <span class="val">7.612</span>   <span class="val">4.486</span>    <span class="val">636.5</span>
+4    <span class="val">2016.2</span>   <span class="val">503.4</span>    <span class="val">7.613</span>   <span class="val">4.478</span>    <span class="val">637.5</span>
 
-<span class="sec">--- Sensitivity Ranking ---</span>
-Speed band:   <span class="hi">26.0%</span>
-Gear ratio:   <span class="val">3.3%</span>
-Mass:         <span class="hi">75.3%</span>
-Drag coeff:   <span class="hi">86.5%</span>
+F_Engine check:    <span class="hi">CLEAN — no leakage during coast</span>
+Coast shape:       <span class="hi">CURVED (exponential) — physics correct</span>
 </pre>
+
+<hr>
+
+<h2>Model Architecture (V9)</h2>
+<div class="compare-3">
+  <div>
+    <img src="images/v9/sys_overview_v9.png" alt="Full system V9">
+    <em>Full System Overview — DriverStrat (zone-aware), Powertrain, VehicleDynamics (F_grade), EnergyModeling, lap counter.</em>
+  </div>
+  <div>
+    <img src="images/v9/drivetrain_v9.png" alt="Powertrain V9">
+    <em>Powertrain Subsystem — torque map lookup, gear ratio, drivetrain efficiency, wheel force output.</em>
+  </div>
+  <div>
+    <img src="images/v9/driverstrat_v9.png" alt="Driver strategy V9">
+    <em>Zone-Aware Driver Strategy — track zone lookup → mode selector → Stateflow burn-coast or cruise/corner hold.</em>
+  </div>
+</div>
 
 <hr>
 
 <h2>MATLAB &amp; Simulink Scripts</h2>
 <div class="box">
   <ul>
-    <li><strong>shell_eco_paramsV8.m</strong> — All tunable parameters, corrected geometry, strategy thresholds</li>
-    <li><strong>analyzeV8_shell_eco.m</strong> — Performance metrics, force balance, coast shape fit, F_Engine leakage check</li>
-    <li><strong>SweepV8b.m</strong> — Four-parameter sweep with km/L scoring and sensitivity ranking</li>
+    <li><strong>shell_eco_paramsV9_track.m</strong> — All parameters, GPS-derived track arrays (767 breakpoints), zone definitions, competition constants</li>
+    <li><strong>analyzeV9_track_shell_eco.m</strong> — Race metrics, per-lap breakdown, Article 226 pass/fail, force balance, coast shape, and 5 zone-shaded figures</li>
+    <li><strong>SweepV9_track.m</strong> — Five-parameter sweep on full IMS lap-distance simulation: burn-coast band, gear ratio, mass, drag coefficient, and engine efficiency</li>
     <li><strong>engine_mapV4.mat</strong> — Dyno-calibrated torque lookup (2708–8708 RPM, 25 breakpoints)</li>
   </ul>
   <p style="text-align:center; margin-top:14px;">
@@ -358,34 +517,14 @@ Drag coeff:   <span class="hi">86.5%</span>
 
 <hr>
 
-<h2>Future Work (V9)</h2>
+<h2>Future Work (V10)</h2>
 <ul>
-  <li>BSFC map from dyno runs to replace fixed 20% engine efficiency</li>
+  <li>BSFC map from senior team dyno runs to replace fixed 20% engine efficiency</li>
   <li>Extended engine map below 2708 RPM</li>
-  <li>Confirmed vehicle mass and gear ratio from assembled drivetrain</li>
-  <li>Track elevation profile integration</li>
-  <li>Lap-distance simulation replacing fixed simulation time</li>
+  <li>Confirmed vehicle mass (driver + vehicle) and assembled drivetrain gear ratio</li>
+  <li>Braking model <code>F_brake</code> for corner deceleration phases</li>
+  <li>Multi-parameter joint sweep with V9 track (speed band × mass × Cd on IMS profile)</li>
 </ul>
-
-<script>
-const galleryImages = [
-  { src:"images/v8/velocity_v8.png",        caption:"Vehicle velocity — burn-coast cycles with exponential coast decay" },
-  { src:"images/v8/throttle_v8.png",        caption:"Throttle command — clean square wave with correct upper cutoff" },
-  { src:"images/v8/rpm_v8.png",             caption:"Engine RPM — operating within dyno map range" },
-  { src:"images/v8/pshaft_v8.png",          caption:"Engine shaft power — peaks during burn, zero during coast" },
-  { src:"images/v8/fengine_v8.png",         caption:"Engine force — jagged during burn reflects torque map variation with RPM" },
-  { src:"images/v8/coast_shape.png",        caption:"Coast shape diagnostic — exponential fit confirms correct physics" },
-  { src:"images/v8/energy_distance_v8.png", caption:"Mechanical energy vs distance" },
-  { src:"images/v8/fuel_distance_v8.png",   caption:"Fuel consumed vs distance — steps during burn, flat during coast" }
-];
-const gallery = document.getElementById("gallery");
-galleryImages.forEach(item => {
-  const div = document.createElement("div"); div.className = "gallery-item";
-  const img = document.createElement("img"); img.src = item.src; img.alt = item.caption;
-  const cap = document.createElement("em"); cap.textContent = item.caption;
-  div.appendChild(img); div.appendChild(cap); gallery.appendChild(div);
-});
-</script>
 
 </body>
 </html>
