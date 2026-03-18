@@ -224,9 +224,9 @@ pre.log, pre code {
 
 .page-hero .subtitle {
   color: var(--ink-soft);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 0.97rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.9;
   font-style: normal;
   display: block;
