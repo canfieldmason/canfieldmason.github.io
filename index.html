@@ -5,6 +5,149 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mason Canfield | Mechanical Engineering Portfolio</title>
   <link rel="stylesheet" href="/portfolio.css">
+  <style>
+    /* Page-specific accent styles */
+    .intro-text {
+      max-width: 600px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    /* Toolchain strip */
+    .toolchain-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 36px 0 56px;
+    }
+
+    .tool-pill {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      color: var(--ink-soft);
+      background: var(--paper-card);
+      transition: all 0.18s;
+    }
+
+    .tool-pill:hover {
+      border-color: var(--blue-mid);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* Featured work items */
+    .featured-work {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+
+    .featured-item {
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue-mid) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .featured-item:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+      border-color: var(--blue-mid);
+    }
+
+    .featured-item:hover::after { transform: scaleX(1); }
+
+    .featured-item h3 {
+      font-size: 0.97rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .featured-item p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .item-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .stat-cell {
+      background: var(--paper-card);
+      padding: 22px 20px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -0.03em;
+      display: block;
+    }
+
+    .stat-desc {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 3px;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -27,10 +170,10 @@
   <div class="page-hero">
     <img src="images/profilev1.jpg" alt="Mason Canfield">
     <h1>Mason Canfield</h1>
-    <p class="subtitle">
-      Mechanical Engineering Student — Structural Analysis, Design &amp; Simulation<br>
-      James Madison University · Class of 2027
-    </p>
+    <span class="subtitle">
+      Mechanical Engineering · James Madison University · Class of 2027<br>
+      Structural Analysis &nbsp;·&nbsp; FEA &nbsp;·&nbsp; Simulation-Driven Design
+    </span>
     <div class="cta-group">
       <a href="projects/index.html" class="btn btn-primary">View Projects</a>
       <a href="resume.pdf" class="btn btn-outline">Download Resume</a>
@@ -38,59 +181,83 @@
   </div>
 
   <!-- Intro -->
-  <p style="max-width:680px; margin: 0 auto 0 auto; text-align:center; color: var(--text-secondary);">
+  <p class="intro-text">
     Focused on structural analysis, finite element modeling, and simulation-driven mechanical design.
-    My work applies engineering fundamentals to vehicles, small engines, rockets, competition
-    structures, and embedded systems — documented through rigorous technical writeups.
+    My work applies engineering fundamentals to vehicles, rockets, competition structures, and embedded
+    systems — documented through rigorous technical writeups.
   </p>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <span class="stat-number">9</span>
+      <span class="stat-desc">Model Versions</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">621</span>
+      <span class="stat-desc">km/L Simulated</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">240/240</span>
+      <span class="stat-desc">CSWA Score</span>
+    </div>
+  </div>
 
   <!-- Core Technical Areas -->
   <div class="section-title">Core Technical Areas</div>
   <div class="card-grid">
     <div class="card">
       <h3>📐 Structural Analysis</h3>
-      <p>Finite element modeling and validation in ANSYS Mechanical — meshing strategy, boundary condition development, and results interpretation.</p>
+      <p>Finite element modeling and validation in ANSYS Mechanical — meshing strategy, boundary condition development, and results interpretation across static, impact, and torsional load cases.</p>
     </div>
     <div class="card">
       <h3>⚙️ Mechanical Design</h3>
-      <p>Parametric component and assembly design in SolidWorks and Fusion 360 with emphasis on design intent, manufacturability, and real-world constraints.</p>
+      <p>Parametric component and assembly design in SolidWorks and Fusion 360 with emphasis on design intent, manufacturability, and real-world constraints. CSWA certified (240/240).</p>
     </div>
     <div class="card">
       <h3>💻 Systems &amp; Simulation</h3>
-      <p>Physics-based vehicle dynamics and energy modeling in MATLAB and Simulink, including Stateflow control logic, GPS track integration, and parameter sweep optimization.</p>
+      <p>Physics-based vehicle dynamics and energy modeling in MATLAB and Simulink — Stateflow control logic, GPS track integration, lap-based race simulation, and parameter sweep optimization.</p>
     </div>
   </div>
 
   <!-- Technical Toolchain -->
   <div class="section-title">Technical Toolchain</div>
-  <div class="card-grid">
-    <div class="card">
-      <h3>🧮 Analysis &amp; Simulation</h3>
-      <p>MATLAB &amp; Simulink · ANSYS Mechanical · OpenRocket · Excel</p>
-    </div>
-    <div class="card">
-      <h3>🛠️ CAD &amp; Mechanical Design</h3>
-      <p>SolidWorks (CSWA) · Fusion 360 · Parametric modeling · GD&amp;T basics</p>
-    </div>
-    <div class="card">
-      <h3>🔌 Programming &amp; Embedded</h3>
-      <p>Arduino · Embedded C++ · Python (scripting) · ESP32</p>
-    </div>
+  <div class="toolchain-strip">
+    <span class="tool-pill">MATLAB</span>
+    <span class="tool-pill">Simulink</span>
+    <span class="tool-pill">ANSYS Mechanical</span>
+    <span class="tool-pill">SolidWorks</span>
+    <span class="tool-pill">Fusion 360</span>
+    <span class="tool-pill">OpenRocket</span>
+    <span class="tool-pill">Arduino</span>
+    <span class="tool-pill">Embedded C++</span>
+    <span class="tool-pill">Python</span>
+    <span class="tool-pill">LaTeX</span>
   </div>
 
   <!-- Featured Work -->
   <div class="section-title">Featured Work</div>
-  <div class="mini-project">
-    <strong>Shell Eco-Marathon Vehicle Dynamics Simulation</strong>
-    <p>Nine-version longitudinal dynamics model with GPS track integration, zone-aware Stateflow driver strategy, and five-parameter design sensitivity sweeps. Baseline: 621.3 km/L over 4 IMS laps, Article 226 valid.</p>
-  </div>
-  <div class="mini-project">
-    <strong>Formula SAE Chassis Structural Analysis</strong>
-    <p>Torsional stiffness and impact load case evaluation of a tubular spaceframe for student motorsport applications using ANSYS Mechanical.</p>
-  </div>
-  <div class="mini-project">
-    <strong>Engine Mount Backplate Structural Analysis</strong>
-    <p>Geometry simplification, meshing, and load case development for a small-engine mounting plate — multi-constraint FEA with mesh sensitivity study.</p>
+  <div class="featured-work">
+    <div class="featured-item">
+      <span class="item-label">V9 Complete</span>
+      <h3>Shell Eco-Marathon Vehicle Dynamics Simulation</h3>
+      <p>Nine-version longitudinal dynamics model with GPS track integration, zone-aware Stateflow driver strategy, and five-parameter design sensitivity sweeps. Baseline: 621.3 km/L over 4 IMS laps, Article 226 valid.</p>
+    </div>
+    <div class="featured-item">
+      <span class="item-label">In Progress</span>
+      <h3>Shell Eco-Marathon Chassis Development</h3>
+      <p>Frame Lead — structural design, FEA validation, and integration with suspension, powertrain, and body systems. Concept layouts and packaging studies complete; full FEA underway.</p>
+    </div>
+    <div class="featured-item">
+      <span class="item-label">In Progress</span>
+      <h3>Madison Aerospace Club — Rocket Design</h3>
+      <p>Level 1 HPR certification platform trade study across three kit vehicles. HI-TECH PK-56 selected at 3,170 ft predicted apogee. Eye bolt FEA completed; launch April 4.</p>
+    </div>
+    <div class="featured-item">
+      <span class="item-label">Complete</span>
+      <h3>Formula SAE Chassis Structural Analysis</h3>
+      <p>Torsional stiffness, cornering, aerodynamic downforce, and frontal impact evaluation of a tubular spaceframe using ANSYS Mechanical beam element methods.</p>
+    </div>
   </div>
 
   <!-- Footer -->
