@@ -2,135 +2,59 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<title>Shell Eco-Marathon Simulation – Versions 3–5</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shell Eco-Marathon Simulation – V3–V5</title>
+<link rel="stylesheet" href="/portfolio.css">
 <style>
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 950px;
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #222;
-  line-height: 1.6;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-h2 {
-  margin-top: 45px;
-  color: #111;
-}
-
-h3 {
-  margin-top: 30px;
-}
+body { padding: 28px 32px 60px; max-width: 920px; }
+h2 { margin-top: 40px; }
 
 .section-intro {
   text-align: center;
   font-style: italic;
-  color: #555;
-  margin-bottom: 25px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
 }
-
-hr {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 45px 0;
-}
-
-/* Info Boxes */
-
-.box {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 18px;
-  background: #fafafa;
-  margin: 25px 0;
-}
-
-/* Gallery */
 
 #gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
 }
 
-.gallery-item {
-  text-align: center;
-}
+.gallery-item { text-align: center; }
 
 .gallery-item img {
   width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 0 0 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.gallery-item em {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.9em;
-  color: #555;
+.gallery-item img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
 }
 
-/* Buttons */
-
-.download-btn {
-  display: inline-block;
-  background: #0066cc;
-  color: white;
-  padding: 10px 18px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.download-btn:hover {
-  background: #004c99;
-}
-
+.gallery-item em { text-align: left; font-size: 0.82rem; }
 </style>
 </head>
-
 <body>
 
-<h1>Shell Eco-Marathon Vehicle Simulation – Versions 3–5</h1>
-
-<p class="section-intro">
-Closed-loop driver control development and dyno-based engine modeling.
-</p>
+<h1 style="text-align:center; margin-bottom:6px;">Shell Eco-Marathon Vehicle Simulation — V3–V5</h1>
+<p class="section-intro">Closed-loop driver control development and dyno-based engine modeling.</p>
 
 <hr>
 
 <h2>Overview</h2>
-
 <p>
-
-Versions 3 through 5 expanded the simulation from a parameter study tool
-into a closed-loop vehicle model capable of autonomous speed control
-and realistic engine behavior.
-
-</p>
-
-<p>
-
-These versions introduced automated driver control, real engine
-performance data, and physically realistic torque modeling.
-
-</p>
-
-<p>
-
-Together these improvements established the core simulation
-architecture used in later versions.
-
+  Versions 3 through 5 expanded the simulation from a parameter study tool into a closed-loop
+  vehicle model capable of autonomous speed control and realistic engine behavior. These versions
+  introduced automated driver control, real engine performance data, and physically realistic
+  torque modeling. Together these improvements established the core simulation architecture
+  used in later versions.
 </p>
 
 <hr>
@@ -138,244 +62,107 @@ architecture used in later versions.
 <h2>Key Enhancements</h2>
 
 <div class="box">
+  <h3>Driver Strategy (V3)</h3>
+  <ul>
+    <li>Closed-loop driver model implemented</li>
+    <li>PID speed controller added</li>
+    <li>Automatic throttle control (0–1 range)</li>
+    <li>Target speed tracking with velocity feedback integration</li>
+  </ul>
 
-<h3>Driver Strategy (V3)</h3>
+  <h3>Engine Modeling (V4)</h3>
+  <ul>
+    <li>Dynamometer data imported into MATLAB</li>
+    <li>Horsepower converted to torque; torque vs RPM lookup tables generated</li>
+    <li>Realistic engine operating limits enforced</li>
+    <li>Gear ratio linked to engine speed</li>
+  </ul>
 
-<ul>
-
-<li>Closed-loop driver model implemented</li>
-
-<li>PID speed controller added</li>
-
-<li>Automatic throttle control (0–1 range)</li>
-
-<li>Target speed tracking</li>
-
-<li>Velocity feedback integration</li>
-
-</ul>
-
-
-<h3>Engine Modeling (V4)</h3>
-
-<ul>
-
-<li>Dynamometer data imported into MATLAB</li>
-
-<li>Horsepower converted to torque</li>
-
-<li>Torque vs RPM lookup tables generated</li>
-
-<li>Realistic engine operating limits</li>
-
-<li>Gear ratio linked to engine speed</li>
-
-</ul>
-
-
-<h3>Driver Strategy Refinement (V5)</h3>
-
-<ul>
-
-<li>Speed bands added around target velocity</li>
-
-<li>Hysteresis thresholds implemented</li>
-
-<li>Reduced control oscillation</li>
-
-<li>Extended simulation time support</li>
-
-<li>Improved parameter organization</li>
-
-</ul>
-
+  <h3>Driver Strategy Refinement (V5)</h3>
+  <ul>
+    <li>Speed bands added around target velocity</li>
+    <li>Hysteresis thresholds implemented to reduce control oscillation</li>
+    <li>Extended simulation time support and improved parameter organization</li>
+  </ul>
 </div>
 
 <hr>
 
-<h2>MATLAB & Simulink Scripts</h2>
+<h2>MATLAB &amp; Simulink Scripts</h2>
 
 <div class="box">
-
-<p>
-
-The Versions 3–5 workflow introduced modular scripts supporting
-driver control development and dyno-based engine modeling.
-
-</p>
-
-<ul>
-
-<li><strong>shell_eco_paramsV4.m</strong> — Parameter configuration</li>
-
-<li><strong>build_engine_mapV4.m</strong> — Dyno processing</li>
-
-<li><strong>engine_mapV4.mat</strong> — Torque lookup table</li>
-
-<li><strong>analyzeV4.m</strong> — Automated analysis</li>
-
-</ul>
-
-
-<p style="text-align:center;">
-
-<a href="https://github.com/canfieldmason/shell-eco-simulink"
-target="_blank"
-class="download-btn">
-
-View Source Code on Github - MATLAB Files
-
-</a>
-
-</p>
-
+  <ul>
+    <li><strong>shell_eco_paramsV4.m</strong> — Parameter configuration</li>
+    <li><strong>build_engine_mapV4.m</strong> — Dyno data processing</li>
+    <li><strong>engine_mapV4.mat</strong> — Torque lookup table</li>
+    <li><strong>analyzeV4.m</strong> — Automated analysis</li>
+  </ul>
+  <p style="text-align:center; margin-top: 14px;">
+    <a href="https://github.com/canfieldmason/shell-eco-simulink" target="_blank" class="btn btn-primary">
+      View Source Code on GitHub
+    </a>
+  </p>
 </div>
-
 
 <hr>
 
 <h2>Simulation Gallery</h2>
-
-<p>
-
-Representative outputs from the closed-loop driver model and engine
-integration are shown below.
-
-</p>
-
 <div id="gallery"></div>
-
 
 <hr>
 
 <h2>Limitations</h2>
-
 <div class="box">
-
-<ul>
-
-<li>Vehicle speed remained nearly constant</li>
-
-<li>Throttle rarely reached zero</li>
-
-<li>Engine operated continuously</li>
-
-<li>Model behaved like cruise control</li>
-
-<li>Did not represent true pulse-and-coast driving</li>
-
-</ul>
-
+  <ul>
+    <li>Vehicle speed remained nearly constant — throttle rarely reached zero</li>
+    <li>Engine operated continuously, never truly coasting</li>
+    <li>Model behaved like cruise control rather than true pulse-and-coast driving</li>
+    <li>Did not represent the actual Shell Eco-Marathon driving strategy</li>
+  </ul>
 </div>
-
 
 <hr>
 
 <h2>Future Work (V6)</h2>
-
 <ul>
-
-<li>True pulse-and-coast driver behavior</li>
-
-<li>Engine on/off cycling</li>
-
-<li>Throttle switching control</li>
-
-<li>Energy-optimal speed oscillations</li>
-
-<li>Improved realism for Shell Eco strategy</li>
-
+  <li>True pulse-and-coast driver behavior with engine on/off cycling</li>
+  <li>Throttle switching control for energy-optimal speed oscillations</li>
+  <li>Improved realism for Shell Eco-Marathon competition strategy</li>
 </ul>
-
 
 <hr>
 
 <h2>Conclusion</h2>
-
 <p>
-
-Versions 3 through 5 transformed the simulation into a realistic
-closed-loop vehicle model with experimental engine data integration.
-
+  Versions 3 through 5 transformed the simulation into a realistic closed-loop vehicle model
+  with experimental engine data integration. These developments provided the foundation for
+  the Version 6 pulse-and-coast driver model.
 </p>
-
-<p>
-
-These developments provided the foundation for the Version 6
-pulse-and-coast driver model.
-
-</p>
-
-
 
 <script>
-
 const galleryImages = [
-
-{
-src: "images/v3/pid_speed.png",
-caption: "PID-controlled vehicle speed response"
-},
-
-{
-src: "images/v3/pid_throttle.png",
-caption: "Throttle response under PID control"
-},
-
-{
-src: "images/v3/pid_drag_validation.png",
-caption: "PID validation across aerodynamic drag variations"
-},
-
-{
-src: "images/v3/pid_mass_validation.png",
-caption: "PID validation across vehicle mass variations"
-},
-
-{
-src: "images/v3/pid_speed_validation.png",
-caption: "PID validation across target speeds"
-},
-
-{
-src: "images/v3/engine_map.png",
-caption: "Engine torque map derived from dynamometer data"
-},
-
-{
-src: "images/v3/engine_speed.png",
-caption: "Engine speed during closed-loop operation"
-},
-
-{
-src: "images/v3/energy_distance.png",
-caption: "Energy consumption vs distance"
-}
-
+  { src: "images/v3/pid_speed.png",             caption: "PID-controlled vehicle speed response" },
+  { src: "images/v3/pid_throttle.png",           caption: "Throttle response under PID control" },
+  { src: "images/v3/pid_drag_validation.png",    caption: "PID validation across aerodynamic drag variations" },
+  { src: "images/v3/pid_mass_validation.png",    caption: "PID validation across vehicle mass variations" },
+  { src: "images/v3/pid_speed_validation.png",   caption: "PID validation across target speeds" },
+  { src: "images/v3/engine_map.png",             caption: "Engine torque map derived from dynamometer data" },
+  { src: "images/v3/engine_speed.png",           caption: "Engine speed during closed-loop operation" },
+  { src: "images/v3/energy_distance.png",        caption: "Energy consumption vs distance" }
 ];
+
 const gallery = document.getElementById("gallery");
-
 galleryImages.forEach(item => {
-
-const div = document.createElement("div");
-div.className = "gallery-item";
-
-const img = document.createElement("img");
-img.src = item.src;
-img.alt = item.caption;
-
-const cap = document.createElement("em");
-cap.textContent = item.caption;
-
-div.appendChild(img);
-div.appendChild(cap);
-
-gallery.appendChild(div);
-
+  const div = document.createElement("div");
+  div.className = "gallery-item";
+  const img = document.createElement("img");
+  img.src = item.src; img.alt = item.caption;
+  const cap = document.createElement("em");
+  cap.textContent = item.caption;
+  div.appendChild(img); div.appendChild(cap);
+  gallery.appendChild(div);
 });
-
 </script>
-
 
 </body>
 </html>
