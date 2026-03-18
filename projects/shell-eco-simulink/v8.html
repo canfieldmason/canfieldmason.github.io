@@ -2,259 +2,65 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shell Eco-Marathon Simulation – Version 8</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shell Eco-Marathon Simulation – V8</title>
+<link rel="stylesheet" href="/portfolio.css">
 <style>
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 950px;
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #222;
-  line-height: 1.6;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-h2 {
-  margin-top: 45px;
-  color: #111;
-}
-
-h3 {
-  margin-top: 20px;
-  color: #333;
-}
+body { padding: 28px 32px 60px; max-width: 960px; }
+h2 { margin-top: 40px; }
 
 .section-intro {
   text-align: center;
   font-style: italic;
-  color: #555;
-  margin-bottom: 25px;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 45px 0;
-}
-
-.box {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 18px;
-  background: #fafafa;
-  margin: 25px 0;
-}
-
-.box-green {
-  border: 1px solid #b2d8b2;
-  border-radius: 8px;
-  padding: 18px;
-  background: #f2faf2;
-  margin: 25px 0;
-}
-
-.box-yellow {
-  border: 1px solid #e0d080;
-  border-radius: 8px;
-  padding: 18px;
-  background: #fdfaf0;
-  margin: 25px 0;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
 }
 
 .compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin-top: 25px;
-}
-
-.compare img {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.compare em {
-  display: block;
-  text-align: center;
-  margin-top: 6px;
-  color: #555;
-}
-
-#gallery, .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
-  margin-top: 20px;
-}
-
-.gallery-item img {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.gallery-item em {
-  display: block;
-  margin-top: 8px;
-  font-size: .9em;
-  color: #555;
-}
-
-.changelog {
-  border-left: 4px solid #0066cc;
-  padding-left: 18px;
   margin: 20px 0;
 }
+.compare img { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); margin: 0; }
+.compare em { text-align: left; font-size: 0.85rem; margin-top: 6px; }
 
-.changelog-item {
-  margin-bottom: 14px;
-}
-
-.changelog-item .tag {
-  display: inline-block;
-  background: #0066cc;
-  color: white;
-  font-size: 0.78em;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-right: 8px;
-  font-weight: bold;
-  vertical-align: middle;
-}
-
-.tag-fix    { background: #cc4400; }
-.tag-new    { background: #2a7a2a; }
-.tag-update { background: #0066cc; }
-.tag-pending { background: #888; }
-
-.metric-grid {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-  margin: 25px 0;
+  margin-top: 16px;
 }
+#gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
 
-.metric-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 14px 16px;
-  background: #fafafa;
-  text-align: center;
-}
-
-.metric-card .value {
-  font-size: 1.6em;
-  font-weight: bold;
-  color: #0066cc;
-}
-
-.metric-card .label {
-  font-size: 0.85em;
-  color: #555;
-  margin-top: 4px;
-}
-
-.sensitivity-bar {
-  margin: 10px 0;
-}
-
-.sensitivity-bar .bar-label {
-  display: inline-block;
-  width: 120px;
-  font-weight: bold;
-}
-
-.sensitivity-bar .bar-track {
-  display: inline-block;
-  background: #eee;
-  border-radius: 4px;
-  width: 400px;
-  height: 18px;
-  vertical-align: middle;
-  position: relative;
-}
-
-.sensitivity-bar .bar-fill {
-  display: block;
-  height: 100%;
-  border-radius: 4px;
-  background: #0066cc;
-}
-
-.sensitivity-bar .bar-pct {
-  display: inline-block;
-  margin-left: 10px;
-  font-weight: bold;
-  vertical-align: middle;
-}
-
-code {
-  background: #f0f0f0;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 0.92em;
-}
-
-pre.log {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  padding: 18px;
-  border-radius: 8px;
-  font-size: 0.85em;
-  line-height: 1.6;
-  overflow-x: auto;
-  white-space: pre;
-  margin: 20px 0;
-}
-
-pre.log .hi  { color: #4ec9b0; font-weight: bold; }
-pre.log .sec { color: #9cdcfe; font-weight: bold; }
-pre.log .val { color: #ce9178; }
-
+.gallery-item { text-align: center; }
+.gallery-item img { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); margin: 0 0 6px; }
+.gallery-item em { text-align: left; font-size: 0.82rem; }
 </style>
 </head>
-
 <body>
 
-<h1>Shell Eco-Marathon Vehicle Simulation – V8</h1>
-
-<p class="section-intro">
-  Stateflow hysteresis control, corrected powertrain geometry,
-  shaft-power fuel accounting, and parameter sweep optimization.
-</p>
+<h1 style="text-align:center; margin-bottom:6px;">Shell Eco-Marathon Vehicle Simulation — V8</h1>
+<p class="section-intro">Stateflow hysteresis control, corrected powertrain geometry, shaft-power fuel accounting, and parameter sweep optimization.</p>
 
 <hr>
 
 <h2>Overview</h2>
-
 <p>
-  Version 8 represents a major accuracy overhaul across three independent
-  subsystems. While V6 introduced the burn-coast control philosophy,
-  several fundamental modeling errors were identified and corrected in V8
-  that significantly affect simulation fidelity and fuel predictions.
+  Version 8 represents a major accuracy overhaul across three independent subsystems. While V6
+  introduced the burn-coast control philosophy, several fundamental modeling errors were identified
+  and corrected in V8 that significantly affect simulation fidelity and fuel predictions.
 </p>
-
 <p>
-  The most impactful corrections were a wheel radius error that had been
-  halving the engine RPM throughout the powertrain, a driver strategy that
-  lacked an upper speed cutoff causing the engine to run continuously, and
-  an energy model that was computing fuel consumption from net vehicle
-  force rather than engine shaft power. Each of these issues independently
-  produced incorrect results — together they made quantitative fuel
-  predictions unreliable.
+  The most impactful corrections were a wheel radius error that had been halving the engine RPM
+  throughout the powertrain, a driver strategy that lacked an upper speed cutoff causing the engine
+  to run continuously, and an energy model computing fuel consumption from net vehicle force rather
+  than engine shaft power. Each of these issues independently produced incorrect results — together
+  they made quantitative fuel predictions unreliable.
 </p>
-
 <p>
-  V8 also introduces the first full parameter sweep with Shell competition
-  scoring (km/L), producing actionable design sensitivity rankings for
-  the engineering team.
+  V8 also introduces the first full parameter sweep with Shell competition scoring (km/L), producing
+  actionable design sensitivity rankings for the engineering team.
 </p>
 
 <hr>
@@ -265,74 +71,56 @@ pre.log .val { color: #ce9178; }
 
   <div class="changelog-item">
     <span class="tag tag-fix">FIX</span>
-    <strong>Wheel radius corrected</strong> — <code>r_w</code> was set to
-    0.508 m (the wheel diameter) instead of 0.254 m (the radius). This
-    caused engine RPM to be calculated at half the true value throughout
-    the simulation, pushing the operating point below the valid engine map
-    range and returning NaN torque values.
+    <strong>Wheel radius corrected</strong> — <code>r_w</code> was set to 0.508 m (the wheel diameter)
+    instead of 0.254 m (the radius). This caused engine RPM to be calculated at half the true value,
+    pushing the operating point below the valid engine map range and returning NaN torque values.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-fix">FIX</span>
-    <strong>RPM idle limit corrected</strong> — <code>RPM_idle</code> was
-    set to 1800 RPM, below the engine map minimum of 2708 RPM. Updated to
-    match the dyno map lower bound so the RPM saturation block keeps the
-    engine within the valid lookup table range.
+    <strong>RPM idle limit corrected</strong> — <code>RPM_idle</code> was set to 1800 RPM, below
+    the engine map minimum of 2708 RPM. Updated to match the dyno map lower bound.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-new">NEW</span>
-    <strong>Stateflow hysteresis driver strategy</strong> — The V6
-    burn-coast controller only implemented a lower speed threshold
-    (<code>v_low_on</code>), meaning the engine had no upper cutoff and
-    ran continuously past the target speed. A Stateflow state machine
-    replaces the comparator-switch logic with a proper two-state
-    hysteresis controller. The engine burns when velocity drops below
-    <code>v_low_on</code> and coasts when velocity exceeds
-    <code>v_high_on</code>, holding its previous state in between to
-    prevent chattering.
+    <strong>Stateflow hysteresis driver strategy</strong> — The V6 burn-coast controller only
+    implemented a lower speed threshold, meaning the engine had no upper cutoff and ran continuously
+    past the target speed. A Stateflow state machine replaces the comparator-switch logic with a
+    proper two-state hysteresis controller. The engine burns when velocity drops below
+    <code>v_low_on</code> and coasts when velocity exceeds <code>v_high_on</code>.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-fix">FIX</span>
-    <strong>Energy model rebuilt on shaft power</strong> — The V6 energy
-    model computed fuel from <code>F_net × v</code>, which is net
-    mechanical power after drag and rolling losses have already been
-    subtracted. This underestimates fuel input because it starts from the
-    wrong quantity. The corrected path integrates engine shaft power
-    (<code>T_engine × ω_engine</code>), then divides by engine efficiency
-    and fuel LHV to produce fuel mass in kg.
+    <strong>Energy model rebuilt on shaft power</strong> — The V6 energy model computed fuel from
+    <code>F_net × v</code>, which underestimates fuel input. The corrected path integrates engine
+    shaft power (<code>T_engine × ω_engine</code>), then divides by engine efficiency and fuel LHV.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-fix">FIX</span>
-    <strong>LHV constant corrected</strong> — The EnergyModeling block
-    contained a constant of 4,400,000 J/kg instead of the correct
-    44,000,000 J/kg, producing fuel estimates 10× too high.
+    <strong>LHV constant corrected</strong> — The EnergyModeling block contained 4,400,000 J/kg
+    instead of the correct 44,000,000 J/kg, producing fuel estimates 10× too high.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-new">NEW</span>
-    <strong>Shell scoring metric (km/L)</strong> — All parameter sweeps
-    now report km/L equivalent, matching the Shell Eco-Marathon
-    competition scoring formula. Fuel mass is converted to volume using
-    gasoline density (0.745 kg/L) and distance is converted to km.
+    <strong>Shell scoring metric (km/L)</strong> — All parameter sweeps now report km/L equivalent,
+    matching the Shell Eco-Marathon competition scoring formula.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-new">NEW</span>
-    <strong>Four-parameter sweep with sensitivity ranking</strong> —
-    SweepV8b evaluates burn-coast speed band, gear ratio, vehicle mass,
-    and drag coefficient independently, using a middle-80% window
-    averaging method to eliminate startup and end-cycle artifacts.
+    <strong>Four-parameter sweep with sensitivity ranking</strong> — SweepV8b evaluates burn-coast
+    speed band, gear ratio, vehicle mass, and drag coefficient independently using a middle-80%
+    window averaging method to eliminate startup and end-cycle artifacts.
   </div>
 
   <div class="changelog-item">
     <span class="tag tag-pending">PENDING</span>
-    <strong>BSFC map</strong> — Engine efficiency is currently fixed at
-    20%. A 2D brake-specific fuel consumption map as a function of RPM
-    and load will replace this once the senior team completes dyno runs
-    on the assembled vehicle.
+    <strong>BSFC map</strong> — Engine efficiency is currently fixed at 20%. A 2D brake-specific
+    fuel consumption map will replace this once the senior team completes dyno runs.
   </div>
 
 </div>
@@ -341,538 +129,229 @@ pre.log .val { color: #ce9178; }
 
 <h2>Driver Strategy — Stateflow Hysteresis</h2>
 
-<p>
-  The V6 driver strategy used a single comparator feeding a switch block.
-  While this produced on/off throttle behavior, it only checked one
-  threshold — the lower bound. Without an upper bound comparator, the
-  engine continued to run past the target speed with no cutoff, producing
-  a continuous burn rather than a true burn-coast cycle.
-</p>
-
 <div class="box">
   <h3>V6 Strategy — Single Threshold (Incomplete)</h3>
   <ul>
     <li>Only lower threshold (<code>v_low_on</code>) implemented</li>
-    <li>Engine had no upper speed cutoff</li>
-    <li>Vehicle overshot target speed continuously</li>
-    <li>Throttle square waves present but triggered incorrectly</li>
+    <li>Engine had no upper speed cutoff — vehicle overshot target speed continuously</li>
     <li>Coast phases never properly initiated</li>
   </ul>
-
   <h3>V8 Strategy — Stateflow Two-State Machine</h3>
   <ul>
     <li>Two discrete states: <strong>BURN</strong> and <strong>COAST</strong></li>
     <li>BURN → COAST transition when <code>v_actual ≥ v_high_on</code></li>
     <li>COAST → BURN transition when <code>v_actual ≤ v_low_on</code></li>
-    <li>State held between thresholds — no chattering</li>
-    <li>Default transition initializes to BURN at t=0</li>
-    <li>Sample time set to 0.1s for clean threshold detection</li>
+    <li>State held between thresholds — no chattering; sample time 0.1s</li>
   </ul>
 </div>
 
 <div class="compare">
   <div>
-    <img src="images/v8/stateflow_chart.png"
-         alt="Stateflow chart showing BURN and COAST states">
+    <img src="images/v8/stateflow_chart.png" alt="Stateflow chart">
     <em>Stateflow State Machine — V8 DriverStrat</em>
   </div>
   <div>
-    <img src="images/v8/throttle_v8.png"
-         alt="Throttle command square wave">
-    <em>Throttle Command — Clean square wave with correct upper cutoff</em>
+    <img src="images/v8/throttle_v8.png" alt="Throttle command square wave">
+    <em>Throttle Command — clean square wave with correct upper cutoff</em>
   </div>
 </div>
 
 <hr>
 
 <h2>Velocity Profile — Coast Curve Validation</h2>
-
-<p>
-  With the corrected wheel radius and Stateflow upper cutoff, the velocity
-  profile now behaves physically correctly. The vehicle accelerates during
-  burn, peaks at <code>v_high_on</code>, then decelerates along an
-  exponential decay curve during coast — driven by drag (proportional to
-  v²) and rolling resistance. A linear coast would indicate the resistive
-  forces are too weak relative to inertia.
-</p>
+<p>With the corrected wheel radius and Stateflow upper cutoff, the velocity profile now behaves physically correctly — the vehicle accelerates during burn, peaks at <code>v_high_on</code>, then decelerates along an exponential decay curve during coast.</p>
 
 <div class="box-green">
-  <strong>Coast Shape Diagnostic Result (V8):</strong><br><br>
-  Linear fit RMSE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00525 m/s<br>
+  <strong>Coast Shape Diagnostic Result (V8)</strong><br><br>
+  Linear fit RMSE: &nbsp;&nbsp;&nbsp;&nbsp;0.00525 m/s<br>
   Exponential fit RMSE: 0.00066 m/s<br><br>
   <strong>Result: CURVED (exponential) — physics correct ✓</strong><br>
-  The exponential fit is 8× more accurate than linear, confirming
-  aerodynamic and rolling resistance forces are correctly modeled.
+  The exponential fit is 8× more accurate than linear, confirming aerodynamic and rolling resistance forces are correctly modeled.
 </div>
 
 <div class="compare">
   <div>
-    <img src="images/v8/velocity_v8.png"
-         alt="Vehicle velocity vs time showing burn-coast cycles">
-    <em>Velocity vs Time — Correct oscillation between v_low_on and v_high_on</em>
+    <img src="images/v8/velocity_v8.png" alt="Vehicle velocity vs time">
+    <em>Velocity vs Time — correct oscillation between v_low_on and v_high_on</em>
   </div>
   <div>
-    <img src="images/v8/coast_shape.png"
-         alt="Coast shape diagnostic plot showing exponential fit">
-    <em>Coast Shape Diagnostic — Exponential fit confirms correct physics</em>
-  </div>
-</div>
-
-<hr>
-
-<h2>Energy Model — Shaft Power Method</h2>
-
-<p>
-  The V6 EnergyModeling subsystem calculated fuel from net vehicle power
-  (<code>F_net × v</code>). This is the power remaining after drag and
-  rolling resistance have already been subtracted from engine output —
-  it does not represent fuel energy input to the engine. Dividing this
-  quantity by engine efficiency and LHV produces an underestimate of fuel
-  consumption because losses have already been removed before the
-  calculation begins.
-</p>
-
-<p>
-  V8 rebuilds EnergyModeling with two parallel independent paths:
-</p>
-
-<div class="box">
-  <h3>Path 1 — Mechanical Energy (unchanged metric)</h3>
-  <code>F_net × v → integrate → E_mech (J) → ÷ x_Vehicle → η (J/m)</code>
-  <p style="margin-top:10px;">
-    Tracks net mechanical work done on the vehicle. Used as the J/m
-    efficiency metric and for internal validation.
-  </p>
-
-  <h3>Path 2 — Fuel Mass (corrected)</h3>
-  <code>T_engine × ω_engine → clamp(0,∞) → integrate → ÷ effic_engine → ÷ LHV → m_fuel (kg)</code>
-  <p style="margin-top:10px;">
-    Integrates engine shaft power, then divides by thermal efficiency and
-    fuel heating value to produce fuel mass consumed. The zero clamp
-    prevents numerical noise during coast phases from creating negative
-    fuel consumption.
-  </p>
-</div>
-
-<div class="compare">
-  <div>
-    <img src="images/v8/energy_distance_v8.png"
-         alt="Mechanical energy vs distance">
-    <em>Mechanical Energy vs Distance — Linear growth confirms consistent cycle behavior</em>
-  </div>
-  <div>
-    <img src="images/v8/fuel_distance_v8.png"
-         alt="Fuel consumed vs distance">
-    <em>Fuel Consumed vs Distance — Stepped profile shows fuel burned only during burn phases</em>
+    <img src="images/v8/coast_shape.png" alt="Coast shape diagnostic">
+    <em>Coast Shape Diagnostic — exponential fit confirms correct physics</em>
   </div>
 </div>
 
 <hr>
 
 <h2>Baseline Simulation Results (V8)</h2>
-
-<p>
-  Standard run parameters: <code>v_low=6.5, v_high=7.5, G=10, m=100kg,
-  Cd=0.30, t_end=200s</code>
-</p>
+<p>Standard run: <code>v_low=6.5, v_high=7.5, G=10, m=100 kg, Cd=0.30, t_end=200s</code></p>
 
 <div class="metric-grid">
-
-  <div class="metric-card">
-    <div class="value">1451 m</div>
-    <div class="label">Distance Covered</div>
-  </div>
-
-  <div class="metric-card">
-    <div class="value">7.23 m/s</div>
-    <div class="label">Average Speed</div>
-  </div>
-
-  <div class="metric-card">
-    <div class="value">7.91 m/s</div>
-    <div class="label">Max Speed</div>
-  </div>
-
-  <div class="metric-card">
-    <div class="value">2.8 kJ</div>
-    <div class="label">Mechanical Energy</div>
-  </div>
-
-  <div class="metric-card">
-    <div class="value">2.02 g</div>
-    <div class="label">Fuel Consumed</div>
-  </div>
-
-  <div class="metric-card">
-    <div class="value">651 km/L</div>
-    <div class="label">Shell Score (est.)</div>
-  </div>
-
+  <div class="metric-card"><div class="value">1451 m</div><div class="label">Distance Covered</div></div>
+  <div class="metric-card"><div class="value">7.23 m/s</div><div class="label">Average Speed</div></div>
+  <div class="metric-card"><div class="value">7.91 m/s</div><div class="label">Max Speed</div></div>
+  <div class="metric-card"><div class="value">2.8 kJ</div><div class="label">Mechanical Energy</div></div>
+  <div class="metric-card"><div class="value">2.02 g</div><div class="label">Fuel Consumed</div></div>
+  <div class="metric-card"><div class="value">651 km/L</div><div class="label">Shell Score (est.)</div></div>
 </div>
 
 <div class="box-yellow">
-  <strong>Note on fuel estimate:</strong> The engine map begins at 2708 RPM.
-  At v_target = 7 m/s with G = 10 and r_w = 0.254 m, engine RPM is
-  approximately 2632 — just below the map minimum. The RPM saturation
-  block clamps to the map boundary, so torque output reflects the
-  lowest map entry rather than a true extrapolated value. Fuel estimates
-  will improve once the senior team provides dyno data below 2708 RPM
-  and a BSFC map to replace the fixed 20% efficiency assumption.
+  <strong>Note on fuel estimate:</strong> Engine RPM at v_target = 7 m/s with G = 10 and r_w = 0.254 m
+  is approximately 2632 — just below the map minimum of 2708 RPM. The RPM saturation block clamps to
+  the map boundary. Fuel estimates will improve once dyno data below 2708 RPM and a BSFC map are available.
 </div>
 
 <hr>
 
 <h2>Parameter Sweep Results</h2>
-
-<p>
-  SweepV8b evaluated four design parameters independently across a 1000s
-  simulation window. The middle 80% of each run was used to compute
-  metrics, eliminating startup transients and incomplete end-cycles that
-  previously corrupted efficiency comparisons between parameter values.
-  All results reported in km/L to match Shell Eco-Marathon scoring.
-</p>
+<p>SweepV8b evaluated four design parameters independently across a 1000s simulation window. Middle-80% window averaging eliminates startup transients and incomplete end-cycles.</p>
 
 <h3>Sweep 1 — Burn-Coast Speed Band</h3>
-
-<p>
-  A 2D sweep of <code>v_low</code> (5.5–7.5 m/s) vs <code>v_high</code>
-  (7.0–9.5 m/s) was run to find the optimal speed band. Wider bands
-  result in fewer engine cycles per unit distance, keeping the engine
-  closer to its peak efficiency operating point for longer burn durations.
-</p>
-
 <div class="gallery">
   <div class="gallery-item">
-    <img src="images/v8/sweep_band_kmL.png"
-         alt="Burn-coast speed band efficiency map km/L">
+    <img src="images/v8/sweep_band_kmL.png" alt="Speed band efficiency map">
     <em>Speed Band Efficiency Map (km/L) — optimum at v_low=5.5, v_high=7.0</em>
   </div>
   <div class="gallery-item">
-    <img src="images/v8/sweep_band_fuel.png"
-         alt="Burn-coast speed band fuel map">
+    <img src="images/v8/sweep_band_fuel.png" alt="Speed band fuel map">
     <em>Speed Band Fuel Map (g) — wider band consistently reduces fuel</em>
   </div>
 </div>
 
 <h3>Sweep 2 — Gear Ratio</h3>
-
-<p>
-  Gear ratio was swept from G=7 to G=14 in 0.25 increments. The km/L
-  variation across this entire range was only ±3.3%, confirming that
-  gear ratio has minimal effect on efficiency in this model — the engine
-  torque map is relatively flat across the RPM range tested.
-  The practical gear ratio constraint is keeping engine RPM within the
-  valid dyno map range (2708–8708 RPM) at operating speed. G = 10.25–11.50
-  satisfies this constraint at v_target = 7 m/s.
-</p>
-
+<p>Gear ratio swept from G=7 to G=14. The km/L variation across this entire range was only ±3.3%, confirming gear ratio has minimal effect on efficiency. The practical constraint is keeping engine RPM within the valid dyno map range (2708–8708 RPM) at operating speed.</p>
 <div class="gallery">
   <div class="gallery-item">
-    <img src="images/v8/sweep_G_kmL.png"
-         alt="Gear ratio vs km/L and RPM dual axis plot">
-    <em>Gear Ratio Sweep — km/L (left) and engine RPM at v_target (right).
-    Red lines mark valid map RPM bounds.</em>
+    <img src="images/v8/sweep_G_kmL.png" alt="Gear ratio vs km/L">
+    <em>Gear Ratio Sweep — km/L (left) and engine RPM at v_target (right). Red lines mark valid map RPM bounds.</em>
   </div>
   <div class="gallery-item">
-    <img src="images/v8/sweep_G_fuel.png"
-         alt="Gear ratio vs fuel consumed">
+    <img src="images/v8/sweep_G_fuel.png" alt="Gear ratio vs fuel">
     <em>Gear Ratio vs Fuel — minimal variation confirms low design sensitivity</em>
   </div>
 </div>
 
 <h3>Sweep 3 — Vehicle Mass</h3>
-
-<p>
-  Mass was swept from 80 kg to 200 kg in 10 kg increments. The
-  relationship is smooth and monotonic — every 10 kg of additional mass
-  costs approximately 30–40 km/L. Rolling resistance scales directly with
-  mass, and heavier vehicles require more frequent and longer burn cycles
-  to maintain speed through the coast band.
-</p>
-
+<p>Mass swept from 80 kg to 200 kg. Every 10 kg of additional mass costs approximately 30–40 km/L. Rolling resistance scales directly with mass, requiring more frequent and longer burn cycles to maintain speed.</p>
 <div class="gallery">
   <div class="gallery-item">
-    <img src="images/v8/sweep_mass_kmL.png"
-         alt="Mass vs km/L">
-    <em>Mass vs Shell Score — monotonic penalty, 80kg gives 735 km/L vs 419 km/L at 200kg</em>
+    <img src="images/v8/sweep_mass_kmL.png" alt="Mass vs km/L">
+    <em>Mass vs Shell Score — monotonic penalty; 80 kg gives 735 km/L vs 419 km/L at 200 kg</em>
   </div>
   <div class="gallery-item">
-    <img src="images/v8/sweep_mass_fuel.png"
-         alt="Mass vs fuel consumed">
+    <img src="images/v8/sweep_mass_fuel.png" alt="Mass vs fuel">
     <em>Mass vs Fuel — near-linear relationship confirms rolling resistance dominance</em>
   </div>
 </div>
 
 <h3>Sweep 4 — Drag Coefficient</h3>
-
-<p>
-  Drag coefficient was swept from Cd=0.10 to Cd=0.50. At the vehicle's
-  operating speed of ~7 m/s, aerodynamic drag force is moderate relative
-  to rolling resistance, but its quadratic dependence on velocity means
-  wider speed bands amplify its effect. Reducing Cd from 0.50 to 0.10
-  nearly doubles the Shell score from 500 to 933 km/L.
-</p>
-
+<p>Cd swept from 0.10 to 0.50. Reducing Cd from 0.50 to 0.10 nearly doubles the Shell score from 500 to 933 km/L.</p>
 <div class="gallery">
   <div class="gallery-item">
-    <img src="images/v8/sweep_cd_kmL.png"
-         alt="Drag coefficient vs km/L">
+    <img src="images/v8/sweep_cd_kmL.png" alt="Cd vs km/L">
     <em>Cd vs Shell Score — near-linear improvement with reduced drag</em>
   </div>
   <div class="gallery-item">
-    <img src="images/v8/sweep_cd_fuel.png"
-         alt="Drag coefficient vs fuel consumed">
-    <em>Cd vs Fuel — smooth monotonic relationship confirms no cycle timing artifacts</em>
+    <img src="images/v8/sweep_cd_fuel.png" alt="Cd vs fuel">
+    <em>Cd vs Fuel — smooth monotonic relationship</em>
   </div>
 </div>
 
 <hr>
 
 <h2>Design Sensitivity Ranking</h2>
-
-<p>
-  The sensitivity metric measures the percentage improvement from the
-  worst to the best value within each sweep range — a higher value means
-  that parameter has more leverage on competition score and deserves
-  higher design priority.
-</p>
+<p>Percentage improvement from worst to best value within each sweep range — higher value means higher design priority.</p>
 
 <div class="sensitivity-bar">
   <span class="bar-label">Drag Coeff</span>
-  <span class="bar-track">
-    <span class="bar-fill" style="width:86.5%;background:#cc4400;"></span>
-  </span>
+  <span class="bar-track"><span class="bar-fill" style="width:86.5%; background:#cc4400;"></span></span>
   <span class="bar-pct">86.5%</span>
 </div>
-
 <div class="sensitivity-bar">
   <span class="bar-label">Mass</span>
-  <span class="bar-track">
-    <span class="bar-fill" style="width:75.3%;background:#2a7a2a;"></span>
-  </span>
+  <span class="bar-track"><span class="bar-fill" style="width:75.3%; background:#2a7a2a;"></span></span>
   <span class="bar-pct">75.3%</span>
 </div>
-
 <div class="sensitivity-bar">
   <span class="bar-label">Speed Band</span>
-  <span class="bar-track">
-    <span class="bar-fill" style="width:26.0%;background:#0066cc;"></span>
-  </span>
+  <span class="bar-track"><span class="bar-fill" style="width:26.0%; background:var(--blue);"></span></span>
   <span class="bar-pct">26.0%</span>
 </div>
-
 <div class="sensitivity-bar">
   <span class="bar-label">Gear Ratio</span>
-  <span class="bar-track">
-    <span class="bar-fill" style="width:3.3%;background:#888;"></span>
-  </span>
+  <span class="bar-track"><span class="bar-fill" style="width:3.3%; background:#888;"></span></span>
   <span class="bar-pct">3.3%</span>
 </div>
 
 <br>
 <div class="box-green">
-  <strong>Key takeaway:</strong> Aerodynamic drag reduction and mass
-  minimization are nearly equal in importance and both have far more
-  impact than drivetrain tuning. Gear ratio only needs to keep engine RPM
-  within the valid map range — beyond that it is not a meaningful
-  optimization lever given the current engine map and operating speed.
+  <strong>Key takeaway:</strong> Aerodynamic drag reduction and mass minimization are nearly equal
+  in importance and both have far more impact than drivetrain tuning. Gear ratio only needs to keep
+  engine RPM within the valid map range — beyond that it is not a meaningful optimization lever.
 </div>
 
 <hr>
 
 <h2>Simulation Gallery</h2>
-
 <div id="gallery"></div>
 
 <hr>
 
 <h2>Model Architecture (V8)</h2>
-
 <div class="gallery">
   <div class="gallery-item">
-    <img src="images/v8/sys_overview_v8.png"
-         alt="Full system Simulink overview">
+    <img src="images/v8/sys_overview_v8.png" alt="Full system V8">
     <em>Full System Overview — DriverStrat, Powertrain, VehicleDynamics, EnergyModeling</em>
   </div>
   <div class="gallery-item">
-    <img src="images/v8/drivetrain_v8.png"
-         alt="Powertrain subsystem block diagram">
+    <img src="images/v8/drivetrain_v8.png" alt="Powertrain subsystem">
     <em>Powertrain Subsystem — torque map lookup, gear ratio, drivetrain efficiency</em>
   </div>
 </div>
 
 <hr>
 
-<h2>Improvements Over V6</h2>
-
-<div class="box">
-  <ul>
-    <li>Wheel radius corrected — engine RPM now matches physical reality</li>
-    <li>RPM saturation bounds match engine map range</li>
-    <li>Stateflow hysteresis provides correct two-threshold burn-coast control</li>
-    <li>Fuel accounting based on shaft power rather than net vehicle force</li>
-    <li>LHV constant corrected (10× error eliminated)</li>
-    <li>Coast curve confirmed exponential — physics validated</li>
-    <li>Shell scoring metric (km/L) replaces J/m for sweep comparisons</li>
-    <li>Middle-window averaging eliminates end-cycle sweep artifacts</li>
-    <li>F_Engine coast leakage confirmed clean — no spurious engine force during coast</li>
-  </ul>
-</div>
-
-<hr>
-
 <h2>Command Window Output</h2>
-
-<p>
-  Representative output from <code>analyzeV8_shell_eco.m</code> and
-  <code>SweepV8b.m</code> after a standard 200s baseline run followed
-  by the full four-parameter sweep.
-</p>
-
-<h3>analyzeV8_shell_eco.m</h3>
+<p>Representative output from <code>analyzeV8_shell_eco.m</code> and <code>SweepV8b.m</code>.</p>
 
 <pre class="log">
 <span class="sec">=== Shell Eco Run Results (V8) ===</span>
 Distance:          <span class="val">1451.1 m</span>
 Energy (mech):     <span class="val">2.8 kJ</span>
-Fuel consumed:     <span class="val">0.0020 kg</span>
 Fuel consumed:     <span class="val">2.02 g</span>
 Avg Speed:         <span class="val">7.23 m/s</span>
-Max Speed:         <span class="val">7.91 m/s</span>
-Energy per meter:  <span class="val">1.9215 J/m</span>
-Live eta (final):  <span class="val">1.9215 J/m</span>
 Shell Score:       <span class="val">536.1 km/L</span>
-
-<span class="sec">--- Force Balance at 7.0 m/s ---</span>
-F_drag:            <span class="val">3.59 N</span>
-F_roll:            <span class="val">4.91 N</span>
-F_resist total:    <span class="val">8.49 N</span>
-Coast decel:       <span class="val">-0.0849 m/s^2</span>
-Coast band time (7.8 to 6.8 m/s): <span class="val">11.8 s</span>
-
-F_Engine check:    <span class="hi">CLEAN — no leakage during coast</span>
 
 <span class="sec">--- Coast Shape Fit ---</span>
 Linear RMSE:       <span class="val">0.00525 m/s</span>
 Exponential RMSE:  <span class="val">0.00066 m/s</span>
 Result:            <span class="hi">CURVED (exponential) — physics correct</span>
-</pre>
 
-<h3>SweepV8b.m — Summary Output</h3>
+<span class="sec">--- Sweep Summary (V8b) ---</span>
+Speed band:   v_low=5.5, v_high=7.0 → <span class="hi">704.5 km/L</span>
+Gear ratio:   G=13.00 (RPM=3421)    → <span class="hi">659.3 km/L</span>
+Mass:         m=80 kg                → <span class="hi">734.7 km/L</span>
+Drag coeff:   Cd=0.10                → <span class="hi">933.2 km/L</span>
 
-<pre class="log">
-<span class="sec">Running Sweep 1: Burn-Coast Speed Band...</span>
-  v_low = 5.5 complete
-  v_low = 5.8 complete
-  v_low = 6.1 complete
-  v_low = 6.4 complete
-  v_low = 6.7 complete
-  v_low = 7.0 complete
-  v_low = 7.3 complete
-Sweep 1 optimum: v_low=<span class="val">5.5</span>, v_high=<span class="val">7.0</span> → <span class="hi">704.5 km/L</span>
-
-<span class="sec">Running Sweep 2: Gear Ratio...</span>
-  G=7.00  → RPM=1842,  <span class="val">653.5 km/L</span>,  6.693 g
-  G=7.25  → RPM=1908,  <span class="val">657.6 km/L</span>,  6.611 g
-  G=7.50  → RPM=1974,  <span class="val">655.9 km/L</span>,  6.646 g
-  G=7.75  → RPM=2040,  <span class="val">655.6 km/L</span>,  6.666 g
-  G=8.00  → RPM=2105,  <span class="val">656.6 km/L</span>,  6.673 g
-  G=8.25  → RPM=2171,  <span class="val">650.5 km/L</span>,  6.686 g
-  G=8.50  → RPM=2237,  <span class="val">651.1 km/L</span>,  6.695 g
-  G=8.75  → RPM=2303,  <span class="val">652.8 km/L</span>,  6.690 g
-  G=9.00  → RPM=2369,  <span class="val">655.9 km/L</span>,  6.674 g
-  G=9.25  → RPM=2434,  <span class="val">649.1 km/L</span>,  6.763 g
-  G=9.50  → RPM=2500,  <span class="val">649.1 km/L</span>,  6.703 g
-  G=9.75  → RPM=2566,  <span class="val">650.2 km/L</span>,  6.703 g
-  G=10.00 → RPM=2632,  <span class="val">651.0 km/L</span>,  6.704 g
-  G=10.25 → RPM=2697,  <span class="val">653.4 km/L</span>,  6.702 g
-  G=10.50 → RPM=2763,  <span class="val">655.5 km/L</span>,  6.697 g
-  G=10.75 → RPM=2829,  <span class="val">646.4 km/L</span>,  6.804 g
-  G=11.00 → RPM=2895,  <span class="val">646.5 km/L</span>,  6.734 g
-  G=11.25 → RPM=2961,  <span class="val">655.1 km/L</span>,  6.652 g
-  G=11.50 → RPM=3026,  <span class="val">656.6 km/L</span>,  6.650 g
-  G=11.75 → RPM=3092,  <span class="val">648.5 km/L</span>,  6.747 g
-  G=12.00 → RPM=3158,  <span class="val">651.9 km/L</span>,  6.726 g
-  G=12.25 → RPM=3224,  <span class="val">655.9 km/L</span>,  6.700 g
-  G=12.50 → RPM=3290,  <span class="val">638.3 km/L</span>,  6.899 g
-  G=12.75 → RPM=3355,  <span class="val">643.8 km/L</span>,  6.857 g
-  G=13.00 → RPM=3421,  <span class="val">659.3 km/L</span>,  6.600 g
-  G=13.25 → RPM=3487,  <span class="val">652.1 km/L</span>,  6.682 g
-  G=13.50 → RPM=3553,  <span class="val">655.5 km/L</span>,  6.657 g
-  G=13.75 → RPM=3619,  <span class="val">649.6 km/L</span>,  6.734 g
-  G=14.00 → RPM=3684,  <span class="val">654.5 km/L</span>,  6.696 g
-
-<span class="sec">Running Sweep 3: Mass...</span>
-  m=80  kg → <span class="hi">734.7 km/L</span>,  5.963 g
-  m=90  kg → <span class="val">683.6 km/L</span>,  6.430 g
-  m=100 kg → <span class="val">651.0 km/L</span>,  6.704 g
-  m=110 kg → <span class="val">616.7 km/L</span>,  7.113 g
-  m=120 kg → <span class="val">590.2 km/L</span>,  7.382 g
-  m=130 kg → <span class="val">558.9 km/L</span>,  7.816 g
-  m=140 kg → <span class="val">531.0 km/L</span>,  8.188 g
-  m=150 kg → <span class="val">516.5 km/L</span>,  8.450 g
-  m=160 kg → <span class="val">482.7 km/L</span>,  9.065 g
-  m=170 kg → <span class="val">468.3 km/L</span>,  9.305 g
-  m=180 kg → <span class="val">447.9 km/L</span>,  9.752 g
-  m=190 kg → <span class="val">431.0 km/L</span>, 10.092 g
-  m=200 kg → <span class="val">419.1 km/L</span>, 10.403 g
-
-<span class="sec">Running Sweep 4: Drag Coefficient...</span>
-  Cd=0.10 → <span class="hi">933.2 km/L</span>,  4.689 g
-  Cd=0.15 → <span class="val">837.5 km/L</span>,  5.219 g
-  Cd=0.20 → <span class="val">773.9 km/L</span>,  5.644 g
-  Cd=0.25 → <span class="val">695.3 km/L</span>,  6.281 g
-  Cd=0.30 → <span class="val">650.8 km/L</span>,  6.704 g
-  Cd=0.35 → <span class="val">605.4 km/L</span>,  7.216 g
-  Cd=0.40 → <span class="val">569.3 km/L</span>,  7.656 g
-  Cd=0.45 → <span class="val">537.2 km/L</span>,  8.116 g
-  Cd=0.50 → <span class="val">500.3 km/L</span>,  8.715 g
-
-<span class="sec">============ Sweep Summary (V8b) ============</span>
-Metric: km/L (Shell scoring) — higher is better
----------------------------------------------
-Sweep 1 — Speed band:   v_low=5.5, v_high=7.0 → <span class="hi">704.5 km/L</span>
-Sweep 2 — Gear ratio:   G=13.00 (RPM=3421)    → <span class="hi">659.3 km/L</span>
-Sweep 3 — Mass:         m=80 kg                → <span class="hi">734.7 km/L</span>
-Sweep 4 — Drag coeff:   Cd=0.10                → <span class="hi">933.2 km/L</span>
-=============================================
-
-<span class="sec">--- Parameter Sensitivity (best vs worst in sweep range) ---</span>
-Speed band:   <span class="hi">26.0%</span> improvement potential
-Gear ratio:    <span class="val">3.3%</span> improvement potential
-Mass:         <span class="hi">75.3%</span> improvement potential
-Drag coeff:   <span class="hi">86.5%</span> improvement potential
-------------------------------------------------------------
-Ranking: higher % = higher design priority
+<span class="sec">--- Sensitivity Ranking ---</span>
+Speed band:   <span class="hi">26.0%</span>
+Gear ratio:   <span class="val">3.3%</span>
+Mass:         <span class="hi">75.3%</span>
+Drag coeff:   <span class="hi">86.5%</span>
 </pre>
 
 <hr>
 
 <h2>MATLAB &amp; Simulink Scripts</h2>
-
 <div class="box">
-  <p>
-    The V8 workflow consists of three modular scripts and an updated
-    parameter file. Each script is independently runnable after loading
-    the parameter file and completing a simulation run.
-  </p>
   <ul>
-    <li><strong>shell_eco_paramsV8.m</strong> — All tunable parameters,
-    corrected geometry, strategy thresholds, and sweep result summary</li>
-    <li><strong>analyzeV8_shell_eco.m</strong> — Post-processing script:
-    performance metrics, force balance diagnostic, coast shape fit,
-    F_Engine leakage check, and eight signal plots</li>
-    <li><strong>SweepV8b.m</strong> — Four-parameter sweep with km/L
-    scoring, middle-window averaging, sensitivity ranking, and
-    auto-generated plots</li>
-    <li><strong>engine_mapV4.mat</strong> — Dyno-calibrated torque
-    lookup table (2708–8708 RPM, 25 breakpoints)</li>
+    <li><strong>shell_eco_paramsV8.m</strong> — All tunable parameters, corrected geometry, strategy thresholds</li>
+    <li><strong>analyzeV8_shell_eco.m</strong> — Performance metrics, force balance, coast shape fit, F_Engine leakage check</li>
+    <li><strong>SweepV8b.m</strong> — Four-parameter sweep with km/L scoring and sensitivity ranking</li>
+    <li><strong>engine_mapV4.mat</strong> — Dyno-calibrated torque lookup (2708–8708 RPM, 25 breakpoints)</li>
   </ul>
-  <p style="text-align:center;">
-    <a href="https://github.com/canfieldmason/shell-eco-simulink"
-       target="_blank"
-       class="download-btn">
-      View Source Code on GitHub — MATLAB Files
+  <p style="text-align:center; margin-top:14px;">
+    <a href="https://github.com/canfieldmason/shell-eco-simulink" target="_blank" class="btn btn-primary">
+      View Source Code on GitHub
     </a>
   </p>
 </div>
@@ -880,71 +359,32 @@ Ranking: higher % = higher design priority
 <hr>
 
 <h2>Future Work (V9)</h2>
-
 <ul>
-  <li>BSFC map from dyno runs to replace fixed engine efficiency</li>
+  <li>BSFC map from dyno runs to replace fixed 20% engine efficiency</li>
   <li>Extended engine map below 2708 RPM</li>
   <li>Confirmed vehicle mass and gear ratio from assembled drivetrain</li>
   <li>Track elevation profile integration</li>
-  <li>Burn-coast vs PID cruise control head-to-head comparison</li>
   <li>Lap-distance simulation replacing fixed simulation time</li>
 </ul>
 
 <script>
-
 const galleryImages = [
-  {
-    src: "images/v8/velocity_v8.png",
-    caption: "Vehicle velocity — burn-coast cycles with exponential coast decay"
-  },
-  {
-    src: "images/v8/throttle_v8.png",
-    caption: "Throttle command — clean square wave with correct upper cutoff"
-  },
-  {
-    src: "images/v8/rpm_v8.png",
-    caption: "Engine RPM — operating within dyno map range"
-  },
-  {
-    src: "images/v8/pshaft_v8.png",
-    caption: "Engine shaft power — peaks during burn, zero during coast"
-  },
-  {
-    src: "images/v8/fengine_v8.png",
-    caption: "Engine force — jagged during burn reflects torque map variation with RPM"
-  },
-  {
-    src: "images/v8/coast_shape.png",
-    caption: "Coast shape diagnostic — exponential fit confirms correct physics"
-  },
-  {
-    src: "images/v8/energy_distance_v8.png",
-    caption: "Mechanical energy vs distance"
-  },
-  {
-    src: "images/v8/fuel_distance_v8.png",
-    caption: "Fuel consumed vs distance — steps during burn, flat during coast"
-  }
+  { src:"images/v8/velocity_v8.png",        caption:"Vehicle velocity — burn-coast cycles with exponential coast decay" },
+  { src:"images/v8/throttle_v8.png",        caption:"Throttle command — clean square wave with correct upper cutoff" },
+  { src:"images/v8/rpm_v8.png",             caption:"Engine RPM — operating within dyno map range" },
+  { src:"images/v8/pshaft_v8.png",          caption:"Engine shaft power — peaks during burn, zero during coast" },
+  { src:"images/v8/fengine_v8.png",         caption:"Engine force — jagged during burn reflects torque map variation with RPM" },
+  { src:"images/v8/coast_shape.png",        caption:"Coast shape diagnostic — exponential fit confirms correct physics" },
+  { src:"images/v8/energy_distance_v8.png", caption:"Mechanical energy vs distance" },
+  { src:"images/v8/fuel_distance_v8.png",   caption:"Fuel consumed vs distance — steps during burn, flat during coast" }
 ];
-
 const gallery = document.getElementById("gallery");
-
 galleryImages.forEach(item => {
-  let div = document.createElement("div");
-  div.className = "gallery-item";
-
-  let img = document.createElement("img");
-  img.src = item.src;
-  img.alt = item.caption;
-
-  let cap = document.createElement("em");
-  cap.textContent = item.caption;
-
-  div.appendChild(img);
-  div.appendChild(cap);
-  gallery.appendChild(div);
+  const div = document.createElement("div"); div.className = "gallery-item";
+  const img = document.createElement("img"); img.src = item.src; img.alt = item.caption;
+  const cap = document.createElement("em"); cap.textContent = item.caption;
+  div.appendChild(img); div.appendChild(cap); gallery.appendChild(div);
 });
-
 </script>
 
 </body>
