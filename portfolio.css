@@ -3,7 +3,7 @@
    Dynamic light theme — clean but alive
    ===================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;600&display=swap');
 
 /* ── CSS Variables ────────────────────────────────── */
 :root {
@@ -39,7 +39,7 @@
   --shadow-md:   0 4px 16px rgba(15,17,23,0.10), 0 2px 4px rgba(15,17,23,0.06);
   --shadow-hover:0 8px 28px rgba(24,66,196,0.14), 0 2px 8px rgba(15,17,23,0.08);
 
-  --font-display: 'Syne', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
 
