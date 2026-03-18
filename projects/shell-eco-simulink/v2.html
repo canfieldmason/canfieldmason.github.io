@@ -2,125 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<title>Shell Eco-Marathon Simulation – Version 2</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shell Eco-Marathon Simulation – V2</title>
+<link rel="stylesheet" href="/portfolio.css">
 <style>
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 950px;
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #222;
-  line-height: 1.6;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-h2 {
-  margin-top: 45px;
-  color: #111;
-}
-
-h3 {
-  margin-top: 30px;
-}
+body { padding: 28px 32px 60px; max-width: 920px; }
+h2 { margin-top: 40px; }
 
 .section-intro {
   text-align: center;
   font-style: italic;
-  color: #555;
-  margin-bottom: 25px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
 }
-
-hr {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 45px 0;
-}
-
-/* Info Boxes */
-
-.box {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 18px;
-  background: #fafafa;
-  margin: 25px 0;
-}
-
-/* Gallery */
 
 #gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
 }
 
-.gallery-item {
-  text-align: center;
-}
+.gallery-item { text-align: center; }
 
 .gallery-item img {
   width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 0 0 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
 }
 
 .gallery-item em {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.9em;
-  color: #555;
+  text-align: left;
+  font-size: 0.82rem;
 }
-
-/* Buttons */
-
-.download-btn {
-  display: inline-block;
-  background: #0066cc;
-  color: white;
-  padding: 10px 18px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.download-btn:hover {
-  background: #004c99;
-}
-
 </style>
 </head>
-
 <body>
 
-<h1>Shell Eco-Marathon Vehicle Simulation – V2</h1>
-
-<p class="section-intro">
-Expanded powertrain modeling, automated analysis, and design-space exploration
-using MATLAB and Simulink.
-</p>
+<h1 style="text-align:center; margin-bottom:6px;">Shell Eco-Marathon Vehicle Simulation — V2</h1>
+<p class="section-intro">Expanded powertrain modeling, automated analysis, and design-space exploration using MATLAB and Simulink.</p>
 
 <hr>
 
 <h2>Overview</h2>
-
 <p>
-Version 2 expands the original 1D vehicle dynamics model by introducing
-structured parameter management, enhanced powertrain modeling,
-automated post-processing, and multi-parameter design sweeps.
-</p>
-
-<p>
-The V2 framework supports rapid evaluation of efficiency tradeoffs
-and identifies optimal operating regions for ultra-low energy vehicles.
+  Version 2 expands the original 1D vehicle dynamics model by introducing structured parameter
+  management, enhanced powertrain modeling, automated post-processing, and multi-parameter
+  design sweeps. The V2 framework supports rapid evaluation of efficiency tradeoffs and
+  identifies optimal operating regions for ultra-low energy vehicles.
 </p>
 
 <hr>
@@ -128,103 +64,82 @@ and identifies optimal operating regions for ultra-low energy vehicles.
 <h2>Key Enhancements</h2>
 
 <div class="box">
+  <h3>Powertrain &amp; Driver Strategy</h3>
+  <ul>
+    <li>Velocity feedback added to DriverStrat block</li>
+    <li>Dynamic calculation of engine RPM, torque, and power</li>
+    <li>Drivetrain efficiency integrated into output force</li>
+    <li>Throttle input added (IN1, 0–1 range)</li>
+    <li>Parameters organized in <code>shell_eco_paramsV2.m</code></li>
+  </ul>
 
-<h3>Powertrain & Driver Strategy</h3>
-<ul>
-  <li>Velocity feedback added to DriverStrat block</li>
-  <li>Dynamic calculation of engine RPM, torque, and power</li>
-  <li>Drivetrain efficiency integrated into output force</li>
-  <li>Throttle input added (IN1, 0–1 range)</li>
-  <li>Parameters organized in <code>shell_eco_paramsV2.m</code></li>
-</ul>
+  <h3>Energy Modeling</h3>
+  <ul>
+    <li>Instantaneous mechanical power calculation</li>
+    <li>Cumulative energy integration</li>
+    <li>Fuel usage estimated using LHV</li>
+    <li>Coupled velocity, position, and force signals</li>
+  </ul>
 
-<h3>Energy Modeling</h3>
-<ul>
-  <li>Instantaneous mechanical power calculation</li>
-  <li>Cumulative energy integration</li>
-  <li>Fuel usage estimated using LHV</li>
-  <li>Coupled velocity, position, and force signals</li>
-</ul>
+  <h3>Analysis &amp; Logging</h3>
+  <ul>
+    <li>Signal logging enabled for key state variables</li>
+    <li>Automated plotting via <code>analyze_shell_eco.m</code></li>
+    <li>Numerical performance metrics generation</li>
+  </ul>
 
-<h3>Analysis & Logging</h3>
-<ul>
-  <li>Signal logging enabled for key state variables</li>
-  <li>Automated plotting via <code>analyze_shell_eco.m</code></li>
-  <li>Numerical performance metrics generation</li>
-</ul>
-
-<h3>Parameter Sweeps & Optimization</h3>
-<ul>
-  <li>Automated 1D sweeps (Cd, mass)</li>
-  <li>2D design-space exploration</li>
-  <li>Heatmap visualization</li>
-  <li>Constrained optimal design identification</li>
-</ul>
-
+  <h3>Parameter Sweeps &amp; Optimization</h3>
+  <ul>
+    <li>Automated 1D sweeps (Cd, mass)</li>
+    <li>2D design-space exploration</li>
+    <li>Heatmap visualization</li>
+    <li>Constrained optimal design identification</li>
+  </ul>
 </div>
 
 <hr>
 
-<h2>MATLAB & Simulink Scripts</h2>
+<h2>MATLAB &amp; Simulink Scripts</h2>
 
 <div class="box">
-
-<p>
-The V2 workflow is supported by modular MATLAB scripts that automate
-parameter configuration, simulation execution, and results analysis.
-</p>
-
-<ul>
-  <li><strong>shell_eco_paramsV2.m</strong> — Parameter organization</li>
-  <li><strong>analyze_shell_eco.m</strong> — Automated plotting</li>
-  <li><strong>SuperSweep.m</strong> — Multi-parameter sweep control</li>
-  <li><strong>SweepHeat.m</strong> — Heatmap generation</li>
-</ul>
-
-<p style="text-align:center;">
-  <a href="https://github.com/canfieldmason/shell-eco-simulink"
-   target="_blank"
-   class="download-btn">
-   View Source Code on Github - MATLAB Files
-</a>
-
-</p>
-
+  <p>The V2 workflow is supported by modular MATLAB scripts that automate parameter configuration, simulation execution, and results analysis.</p>
+  <ul>
+    <li><strong>shell_eco_paramsV2.m</strong> — Parameter organization</li>
+    <li><strong>analyze_shell_eco.m</strong> — Automated plotting</li>
+    <li><strong>SuperSweep.m</strong> — Multi-parameter sweep control</li>
+    <li><strong>SweepHeat.m</strong> — Heatmap generation</li>
+  </ul>
+  <p style="text-align:center; margin-top: 14px;">
+    <a href="https://github.com/canfieldmason/shell-eco-simulink" target="_blank" class="btn btn-primary">
+      View Source Code on GitHub
+    </a>
+  </p>
 </div>
 
 <hr>
 
 <h2>Simulation Gallery</h2>
-
-<p>
-Representative screenshots of system architecture, analysis outputs,
-and optimization results are shown below.
-</p>
-
+<p>Representative screenshots of system architecture, analysis outputs, and optimization results.</p>
 <div id="gallery"></div>
 
 <hr>
 
 <h2>Limitations</h2>
-
 <div class="box">
-
-<ul>
-  <li>Many physical parameters are placeholders pending validation</li>
-  <li>Throttle input remains constant (no closed-loop control)</li>
-  <li>Simplified engine and drivetrain modeling</li>
-  <li>One-dimensional vehicle dynamics only</li>
-  <li>Fixed-duration simulation runs</li>
-  <li>Coarse parameter sweep resolution</li>
-  <li>No experimental data integration</li>
-</ul>
-
+  <ul>
+    <li>Many physical parameters are placeholders pending validation</li>
+    <li>Throttle input remains constant (no closed-loop control)</li>
+    <li>Simplified engine and drivetrain modeling</li>
+    <li>One-dimensional vehicle dynamics only</li>
+    <li>Fixed-duration simulation runs</li>
+    <li>Coarse parameter sweep resolution</li>
+    <li>No experimental data integration</li>
+  </ul>
 </div>
 
 <hr>
 
 <h2>Future Work (V3)</h2>
-
 <ul>
   <li>Closed-loop driver control and throttle scheduling</li>
   <li>Transient engine and gearbox modeling</li>
@@ -236,111 +151,38 @@ and optimization results are shown below.
 <hr>
 
 <h2>Conclusion</h2>
-
-<p>
-Version 2 demonstrates the evolution of the original vehicle dynamics
-model into a flexible design and optimization platform.
-The added automation and visualization tools support
-data-driven engineering decision-making.
-</p>
-
-<!-- Gallery Script -->
+<p>Version 2 demonstrates the evolution of the original vehicle dynamics model into a flexible design and optimization platform. The added automation and visualization tools support data-driven engineering decision-making.</p>
 
 <script>
-
 const galleryImages = [
-
-  /* System Architecture */
-
-  {
-    src: "images/v2/system_overview.png",
-    caption: "Top-level V2 Simulink system architecture"
-  },
-
-  {
-    src: "images/v2/powertrain_block.png",
-    caption: "Enhanced powertrain and DriverStrat subsystem"
-  },
-
-    /* Analysis Script Outputs */
-
-  {
-    src: "images/v2/analyze_summary.png",
-    caption: "Automated performance summary from analyze_shell_eco.m"
-  },
-
-  {
-    src: "images/v2/engine_speed.png",
-    caption: "Engine speed response during simulation"
-  },
-
-  {
-    src: "images/v2/vehicle_speed_time.png",
-    caption: "Vehicle velocity vs time"
-  },
-
-  {
-    src: "images/v2/energy_distance.png",
-    caption: "Cumulative energy consumption vs distance"
-  },
-
-
-  /* SuperSweep Results */
-
-  {
-    src: "images/v2/sweep_fuel_mass.png",
-    caption: "SuperSweep: Fuel consumption vs mass"
-  },
-
-  {
-    src: "images/v2/sweep_distance_drag.png",
-    caption: "SuperSweep: Distance vs drag coefficient"
-  },
-
-  {
-    src: "images/v2/sweep_fuel_drag.png",
-    caption: "SuperSweep: Fuel consumption vs drag coefficient"
-  },
-
-
-  /* SweepHeat Visualizations */
-
-  {
-    src: "images/v2/heat_fuel_per_distance.png",
-    caption: "Fuel per distance heatmap (Cd vs mass)"
-  },
-
-  {
-    src: "images/v2/heat_distance.png",
-    caption: "Distance heatmap (Cd vs mass)"
-  },
-
-  {
-    src: "images/v2/heat_summary.png",
-    caption: "SweepHeat optimization summary"
-  }
-
+  { src: "images/v2/system_overview.png",      caption: "Top-level V2 Simulink system architecture" },
+  { src: "images/v2/powertrain_block.png",     caption: "Enhanced powertrain and DriverStrat subsystem" },
+  { src: "images/v2/analyze_summary.png",      caption: "Automated performance summary from analyze_shell_eco.m" },
+  { src: "images/v2/engine_speed.png",         caption: "Engine speed response during simulation" },
+  { src: "images/v2/vehicle_speed_time.png",   caption: "Vehicle velocity vs time" },
+  { src: "images/v2/energy_distance.png",      caption: "Cumulative energy consumption vs distance" },
+  { src: "images/v2/sweep_fuel_mass.png",      caption: "SuperSweep: Fuel consumption vs mass" },
+  { src: "images/v2/sweep_distance_drag.png",  caption: "SuperSweep: Distance vs drag coefficient" },
+  { src: "images/v2/sweep_fuel_drag.png",      caption: "SuperSweep: Fuel consumption vs drag coefficient" },
+  { src: "images/v2/heat_fuel_per_distance.png", caption: "Fuel per distance heatmap (Cd vs mass)" },
+  { src: "images/v2/heat_distance.png",        caption: "Distance heatmap (Cd vs mass)" },
+  { src: "images/v2/heat_summary.png",         caption: "SweepHeat optimization summary" }
 ];
 
 const gallery = document.getElementById("gallery");
-
 galleryImages.forEach(item => {
-
   const div = document.createElement("div");
   div.className = "gallery-item";
-
   const img = document.createElement("img");
   img.src = item.src;
   img.alt = item.caption;
-
   const cap = document.createElement("em");
   cap.textContent = item.caption;
-
   div.appendChild(img);
   div.appendChild(cap);
-
   gallery.appendChild(div);
-
 });
-
 </script>
+
+</body>
+</html>
