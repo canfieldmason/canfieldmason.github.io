@@ -205,16 +205,96 @@
   <h2>Hardware Architecture</h2>
 
   <div class="info-box">
-    <strong>Core Platform</strong>
-    ESP32 microcontroller — dual-core, built-in WiFi/Bluetooth, deep sleep current draw
-    suitable for battery-constrained operation with solar top-up
+    <strong>Core Platform — ESP32-S3 SuperMini</strong>
+    22×18 mm footprint — dual-core, BLE 5.0, built-in WiFi, deep sleep mode for battery-constrained
+    operation. Small enough to fit in the tag body alongside sensors and battery. Two tags + one spare
+    planned from a single order.
   </div>
 
-  <h3>Sensors</h3>
+  <h3>Ear Tag Components</h3>
 
   <table class="parts-table">
     <thead>
       <tr>
+        <th>#</th>
+        <th>Component</th>
+        <th>Function</th>
+        <th>Qty</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>ESP32-S3 SuperMini</td>
+        <td>Tag MCU + BLE 5.0 radio</td>
+        <td>3</td>
+        <td>22×18 mm. Get 3: 2 tags + 1 spare. Waveshare version has best documentation.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>DS18B20 waterproof probe</td>
+        <td>Ear temperature sensing</td>
+        <td>3</td>
+        <td>Placed against inner ear for consistent contact. 5-pack on AliExpress best value. Requires 4.7kΩ pullup resistor per data line.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>MPU-6050 GY-521 breakout</td>
+        <td>Activity + posture accelerometer</td>
+        <td>3</td>
+        <td>Detects movement drop and head position changes. AliExpress 5-pack ~$4 — Adafruit version is nicer but overkill here.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>LiPo 3.7V 400mAh</td>
+        <td>Tag battery</td>
+        <td>3</td>
+        <td>JST-PH 2mm connector. 400mAh = ~5 days autonomy. Verify connector matches ESP32-S3 JST pin before ordering.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>TP4056 USB-C w/ protection</td>
+        <td>LiPo charging circuit</td>
+        <td>5</td>
+        <td>Must get version WITH protection circuit (2 ICs on board, not 1). Protects LiPo from overcharge/overdischarge.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Magnetic USB-C connector</td>
+        <td>Field recharging</td>
+        <td>3</td>
+        <td>Allows charging without precise alignment on a moving animal.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>30×25mm solar cell 5V</td>
+        <td>Trickle charge — outdoor pens</td>
+        <td>2</td>
+        <td>~60mA output. Wired to TP4056 IN+. Mounted on angled bracket in SolidWorks design.</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>PETG filament</td>
+        <td>Weatherproof tag enclosure</td>
+        <td>1 spool</td>
+        <td>Chemical resistant, slightly flexible. 1kg spool covers many tag iterations. Bambu printers available.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Base Station / Gateway</h3>
+  <p>
+    The gateway sits in the barn or pen and collects BLE data from all tags within range,
+    logs to local SQLite, and handles alert logic and any wireless upload. A second
+    ESP32-S3 SuperMini runs as BLE central scanning for tags — same board as the tags,
+    which simplifies the codebase significantly.
+  </p>
+
+  <table class="parts-table">
+    <thead>
+      <tr>
+        <th>#</th>
         <th>Component</th>
         <th>Function</th>
         <th>Notes</th>
@@ -222,32 +302,43 @@
     </thead>
     <tbody>
       <tr>
-        <td>Temperature sensor (TBD)</td>
-        <td>Skin surface temperature — proxy for core temp deviation</td>
-        <td>Placement against inner ear for consistent contact</td>
+        <td>9</td>
+        <td>Raspberry Pi Zero 2W</td>
+        <td>Gateway brain, SQLite, alerts</td>
+        <td>Official $15 MSRP. Adafruit and PiShop are reliable sources when in stock.</td>
       </tr>
       <tr>
-        <td>IMU / Accelerometer (TBD)</td>
-        <td>Movement activity — step count, head position, rest periods</td>
-        <td>Baseline per-animal; deviation flags lethargy</td>
+        <td>10</td>
+        <td>ESP32-S3 SuperMini (gateway)</td>
+        <td>BLE central — scans for tags, WiFi upload</td>
+        <td>Same board as tag MCU. Covered by order #1.</td>
       </tr>
       <tr>
-        <td>Small solar panel</td>
-        <td>Trickle charge to LiPo battery</td>
-        <td>Angled bracket positions panel toward sun during normal head posture</td>
+        <td>11</td>
+        <td>0.96in OLED SSD1306 I2C</td>
+        <td>Live readout display</td>
+        <td>SSD1306 has excellent library support. 5-pack useful for gateway + future experiments.</td>
       </tr>
       <tr>
-        <td>LiPo battery (TBD)</td>
-        <td>Primary power storage</td>
-        <td>Sized for multi-day autonomy without sun</td>
+        <td>12</td>
+        <td>MicroSD SPI breakout</td>
+        <td>CSV data logging</td>
+        <td>Standard SPI module. Adafruit version sturdier but $3.95 vs $0.50 for same function.</td>
       </tr>
       <tr>
-        <td>ESP32 (main MCU)</td>
-        <td>Sensor polling, threshold logic, wireless data transmission</td>
-        <td>Deep sleep between polling intervals to conserve power</td>
+        <td>13</td>
+        <td>IP65 project box ~120×80mm</td>
+        <td>Gateway weatherproof housing</td>
+        <td>Clear lid lets you see OLED without opening. Drill for antenna, USB, power.</td>
       </tr>
     </tbody>
   </table>
+
+  <div class="box-green">
+    <strong>Estimated build cost</strong> — AliExpress-heavy (slow ship): ~$47 &nbsp;·&nbsp;
+    Amazon Prime-heavy (fast ship): ~$91 &nbsp;·&nbsp; Mixed strategy: ~$68 &nbsp;+&nbsp; ~$15 for Pi Zero 2W regardless of strategy.
+    Prices current March 2026.
+  </div>
 
   <hr>
 
@@ -339,12 +430,13 @@
   <h2>Next Steps</h2>
 
   <ul>
-    <li>Finalize SolidWorks enclosure geometry and run bracket FEA</li>
-    <li>Lock in temperature sensor and IMU part selection</li>
-    <li>3D print prototype enclosure and fit-check all components</li>
-    <li>Write and test ESP32 firmware for sensor polling and sleep cycling</li>
-    <li>Characterize solar panel output under typical outdoor conditions</li>
-    <li>Size battery for target autonomy window</li>
+    <li>Finalize SolidWorks enclosure geometry and run solar bracket FEA</li>
+    <li>Place parts orders — ESP32-S3 SuperMini (Amazon), DS18B20 5-pack and MPU-6050 5-pack (AliExpress), LiPo batteries and TP4056 boards (AliExpress)</li>
+    <li>Source Pi Zero 2W from Adafruit or PiShop for gateway</li>
+    <li>3D print prototype enclosure in PETG and fit-check all components</li>
+    <li>Write and test ESP32 firmware for sensor polling and deep sleep cycling</li>
+    <li>Characterize 30×25mm solar cell output under typical outdoor conditions vs 400mAh battery draw</li>
+    <li>Develop BLE communication protocol between tag and gateway ESP32</li>
   </ul>
 
   <p style="color: var(--ink-muted); font-style: italic; font-size: 0.9rem; margin-top: 24px;">
