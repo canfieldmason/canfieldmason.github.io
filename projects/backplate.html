@@ -45,6 +45,9 @@
     representative operational loading conditions.
   </p>
 
+  <img src="../images/engine-context.png" alt="Engine mounting backplate in context">
+  <em>Engine mounting backplate — component context and installation configuration.</em>
+
   <div class="info-box">
     <strong>Tools &amp; Methods</strong>
     CAD: Fusion 360 &nbsp;·&nbsp; Analysis: ANSYS Mechanical &nbsp;·&nbsp;
@@ -74,8 +77,8 @@
     mesh complexity without meaningfully affecting results.
   </p>
 
-  <div class="placeholder">CAD Geometry — Simplified Backplate (image pending)</div>
-  <span class="img-caption">Simplified backplate geometry prepared for FE import.</span>
+  <img src="../images/backplate-geometry.png" alt="Simplified backplate geometry">
+  <em>Simplified backplate geometry prepared for FE import — non-structural features removed.</em>
 
   <h2>Meshing Strategy</h2>
 
@@ -86,8 +89,8 @@
     strategy was appropriate before proceeding to boundary condition setup.
   </p>
 
-  <div class="placeholder">Mesh Detail — Refined at Stress Concentrations (image pending)</div>
-  <span class="img-caption">Localized mesh refinement at mounting holes and load interfaces.</span>
+  <img src="../images/backplate-mesh-bearings.png" alt="Mesh with localized refinement at stress concentrations">
+  <em>Localized mesh refinement at mounting holes, bearing surfaces, and load interfaces.</em>
 
   <h2>Boundary Conditions &amp; Load Cases</h2>
 
@@ -103,18 +106,41 @@
     <li><strong>Combined loading</strong> — superposition of operational scenario</li>
   </ul>
 
+  <img src="../images/backplate-loads-boundary-conditions.png" alt="Applied loads and boundary conditions">
+  <em>Boundary conditions and applied load cases — fixed constraints at bolt locations, bearing and thrust loads at crankshaft interface.</em>
+
   <p>
     All assumptions and simplifications were documented to ensure the model's limitations
     are clearly understood alongside its predictions.
   </p>
 
+  <h2>Solver Limitation</h2>
+
+  <p>
+    With pre-processing complete, the model was submitted for solution. The analysis was
+    blocked by an ANSYS license restriction on the current academic installation — the
+    node count from the refined mesh exceeded the solver tier available.
+  </p>
+
+  <img src="../images/ansys-solver-message.png" alt="ANSYS solver license message">
+  <em>ANSYS solver message indicating license-based node limit reached.</em>
+
+  <img src="../images/ansys-solver-limitation.png" alt="ANSYS solver limitation detail">
+  <em>Solver limitation detail — node count exceeds academic license tier.</em>
+
   <h2>Next Steps</h2>
 
   <p>
-    With pre-processing complete, the immediate next step is running the solution and reviewing
-    displacement and Von Mises stress results across all load cases. Post-processing will include
-    identifying peak stress locations, assessing safety factors, and documenting findings
-    in a structured analysis report.
+    The immediate next step is resolving license access to run the full solution. Once available,
+    post-processing will cover displacement and Von Mises stress results across all load cases,
+    identification of peak stress locations, safety factor assessment, and a structured analysis
+    report documenting findings.
+  </p>
+
+  <p>
+    An alternative path is coarsening the mesh globally while preserving localized refinement
+    at critical features, bringing node count within the available license tier without
+    significantly compromising result accuracy at the regions of interest.
   </p>
 
   <div class="footer-nav">
