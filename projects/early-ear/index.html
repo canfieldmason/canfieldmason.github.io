@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EarlyEar — Cattle Health Monitor | Mason Canfield</title>
+  <link rel="stylesheet" href="/portfolio.css">
+  <style>
+
+    /* Phase timeline */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 28px 0 48px;
+    }
+
+    .phase-card {
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-xs);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .phase-card.done::before    { background: var(--green); }
+    .phase-card.active::before  { background: var(--blue); }
+    .phase-card.pending::before { background: var(--border); }
+
+    .phase-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .phase-card.done   .phase-label { color: var(--green); }
+    .phase-card.active .phase-label { color: var(--blue); }
+    .phase-card.pending .phase-label { color: var(--ink-muted); }
+
+    .phase-card h3 {
+      font-size: 0.92rem;
+      margin: 0 0 6px;
+    }
+
+    .phase-card p {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Parts list table */
+    .parts-table th { background: var(--ink); }
+    .parts-table td { font-size: 0.88rem; }
+    .parts-table td:last-child { color: var(--ink-muted); font-style: italic; }
+
+    /* Two col layout for concept + notes */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 24px 0;
+      align-items: start;
+    }
+
+    .concept-grid img {
+      margin: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .concept-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <span class="site-nav-brand">Mason Canfield</span>
+    <div class="site-nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html" class="active">Projects</a>
+      <a href="/resume.pdf" target="_blank">Resume</a>
+      <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrapper-wide" style="padding-top: 44px;">
+
+  <a href="/projects/index.html" class="back-link">Back to Projects</a>
+
+  <div class="project-header">
+    <h1>EarlyEar</h1>
+    <p class="project-subtitle">Solar-powered cattle ear tag for early detection of Bovine Respiratory Disease</p>
+    <div class="tags" style="margin-top: 14px;">
+      <span class="tag">ESP32</span>
+      <span class="tag">SolidWorks</span>
+      <span class="tag">FEA</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">Embedded C++</span>
+      <span class="tag">IoT</span>
+      <span class="tag">Personal Project</span>
+    </div>
+  </div>
+
+  <p style="max-width: 720px; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.8; margin-bottom: 36px;">
+    Bovine Respiratory Disease (BRD) is the most economically significant disease in the cattle
+    industry. By the time visible symptoms appear, the animal is already well into infection —
+    treatment is less effective and losses are higher. EarlyEar is a compact, solar-powered ear
+    tag designed to detect the earliest physiological indicators of BRD: elevated temperature and
+    reduced movement. The goal is to flag sick animals before they look sick.
+  </p>
+
+  <div class="status-box">
+    <strong>Current Status</strong>
+    Early development — problem definition, hardware selection, and component sourcing complete.
+    SolidWorks enclosure design and solar bracket FEA in progress.
+  </div>
+
+  <hr>
+
+  <!-- Development Phases -->
+  <h2>Development Roadmap</h2>
+
+  <div class="phase-grid">
+
+    <div class="phase-card done">
+      <span class="phase-label">✓ Complete</span>
+      <h3>Problem Definition</h3>
+      <p>BRD detection window, physiological indicators, and monitoring requirements identified.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">✓ Complete</span>
+      <h3>Hardware Selection</h3>
+      <p>ESP32 platform, temperature sensor, IMU, and solar charging circuit selected. Parts list finalized.</p>
+    </div>
+
+    <div class="phase-card active">
+      <span class="phase-label">→ In Progress</span>
+      <h3>Enclosure Design</h3>
+      <p>Compact tag body and angled solar panel bracket modeled in SolidWorks. FEA on bracket hang-off underway.</p>
+    </div>
+
+    <div class="phase-card pending">
+      <span class="phase-label">Upcoming</span>
+      <h3>Prototype Fabrication</h3>
+      <p>3D print tag enclosure, assemble electronics, and validate fit and waterproofing.</p>
+    </div>
+
+    <div class="phase-card pending">
+      <span class="phase-label">Upcoming</span>
+      <h3>Firmware Development</h3>
+      <p>ESP32 firmware for sensor polling, threshold alerting, and low-power sleep cycles.</p>
+    </div>
+
+    <div class="phase-card pending">
+      <span class="phase-label">Upcoming</span>
+      <h3>Field Testing</h3>
+      <p>Validate temperature and movement baselines on healthy animals and test alert logic against known BRD cases.</p>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- Problem -->
+  <h2>The Problem — Why BRD Is Hard to Catch Early</h2>
+
+  <p>
+    BRD accounts for over 70% of feedlot cattle illness and a significant portion of mortality.
+    The challenge is that cattle mask illness instinctively — by the time a stockman visually
+    identifies a sick animal, the infection has typically been progressing for 24–72 hours.
+    Early treatment with the correct antibiotic is dramatically more effective than late
+    intervention, but identifying that window visually at scale is nearly impossible.
+  </p>
+
+  <p>
+    The two most reliable early physiological indicators are a rise in body temperature above
+    the normal range (~101–102.5°F) and a measurable drop in movement activity. An ear tag
+    that monitors both continuously and flags deviations from an individual animal's baseline
+    could push the detection window back by one to two days — enough to meaningfully change
+    outcomes.
+  </p>
+
+  <hr>
+
+  <!-- Hardware -->
+  <h2>Hardware Architecture</h2>
+
+  <div class="info-box">
+    <strong>Core Platform</strong>
+    ESP32 microcontroller — dual-core, built-in WiFi/Bluetooth, deep sleep current draw
+    suitable for battery-constrained operation with solar top-up
+  </div>
+
+  <h3>Sensors</h3>
+
+  <table class="parts-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Function</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Temperature sensor (TBD)</td>
+        <td>Skin surface temperature — proxy for core temp deviation</td>
+        <td>Placement against inner ear for consistent contact</td>
+      </tr>
+      <tr>
+        <td>IMU / Accelerometer (TBD)</td>
+        <td>Movement activity — step count, head position, rest periods</td>
+        <td>Baseline per-animal; deviation flags lethargy</td>
+      </tr>
+      <tr>
+        <td>Small solar panel</td>
+        <td>Trickle charge to LiPo battery</td>
+        <td>Angled bracket positions panel toward sun during normal head posture</td>
+      </tr>
+      <tr>
+        <td>LiPo battery (TBD)</td>
+        <td>Primary power storage</td>
+        <td>Sized for multi-day autonomy without sun</td>
+      </tr>
+      <tr>
+        <td>ESP32 (main MCU)</td>
+        <td>Sensor polling, threshold logic, wireless data transmission</td>
+        <td>Deep sleep between polling intervals to conserve power</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- Enclosure Design -->
+  <h2>Enclosure Design</h2>
+
+  <p>
+    The tag body needs to be compact enough to sit on the ear without causing irritation or
+    snagging, rugged enough to survive a feedlot environment, and sealed against moisture and
+    debris. The solar panel mounts on an angled bracket extending from the main body — the
+    angle is set so the panel faces skyward during normal grazing head position rather than
+    straight up, improving charge capture throughout the day.
+  </p>
+
+  <p>
+    The bracket hang-off is the most structurally demanding feature. It's a cantilevered shelf
+    loaded by the weight of the panel plus dynamic loading from head movement — the FEA will
+    evaluate stress at the bracket root and determine whether the printed geometry needs
+    reinforcement or a revised angle.
+  </p>
+
+  <div class="concept-grid">
+    <div>
+      <img src="images/earlyear-concept-sketch.png" alt="EarlyEar concept sketch">
+      <em>Early concept sketch — tag body with angled solar bracket.</em>
+    </div>
+    <div>
+      <img src="images/earlyear-solidworks-enclosure.png" alt="SolidWorks enclosure model">
+      <em>SolidWorks enclosure model — tag body and bracket geometry.</em>
+    </div>
+  </div>
+
+  <div class="placeholder" style="margin-top: 8px;">SolidWorks assembly — full tag with bracket and panel (in progress)</div>
+
+  <hr>
+
+  <!-- FEA -->
+  <h2>Solar Bracket Structural Analysis</h2>
+
+  <p>
+    The angled solar panel bracket is a cantilevered feature loaded by panel weight and the
+    inertial forces from head movement. The bracket root — where it transitions into the tag
+    body — is the primary stress concentration of interest. FEA in ANSYS Mechanical or
+    SolidWorks Simulation will evaluate Von Mises stress and displacement under representative
+    load cases to confirm the design can survive daily use without fatigue failure.
+  </p>
+
+  <h3>Planned Load Cases</h3>
+  <ul>
+    <li><strong>Static gravity</strong> — panel weight at full cantilever extension</li>
+    <li><strong>Dynamic head movement</strong> — inertial load from grazing and head shaking</li>
+    <li><strong>Combined</strong> — simultaneous gravity and lateral inertial load</li>
+  </ul>
+
+  <div class="placeholder">FEA result — bracket Von Mises stress (pending)</div>
+  <div class="placeholder">FEA result — bracket displacement (pending)</div>
+
+  <hr>
+
+  <!-- Firmware -->
+  <h2>Firmware Plan</h2>
+
+  <p>
+    The ESP32 will run a polling loop that wakes from deep sleep at a set interval, reads
+    temperature and IMU data, compares against a rolling per-animal baseline, and either
+    logs the reading or triggers an alert if thresholds are exceeded. Between readings
+    the device returns to deep sleep to minimize current draw and extend battery life
+    between solar recharge cycles.
+  </p>
+
+  <div class="box">
+    <h3>Alert Logic</h3>
+    <ul>
+      <li><strong>Temperature threshold</strong> — flag if skin temp deviates more than X°F above individual baseline over a rolling window</li>
+      <li><strong>Activity threshold</strong> — flag if movement drops below individual baseline by Y% over a defined period</li>
+      <li><strong>Combined alert</strong> — elevated temp + reduced movement together triggers high-priority notification</li>
+    </ul>
+  </div>
+
+  <div class="box-yellow">
+    <strong>Baseline approach:</strong> Rather than using a fixed species-wide threshold, EarlyEar
+    establishes a per-animal baseline over the first few days of wear. This accounts for natural
+    variation between animals and makes alerts more specific to actual deviation from normal.
+  </div>
+
+  <hr>
+
+  <!-- Next Steps -->
+  <h2>Next Steps</h2>
+
+  <ul>
+    <li>Finalize SolidWorks enclosure geometry and run bracket FEA</li>
+    <li>Lock in temperature sensor and IMU part selection</li>
+    <li>3D print prototype enclosure and fit-check all components</li>
+    <li>Write and test ESP32 firmware for sensor polling and sleep cycling</li>
+    <li>Characterize solar panel output under typical outdoor conditions</li>
+    <li>Size battery for target autonomy window</li>
+  </ul>
+
+  <p style="color: var(--ink-muted); font-style: italic; font-size: 0.9rem; margin-top: 24px;">
+    This page will be updated with CAD renders, FEA results, firmware, and field testing data as the project develops.
+  </p>
+
+  <div class="footer-nav">
+    <a href="/projects/index.html">← All Projects</a>
+    <a href="/index.html">Home</a>
+  </div>
+
+</div>
+</body>
+</html>
