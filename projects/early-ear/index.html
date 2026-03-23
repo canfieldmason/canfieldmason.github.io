@@ -121,15 +121,15 @@
 
   <p style="max-width: 720px; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.8; margin-bottom: 36px;">
     Bovine Respiratory Disease (BRD) is the most economically significant disease in the cattle
-    industry. By the time visible symptoms appear, the animal is already well into infection —
+    industry. By the time visible symptoms appear, the animal is already well into infection
     treatment is less effective and losses are higher. EarlyEar is a compact, solar-powered ear
     tag designed to detect the earliest physiological indicators of BRD: elevated temperature and
-    reduced movement. The goal is to flag sick animals before they look sick.
+    reduced movement. The goal is to flag sick animals before symptoms are visible.
   </p>
 
   <div class="status-box">
     <strong>Current Status</strong>
-    Early development — problem definition, hardware selection, and component sourcing complete.
+    Early development: problem definition, hardware selection, and component sourcing complete.
     SolidWorks enclosure design and solar bracket FEA in progress.
   </div>
 
@@ -185,7 +185,7 @@
 
   <p>
     BRD accounts for over 70% of feedlot cattle illness and a significant portion of mortality.
-    The challenge is that cattle mask illness instinctively — by the time a stockman visually
+    The challenge is that cattle mask illness instinctively and by the time a stockman visually
     identifies a sick animal, the infection has typically been progressing for 24–72 hours.
     Early treatment with the correct antibiotic is dramatically more effective than late
     intervention, but identifying that window visually at scale is nearly impossible.
@@ -195,7 +195,7 @@
     The two most reliable early physiological indicators are a rise in body temperature above
     the normal range (~101–102.5°F) and a measurable drop in movement activity. An ear tag
     that monitors both continuously and flags deviations from an individual animal's baseline
-    could push the detection window back by one to two days — enough to meaningfully change
+    could push the detection window back by one to two days, enough to meaningfully change
     outcomes.
   </p>
 
@@ -348,14 +348,14 @@
   <p>
     The tag body needs to be compact enough to sit on the ear without causing irritation or
     snagging, rugged enough to survive a feedlot environment, and sealed against moisture and
-    debris. The solar panel mounts on an angled bracket extending from the main body — the
-    angle is set so the panel faces skyward during normal grazing head position rather than
+    debris. The solar panel mounts on an angled bracket extending from the main body with the
+    angle set so the panel faces skyward during normal grazing head position rather than
     straight up, improving charge capture throughout the day.
   </p>
 
   <p>
     The bracket hang-off is the most structurally demanding feature. It's a cantilevered shelf
-    loaded by the weight of the panel plus dynamic loading from head movement — the FEA will
+    loaded by the weight of the panel plus dynamic loading from head movement. Finite Element Analysis will
     evaluate stress at the bracket root and determine whether the printed geometry needs
     reinforcement or a revised angle.
   </p>
@@ -380,8 +380,8 @@
 
   <p>
     The angled solar panel bracket is a cantilevered feature loaded by panel weight and the
-    inertial forces from head movement. The bracket root — where it transitions into the tag
-    body — is the primary stress concentration of interest. FEA in ANSYS Mechanical or
+    inertial forces from head movement. The bracket root, where it transitions into the tag
+    body, is the primary stress concentration of interest. FEA in ANSYS Mechanical or
     SolidWorks Simulation will evaluate Von Mises stress and displacement under representative
     load cases to confirm the design can survive daily use without fatigue failure.
   </p>
