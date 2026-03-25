@@ -78,8 +78,8 @@
   </div>
 
   <p style="text-align:center; font-style:italic; color: var(--ink-soft);">
-    Structured vehicle trade study and propulsion selection supporting NAR Level 1 certification,
-    with planned aerodynamic refinement via CFD.
+    Structured vehicle trade study and propulsion selection for NAR Level 1 certification,
+    with aerodynamic refinement planned via CFD.
   </p>
 
   <hr>
@@ -87,16 +87,15 @@
   <h2>Program Objective</h2>
 
   <p>
-    This effort supports National Association of Rocketry (NAR) Level 1 High Power Certification
-    through structured vehicle selection, propulsion evaluation, and trajectory modeling.
+    This project supports NAR Level 1 High Power Certification through vehicle selection,
+    propulsion evaluation, and trajectory modeling in OpenRocket.
   </p>
 
   <p>
-    Rather than selecting a certification platform solely on availability, a controlled trade
-    study was conducted to evaluate multiple commercially available kit rockets under a common
-    propulsion configuration. The objective was to select a vehicle providing sufficient apogee
-    margin, safe deployment conditions, and flexibility for aerodynamic modification while
-    remaining above a 2200 ft certification target altitude.
+    Instead of just picking whatever kit was available, I ran a controlled trade study across
+    three commercially available rockets under a common motor. The goal was to find a vehicle
+    with enough apogee margin above the 2200 ft certification target, safe deployment conditions,
+    and room to modify fin geometry later without losing certification compliance.
   </p>
 
   <div class="info-box">
@@ -112,10 +111,10 @@
   <h3>AeroTech H169WS — White Lightning™</h3>
 
   <p>
-    All candidate vehicles were simulated using the AeroTech H169WS composite motor to ensure
-    propulsion consistency across the trade space. The H169WS falls within Level 1 impulse
-    limits while providing a strong thrust-to-weight ratio suitable for stable rail departure
-    and predictable ascent dynamics.
+    All three vehicles were simulated on the same motor — the AeroTech H169WS — so the
+    comparison is purely about airframe, not propulsion. The H169WS sits within Level 1
+    impulse limits and has a thrust-to-weight ratio that gives stable rail departure and
+    clean ascent dynamics.
   </p>
 
   <div class="box">
@@ -129,8 +128,8 @@
   </div>
 
   <p>
-    The motor's thrust curve provides a short-duration, high-thrust boost phase followed by
-    sustained impulse delivery, balancing rapid rail exit velocity with manageable structural loading.
+    The thrust curve has a short high-thrust boost phase followed by sustained impulse delivery —
+    fast enough off the rail, manageable structural loading through the burn.
   </p>
 
   <img src="../images/h169ws-burnplot.png" alt="AeroTech H169WS thrust curve">
@@ -140,7 +139,7 @@
 
   <h2>Vehicle Trade Study</h2>
 
-  <p>Three commercially available kit rockets were modeled and compared under identical environmental assumptions, launch rail conditions, recovery configurations, and propulsion parameters:</p>
+  <p>Three kit rockets were modeled and compared under identical environmental conditions, launch rail setup, recovery configuration, and motor:</p>
 
   <ul>
     <li><strong>YIRIS 338</strong></li>
@@ -150,12 +149,12 @@
 
   <h3>Evaluation Criteria</h3>
   <ul>
-    <li>Launch rail exit velocity (stability threshold assurance)</li>
+    <li>Launch rail exit velocity — confirms stable departure</li>
     <li>Apogee relative to 2200 ft certification target</li>
     <li>Maximum velocity and dynamic loading</li>
-    <li>Maximum acceleration (structural consideration)</li>
+    <li>Maximum acceleration — structural consideration</li>
     <li>Time to apogee and total flight time</li>
-    <li>Velocity at deployment and ground impact (recovery safety)</li>
+    <li>Velocity at deployment and ground impact — recovery safety</li>
   </ul>
 
   <hr>
@@ -196,25 +195,25 @@
   <h2>Trajectory Simulation Outputs</h2>
 
   <p>
-    Full-flight trajectory outputs were reviewed for each candidate configuration to assess
-    ascent profile, peak velocity timing, coast phase duration, and recovery deployment conditions.
+    Full flight profiles were reviewed for each vehicle to assess ascent shape, peak velocity timing,
+    coast phase duration, and recovery deployment conditions.
   </p>
 
   <h3>YIRIS 338 — Flight Profile</h3>
   <img src="../images/YIRIS_Sim.png" alt="YIRIS 338 altitude, velocity, and acceleration vs time">
-  <em>OpenRocket simulation output for YIRIS 338 using AeroTech H169WS.</em>
+  <em>OpenRocket output for YIRIS 338 on AeroTech H169WS.</em>
 
   <h3>Kronos — Flight Profile</h3>
   <img src="../images/KRONOS_Sim.png" alt="Kronos altitude, velocity, and acceleration vs time">
-  <em>OpenRocket simulation output for Kronos using AeroTech H169WS.</em>
+  <em>OpenRocket output for Kronos on AeroTech H169WS.</em>
 
   <h3>HI-TECH PK-56 — Flight Profile (Selected)</h3>
   <img src="../images/HITECH_Sim.png" alt="HI-TECH PK-56 altitude, velocity, and acceleration vs time">
-  <em>OpenRocket simulation output for HI-TECH PK-56 using AeroTech H169WS.</em>
+  <em>OpenRocket output for HI-TECH PK-56 on AeroTech H169WS.</em>
 
   <p>
-    Time-history analysis confirmed that the HI-TECH PK-56 maintains favorable ascent stability,
-    moderate peak acceleration loading, and predictable deployment timing relative to motor burnout.
+    The PK-56 profile shows stable ascent, moderate peak acceleration, and clean deployment
+    timing relative to motor burnout. No red flags in any of the recovery conditions.
   </p>
 
   <hr>
@@ -222,35 +221,32 @@
   <h2>Selection Rationale</h2>
 
   <p>
-    Among the evaluated configurations, the HI-TECH PK-56 demonstrated the highest predicted
-    apogee while maintaining acceptable peak acceleration and recovery velocities.
+    The HI-TECH PK-56 came out on top on apogee by a clear margin — 3,170 ft vs 2,310 ft
+    for the YIRIS and 2,258 ft for the Kronos. Peak acceleration and recovery velocities are
+    both acceptable.
   </p>
 
   <p>
-    The additional altitude margin above the 2200 ft requirement provides controlled flexibility
-    for aerodynamic modification — specifically fin geometry adjustments intended to reduce total
-    flight time while preserving certification altitude compliance.
+    The extra altitude above the 2200 ft minimum gives room to try fin geometry changes
+    without risking certification compliance. That's the main reason it won out over the
+    YIRIS, which barely clears the target.
   </p>
 
   <div class="box-green">
-    Based on quantitative performance margin and modification potential, the HI-TECH PK-56 was
-    selected as the Level 1 certification platform. The kit has been ordered, and launch is
+    HI-TECH PK-56 selected as the Level 1 certification platform. Kit ordered, launch
     scheduled for April 4th.
   </div>
 
   <hr>
 
-  <h2>Additional Structural Analysis</h2>
+  <h2>Additional Structural Analysis — Eye Bolt FEA</h2>
 
   <p>
-    While awaiting delivery of the flight hardware kit, a series of Finite Element Analysis
-    (FEA) studies were conducted to evaluate critical load-bearing components within the
-    recovery system. Particular attention was given to the parachute mounting eye bolt, which
-    is subjected to a transient "snatch" load during high-velocity deployment — a worst-case
-    impulsive tensile condition that must not result in yielding or structural compromise.
+    While waiting on the kit, I ran FEA on the parachute mounting eye bolt in SolidWorks.
+    The concern is the snatch load at deployment — a short impulsive tensile hit when the
+    parachute pops at speed. The load case was 456 lbf axial tension, which represents the
+    worst-case deployment condition.
   </p>
-
-  <h3>SolidWorks FEA — Eye Bolt</h3>
 
   <div class="fea-figures">
 
@@ -258,9 +254,8 @@
       <img src="../images/rocket_eyebolt_vonmises.png"
            alt="Von Mises stress contour plot of eye bolt under 456 lbf tensile load">
       <figcaption>
-        Figure 1: Von Mises stress distribution under a 456 lbf axial tensile load representing
-        parachute deployment. Peak stresses localize at the geometric transition between the eye
-        loop and threaded shank, consistent with expected stress concentration behavior.
+        Von Mises stress under 456 lbf axial load. Peak stress concentrates at the transition
+        between the eye loop and threaded shank, which is exactly where you'd expect it.
       </figcaption>
     </figure>
 
@@ -268,9 +263,8 @@
       <img src="../images/rocket_eyebolt_ures.png"
            alt="Resultant displacement (URES) contour plot of eye bolt under 456 lbf load">
       <figcaption>
-        Figure 2: Resultant displacement (URES) contour under the same 456 lbf load case.
-        Maximum deformation occurs at the eye loop, with displacement magnitude remaining
-        within acceptable elastic limits for the selected material.
+        Resultant displacement (URES) under the same load case. Maximum deformation at the
+        eye loop, well within elastic limits for the material.
       </figcaption>
     </figure>
 
@@ -280,26 +274,25 @@
 
   <h2>Planned Aerodynamic Refinement</h2>
 
-  <p>Following baseline validation, SolidWorks Flow Simulation will be used to estimate drag coefficient sensitivity to fin planform modifications. The objective is to:</p>
+  <p>After the baseline launch, I'll use SolidWorks Flow Simulation to look at drag sensitivity to fin planform changes. The targets are:</p>
 
   <ul>
     <li>Reduce overall flight time</li>
-    <li>Maintain apogee above 2200 ft</li>
-    <li>Preserve adequate static stability margin</li>
-    <li>Limit adverse increases in peak dynamic pressure</li>
+    <li>Keep apogee above 2200 ft</li>
+    <li>Maintain adequate static stability margin</li>
+    <li>Avoid a big jump in peak dynamic pressure</li>
   </ul>
 
-  <p>CFD-informed drag adjustments will be re-integrated into the OpenRocket trajectory model to quantify system-level performance impact prior to launch.</p>
+  <p>Any drag adjustments from CFD will feed back into OpenRocket to check system-level performance before committing to a modified configuration.</p>
 
   <hr>
 
   <h2>Validation Plan</h2>
 
   <p>
-    Post-flight data (altitude, acceleration profile, and descent rate) will be compared against
-    predicted simulation outputs to evaluate model fidelity and refine drag and mass distribution
-    assumptions. This closed-loop modeling and validation process supports iterative improvement
-    of simulation accuracy for future vehicle development.
+    Post-flight data — altitude, acceleration profile, descent rate — will be compared against
+    the simulation predictions to see where the model is off. Mass distribution and drag
+    assumptions are the most likely sources of error and the first things to tune.
   </p>
 
   <hr>
@@ -308,8 +301,8 @@
 
   <div class="status-box">
     <strong>Status</strong>
-    Baseline propulsion selection and vehicle trade study complete. Certification launch scheduled
-    for April 4th. CFD refinement and final configuration validation in progress.
+    Vehicle trade study and propulsion selection complete. Kit ordered, launch April 4th.
+    CFD refinement and final configuration validation in progress.
   </div>
 
   <div class="footer-nav">
@@ -319,5 +312,7 @@
   </div>
 
 </div>
+</body>
+</html>
 </body>
 </html>
