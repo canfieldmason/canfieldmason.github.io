@@ -9,8 +9,8 @@ This portfolio covers FEA, vehicle dynamics modeling, CAD, and embedded systems 
 ## Technical Focus
 
 - **Structural Analysis & FEA** — Load case development, mesh strategy, and results interpretation in ANSYS Mechanical across static, impact, and torsional scenarios
-- **Vehicle Dynamics Simulation** — Physics-based modeling in MATLAB/Simulink from force-balance fundamentals through full competition race simulation
-- **Mechanical Design & CAD** — Parametric modeling in SolidWorks (CSWA, 240/240) and Fusion 360 with emphasis on design intent and clean rebuild behavior
+- **Vehicle Dynamics Simulation** — Physics-based modeling in MATLAB/Simulink from a force balance up through full competition race simulation
+- **Mechanical Design & CAD** — Parametric modeling in SolidWorks (CSWA, 240/240) and Fusion 360 with a focus on design intent and clean rebuild behavior
 - **Aerospace & Propulsion** — Rocket vehicle trade studies, stability analysis, and trajectory simulation in OpenRocket
 - **Embedded Systems** — Sensor-driven control logic in Arduino/C++
 
@@ -25,12 +25,12 @@ Nine-version longitudinal dynamics model that grew from a basic force balance in
 → [Source code](https://github.com/canfieldmason/shell-eco-simulink)
 
 ### Shell Eco-Marathon Chassis — Structural Analysis
-Serving as Frame Lead for the Junior Team at JMU, responsible for chassis layout, FEA validation, and integration with suspension, powertrain, and body systems. Early concept sketches and packaging studies are complete; full structural analysis in ANSYS Mechanical is underway targeting torsional stiffness, braking, and cornering load cases.
+I'm the Frame Lead for the Junior Team at JMU. CAD is done — the weldment is cleaned up, bulkhead added, aluminum material applied, and dimensions redrawn from the senior team's cutlist. Full structural analysis is coming once we get the Altair suite set up, targeting torsional stiffness, braking, and cornering load cases.
 
 → [Portfolio write-up](https://canfieldmason.github.io/projects/shell-eco-chassis.html)
 
 ### Madison Aerospace Club — Level 1 Rocket Certification
-Ran a controlled trade study across three kit vehicles (YIRIS 338, Kronos, HI-TECH PK-56) under a common AeroTech H169WS motor to select a Level 1 certification platform. HI-TECH PK-56 selected at a predicted 3,170 ft apogee. Also completed SolidWorks FEA on the parachute eye bolt under a 456 lbf deployment snatch load. Launch scheduled April 4.
+Trade study across three kit vehicles (YIRIS 338, Kronos, HI-TECH PK-56) under a common AeroTech H169WS motor to pick a Level 1 certification platform. HI-TECH PK-56 selected at 3,170 ft predicted apogee. Also ran SolidWorks FEA on the parachute eye bolt under a 456 lbf deployment snatch load. Launch scheduled April 4.
 
 → [Portfolio write-up](https://canfieldmason.github.io/projects/rocket.html)
 
@@ -41,9 +41,9 @@ Ran a controlled trade study across three kit vehicles (YIRIS 338, Kronos, HI-TE
 - **Formula SAE Chassis** — Torsional stiffness, cornering, aerodynamic downforce, and frontal impact analysis of a tubular spaceframe in ANSYS Mechanical
 - **Baja SAE Roll Cage** — Front, side, rear, rollover, and torsional load case FEA with animated stress distribution results
 - **Engine Mount Backplate** — FE preprocessing complete (geometry simplification, mesh refinement, boundary conditions); solution pending license access
-- **Project Streamline** — Full aerodynamic design cycle: CFD iteration in SolidWorks Flow Simulation, 3D-printed fabrication, and low-speed wind tunnel validation
+- **Project Streamline** — Full aerodynamic design cycle: CFD in SolidWorks Flow Simulation, 3D-printed fabrication, and low-speed wind tunnel validation
 - **Automated Plant Watering System** — Dual-pump embedded control with capacitive moisture sensing, pulsed logic, and MOSFET driver circuit
-- **SOLIDWORKS Certification** — CSWA completed (240/240); CSWP preparation in progress
+- **SOLIDWORKS Certification** — CSWA completed (240/240); CSWP in progress
 
 ---
 
