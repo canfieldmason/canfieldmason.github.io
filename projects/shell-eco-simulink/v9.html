@@ -79,22 +79,22 @@ h2 { margin-top: 40px; }
 <body>
 
 <h1 style="text-align:center; margin-bottom:6px;">Shell Eco-Marathon Vehicle Simulation — V9</h1>
-<p class="section-intro">Real track integration, zone-aware driver strategy, lap-based race simulation, and full IMS Infield Road Course profile from GPS + elevation data.</p>
+<p class="section-intro">GPS track integration, zone-aware driver strategy, lap-based race simulation across the full IMS Infield Road Course.</p>
 
 <hr>
 
 <h2>Overview</h2>
 <p>
-  Version 9 transforms the simulation from an abstract fixed-time run into a competition-accurate
-  race model. Four laps of the IMS Infield Road Course are simulated under Shell Eco-Marathon
-  Article 226 rules: 4 laps × 3832.5 m = 15,330 m total, maximum 35 minutes, minimum average
-  speed 7.30 m/s.
+  V9 moves the simulation from a fixed-time run to a competition-accurate race model. Four laps of the
+  IMS Infield Road Course are simulated under Shell Eco-Marathon Article 226 rules: 4 laps × 3832.5 m =
+  15,330 m total, 35-minute maximum, 7.30 m/s minimum average speed.
 </p>
 <p>
-  The core additions are a GPS-derived track profile with 767 breakpoints at 5-meter resolution,
-  a grade force term in the vehicle dynamics equation, and a zone-aware driver strategy that
-  selects between burn-coast, cruise-hold, and corner-hold behavior based on the vehicle's
-  position within the lap.
+  The main additions are a GPS-derived track profile at 5-meter resolution (767 breakpoints), a grade
+  force term in the vehicle dynamics equation, and a zone-aware driver strategy that picks between
+  burn-coast, cruise-hold, and corner-hold based on where the vehicle is on the lap. Output is now
+  built around lap-level metrics — per-lap time, fuel, and km/L reported alongside Article 226
+  pass/fail validation.
 </p>
 
 <hr>
@@ -190,11 +190,11 @@ h2 { margin-top: 40px; }
 <div class="compare">
   <div>
     <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation profile">
-    <em>Fig 5 — Grade % (left axis) and relative elevation m (right axis) vs position. Pink = turn zones.</em>
+    <em>Fig 5 — Grade % and relative elevation vs position around the lap. Pink shading marks turn zones.</em>
   </div>
   <div>
-    <img src="images/v9/track_zone_map_v9.png" alt="Track zone map">
-    <em>GPS track overhead with zone color coding — white=burn-coast, grey=cruise, pink=turns.</em>
+    <img src="images/v9/track_zone_map_v9.png" alt="Track zone map overhead view">
+    <em>GPS track overhead with zone color coding. White = burn-coast, grey = cruise-hold, pink = turn complexes.</em>
   </div>
 </div>
 
@@ -222,12 +222,12 @@ h2 { margin-top: 40px; }
 
 <div class="compare">
   <div>
-    <img src="images/v9/driverstrat_v9.png" alt="Zone-aware driver strategy">
-    <em>Zone-Aware Driver Strategy — track zone lookup, mode selector, Stateflow integration.</em>
+    <img src="images/v9/driverstrat_v9.png" alt="Zone-aware driver strategy Simulink block">
+    <em>Driver strategy block: track zone lookup feeds the mode selector, which routes to Stateflow burn-coast or cruise/corner hold.</em>
   </div>
   <div>
     <img src="images/v9/throttle_rpm_v9.png" alt="Throttle and RPM vs time">
-    <em>Fig 4 — Throttle (Burn/Coast, top) and engine RPM with idle/max limits (bottom). Lap markers shown.</em>
+    <em>Fig 4 — Throttle state (burn/coast, top) and engine RPM with idle/max limits (bottom). Lap markers shown as dashed lines.</em>
   </div>
 </div>
 
@@ -259,42 +259,42 @@ h2 { margin-top: 40px; }
 <h3>Fig 1 — Vehicle Speed vs Time (Full Race)</h3>
 <div class="fig-solo">
   <img src="images/v9/speed_time_v9.png" alt="Vehicle speed vs time full race">
-  <em>Fig 1 — Full race speed trace. v_high_on (red), v_low_on (blue), v_target (green), v_min_avg (magenta). Lap markers dashed. Title shows avg speed, Shell Score, pass/fail, time margin.</em>
+  <em>Full race speed trace across all four laps. v_high_on (red), v_low_on (blue), v_target (green), v_min_avg (magenta). Lap markers dashed. Title annotations show avg speed, Shell Score, pass/fail status, and time margin.</em>
 </div>
 
 <h3>Fig 2 — Speed vs Distance, All 4 Laps Overlaid</h3>
 <div class="fig-solo">
-  <img src="images/v9/lap_overlay_v9.png" alt="All 4 laps overlaid">
-  <em>Fig 2 — All 4 laps on one distance axis. Zone shading in background. Consistent profiles confirm steady-state from lap 1.</em>
+  <img src="images/v9/lap_overlay_v9.png" alt="All 4 laps overlaid speed vs distance">
+  <em>All four laps on a single distance axis with zone shading in the background. Consistent lap profiles confirm steady-state is reached by lap 1.</em>
 </div>
 
 <h3>Fig 3 — Fuel &amp; Rolling Shell Score</h3>
 <div class="fig-solo">
-  <img src="images/v9/fuel_efficiency_v9.png" alt="Fuel and Shell Score vs distance">
-  <em>Fig 3 — Cumulative fuel (g) top, rolling Shell Score (km/L) bottom. Stepped fuel profile confirms no coast leakage. km/L converges after lap 2.</em>
+  <img src="images/v9/fuel_efficiency_v9.png" alt="Fuel consumption and rolling Shell Score vs distance">
+  <em>Cumulative fuel (g, top) and rolling Shell Score (km/L, bottom) vs total distance. The stepped fuel profile confirms no energy leakage during coast phases. km/L converges after lap 2.</em>
 </div>
 
 <h3>Fig 4 — Throttle Command &amp; Engine RPM</h3>
 <div class="compare">
   <div>
-    <img src="images/v9/throttle_rpm_v9.png" alt="Throttle and RPM">
-    <em>Fig 4 — Throttle command (top) and engine RPM with idle/max limits (bottom).</em>
+    <img src="images/v9/throttle_rpm_v9.png" alt="Throttle and RPM vs time">
+    <em>Throttle command (top) and engine RPM with idle/max limits marked (bottom).</em>
   </div>
   <div>
-    <img src="images/v9/drivetrain_v9.png" alt="Powertrain subsystem">
-    <em>Powertrain Subsystem — torque map lookup, gear ratio G, drivetrain efficiency, wheel force output.</em>
+    <img src="images/v9/drivetrain_v9.png" alt="Powertrain subsystem block diagram">
+    <em>Powertrain subsystem: torque map lookup, gear ratio G, drivetrain efficiency, wheel force output.</em>
   </div>
 </div>
 
 <h3>Fig 5 — Track Grade &amp; Elevation Profile</h3>
 <div class="compare">
   <div>
-    <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation">
-    <em>Fig 5 — Grade % (left axis), relative elevation m (right axis) vs position. Pink = turn zones.</em>
+    <img src="images/v9/track_profile_v9.png" alt="Track grade and elevation profile">
+    <em>Grade % (left axis) and relative elevation in meters (right axis) vs position. Pink shading marks turn zones.</em>
   </div>
   <div>
-    <img src="images/v9/grade_force_v9.png" alt="Grade force vs position">
-    <em>F_grade = m × g × grade vs position — peak resistive/assistive values around the lap.</em>
+    <img src="images/v9/grade_force_v9.png" alt="Grade force vs position around lap">
+    <em>F_grade = m × g × grade vs lap position. Shows peak resistive and assistive grade force values around the circuit.</em>
   </div>
 </div>
 
@@ -307,7 +307,7 @@ h2 { margin-top: 40px; }
   <video controls>
     <source src="images/v9/track_animation_v9.mp4" type="video/mp4">
   </video>
-  <em>Animation 1 — Single Run Track Playback, V9 Baseline (4× speed)</em>
+  <em>Single run track playback, V9 baseline — 4× speed</em>
 </div>
 
 <h3>Animation 2 — Ghost Comparison: Cd=0.12 vs Cd=0.35</h3>
@@ -338,7 +338,7 @@ h2 { margin-top: 40px; }
   <video controls>
     <source src="images/v9/ghost_comparison_v9.mp4" type="video/mp4">
   </video>
-  <em>Animation 2 — Ghost Comparison: TOP-class Cd=0.12 (yellow) vs Current Cd=0.35 (cyan), 8× speed</em>
+  <em>Ghost comparison: TOP-class Cd=0.12 (yellow) vs current Cd=0.35 (cyan) — 8× speed</em>
 </div>
 
 <hr>
@@ -371,30 +371,30 @@ h2 { margin-top: 40px; }
   <strong>Optimum:</strong> <code>v_low = 7.0 m/s, v_high = 7.5 m/s</code> → <strong>628.0 km/L</strong> | t_total = 2039.5 s (margin +61 s)
 </div>
 <div class="compare">
-  <div><img src="images/v9/sweep_band_kmL_v9.png" alt="Speed band heat map"><em>Sweep 1 — 2D heat map: v_low (y) vs v_high (x), color = km/L.</em></div>
-  <div><img src="images/v9/sweep_G_kmL_v9.png" alt="Gear ratio vs Shell Score"><em>Sweep 2 — Near-flat plot confirming gear ratio has minimal efficiency impact across G=7–14.</em></div>
+  <div><img src="images/v9/sweep_band_kmL_v9.png" alt="Speed band sweep heat map"><em>Sweep 1 — 2D heat map: v_low (y-axis) vs v_high (x-axis), color mapped to km/L.</em></div>
+  <div><img src="images/v9/sweep_G_kmL_v9.png" alt="Gear ratio vs Shell Score"><em>Sweep 2 — Gear ratio has minimal efficiency impact across G=7–14. Set it to keep RPM in range and move on.</em></div>
 </div>
 
 <h3>Sweep 3 — Vehicle Mass</h3>
 <div class="box"><strong>Best: m = 80 kg → 697.9 km/L</strong> | Worst: m = 180 kg → 432.7 km/L | <strong>Sensitivity: 61.2%</strong></div>
 <div class="compare">
-  <div><img src="images/v9/sweep_mass_kmL_v9.png" alt="Mass vs Shell Score"><em>Sweep 3 — Monotonically decreasing. Each 10 kg ≈ 25–30 km/L penalty.</em></div>
-  <div><img src="images/v9/sweep_cd_kmL_v9.png" alt="Cd vs Shell Score"><em>Sweep 4 — Near-linear improvement with reduced drag. Cd=0.15 reaches Mater Dei territory.</em></div>
+  <div><img src="images/v9/sweep_mass_kmL_v9.png" alt="Mass vs Shell Score"><em>Sweep 3 — Monotonically decreasing. Each 10 kg costs roughly 25–30 km/L.</em></div>
+  <div><img src="images/v9/sweep_cd_kmL_v9.png" alt="Cd vs Shell Score"><em>Sweep 4 — Near-linear improvement as drag drops. Cd=0.15 reaches Mater Dei territory.</em></div>
 </div>
 
 <h3>Sweep 4 — Drag Coefficient</h3>
-<div class="box"><strong>Best: Cd = 0.05 → 1003.3 km/L</strong> | Worst: Cd = 0.55 → 449.9 km/L | <strong>Sensitivity: 123.0%</strong> — highest of all sweeps</div>
+<div class="box"><strong>Best: Cd = 0.05 → 1003.3 km/L</strong> | Worst: Cd = 0.55 → 449.9 km/L | <strong>Sensitivity: 123.0%</strong> — highest of all five sweeps</div>
 
 <h3>Sweep 5 — Engine Efficiency (BSFC Sensitivity)</h3>
-<p>Engine efficiency swept from 8% to 34%. The relationship is perfectly linear — Shell score scales proportionally with efficiency. Every 2 percentage points of engine efficiency is worth approximately 62 km/L.</p>
+<p>Engine efficiency swept from 8% to 34%. The relationship is perfectly linear — Shell score scales directly with efficiency. Every 2 percentage points is worth approximately 62 km/L.</p>
 <div class="box-yellow">
-  <strong>Key implication:</strong> At the current Cd=0.30 and m=100 kg, matching Mater Dei's 718 km/L
-  requires approximately <strong>23% engine efficiency</strong> — achievable with a well-tuned carburetor
+  <strong>Key implication:</strong> At Cd=0.30 and m=100 kg, matching Mater Dei's 718 km/L
+  requires roughly <strong>23% engine efficiency</strong> — achievable with a well-tuned carburetor
   and ignition timing. Matching BYU's 995 km/L requires ~32% efficiency, Cd near 0.10, and mass well
   below 100 kg.
 </div>
 <div class="compare">
-  <div><img src="images/v9/sweep_eta_kmL_v9.png" alt="Engine efficiency vs Shell Score"><em>Sweep 5 — Perfectly linear, score ∝ efficiency. 20% = 621 km/L baseline. Each 2% = ~62 km/L.</em></div>
+  <div><img src="images/v9/sweep_eta_kmL_v9.png" alt="Engine efficiency vs Shell Score"><em>Sweep 5 — Perfectly linear. Score scales proportionally with efficiency. Baseline at 20% = 621 km/L. Each 2% gain is worth ~62 km/L.</em></div>
   <div>
     <table style="font-size: 0.85rem;">
       <thead><tr><th>η_eng</th><th>km/L</th><th>Context</th></tr></thead>
@@ -480,21 +480,29 @@ F_Engine check:    <span class="hi">CLEAN — no leakage during coast</span>
 Coast shape:       <span class="hi">CURVED (exponential) — physics correct</span>
 </pre>
 
+<p style="font-style:italic; color:var(--ink-muted); font-size:0.9em;">
+  Lap 1 fuel (4.91 g) is higher than laps 2–4 (~4.48–4.51 g) because the vehicle accelerates
+  from rest at t=0. Laps 2–4 are within 0.6% of each other — steady-state cycling is established
+  by lap 2. The max uphill grade of 1.66% produces a grade force (16.28 N) that is 1.8× flat
+  rolling resistance, making it the dominant terrain feature on the IMS infield circuit and the
+  main driver of the lap 1 vs lap 2+ fuel difference.
+</p>
+
 <hr>
 
 <h2>Model Architecture (V9)</h2>
 <div class="compare-3">
   <div>
-    <img src="images/v9/sys_overview_v9.png" alt="Full system V9">
-    <em>Full System Overview — DriverStrat (zone-aware), Powertrain, VehicleDynamics (F_grade), EnergyModeling, lap counter.</em>
+    <img src="images/v9/sys_overview_v9.png" alt="Full system Simulink overview V9">
+    <em>Full system overview: DriverStrat (zone-aware), Powertrain, VehicleDynamics with F_grade, EnergyModeling, and lap counter.</em>
   </div>
   <div>
-    <img src="images/v9/drivetrain_v9.png" alt="Powertrain V9">
-    <em>Powertrain Subsystem — torque map lookup, gear ratio, drivetrain efficiency, wheel force output.</em>
+    <img src="images/v9/drivetrain_v9.png" alt="Powertrain subsystem V9">
+    <em>Powertrain subsystem: torque map lookup, gear ratio, drivetrain efficiency, wheel force output.</em>
   </div>
   <div>
-    <img src="images/v9/driverstrat_v9.png" alt="Driver strategy V9">
-    <em>Zone-Aware Driver Strategy — track zone lookup → mode selector → Stateflow burn-coast or cruise/corner hold.</em>
+    <img src="images/v9/driverstrat_v9.png" alt="Zone-aware driver strategy V9">
+    <em>Zone-aware driver strategy: track zone lookup feeds the mode selector, which routes to Stateflow burn-coast or cruise/corner hold.</em>
   </div>
 </div>
 
