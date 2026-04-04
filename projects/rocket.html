@@ -118,7 +118,7 @@
   </p>
 
   <div class="box-green" style="margin-top: 24px;">
-    Launch successful — April 4, 2026. Exceeded target apogee, clean recovery. The nose tip lost
+    Launch successful, April 4, 2026. Exceeded target apogee, clean recovery. The nose tip lost
     a little red paint in the briar patch retrieval, but the airframe came back essentially unscathed.
   </div>
 
@@ -152,7 +152,7 @@
   <h3>AeroTech H169WS — White Lightning™</h3>
 
   <p>
-    All three vehicles were simulated on the same motor — the AeroTech H169WS — so the
+    All three vehicles were simulated on the same motor (the AeroTech H169WS) so the
     comparison is purely about airframe, not propulsion. The H169WS sits within Level 1
     impulse limits and has a thrust-to-weight ratio that gives stable rail departure and
     clean ascent dynamics.
@@ -169,8 +169,8 @@
   </div>
 
   <p>
-    The thrust curve has a short high-thrust boost phase followed by sustained impulse delivery —
-    fast enough off the rail, manageable structural loading through the burn.
+    The thrust curve has a short high thrust boost phase followed by sustained impulse delivery.
+    Fast enough off the rail, manageable structural loading through the burn.
   </p>
 
   <img src="../images/h169ws-burnplot.png" alt="AeroTech H169WS thrust curve">
@@ -190,12 +190,12 @@
 
   <h3>Evaluation Criteria</h3>
   <ul>
-    <li>Launch rail exit velocity — confirms stable departure</li>
+    <li>Launch rail exit velocity: confirms stable departure</li>
     <li>Apogee relative to 2200 ft certification target</li>
     <li>Maximum velocity and dynamic loading</li>
-    <li>Maximum acceleration — structural consideration</li>
+    <li>Maximum acceleration: structural consideration</li>
     <li>Time to apogee and total flight time</li>
-    <li>Velocity at deployment and ground impact — recovery safety</li>
+    <li>Velocity at deployment and ground impact: recovery safety</li>
   </ul>
 
   <hr>
@@ -262,7 +262,7 @@
   <h2>Selection Rationale</h2>
 
   <p>
-    The HI-TECH PK-56 came out on top on apogee by a clear margin — 3,170 ft vs 2,310 ft
+    The HI-TECH PK-56 came out on top on apogee by a clear margin: 3,170 ft vs 2,310 ft
     for the YIRIS and 2,258 ft for the Kronos. Peak acceleration and recovery velocities are
     both acceptable.
   </p>
@@ -279,7 +279,7 @@
 
   <p>
     The stock PK-56 fins are 4 inches, which put stability at 2.95 cal (15.8% of body length,
-    CG at 35.53 in, CP at 40.277 in). That's stable, but too stable — an overly high stability
+    CG at 35.53 in, CP at 40.277 in). That's stable, but too stable. An overly high stability
     margin makes the rocket strongly weathercock-prone, meaning it'll aggressively turn into any
     wind shift at altitude. At the apogees we were expecting, changing winds could carry it
     significantly off course.
@@ -287,19 +287,19 @@
 
   <p>
     We trimmed the fins down to 3 inches on a vertical band saw and rounded the leading edges.
-    Stability came down to 2.1 cal (11.3% of body length, CG at 32.382 in, CP at 37.911 in) —
-    still well above the 1.7 cal minimum, but much less sensitive to wind. The reduced fin area
+    Stability came down to 2.1 cal (11.3% of body length, CG at 32.382 in, CP at 37.911 in).
+    Still well above the 1 cal minimum, but much less sensitive to wind. The reduced fin area
     also drops drag enough that predicted apogee actually increases slightly to 3,287 ft.
   </p>
 
-  <div class="compare" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:20px 0;">
+  <div style="display:flex; flex-direction:column; gap:20px; margin:20px 0; max-width:560px; margin-left:auto; margin-right:auto;">
     <div>
       <img src="../images/hitech_4infin.png" alt="OpenRocket with stock 4 inch fins" style="width:100%; border:1px solid var(--border); border-radius:var(--radius); margin:0 0 8px;">
-      <em style="font-size:0.85rem; display:block;">Stock 4 in fins — 2.95 cal, apogee 3,169 ft, max velocity 804 ft/s (Mach 0.728), max accel 947 ft/s².</em>
+      <em style="font-size:0.85rem; display:block;">Stock 4 in fins: 2.95 cal stability, apogee 3,169 ft, max velocity 804 ft/s (Mach 0.728), max accel 947 ft/s².</em>
     </div>
     <div>
       <img src="../images/hitech_3infin.png" alt="OpenRocket with trimmed 3 inch fins" style="width:100%; border:1px solid var(--border); border-radius:var(--radius); margin:0 0 8px;">
-      <em style="font-size:0.85rem; display:block;">Trimmed 3 in fins — 2.1 cal, apogee 3,287 ft, max velocity 820 ft/s, max accel 985 ft/s².</em>
+      <em style="font-size:0.85rem; display:block;">Trimmed 3 in fins: 2.1 cal stability, apogee 3,287 ft, max velocity 820 ft/s, max accel 985 ft/s².</em>
     </div>
   </div>
 
@@ -309,7 +309,7 @@
 
   <p>
     While waiting on the kit, I ran FEA on the parachute mounting eye bolt in SolidWorks.
-    The concern is the snatch load at deployment — a short impulsive tensile hit when the
+    The concern is the snatch load at deployment: a short impulsive tensile hit when the
     parachute opens at speed. The load case was 456 lbf axial tension, worst-case deployment.
   </p>
 
@@ -320,7 +320,7 @@
            alt="Von Mises stress contour plot of eye bolt under 456 lbf tensile load">
       <figcaption>
         Von Mises stress under 456 lbf axial load. Peak stress concentrates at the transition
-        between the eye loop and threaded shank — exactly where you'd expect it given the
+        between the eye loop and threaded shank, exactly where you'd expect it given the
         geometry change.
       </figcaption>
     </figure>
@@ -342,13 +342,13 @@
 
   <p>
     With the simulation work done and fins trimmed, construction started from the kit components.
-    The build follows standard high-power practice — epoxy throughout, no shortcuts on surface prep.
+    The build follows standard high power practice: epoxy throughout, no shortcuts on surface prep.
   </p>
 
   <div class="image-grid">
     <div class="image-box">
       <img src="../images/rocketlayout.jpg" alt="Rocket components laid out from packaging">
-      <div class="caption">Components laid out from packaging — body tubes, nose cone, trimmed fins, motor tube, centering rings, and recovery hardware.</div>
+      <div class="caption">Components laid out from packaging: body tubes, nose cone, trimmed fins, motor tube, centering rings, and recovery hardware.</div>
     </div>
     <div class="image-box">
       <img src="../images/rocketepoxy.jpg" alt="Epoxying centering rings, nose cone, and bulkhead components">
@@ -376,6 +376,10 @@
       <img src="../images/rocketrail.JPG" alt="Rocket mounted on launch rail with ignition wires">
       <div class="caption">Mounted on the launch rail with ignition wires connected. Pre-launch checks complete.</div>
     </div>
+    <div class="image-box">
+      <div class="placeholder">rocketteam.jpg — pending from photographer</div>
+      <div class="caption">Team photo with the finished rocket on the rail, April 4, 2026.</div>
+    </div>
   </div>
 
   <div class="video-wrap">
@@ -387,7 +391,7 @@
 
   <p>
     The flight went cleanly. Clean rail departure, straight boost, deployment on time. Retrieval
-    involved a briar patch — the nose tip came back missing a little red paint, but the airframe
+    involved a briar patch. The nose tip came back missing a little red paint, but the airframe
     was otherwise unscathed.
   </p>
 
@@ -395,7 +399,7 @@
 
   <h2>Planned Aerodynamic Refinement</h2>
 
-  <p>SolidWorks Flow Simulation is next — looking at drag sensitivity to fin planform changes with these targets:</p>
+  <p>SolidWorks Flow Simulation is next, looking at drag sensitivity to fin planform changes with these targets:</p>
 
   <ul>
     <li>Reduce overall flight time</li>
@@ -412,13 +416,13 @@
 
   <p>
     This was a great first exposure to high-power rocketry. Working through the vehicle trade study,
-    making the call on fin geometry, building the airframe by hand, and watching it fly cleanly —
-    it all connects in a way that simulation alone doesn't. The software and analysis work (OpenRocket,
+    making the call on fin geometry, building the airframe by hand, and watching it fly cleanly.
+    It all connects in a way that simulation alone doesn't. The software and analysis work (OpenRocket,
     FEA, the stability margin reasoning) felt a lot more meaningful with a physical result at the end.
   </p>
   <p>
     Looking forward to designing and building my own rocket next year for L1 certification with
-    Madison Aerospace Club — with a lot more informed choices going in.
+    Madison Aerospace Club, with a lot more informed choices going in.
   </p>
 
   <hr>
