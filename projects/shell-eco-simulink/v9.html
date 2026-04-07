@@ -414,41 +414,80 @@ h2 { margin-top: 40px; }
 
 <h2>Design Sensitivity Ranking (V9)</h2>
 
-<div class="sensitivity-bar">
-  <span class="bar-label">Drag Coeff (Cd)</span>
-  <span class="bar-track"><span class="bar-fill" style="width:100%; background:#cc4400;"></span></span>
-  <span class="bar-pct">123.0%</span>
-</div>
+<style>
+.sensitivity-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+}
+.bar-label {
+  width: 110px;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: right;
+}
+.bar-track {
+  flex: 1;
+  height: 18px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+.bar-pct {
+  width: 72px;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+</style>
+
 <div class="sensitivity-bar">
   <span class="bar-label">Engine Effic.</span>
   <span class="bar-track"><span class="bar-fill" style="width:100%; background:#8b0000;"></span></span>
-  <span class="bar-pct">124.7%</span>
+  <span class="bar-pct">Δ808 km/L</span>
+</div>
+<div class="sensitivity-bar">
+  <span class="bar-label">Drag Coeff (Cd)</span>
+  <span class="bar-track"><span class="bar-fill" style="width:68%; background:#cc4400;"></span></span>
+  <span class="bar-pct">Δ553 km/L</span>
 </div>
 <div class="sensitivity-bar">
   <span class="bar-label">Mass</span>
-  <span class="bar-track"><span class="bar-fill" style="width:49.8%; background:#2a7a2a;"></span></span>
-  <span class="bar-pct">61.2%</span>
+  <span class="bar-track"><span class="bar-fill" style="width:33%; background:#2a7a2a;"></span></span>
+  <span class="bar-pct">Δ265 km/L</span>
 </div>
 <div class="sensitivity-bar">
   <span class="bar-label">Speed Band</span>
-  <span class="bar-track"><span class="bar-fill" style="width:5.5%; background:var(--blue);"></span></span>
-  <span class="bar-pct">1.1%</span>
+  <span class="bar-track"><span class="bar-fill" style="width:2%; background:var(--blue);"></span></span>
+  <span class="bar-pct">Δ6 km/L</span>
 </div>
 <div class="sensitivity-bar">
   <span class="bar-label">Gear Ratio</span>
-  <span class="bar-track"><span class="bar-fill" style="width:0.8%; background:#888;"></span></span>
-  <span class="bar-pct">0.8%</span>
+  <span class="bar-track"><span class="bar-fill" style="width:2%; background:#888;"></span></span>
+  <span class="bar-pct">Δ5 km/L</span>
 </div>
 
 <br>
 <div class="box-green">
   <strong>Key takeaways:</strong>
   <ul style="margin-top: 8px;">
-    <li><strong>Drag reduction is the #1 design priority</strong> — Cd=0.15 puts the vehicle in Mater Dei territory regardless of other parameters.</li>
-    <li><strong>Engine efficiency is the largest unknown</strong> — each 2% point is worth ~62 km/L. Dyno characterization (BSFC map) is the highest-value pending task.</li>
-    <li><strong>Mass is meaningful but secondary</strong> — 80 vs 100 kg is a 12.3% score improvement.</li>
-    <li><strong>Speed band has only 1.1% sensitivity on the IMS track</strong> — reduced from V8's 26% because zone-aware strategy limits burn-coast to Zone 1 only (34.6% of lap).</li>
-    <li><strong>Gear ratio: not a design variable</strong> — set to keep RPM inside the dyno map range.</li>
+    <li><strong>Engine efficiency is the largest single lever</strong> — Δ808 km/L across 8–34% range. Every 2 percentage points is worth ~62 km/L. Dyno characterization (BSFC map from injector bench) is the highest-value pending task in the model.</li>
+    <li><strong>Drag reduction is the #1 physical design priority</strong> — Δ553 km/L across Cd=0.05–0.55. Cd=0.15 puts the vehicle in Mater Dei territory regardless of other parameters. Body shell material and form factor are the highest-leverage Fall decisions.</li>
+    <li><strong>Mass is meaningful but secondary</strong> — Δ265 km/L across 80–180 kg. Each 10 kg costs roughly 25–30 km/L. The 6061-T6 frame and driver weight are the primary drivers here.</li>
+    <li><strong>Speed band has only Δ6 km/L sensitivity on the IMS track</strong> — reduced sharply from V8 because the zone-aware strategy confines burn-coast to Zone 1 only (34.6% of lap). Optimum is v_low=7.0, v_high=7.5 m/s.</li>
+    <li><strong>Gear ratio is not a design variable</strong> — Δ5 km/L across G=7–14. Set it to keep RPM inside the dyno map range (2708–8708 RPM) and move on.</li>
   </ul>
 </div>
 
