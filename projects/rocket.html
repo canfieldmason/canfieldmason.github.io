@@ -101,7 +101,7 @@
   <a href="/projects/index.html" class="back-link">Back to Projects</a>
 
   <div class="project-header">
-    <h1>Level 1 High-Power Rocket</h1>
+    <h1>Level 1 High-Power Rocket Certification</h1>
     <p class="project-subtitle">Trade Study, Construction &amp; Launch — Madison Aerospace Club</p>
     <div class="tags" style="margin-top: 14px;">
       <span class="tag">OpenRocket</span>
@@ -288,7 +288,7 @@
   <p>
     We trimmed the fins down to 3 inches on a vertical band saw and rounded the leading edges.
     Stability came down to 2.1 cal (11.3% of body length, CG at 32.382 in, CP at 37.911 in).
-    Still well above the 1.7 cal minimum, but much less sensitive to wind. The reduced fin area
+    Still well above the 1 cal minimum, but much less sensitive to wind. The reduced fin area
     also drops drag enough that predicted apogee actually increases slightly to 3,287 ft.
   </p>
 
@@ -371,14 +371,19 @@
 
   <h2>Launch Day — April 4, 2026</h2>
 
+  <div class="image-box" style="margin-bottom: 16px;">
+    <img src="../images/rail_mounting.JPG" alt="Mounting the rocket on the ten foot launch rail">
+    <div class="caption">Getting the PK-56 mounted on the ten foot rail before flight.</div>
+  </div>
+
   <div class="image-grid">
     <div class="image-box">
       <img src="../images/rocketrail.JPG" alt="Rocket mounted on launch rail with ignition wires">
       <div class="caption">Mounted on the launch rail with ignition wires connected. Pre-launch checks complete.</div>
     </div>
     <div class="image-box">
-      <img src="../images/team_rocketphoto.JPG" alt="Rocket mounted on launch rail with ignition wires">
-      <div class="caption">Team photo with the finished rocket on the rail, April 4, 2026.</div>
+      <img src="../images/team_rocketphoto.JPG" alt="Team photo with finished rocket on the launch rail">
+      <div class="caption">With my teammate before the launch, April 4, 2026.</div>
     </div>
   </div>
 
@@ -394,6 +399,21 @@
     involved a briar patch. The nose tip came back missing a little red paint, but the airframe
     was otherwise unscathed.
   </p>
+
+  <hr>
+
+  <h2>Planned Aerodynamic Refinement</h2>
+
+  <p>SolidWorks Flow Simulation is next, looking at drag sensitivity to fin planform changes with these targets:</p>
+
+  <ul>
+    <li>Reduce overall flight time</li>
+    <li>Keep apogee above 2200 ft</li>
+    <li>Maintain adequate static stability margin</li>
+    <li>Avoid a big jump in peak dynamic pressure</li>
+  </ul>
+
+  <p>CFD drag adjustments will feed back into OpenRocket to check system-level performance before committing to any modified configuration.</p>
 
   <hr>
 
