@@ -44,10 +44,10 @@
     </p>
     <div class="tags" style="margin-top: 12px;">
       <span class="tag">SolidWorks</span>
-      <span class="tag">ANSYS</span>
       <span class="tag">Altair</span>
       <span class="tag">Weldments</span>
       <span class="tag">FEA</span>
+      <span class="tag">Wind Tunnel</span>
       <span class="tag">Aluminum</span>
       <span class="tag">In Progress</span>
     </div>
@@ -55,10 +55,9 @@
 
   <div class="status-box">
     <strong>Current Status</strong>
-    CAD is complete. The weldment model has been cleaned up, the bulkhead is in, aluminum material is applied,
-    and the dimensions have been redrawn from the senior team cutlist. FEA is waiting on Altair suite onboarding
-    (SEM provides both Altair and Siemens). A scale 3D print is done. CFD geometry came from the senior team's
-    temporary shell.
+    CAD complete, scale prints done including a masked wind tunnel model, and preliminary wind tunnel
+    testing complete. FEA load cases are next once Altair onboarding is finalized. CFD geometry is
+    staged from the senior team shell. Road load model objectives presented at JMU X-Change '26.
   </div>
 
   <!-- Role -->
@@ -72,7 +71,7 @@
 
   <div class="tools-box">
     <strong>Tools &amp; Methods</strong>
-    <p style="margin-top: 6px; margin-bottom: 0;">CAD: SolidWorks (Weldments, Drawings) &nbsp;·&nbsp; Simulation: Altair (SEM-provided), ANSYS Mechanical &nbsp;·&nbsp; CFD: Siemens suite (SEM-provided) &nbsp;·&nbsp; Fabrication reference: 3D printing (PLA, scale model)</p>
+    <p style="margin-top: 6px; margin-bottom: 0;">CAD: SolidWorks (Weldments, Drawings) &nbsp;·&nbsp; Simulation: Altair (SEM-provided), ANSYS Mechanical &nbsp;·&nbsp; CFD: Siemens suite (SEM-provided) &nbsp;·&nbsp; Physical testing: wind tunnel &nbsp;·&nbsp; Fabrication reference: 3D printing (PLA)</p>
   </div>
 
   <!-- Material / Section Summary -->
@@ -108,7 +107,7 @@
     </div>
     <div class="image-box">
       <img src="images/ShellEcoEarlySketches0002.jpg" alt="Early chassis sketch, packaging and load paths">
-      <div class="caption">Concept Sketch — Dimensional Limits &and; Prefrred Layouts</div>
+      <div class="caption">Concept Sketch — Dimensional Limits &amp; Preferred Layouts</div>
     </div>
   </div>
 
@@ -175,34 +174,103 @@
     <em>Outline drawing with dimensions pulled from the senior team cutlist and weldment data. Redrawn from scratch after the original file had corrupted dimensions throughout.</em>
   </div>
 
-  <!-- 3D Print -->
-  <h2>Scale 3D Print — Physical Reference Model</h2>
+  <!-- 3D Prints -->
+  <h2>Scale 3D Prints — Physical Reference &amp; Wind Tunnel Model</h2>
   <p>
-    I printed a small scale PLA version of the polished frame for team demos and advisor communication.
-    Obviously you can't draw real conclusions about the aluminum weldment from a plastic print, but it's
-    useful for getting a feel for the geometry, checking proportions, and doing a quick manual twist to
-    see how the structure behaves under torsion. It's also just a lot easier to hand someone a physical
-    model than pull up SolidWorks every time someone wants to see the frame.
+    I printed two scale PLA versions of the frame. The first was for team demos and advisor communication —
+    good for checking proportions and doing a quick manual twist to get a feel for torsional behavior.
+    Obviously you can't draw real structural conclusions from a plastic print, but it's a lot easier to
+    hand someone a physical model than pull up SolidWorks every time.
+  </p>
+  <p>
+    The second print was wrapped tightly in masking tape to form a close-fitting shell over the frame
+    geometry. This gave us a smooth, sealed surface to run in the wind tunnel as a preliminary step
+    toward CFD validation. The goal was to start building physical intuition about airflow behavior
+    around the body envelope before committing to full CFD runs in the Siemens suite.
+  </p>
+
+  <div class="image-grid">
+    <div class="image-box">
+      <img src="images/shelleco_frame_printed.jpg" alt="Small scale 3D printed chassis model">
+      <div class="caption">First scale PLA print. Used for geometry demos and informal torsion reference.</div>
+    </div>
+    <div class="image-box">
+      <img src="images/shelleco_windtunnel_print.jpg" alt="Masked 3D print prepared for wind tunnel testing">
+      <div class="caption">Second print wrapped in masking tape to form a tight shell. Prepped for wind tunnel runs as a physical baseline ahead of CFD.</div>
+    </div>
+  </div>
+
+  <h3>Wind Tunnel Testing</h3>
+  <p>
+    Preliminary wind tunnel runs were completed with the masked model. Results give an early qualitative
+    read on airflow separation and pressure distribution around the body before the full CFD analysis
+    is set up in the Siemens suite.
   </p>
 
   <div class="fig-solo">
-    <img src="images/shelleco_frame_printed.jpg" alt="Small scale 3D printed chassis model">
-    <em>Scale PLA print of the SolidWorks frame. Useful for geometry demos and a quick manual twist test. Not a structural stand-in for the aluminum weldment, but good enough to get the point across.</em>
+    <div class="placeholder">Wind tunnel photo — add image here (e.g. windtunnel_run.jpg)</div>
+    <em>Masked scale model in the wind tunnel. Preliminary aerodynamic baseline ahead of Siemens CFD.</em>
   </div>
+
+  <!-- FEA Load Cases -->
+  <h2>Structural FEA — Load Cases</h2>
+  <p>
+    With the weldment geometry finalized, structured FEA load cases are ready to run in Altair once
+    the toolchain is onboarded. The following cases cover the core SEM structural requirements and
+    competition-relevant dynamic conditions.
+  </p>
+
+  <h3>Torsional Stiffness</h3>
+  <p>
+    Opposing vertical loads at front suspension pickups with rear constrained. Gives the global torsional
+    stiffness number (Nm/deg) to benchmark against Model 5 and track through design iterations.
+  </p>
+  <div class="placeholder">FEA screenshot — torsional stiffness deformation (e.g. fea_torsion.png)</div>
+
+  <h3>Vertical Bending</h3>
+  <p>
+    Distributed driver and powertrain mass applied as vertical loads with suspension pickups as supports.
+    Evaluates midspan deflection and bending stress in the floor rails and longitudinal members.
+  </p>
+  <div class="placeholder">FEA screenshot — vertical bending deformation (e.g. fea_bending.png)</div>
+
+  <h3>Braking</h3>
+  <p>
+    Longitudinal deceleration load applied at driver CG, transferred through the floor rails and
+    into the rollbar base. Checks fore-aft load path integrity and joint stress at the bulkhead interface.
+  </p>
+  <div class="placeholder">FEA screenshot — braking load case (e.g. fea_braking.png)</div>
+
+  <h3>Cornering</h3>
+  <p>
+    Lateral acceleration load evaluating side support stiffness and rollbar lateral resistance.
+    Key check for the 1 in pipe side members under combined bending and shear.
+  </p>
+  <div class="placeholder">FEA screenshot — cornering load case (e.g. fea_cornering.png)</div>
+
+  <h3>Combined Braking and Cornering</h3>
+  <p>
+    Simultaneous longitudinal and lateral acceleration inputs representing the worst-case dynamic
+    envelope. Identifies the most stressed members and joints across the full frame.
+  </p>
+  <div class="placeholder">FEA screenshot — combined load case (e.g. fea_combined.png)</div>
+
+  <h3>Rollbar Loading</h3>
+  <p>
+    Vertical and lateral load applied at the rollbar crown per SEM driver protection requirements.
+    Validates the 2 in pipe rollbar and its base attachment geometry under regulatory load conditions.
+  </p>
+  <div class="placeholder">FEA screenshot — rollbar load case (e.g. fea_rollbar.png)</div>
+
+  <h3>Bulkhead Interface Stress</h3>
+  <p>
+    Concentrated loads at bulkhead attachment points to check joint continuity and weld interface
+    stress where the bulkhead meets the primary frame members.
+  </p>
+  <div class="placeholder">FEA screenshot — bulkhead interface stress (e.g. fea_bulkhead.png)</div>
 
   <!-- Analysis Scope -->
   <h2>Planned Analysis Scope</h2>
-  <p>
-    Once Altair is set up, these are the load cases I'm planning to run first:
-  </p>
-
-  <ul>
-    <li>Torsional stiffness: opposing vertical loads at suspension pickups</li>
-    <li>Bending stiffness: distributed driver and powertrain mass loading</li>
-    <li>Braking and cornering: longitudinal and lateral acceleration inputs</li>
-    <li>Joint and mounting stress: rollbar base and bulkhead attachments</li>
-    <li>SEM structural compliance checks per competition rules</li>
-  </ul>
 
   <div class="info-box">
     <strong>Toolchain Note</strong>
@@ -246,9 +314,30 @@
     </div>
   </div>
 
+  <!-- X-Change -->
+  <h2>JMU X-Change '26</h2>
+  <p>
+    Got to present this work at JMU's X-Change capstone showcase. It was a good opportunity to talk
+    through the road load model and how it connects to setting purposeful FEA objectives next year —
+    specifically using the MATLAB/Simulink dynamics outputs to define realistic load inputs rather than
+    estimating them. Also had good conversations about the broader analysis strategy: FEA for the frame,
+    CFD for the shell, and how the two feed each other as the design matures. Looking forward to
+    picking this up next year with a cleaner starting point and actual toolchain access.
+  </p>
+
+  <div class="fig-solo">
+    <img src="images/xchange_poster.jpg" alt="JMU X-Change '26 poster presentation">
+    <em>X-Change '26 poster session. Good conversations about road load modeling and the FEA/CFD analysis plan for next year.</em>
+  </div>
+
   <!-- Footer -->
   <div class="footer-nav">
     <a href="/projects/index.html">Projects</a>
     <a href="/resume.pdf" target="_blank">Resume</a>
     <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
-    <a href="/cdn-cgi/l/email-protection#3251535c545b575e565f53415d5c5772555f535b5e1c515d5f"><span class="__
+    <a href="mailto:canfieldmasone@gmail.com">canfieldmasone@gmail.com</a>
+  </div>
+
+</div>
+</body>
+</html>
