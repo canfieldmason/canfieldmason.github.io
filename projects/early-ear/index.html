@@ -50,11 +50,7 @@
     .phase-card.active .phase-label { color: var(--blue); }
     .phase-card.pending .phase-label { color: var(--ink-muted); }
 
-    .phase-card h3 {
-      font-size: 0.92rem;
-      margin: 0 0 6px;
-    }
-
+    .phase-card h3 { font-size: 0.92rem; margin: 0 0 6px; }
     .phase-card p {
       font-size: 0.84rem;
       color: var(--ink-soft);
@@ -75,10 +71,57 @@
       margin: 24px 0;
       align-items: start;
     }
+    .concept-grid img { margin: 0; width: 100%; }
 
-    .concept-grid img {
-      margin: 0;
+    /* Figure grid — reused for photo sets */
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 24px 0 32px;
+      align-items: start;
+    }
+    .figure-grid figure { margin: 0; }
+    .figure-grid img {
+      margin: 0 0 8px;
       width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .figure-grid figcaption {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* Metric callout row */
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin: 24px 0 32px;
+    }
+    .metric {
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-xs);
+    }
+    .metric .value {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 600;
+      display: block;
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+    .metric .label {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      display: block;
     }
 
     @media (max-width: 640px) {
@@ -107,258 +150,359 @@
 
   <div class="project-header">
     <h1>EarlyEar</h1>
-    <p class="project-subtitle">Solar-powered cattle ear tag for early detection of Bovine Respiratory Disease</p>
+    <p class="project-subtitle">A low-power cattle ear tag for early detection of Bovine Respiratory Disease</p>
     <div class="tags" style="margin-top: 14px;">
-      <span class="tag">ESP32</span>
-      <span class="tag">SolidWorks</span>
-      <span class="tag">FEA</span>
-      <span class="tag">3D Printing</span>
+      <span class="tag">ESP32-S3</span>
       <span class="tag">Embedded C++</span>
-      <span class="tag">IoT</span>
+      <span class="tag">Python</span>
+      <span class="tag">BLE</span>
+      <span class="tag">Instrumentation</span>
+      <span class="tag">Low-Power Design</span>
+      <span class="tag">SolidWorks</span>
       <span class="tag">Personal Project</span>
     </div>
   </div>
 
-  <p style="max-width: 720px; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.8; margin-bottom: 36px;">
-    Bovine Respiratory Disease (BRD) is the most economically significant disease in the cattle
-    industry. By the time visible symptoms appear, the animal is already well into infection
-    treatment is less effective and losses are higher. EarlyEar is a compact, solar-powered ear
-    tag designed to detect the earliest physiological indicators of BRD: elevated temperature and
-    reduced movement. The goal is to flag sick animals before symptoms are visible.
+  <p style="max-width: 720px; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.8; margin-bottom: 32px;">
+    Bovine Respiratory Disease is the most economically significant illness in the cattle
+    industry, and by the time an animal shows visible symptoms the infection is usually
+    24 to 72 hours along. EarlyEar is a battery-powered ear tag that watches ear temperature
+    and movement continuously, looking for the physiological changes that precede visible
+    signs. It has gone from a breadboard sketch to a bench-validated second-generation
+    prototype drawing a thirtieth of the current the first one did.
   </p>
+
+  <div class="metric-row">
+    <div class="metric">
+      <span class="value">30x</span>
+      <span class="label">Measured current reduction, V1 to V2</span>
+    </div>
+    <div class="metric">
+      <span class="value">90 &rarr; 3 mA</span>
+      <span class="label">System draw, redesigned</span>
+    </div>
+    <div class="metric">
+      <span class="value">4 hr &rarr; 4 d</span>
+      <span class="label">Projected field life on 400 mAh</span>
+    </div>
+    <div class="metric">
+      <span class="value">0.2 C</span>
+      <span class="label">Sensor accuracy, medical calibration</span>
+    </div>
+  </div>
 
   <div class="status-box">
     <strong>Current Status</strong>
-    Early development: problem definition, hardware selection, and component sourcing complete.
-    SolidWorks enclosure design and solar bracket FEA in progress.
+    Second-generation prototype running. Four-sensor stack validated against controlled
+    thermal and motion stimuli, power draw characterized at each design stage, and a
+    Python telemetry pipeline producing analysis-ready data. Enclosure design and
+    on-animal validation are the active work.
   </div>
 
   <hr>
 
-  <!-- Development Phases -->
-  <h2>Development Roadmap</h2>
+  <!-- Market context -->
+  <h2>Why Build This</h2>
 
-  <div class="phase-grid">
+  <p>
+    Commercial ear-tag monitors already exist, which is the point — the demand is
+    established and the engineering problem is well-defined. Merck Animal Health's SenseHub
+    and 701x's Smart Tag both monitor cattle behavior and health at scale, and both validate
+    that continuous individual-animal monitoring changes outcomes.
+  </p>
 
-    <div class="phase-card done">
-      <span class="phase-label">✓ Complete</span>
-      <h3>Problem Definition</h3>
-      <p>BRD detection window, physiological indicators, and monitoring requirements identified.</p>
-    </div>
+  <p>
+    What they don't do is exist at a price or scale that makes sense for a show-cattle
+    operation with a dozen head. EarlyEar isn't a competitor to those systems; it's an
+    exercise in building the same class of instrument from first principles, on a
+    student budget, and understanding every tradeoff that goes into one.
+  </p>
 
-    <div class="phase-card done">
-      <span class="phase-label">✓ Complete</span>
-      <h3>Hardware Selection</h3>
-      <p>ESP32 platform, temperature sensor, IMU, and solar charging circuit selected. Parts list finalized.</p>
-    </div>
-
-    <div class="phase-card active">
-      <span class="phase-label">→ In Progress</span>
-      <h3>Enclosure Design</h3>
-      <p>Compact tag body and angled solar panel bracket modeled in SolidWorks. FEA on bracket hang-off underway.</p>
-    </div>
-
-    <div class="phase-card pending">
-      <span class="phase-label">Upcoming</span>
-      <h3>Prototype Fabrication</h3>
-      <p>3D print tag enclosure, assemble electronics, and validate fit and waterproofing.</p>
-    </div>
-
-    <div class="phase-card pending">
-      <span class="phase-label">Upcoming</span>
-      <h3>Firmware Development</h3>
-      <p>ESP32 firmware for sensor polling, threshold alerting, and low-power sleep cycles.</p>
-    </div>
-
-    <div class="phase-card pending">
-      <span class="phase-label">Upcoming</span>
-      <h3>Field Testing</h3>
-      <p>Validate temperature and movement baselines on healthy animals and test alert logic against known BRD cases.</p>
-    </div>
-
+  <div class="figure-grid">
+    <figure>
+      <img src="images/earlyear-market-sensehub.jpg" alt="Merck Animal Health SenseHub cattle monitoring ear tag">
+      <figcaption>Merck Animal Health SenseHub — commercial cattle monitoring tag. Establishes the product category and the value of continuous per-animal monitoring. <em>Image: Merck Animal Health.</em></figcaption>
+    </figure>
+    <figure>
+      <img src="images/earlyear-market-701x.jpg" alt="701x Smart Tag cattle monitoring device">
+      <figcaption>701x Smart Tag — solar-powered monitoring and geolocation for range cattle. A useful reference point for solar-assisted power budgets on a tag-sized device. <em>Image: 701x.</em></figcaption>
+    </figure>
   </div>
 
   <hr>
 
   <!-- Problem -->
-  <h2>The Problem — Why BRD Is Hard to Catch Early</h2>
+  <h2>The Problem: Why BRD Is Hard to Catch Early</h2>
 
   <p>
-    BRD accounts for over 70% of feedlot cattle illness and a significant portion of mortality.
-    The challenge is that cattle mask illness instinctively and by the time a stockman visually
-    identifies a sick animal, the infection has typically been progressing for 24–72 hours.
-    Early treatment with the correct antibiotic is dramatically more effective than late
-    intervention, but identifying that window visually at scale is nearly impossible.
+    BRD accounts for the majority of feedlot cattle illness and a significant share of
+    mortality. The difficulty is that cattle instinctively mask illness, so by the time a
+    stockman identifies a sick animal visually, the infection has typically been progressing
+    for a day or more. Early treatment is dramatically more effective than late intervention,
+    but catching that window by eye at scale is close to impossible.
   </p>
 
   <p>
-    The two most reliable early physiological indicators are a rise in body temperature above
-    the normal range (~101–102.5°F) and a measurable drop in movement activity. An ear tag
-    that monitors both continuously and flags deviations from an individual animal's baseline
-    could push the detection window back by one to two days, enough to meaningfully change
-    outcomes.
+    The two most reliable early indicators are a rise in body temperature and a measurable
+    drop in movement. A tag that watches both continuously, and flags deviation from
+    <em>that individual animal's</em> baseline rather than a species-wide threshold, could
+    move detection forward by a day or two.
+  </p>
+
+  <div class="box-yellow">
+    <strong>Why per-animal baselines:</strong> ear temperature sits several degrees below
+    core body temperature and drifts with weather, wind, and blood flow. An absolute
+    threshold would produce constant false alarms. Comparing each animal against its own
+    rolling baseline at the same hour of day removes most of that variation, and it is
+    what the commercial systems do as well.
+  </div>
+
+  <hr>
+
+  <!-- V1 -->
+  <h2>Version 1: The Working Prototype That Wouldn't Last a Day</h2>
+
+  <p>
+    The first build did what it was supposed to. A DS18B20 probe read ear temperature, an
+    MPU-6050 tracked movement, and an OLED gave a live readout at the bench. It streamed
+    over Bluetooth to a Python script on a laptop. As a proof that the concept worked, it
+    was fine.
+  </p>
+
+  <p>
+    As a device meant to live on an animal, it was not. It never slept, the display stayed
+    lit, and the radio stayed up. Measured on the bench it drew roughly <strong>90 mA</strong>,
+    which on a 400 mAh cell is about three and a half hours of runtime. A tag you have to
+    recharge before lunch is not a tag.
+  </p>
+
+  <div class="figure-grid">
+    <figure>
+      <img src="images/earlyear-v1-bench.jpg" alt="Version 1 prototype with OLED display held in a third-hand tool at the soldering station">
+      <figcaption>V1 at the bench: ESP32-S3, DS18B20 probe, MPU-6050, and an SSD1306 OLED for live readout. Functional, and far too power-hungry to deploy.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/earlyear-field-reading.jpg" alt="Taking infrared temperature readings at a cow's ear">
+      <figcaption>Early on-animal readings. Pointing an IR sensor down the ear canal returned about 35 C — well below core temperature, and the readings that prompted a full rethink of the sensing approach.</figcaption>
+    </figure>
+  </div>
+
+  <p>
+    Those first field readings were as informative as the bench work. Ear canal hair is
+    functional — it keeps insects and debris out — and it is opaque to the wavelengths an
+    infrared sensor reads. The sensor was measuring hair at somewhere between skin and
+    ambient temperature, not tissue. That finding drove the sensor selection for V2 and
+    reframed the accuracy target entirely: this is a fever <em>detector</em>, not a
+    thermometer, and the figure of merit is repeatability against an animal's own baseline
+    rather than absolute agreement with a rectal reading.
+  </p>
+
+  <div class="figure-grid">
+    <figure>
+      <img src="images/earlyear-cattle-trio.jpg" alt="Three show cattle standing side by side">
+      <figcaption>The test population. Show cattle are handled regularly, which makes paired reference readings practical in a way feedlot animals would not be.</figcaption>
+    </figure>
+  </div>
+
+  <hr>
+
+  <!-- V2 -->
+  <h2>Version 2: Rebuilding Around the Power Budget</h2>
+
+  <p>
+    The second generation was designed backwards from the constraint that killed the first
+    one. Every component was chosen for what it draws when idle, and the architecture
+    changed so that idle is where the device spends nearly all of its time.
+  </p>
+
+  <ul>
+    <li><strong>Deep sleep duty cycling</strong> — the MCU wakes for a few seconds every
+        five minutes and is otherwise off. BRD fever develops over hours, so rapid polling
+        bought nothing clinically and cost everything electrically.</li>
+    <li><strong>MLX90632 replacing the DS18B20</strong> — medical-grade infrared thermometry
+        accurate to 0.2 C, with under 2.5 uA of sleep current against the previous sensor's
+        continuous draw.</li>
+    <li><strong>LIS3DH replacing the MPU-6050</strong> — microamp-class accelerometry with a
+        hardware FIFO, so motion can be buffered while the processor sleeps.</li>
+    <li><strong>SHT40 added</strong> — ambient temperature and humidity, which together yield
+        the Temperature-Humidity Index, the standard livestock heat-stress metric. A second
+        useful output channel for the cost of one part.</li>
+    <li><strong>MAX17048 fuel gauge</strong> — true state-of-charge rather than raw voltage,
+        at roughly 3 uA. A naive resistor divider for battery sensing would have burned more
+        than the sleep-current target by itself.</li>
+    <li><strong>Display removed</strong> — the OLED was a development convenience. On a
+        deployed tag nobody is reading it, and it never stops drawing.</li>
+  </ul>
+
+  <div class="figure-grid">
+    <figure>
+      <img src="images/earlyear-v2-stack.jpg" alt="Version 2 sensor stack daisy-chained over STEMMA QT connectors with LiPo battery">
+      <figcaption>V2 sensor stack. MLX90632, SHT40, LIS3DH, and MAX17048 chained over STEMMA QT on a single I2C bus, running from a 400 mAh LiPo cell.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/earlyear-serial-output.png" alt="Serial monitor output showing all four sensors reporting over time">
+      <figcaption>All four channels reporting simultaneously with derived activity and heat-stress indices. Distinct steps in the data correspond to controlled stimuli applied one at a time.</figcaption>
+    </figure>
+  </div>
+
+  <hr>
+
+  <!-- Instrumentation -->
+  <h2>Measuring the Improvement</h2>
+
+  <p>
+    Claiming a power improvement without measuring it is worthless, so the redesign was
+    characterized at each stage. The complication was that the available multimeter had no
+    microamp current range — its lowest setting resolved 1 mA, roughly fifty times coarser
+    than the currents of interest.
+  </p>
+
+  <p>
+    The workaround was to stop using it as an ammeter. A known resistor placed in the
+    battery's return path turns a current measurement into a voltage measurement, and the
+    same meter resolves 1 mV. Across a 10 kOhm shunt that is 0.1 uA of resolution — better
+    than most dedicated microamp ranges. Sizing the resistor per measurement keeps the
+    reading in a readable window without dropping enough voltage to brown out the board.
+  </p>
+
+  <div class="box">
+    <h3>Measured results</h3>
+    <ul>
+      <li><strong>V1, complete with display:</strong> about 90 mA continuous</li>
+      <li><strong>V1, display removed:</strong> about 86 mA — the OLED accounted for roughly 4 mA driving a sparse text readout</li>
+      <li><strong>V2, asleep:</strong> 3 mA</li>
+    </ul>
+    <p style="margin-bottom: 0;">
+      A 30x reduction in system current, extending projected field life from under four
+      hours to roughly four days on the same cell.
+    </p>
+  </div>
+
+  <p>
+    The remaining 3 mA is itself a result rather than a floor. Deep sleep stops the
+    processor but leaves the 3.3 V rail energized, so every indicator LED on the
+    microcontroller and the sensor breakouts stays lit through the sleep window, alongside
+    the regulator's quiescent draw. Removing those indicators is a straightforward path
+    below 500 uA in the next revision, and knowing precisely where the current goes is more
+    useful than a smaller number with no explanation behind it.
   </p>
 
   <hr>
 
-  <!-- Hardware -->
-  <h2>Hardware Architecture</h2>
+  <!-- Validation -->
+  <h2>Sensor Validation</h2>
+
+  <p>
+    Before trusting any of it, each channel was checked against a controlled stimulus, one
+    at a time, in a single logged run. A sensor that reads a plausible number is not the
+    same as a sensor that responds correctly — a blind thermopile staring at its own housing
+    produces stable, reasonable-looking data indefinitely.
+  </p>
+
+  <table class="parts-table">
+    <thead>
+      <tr>
+        <th>Channel</th>
+        <th>Stimulus</th>
+        <th>Response</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Infrared temperature</td>
+        <td>Palm at 3 in</td>
+        <td>22.9 to 32.5 C, returning to baseline on removal</td>
+      </tr>
+      <tr>
+        <td>Infrared temperature</td>
+        <td>Frozen bottle</td>
+        <td>Tracked well below ambient, confirming bidirectional response</td>
+      </tr>
+      <tr>
+        <td>Humidity</td>
+        <td>Breath across sensor</td>
+        <td>48 to 93 percent RH, with a clean 40-second recovery curve</td>
+      </tr>
+      <tr>
+        <td>Activity index</td>
+        <td>Manual agitation</td>
+        <td>2 to 500 milli-g, roughly 200:1 against the resting noise floor</td>
+      </tr>
+      <tr>
+        <td>Battery telemetry</td>
+        <td>Steady-state</td>
+        <td>3.955 V reported as 70.9 percent, consistent with the LiPo discharge curve</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    The activity result is the one that matters most for the application. A resting tag reads
+    2 to 3 milli-g of motion; gross movement reads around 500. That separation is what makes
+    a reduced-activity alert possible at all, and it is measured rather than assumed.
+  </p>
+
+  <hr>
+
+  <!-- Firmware -->
+  <h2>Firmware and Data Pipeline</h2>
+
+  <p>
+    V1 streamed loosely formatted bytes that a Python script picked apart by position — fine
+    for a demo, and a silent data-corruption risk the moment real data starts arriving. V2
+    replaced it with an explicit contract: a versioned packed structure with a CRC, a version
+    byte that changes whenever the layout does, and a host decoder that refuses to parse a
+    version it does not recognize.
+  </p>
+
+  <ul>
+    <li><strong>On-tag computation</strong> — the accelerometer's raw stream is reduced on
+        the device to a single activity figure (mean absolute deviation of acceleration
+        magnitude) plus a posture fraction. Transmitting one number instead of fifteen hundred
+        samples saves both radio energy and airtime.</li>
+    <li><strong>Temperature-Humidity Index</strong> computed on the tag from the published
+        livestock formula, so the heat-stress channel needs no post-processing.</li>
+    <li><strong>Host decoder in Python</strong> producing timestamped, analysis-ready CSV,
+        with diagnostics separated into a sidecar log and malformed rows rejected rather
+        than silently written.</li>
+    <li><strong>Raw bytes logged alongside decoded output</strong> so a decoder bug found
+        later can be corrected without re-collecting a dataset.</li>
+  </ul>
 
   <div class="info-box">
-    <strong>Core Platform — ESP32-S3 SuperMini</strong>
-    22×18 mm footprint — dual-core, BLE 5.0, built-in WiFi, deep sleep mode for battery-constrained
-    operation. Small enough to fit in the tag body alongside sensors and battery. Two tags + one spare
-    planned from a single order.
-  </div>
-
-  <h3>Ear Tag Components</h3>
-
-  <table class="parts-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Component</th>
-        <th>Function</th>
-        <th>Qty</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>ESP32-S3 SuperMini</td>
-        <td>Tag MCU + BLE 5.0 radio</td>
-        <td>3</td>
-        <td>22×18 mm. Get 3: 2 tags + 1 spare. Waveshare version has best documentation.</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>DS18B20 waterproof probe</td>
-        <td>Ear temperature sensing</td>
-        <td>3</td>
-        <td>Placed against inner ear for consistent contact. 5-pack on AliExpress best value. Requires 4.7kΩ pullup resistor per data line.</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>MPU-6050 GY-521 breakout</td>
-        <td>Activity + posture accelerometer</td>
-        <td>3</td>
-        <td>Detects movement drop and head position changes. AliExpress 5-pack ~$4 — Adafruit version is nicer but overkill here.</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>LiPo 3.7V 400mAh</td>
-        <td>Tag battery</td>
-        <td>3</td>
-        <td>JST-PH 2mm connector. 400mAh = ~5 days autonomy. Verify connector matches ESP32-S3 JST pin before ordering.</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>TP4056 USB-C w/ protection</td>
-        <td>LiPo charging circuit</td>
-        <td>5</td>
-        <td>Must get version WITH protection circuit (2 ICs on board, not 1). Protects LiPo from overcharge/overdischarge.</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>Magnetic USB-C connector</td>
-        <td>Field recharging</td>
-        <td>3</td>
-        <td>Allows charging without precise alignment on a moving animal.</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>30×25mm solar cell 5V</td>
-        <td>Trickle charge — outdoor pens</td>
-        <td>2</td>
-        <td>~60mA output. Wired to TP4056 IN+. Mounted on angled bracket in SolidWorks design.</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>PETG filament</td>
-        <td>Weatherproof tag enclosure</td>
-        <td>1 spool</td>
-        <td>Chemical resistant, slightly flexible. 1kg spool covers many tag iterations. Bambu printers available.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Base Station / Gateway</h3>
-  <p>
-    The gateway sits in the barn or pen and collects BLE data from all tags within range,
-    logs to local SQLite, and handles alert logic and any wireless upload. A second
-    ESP32-S3 SuperMini runs as BLE central scanning for tags — same board as the tags,
-    which simplifies the codebase significantly.
-  </p>
-
-  <table class="parts-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Component</th>
-        <th>Function</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>9</td>
-        <td>Raspberry Pi Zero 2W</td>
-        <td>Gateway brain, SQLite, alerts</td>
-        <td>Official $15 MSRP. Adafruit and PiShop are reliable sources when in stock.</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>ESP32-S3 SuperMini (gateway)</td>
-        <td>BLE central — scans for tags, WiFi upload</td>
-        <td>Same board as tag MCU. Covered by order #1.</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td>0.96in OLED SSD1306 I2C</td>
-        <td>Live readout display</td>
-        <td>SSD1306 has excellent library support. 5-pack useful for gateway + future experiments.</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td>MicroSD SPI breakout</td>
-        <td>CSV data logging</td>
-        <td>Standard SPI module. Adafruit version sturdier but $3.95 vs $0.50 for same function.</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td>IP65 project box ~120×80mm</td>
-        <td>Gateway weatherproof housing</td>
-        <td>Clear lid lets you see OLED without opening. Drill for antenna, USB, power.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="box-green">
-    <strong>Estimated build cost</strong> — AliExpress-heavy (slow ship): ~$47 &nbsp;·&nbsp;
-    Amazon Prime-heavy (fast ship): ~$91 &nbsp;·&nbsp; Mixed strategy: ~$68 &nbsp;+&nbsp; ~$15 for Pi Zero 2W regardless of strategy.
-    Prices current March 2026.
+    <strong>Design note — the gateway</strong>
+    A Raspberry Pi gateway aggregating multiple tags is designed but deliberately not
+    deployed. For the current scale, logging on the tag and dumping over Bluetooth on demand
+    removes the most common way an unattended field trial produces nothing: a gateway that
+    fails at 2 a.m. with nobody watching.
   </div>
 
   <hr>
 
-  <!-- Enclosure Design -->
+  <!-- Enclosure -->
   <h2>Enclosure Design</h2>
 
   <p>
-    The tag body needs to be compact enough to sit on the ear without causing irritation or
-    snagging, rugged enough to survive a feedlot environment, and sealed against moisture and
-    debris. The solar panel mounts on an angled bracket extending from the main body with the
-    angle set so the panel faces skyward during normal grazing head position rather than
-    straight up, improving charge capture throughout the day.
+    The tag body needs to be compact enough to sit on an ear without irritation, rugged
+    enough for a handling environment, and sealed against moisture and debris. A solar panel
+    mounts on an angled bracket, with the angle set so the panel faces skyward at normal
+    grazing head position rather than straight up.
   </p>
 
   <p>
-    The bracket hang-off is the most structurally demanding feature. It's a cantilevered shelf
-    loaded by the weight of the panel plus dynamic loading from head movement. Finite Element Analysis will
-    evaluate stress at the bracket root and determine whether the printed geometry needs
-    reinforcement or a revised angle.
+    The bracket is the structurally demanding feature: a cantilevered shelf carrying panel
+    weight plus dynamic loading from head movement. FEA will evaluate stress at the bracket
+    root and determine whether the printed geometry needs reinforcement or a revised angle.
   </p>
+
+  <div class="box-yellow">
+    <strong>An open problem worth stating:</strong> PETG is opaque to the 8 to 14 micron
+    band the infrared sensor reads. A sealed printed shell over the sensor would leave it
+    measuring the inside of its own housing and reporting stable, entirely fictional
+    temperatures. The enclosure needs either an open aperture with a hydrophobic vent
+    membrane or a thin polyethylene window — one of the few common plastics that passes
+    long-wave infrared.
+  </div>
 
   <div class="concept-grid">
     <div>
@@ -371,80 +515,87 @@
     </div>
   </div>
 
-  <div class="placeholder" style="margin-top: 8px;">SolidWorks assembly — full tag with bracket and panel (in progress)</div>
-
-  <hr>
-
-  <!-- FEA -->
-  <h2>Solar Bracket Structural Analysis</h2>
-
-  <p>
-    The angled solar panel bracket is a cantilevered feature loaded by panel weight and the
-    inertial forces from head movement. The bracket root, where it transitions into the tag
-    body, is the primary stress concentration of interest. FEA in ANSYS Mechanical or
-    SolidWorks Simulation will evaluate Von Mises stress and displacement under representative
-    load cases to confirm the design can survive daily use without fatigue failure.
-  </p>
-
-  <h3>Planned Load Cases</h3>
-  <ul>
-    <li><strong>Static gravity</strong> — panel weight at full cantilever extension</li>
-    <li><strong>Dynamic head movement</strong> — inertial load from grazing and head shaking</li>
-    <li><strong>Combined</strong> — simultaneous gravity and lateral inertial load</li>
-  </ul>
-
   <div class="placeholder">FEA result — bracket Von Mises stress (pending)</div>
   <div class="placeholder">FEA result — bracket displacement (pending)</div>
 
   <hr>
 
-  <!-- Firmware -->
-  <h2>Firmware Plan</h2>
+  <!-- Roadmap -->
+  <h2>Development Roadmap</h2>
 
-  <p>
-    The ESP32 will run a polling loop that wakes from deep sleep at a set interval, reads
-    temperature and IMU data, compares against a rolling per-animal baseline, and either
-    logs the reading or triggers an alert if thresholds are exceeded. Between readings
-    the device returns to deep sleep to minimize current draw and extend battery life
-    between solar recharge cycles.
-  </p>
+  <div class="phase-grid">
 
-  <div class="box">
-    <h3>Alert Logic</h3>
-    <ul>
-      <li><strong>Temperature threshold</strong> — flag if skin temp deviates more than X°F above individual baseline over a rolling window</li>
-      <li><strong>Activity threshold</strong> — flag if movement drops below individual baseline by Y% over a defined period</li>
-      <li><strong>Combined alert</strong> — elevated temp + reduced movement together triggers high-priority notification</li>
-    </ul>
-  </div>
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Problem Definition</h3>
+      <p>BRD detection window, physiological indicators, and monitoring requirements identified.</p>
+    </div>
 
-  <div class="box-yellow">
-    <strong>Baseline approach:</strong> Rather than using a fixed species-wide threshold, EarlyEar
-    establishes a per-animal baseline over the first few days of wear. This accounts for natural
-    variation between animals and makes alerts more specific to actual deviation from normal.
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>V1 Prototype</h3>
+      <p>Working breadboard build with contact temperature, IMU, OLED readout, and Bluetooth streaming.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Power Characterization</h3>
+      <p>Shunt-and-DMM instrumentation across both generations. 30x current reduction measured and attributed.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>V2 Sensor Stack</h3>
+      <p>Four sensors on one I2C bus, validated against controlled thermal and motion stimuli.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Telemetry Pipeline</h3>
+      <p>Versioned packed-struct protocol with CRC, Python host decoder, on-tag derived metrics.</p>
+    </div>
+
+    <div class="phase-card active">
+      <span class="phase-label">In Progress</span>
+      <h3>On-Animal Validation</h3>
+      <p>Paired readings against a reference instrument across six head, with ambient logging and a control tag.</p>
+    </div>
+
+    <div class="phase-card pending">
+      <span class="phase-label">Upcoming</span>
+      <h3>Enclosure and FEA</h3>
+      <p>PETG tag body with an infrared-transmissive aperture; solar bracket structural analysis.</p>
+    </div>
+
+    <div class="phase-card pending">
+      <span class="phase-label">Upcoming</span>
+      <h3>Custom PCB</h3>
+      <p>Carrier board placing bare sensor ICs rather than breakouts, cutting the stack height by most of an order of magnitude.</p>
+    </div>
+
   </div>
 
   <hr>
 
-  <!-- Next Steps -->
-  <h2>Next Steps</h2>
+  <h2>What I'd Do Differently</h2>
 
-  <ul>
-    <li>Finalize SolidWorks enclosure geometry and run solar bracket FEA</li>
-    <li>Place parts orders — ESP32-S3 SuperMini (Amazon), DS18B20 5-pack and MPU-6050 5-pack (AliExpress), LiPo batteries and TP4056 boards (AliExpress)</li>
-    <li>Source Pi Zero 2W from Adafruit or PiShop for gateway</li>
-    <li>3D print prototype enclosure in PETG and fit-check all components</li>
-    <li>Write and test ESP32 firmware for sensor polling and deep sleep cycling</li>
-    <li>Characterize 30×25mm solar cell output under typical outdoor conditions vs 400mAh battery draw</li>
-    <li>Develop BLE communication protocol between tag and gateway ESP32</li>
-  </ul>
+  <p>
+    Three things stand out. Contact thermometry on the ear pinna, insulated on the outboard
+    face, would couple far better than infrared through hair, and a dual-sensor
+    heat-flux arrangement could extrapolate toward tissue temperature rather than reporting
+    surface temperature. A nRF52-class radio would cut the transmit energy substantially
+    against the ESP32, which is generous for a device that talks for three seconds every five
+    minutes. And a purpose-built PCB carrying bare ICs instead of breakout boards would take
+    the assembly from roughly 22 mm thick to under 8 — though the larger win there is a
+    thinner pouch cell and potting instead of a shelled enclosure, not the board itself.
+  </p>
 
   <p style="color: var(--ink-muted); font-style: italic; font-size: 0.9rem; margin-top: 24px;">
-    This page will be updated with CAD renders, FEA results, firmware, and field testing data as the project develops.
+    Updated September 2026. On-animal validation data, CAD renders, and FEA results to follow.
   </p>
 
   <div class="footer-nav">
-    <a href="/projects/index.html">← All Projects</a>
+    <a href="/projects/index.html">All Projects</a>
     <a href="/index.html">Home</a>
   </div>
 
