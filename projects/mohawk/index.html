@@ -114,17 +114,31 @@
 
     /* .natural — keeps the image's own proportions and, critically,
        NEVER scales it past its real pixel size. This is the anti-blur
-       class: use it for anything solo, and for any source you know is
-       small. Capped at 520px tall so a solo figure can't dominate. */
+       class: use it for anything solo, for portrait sources that a
+       landscape crop would cut in half, and for any source you know is
+       small.
+
+       Height cap is tunable per figure without touching this rule:
+           <figure class="natural" style="--fig-h: 780px">
+       Default 640px. Raising it only helps if the source file is
+       actually that tall; it never invents pixels. */
     .figure-grid figure.natural img {
       aspect-ratio: auto;
       object-fit: contain;
       width: auto;
       height: auto;
       max-width: 100%;
-      max-height: 520px;
+      max-height: var(--fig-h, 640px);
       margin: 0 auto 8px;
       padding: 0;
+    }
+
+    /* .fill — opt in to filling the full column width even if that
+       means scaling a source up past its natural size. Use only when
+       size matters more than sharpness. */
+    .figure-grid figure.fill img {
+      width: 100%;
+      max-height: none;
     }
     .figure-grid figure.natural { text-align: center; }
     .figure-grid figure.natural figcaption { text-align: left; }
@@ -801,11 +815,11 @@
   </div>
 
   <div class="figure-grid">
-    <figure>
+    <figure class="natural" style="--fig-h: 520px">
       <img src="images/gauge.jpg" alt="Dial thickness gauge measuring a carpet sample on a bench">
       <figcaption>Manual thickness gauge. Sharper than pile height on textured styles, and almost entirely redundant with face weight.</figcaption>
     </figure>
-    <figure class="doc">
+    <figure class="natural doc">
       <img src="images/correlate.png" alt="Minitab matrix plot of measured thickness, face weight, stitch per inch and high pile, with 95 percent confidence intervals for Pearson correlation">
       <figcaption>Matrix plot with 95% CIs for Pearson correlation. Measured thickness against face weight: r = 0.967.</figcaption>
     </figure>
@@ -1215,7 +1229,7 @@
   </p>
 
   <div class="figure-grid">
-    <figure class="natural doc">
+    <figure class="natural doc" style="--fig-h: 900px">
       <img src="images/loto.png" alt="A digitized Mohawk lockout/tagout procedure for a tufting machine, listing lockout points, the application process and per-step verification">
       <figcaption>One of the digitized procedures: lockout points, application process, and per-step verification.</figcaption>
     </figure>
@@ -1266,7 +1280,7 @@
   </div>
 
   <div class="figure-grid">
-    <figure class="natural">
+    <figure class="natural" style="--fig-h: 860px">
       <img src="images/motor.jpg" alt="Siemens motor nameplate on the spinning supply fan, showing horsepower, voltage and full load amps">
       <figcaption>Nameplate data off the fan motor. The savings case was built on measured draw and real run hours rather than nameplate assumptions alone.</figcaption>
     </figure>
