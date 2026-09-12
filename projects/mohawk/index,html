@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carpet Roll Length Optimization — Mason Canfield</title>
+  <link rel="stylesheet" href="/portfolio.css">
+  <style>
+
+    /* Phase timeline */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 28px 0 48px;
+    }
+
+    .phase-card {
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-xs);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .phase-card.done::before    { background: var(--green); }
+    .phase-card.active::before  { background: var(--blue); }
+    .phase-card.pending::before { background: var(--border); }
+
+    .phase-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .phase-card.done   .phase-label { color: var(--green); }
+    .phase-card.active .phase-label { color: var(--blue); }
+    .phase-card.pending .phase-label { color: var(--ink-muted); }
+
+    .phase-card h3 { font-size: 0.92rem; margin: 0 0 6px; }
+    .phase-card p {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Parts list table */
+    .parts-table th { background: var(--ink); }
+    .parts-table td { font-size: 0.88rem; }
+    .parts-table td:last-child { color: var(--ink-muted); font-style: italic; }
+
+    /* Figure grid for photo/chart sets */
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 24px 0 32px;
+      align-items: start;
+    }
+    .figure-grid figure { margin: 0; }
+    .figure-grid img {
+      margin: 0 0 8px;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      display: block;
+      background: #fff;
+    }
+    .figure-grid figcaption {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* Metric callout row */
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin: 24px 0 32px;
+    }
+    .metric {
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-xs);
+    }
+    .metric .value {
+      font-family: var(--font-mono);
+      font-size: 1.4rem;
+      font-weight: 600;
+      display: block;
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+    .metric .label {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <span class="site-nav-brand">Mason Canfield</span>
+    <div class="site-nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html" class="active">Projects</a>
+      <a href="/resume.pdf" target="_blank">Resume</a>
+      <a href="https://www.linkedin.com/in/mason-canfield" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrapper-wide" style="padding-top: 44px;">
+
+  <a href="/projects/index.html" class="back-link">Back to Projects</a>
+
+  <div class="project-header">
+    <h1>Carpet Roll Length Optimization</h1>
+    <p class="project-subtitle">Replacing a one-size-fits-all 900 yard preset with a statistically confirmed, style-specific wind target — Mohawk Industries, Glasgow, VA</p>
+    <div class="tags" style="margin-top: 14px;">
+      <span class="tag">Regression Modeling</span>
+      <span class="tag">Minitab</span>
+      <span class="tag">Process Capability (Ppk/Cpk)</span>
+      <span class="tag">I-MR Control Charts</span>
+      <span class="tag">SEQUEL</span>
+      <span class="tag">Excel</span>
+      <span class="tag">Statistical Process Control</span>
+      <span class="tag">Manufacturing Engineering Internship</span>
+    </div>
+  </div>
+
+  <p style="max-width: 720px; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.8; margin-bottom: 32px;">
+    Every carpet roll coming off Mohawk's tufting lines was wound to the same 900 yard
+    preset, regardless of the style's face weight, stitch density, or pile construction.
+    As a manufacturing engineering intern, I spent the summer replacing that single number
+    with a geometry-based model and a regression equation that sets a defensible, style-specific
+    maximum length for each product family, then validated it with statistical process
+    control before it went anywhere near the production floor.
+  </p>
+
+  <div class="metric-row">
+    <div class="metric">
+      <span class="value">900 yd</span>
+      <span class="label">Generic preset applied to every style, regardless of spec, before this project</span>
+    </div>
+    <div class="metric">
+      <span class="value">~200 yd</span>
+      <span class="label">Length left unclaimed per roll on Style 83103 alone under the old preset</span>
+    </div>
+    <div class="metric">
+      <span class="value">1,020 yd</span>
+      <span class="label">Confirmed Tier 4 wind target replacing the 900 yd default</span>
+    </div>
+    <div class="metric">
+      <span class="value">Ppk 2.04</span>
+      <span class="label">Process capability on the top-performing style, well past the 1.67 six-sigma bar</span>
+    </div>
+  </div>
+
+  <div class="status-box">
+    <strong>Project Outcome</strong>
+    Delivered a confirmed, statistically capable wind target for the plant's highest-volume
+    tier and a validated regression equation and tiering framework for the rest of the
+    product line, presented at Mohawk's summer intern expo alongside the business case for
+    rollout.
+  </div>
+
+  <hr>
+
+  <h2>Why This Mattered</h2>
+
+  <p>
+    A carpet roll is wound onto a fixed-diameter core inside a spool with a hard radius
+    limit. Push a roll past that limit and it has to be split into two, which forces a seam,
+    wastes yardage on both cut ends, and risks the kind of quality defect that turns into a
+    customer claim. Every split also loses capacity at every downstream step: production
+    throughput, transportation load efficiency, and warehouse storage density all take a
+    hit. None of that shows up on a single roll's paperwork, which is exactly why a flat
+    900 yard preset had survived as long as it had.
+  </p>
+
+  <p>
+    The preset wasn't wrong so much as blind. Two styles wound to the identical 900 yards
+    could sit at very different points on their radius budget: Style 83103 averaged an 18.9
+    inch radius at 900 yards, leaving 2.6 inches of usable headroom and roughly 200 yards of
+    length that was never being claimed. Style 83160, wound to the same 900 yards, averaged
+    a 20.2 inch radius with only 1.4 inches of headroom left and under 100 yards of room to
+    grow. One preset, two completely different amounts of money left on the table.
+  </p>
+
+  <hr>
+
+  <h2>Data Collection</h2>
+
+  <p>
+    Fixing a blind preset starts with measuring what it was blind to. For each sampled roll,
+    I measured two radii, at the 4 o'clock and 8 o'clock positions, with a tape from the edge
+    of the cardboard core to the outer edge of the wound carpet. Roll numbers and averaged
+    radii were recorded in Excel, then joined against Style, actual wound length, face
+    weight, and the rest of the spec fields pulled from SEQUEL, the plant's production and
+    specification database.
+  </p>
+
+  <div class="box-yellow">
+    <strong>Why two readings per roll:</strong> a single radius reading is sensitive to how
+    evenly a roll happens to be wound. Averaging two readings taken on opposite sides of the
+    roll gave a more stable estimate of true wound radius before it went anywhere near a
+    regression model.
+  </div>
+
+  <hr>
+
+  <h2>Geometry First: The K-Constant</h2>
+
+  <p>
+    Before touching statistics, the ceiling on roll length is pure geometry: the annular area
+    between the core radius and the maximum allowed outer radius, divided by the carpet's
+    thickness, converted to yards. That relationship collapses to a single constant, 14.0717,
+    multiplied by the inverse of the carpet's thickness:
+  </p>
+
+  <div class="box">
+    Maximum Length (yd) = 14.0717 &divide; Thickness (in)
+  </div>
+
+  <p>
+    That equation reframed the entire project. If the geometry is fixed, the only unknown
+    left is thickness, and thickness is what actually varies style to style. Predicting
+    maximum roll length is really just predicting thickness, which is a modeling problem
+    Minitab could take on directly.
+  </p>
+
+  <p>
+    An earlier attempt to fold this into a single "capacity factor" multiplier turned out to
+    be the wrong approach. Working directly from the core geometry, &pi;(R<sub>o</sub>&sup2;
+    &minus; R<sub>c</sub>&sup2;) &frasl; 144 with a fixed outer radius, was both more transparent
+    to the team and easier to defend when someone asked where the number came from.
+  </p>
+
+  <hr>
+
+  <h2>Sorting Styles Into Tiers</h2>
+
+  <p>
+    With inverse thickness (InvT) computed for every sampled style, the product line sorted
+    naturally into six tiers. Each tier maps to a projected maximum length range, giving the
+    floor a usable target well before a single-equation model was fully locked down.
+  </p>
+
+  <table class="parts-table">
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Inverse Thickness Range</th>
+        <th>Projected Max Length</th>
+        <th>Example Styles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tier 4</td>
+        <td>78.9 &ndash; 81.6</td>
+        <td>~1,100 &ndash; 1,150 yd</td>
+        <td>80664, 80669, 80678, 80665, 83155, 83103, 80519, 88922</td>
+      </tr>
+      <tr>
+        <td>Tier 3H</td>
+        <td>75.7 &ndash; 79.9</td>
+        <td>~1,065 &ndash; 1,125 yd</td>
+        <td>80543, 80561, 80557, 80668, 88965, 83172</td>
+      </tr>
+      <tr>
+        <td>Tier 3</td>
+        <td>71.5 &ndash; 75.4</td>
+        <td>~1,007 &ndash; 1,061 yd</td>
+        <td>88923, 80743, 83152, 83145, 83160</td>
+      </tr>
+      <tr>
+        <td>Tier 2</td>
+        <td>63.9 &ndash; 70.1</td>
+        <td>~900 &ndash; 987 yd</td>
+        <td>8M063, 83144, 80528, 88998, 83183, 80681</td>
+      </tr>
+      <tr>
+        <td>Tier 2B</td>
+        <td>64.5 (SD = 5.25)</td>
+        <td>~908 yd</td>
+        <td>80558 &mdash; flagged for high variability</td>
+      </tr>
+      <tr>
+        <td>Tier 1</td>
+        <td>52.6</td>
+        <td>~740 yd</td>
+        <td>81846 &mdash; shear pile construction</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Two styles with nearly identical inverse-thickness values still weren't guaranteed to
+    behave alike in practice. That gap turned out to be driven by loop geometry under
+    winding tension, not by anything visible on a spec sheet, which is part of why every
+    tier still had to clear its own control-chart and capability check before a target was
+    confirmed.
+  </p>
+
+  <hr>
+
+  <h2>Proving Control Before Claiming Capability</h2>
+
+  <p>
+    A capability index is only meaningful if the process generating it is stable. Before any
+    tier's target was confirmed, I ran I-MR (Individuals and Moving Range) charts in Minitab
+    on its measured thickness data. A style with points outside its control limits, or an
+    unstable moving range, went back for review before its Ppk or Cpk was trusted.
+  </p>
+
+  <div class="figure-grid">
+    <figure>
+      <img src="images/mohawk-imr-80665.png" alt="I-MR control chart for Style 80665 thickness measurements">
+      <figcaption>Style 80665 (Tier 4): both the individuals and moving-range charts sit comfortably inside their control limits across all ten observations, confirming the process was in statistical control before its capability was assessed.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/mohawk-imr-88923.png" alt="I-MR control chart for Style 88923 thickness measurements flagging an out-of-control point">
+      <figcaption>Style 88923 (Tier 3): observation 4 breaks the moving-range upper control limit, flagged in red by Minitab. A result like this gets investigated, not averaged away, before a target is set on that style.</figcaption>
+    </figure>
+  </div>
+
+  <p>
+    Once a style's process was confirmed in control, Minitab's process capability report gave
+    Ppk and Cpk against an upper spec limit derived from the same 14.0717 constant divided by
+    the target yardage. A style needed Ppk and Cpk above 1.33 to be called capable, and above
+    1.67 to be called six-sigma capable. Ppk is the more conservative of the two, since it
+    weighs overall roll-to-roll variation rather than only short-term, within-run scatter.
+  </p>
+
+  <div class="figure-grid">
+    <figure>
+      <img src="images/mohawk-capability-80519.png" alt="Minitab process capability report for Style 80519 thickness data">
+      <figcaption>Process capability report for Style 80519, one of the confirmed Tier 4 styles: Ppk and Cpk both above 2.1, with zero observed or expected parts per million beyond the upper spec limit.</figcaption>
+    </figure>
+  </div>
+
+  <hr>
+
+  <h2>Refining the Predictive Equation</h2>
+
+  <p>
+    Tiering got the floor a usable answer quickly, but the goal was a single equation that
+    could predict thickness, and therefore maximum length, for a style without waiting on a
+    full sample. Face weight was the dominant predictor, but two styles with identical face
+    weight could still wind to noticeably different lengths. The variable that separated
+    them was stitches per inch: a denser stitch compresses into a thinner, tighter pile, so
+    it needed to enter the equation as its own term rather than getting absorbed into face
+    weight.
+  </p>
+
+  <div class="box">
+    <strong>Example: Style 83103</strong> (Face Weight = 14.0, Stitches/3in = 30.6)<br><br>
+    Inv_Thickness = 101.1 &minus; 1.70(14.0) &minus; 0.0412(14.0&sup2;) + 1.181(10.2) = 81.389<br>
+    Maximum Theoretical Length = 81.389 &times; 14.0717 = <strong>1,145 yd</strong><br>
+    90% Confidence Target = <strong>1,053 yd</strong>
+  </div>
+
+  <p>
+    That gap between the theoretical maximum and the 90% confidence target is deliberate.
+    Publishing the theoretical ceiling as a running wind target would put half of all rolls
+    over the radius limit by definition. Backing off to a confidence-bound target, rather
+    than an arbitrary flat margin, was the difference between a number the floor could
+    actually run against and a number that looked impressive on a slide.
+  </p>
+
+  <p>
+    A Chow test across the sampled styles showed that a single equation form fit both PF
+    and woven backing constructions equally well (p = 0.103), meaning the plant didn't need
+    to maintain and defend two separate equations to get a model that held up across its
+    product mix.
+  </p>
+
+  <hr>
+
+  <h2>Confirmed Targets and the Business Case</h2>
+
+  <p>
+    The headline result presented at the intern expo was a confirmed Tier 4 wind target of
+    1,020 yards, up from the generic 900 yard preset, backed by a Ppk of 2.04 on Style 80665,
+    the best-performing style in that tier. That's not a projection; it's a target the
+    process had already been shown capable of holding.
+  </p>
+
+  <p>
+    The case for rolling that out plant-wide comes down to what a split actually costs.
+    Every forced split creates a seam and wastes yardage on both resulting pieces, and every
+    split also removes capacity from production throughput, trailer loading efficiency, and
+    warehouse storage density, none of which show up on the roll's own paperwork. Recovering
+    even a fraction of the headroom left in the old 900 yard preset, at the volume a tufting
+    plant runs, compounds into a real reduction in scrap and a real gain in how consistently
+    rolls process and store.
+  </p>
+
+  <hr>
+
+  <h2>Two Presentations, Two Checkpoints</h2>
+
+  <div class="phase-grid">
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Problem Definition</h3>
+      <p>Audited the 900 yard preset against measured radii on multiple styles and quantified how much headroom it was leaving unused.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Data Collection</h3>
+      <p>Dual-radius measurement protocol, joined to SEQUEL production and spec data in Excel.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Geometry &amp; Tiering</h3>
+      <p>Derived the 14.0717 length-thickness constant and sorted the product line into six inverse-thickness tiers.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Checkpoint</span>
+      <h3>Mid-Tenure Review</h3>
+      <p>Presented the tiering framework and geometry-based equation as a working method for setting interim targets.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Statistical Process Control</h3>
+      <p>I-MR charts and Ppk/Cpk capability studies run on every tier before a target was trusted.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Complete</span>
+      <h3>Refined Regression</h3>
+      <p>Added stitches-per-inch as a second predictor and validated one equation form across backing types with a Chow test.</p>
+    </div>
+
+    <div class="phase-card done">
+      <span class="phase-label">Final Checkpoint</span>
+      <h3>Intern Expo Presentation</h3>
+      <p>Presented the confirmed 1,020 yard Tier 4 target at Ppk 2.04, the refined equation, and the rollout business case.</p>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h2>What I'd Carry Forward</h2>
+
+  <p>
+    Spec-sheet variables alone have a real predictive ceiling on this kind of data, probably
+    somewhere around 40 to 50 percent of the total variance within standard stock. The
+    remainder is genuine textural difference between styles that never makes it onto a spec
+    sheet, and the clearest path past that ceiling is physical caliper measurement on a
+    per-style basis rather than another round of regression on the same columns. Flagging
+    that limit clearly, instead of overselling the model's reach, was as much a part of the
+    deliverable as the equation itself.
+  </p>
+
+  <p>
+    I also learned to defend a functional form with evidence rather than deference. My
+    supervisor's original equation used an exponential decay form; running a Box-Cox
+    transformation and comparing AIC/BIC across candidate forms in Minitab showed that form
+    no longer fit the current data well, and made the case for the linear regression that
+    replaced it far more convincing than an opinion would have.
+  </p>
+
+  <p style="color: var(--ink-muted); font-style: italic; font-size: 0.9rem; margin-top: 24px;">
+    Summer 2025, Mohawk Industries, Glasgow, VA. Mid-tenure review deck and final intern
+    expo presentation both linked below.
+  </p>
+
+  <div class="footer-nav">
+    <a href="/projects/index.html">All Projects</a>
+    <a href="/index.html">Home</a>
+  </div>
+
+</div>
+</body>
+</html>
