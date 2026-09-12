@@ -8,12 +8,12 @@
   <style>
     /* Page-specific accent styles */
     .intro-text {
-      max-width: 600px;
+      max-width: 620px;
       margin: 28px auto 0;
       text-align: center;
       color: var(--ink-soft);
       font-size: 1rem;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     /* Toolchain strip */
@@ -61,6 +61,10 @@
       transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s;
       position: relative;
       overflow: visible;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
     }
 
     .featured-item::after {
@@ -79,6 +83,7 @@
       box-shadow: var(--shadow-hover);
       transform: translateY(-3px);
       border-color: var(--blue-mid);
+      text-decoration: none;
     }
 
     .featured-item:hover::after { transform: scaleX(1); }
@@ -87,6 +92,7 @@
       font-size: 0.97rem;
       margin-top: 0;
       margin-bottom: 8px;
+      color: var(--ink);
     }
 
     .featured-item p {
@@ -95,7 +101,17 @@
       margin: 0;
       line-height: 1.65;
       padding-bottom: 2px;
+      flex: 1;
     }
+
+    .featured-item .go {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.83rem;
+      color: var(--blue);
+      margin-top: 14px;
+    }
+    .featured-item:hover .go { text-decoration: underline; }
 
     .item-label {
       display: inline-block;
@@ -112,6 +128,12 @@
       text-transform: uppercase;
     }
 
+    .item-label.label-green {
+      color: #166534;
+      background: var(--green-light);
+      border-color: #a3dbbe;
+    }
+
     /* Stats row */
     .stats-row {
       display: grid;
@@ -121,7 +143,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      margin: 40px 0;
+      margin: 44px 0 8px;
     }
 
     .stat-cell {
@@ -132,11 +154,12 @@
 
     .stat-number {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4.4vw, 2rem);
       font-weight: 800;
       color: var(--blue);
       letter-spacing: -0.03em;
       display: block;
+      line-height: 1.1;
     }
 
     .stat-desc {
@@ -146,8 +169,20 @@
       color: var(--ink-muted);
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-top: 3px;
+      margin-top: 5px;
       display: block;
+      line-height: 1.35;
+    }
+
+    .stats-caption {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin: 0 0 40px;
+    }
+
+    @media (max-width: 560px) {
+      .stats-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -174,7 +209,7 @@
     <h1>Mason Canfield</h1>
     <span class="subtitle">
       Mechanical Engineering · James Madison University · Class of 2027<br>
-      Structural Analysis &nbsp;·&nbsp; FEA &nbsp;·&nbsp; Simulation-Driven Design
+      Data-Driven Design &nbsp;·&nbsp; Simulation &amp; FEA &nbsp;·&nbsp; Process Analysis
     </span>
     <div class="cta-group">
       <a href="projects/index.html" class="btn btn-primary">View Projects</a>
@@ -184,25 +219,45 @@
 
   <!-- Intro -->
   <p class="intro-text">
-    Structural analysis and simulation across vehicles, rockets, and competition structures.
-    On the systems side, physics-based modeling in MATLAB and Simulink, from vehicle dynamics
-    to embedded control logic.
+    I build the measurement before I build the model. Manufacturing statistics at Mohawk
+    Industries, physics-based vehicle simulation in MATLAB and Simulink, structural analysis
+    across competition vehicles and rockets, and low-power embedded hardware — the common
+    thread is instrumenting a problem well enough that the answer is defensible.
+  </p>
+
+  <!-- Headline numbers -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <span class="stat-number">$44.8K</span>
+      <span class="stat-desc">Annual Savings Identified</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">621.3</span>
+      <span class="stat-desc">km/L Simulated</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">30×</span>
+      <span class="stat-desc">Power Reduction Measured</span>
+    </div>
+  </div>
+  <p class="stats-caption">
+    Mohawk roll optimization · Shell Eco-Marathon V9 model · EarlyEar V1→V2 redesign
   </p>
 
   <!-- Core Technical Areas -->
   <div class="section-title">Core Technical Areas</div>
   <div class="card-grid">
     <div class="card">
-      <h3>📐 Structural Analysis</h3>
-      <p>Finite element modeling in ANSYS Mechanical across static, impact, and torsional load cases. Mesh strategy, boundary condition development, and results interpretation.</p>
+      <h3>📊 Statistical &amp; Process Analysis</h3>
+      <p>Regression modeling, ANOVA, I-MR control charts and process capability (Ppk/Cpk) in Minitab 22. Applied on the production floor to replace a legacy equation governing plant-wide roll output.</p>
     </div>
     <div class="card">
-      <h3>⚙️ Mechanical Design</h3>
-      <p>Parametric modeling in SolidWorks and Fusion 360 with a focus on design intent and clean rebuild behavior. CSWA certified (240/240).</p>
+      <h3>📐 Structural Analysis &amp; Design</h3>
+      <p>Finite element modeling in ANSYS Mechanical across static, impact and torsional load cases. Parametric modeling in SolidWorks and Fusion 360 built for clean rebuild behavior. CSWA certified, 240/240.</p>
     </div>
     <div class="card">
-      <h3>💻 Systems &amp; Simulation</h3>
-      <p>Physics-based vehicle dynamics modeling in MATLAB and Simulink with Stateflow control logic, GPS track integration, lap-based race simulation, and parameter sweep optimization.</p>
+      <h3>💻 Simulation &amp; Embedded Systems</h3>
+      <p>Physics-based vehicle dynamics in MATLAB, Simulink and Stateflow with GPS track integration and parameter sweep optimization. Low-power embedded C++ on ESP32 and Arduino, with instrumentation to verify it.</p>
     </div>
   </div>
 
@@ -211,39 +266,51 @@
   <div class="toolchain-strip">
     <span class="tool-pill">MATLAB</span>
     <span class="tool-pill">Simulink</span>
+    <span class="tool-pill">Minitab</span>
     <span class="tool-pill">ANSYS Mechanical</span>
+    <span class="tool-pill">Altair</span>
     <span class="tool-pill">SolidWorks</span>
     <span class="tool-pill">Fusion 360</span>
     <span class="tool-pill">OpenRocket</span>
-    <span class="tool-pill">Arduino</span>
-    <span class="tool-pill">Embedded C++</span>
     <span class="tool-pill">Python</span>
+    <span class="tool-pill">Embedded C++</span>
+    <span class="tool-pill">SQL</span>
+    <span class="tool-pill">Excel</span>
     <span class="tool-pill">LaTeX</span>
   </div>
 
   <!-- Featured Work -->
   <div class="section-title">Featured Work</div>
   <div class="featured-work">
-    <div class="featured-item">
-      <span class="item-label">V9 Complete</span>
+
+    <a class="featured-item" href="projects/mohawk.html">
+      <span class="item-label label-green">Internship</span>
+      <h3>Carpet Roll Length Optimization — Mohawk Industries</h3>
+      <p>Replaced a drifted legacy equation controlling how much carpet goes on every roll at a plant running 26M+ ft a year. 500+ rolls measured across 89 styles, wind targets validated with control charts and process capability. $44.8K annual savings, 2–3× the model it replaced.</p>
+      <span class="go">Read the writeup →</span>
+    </a>
+
+    <a class="featured-item" href="projects/early-ear/">
+      <span class="item-label">In Progress</span>
+      <h3>EarlyEar — Cattle Health Monitor</h3>
+      <p>A low-power ear tag for early detection of Bovine Respiratory Disease. Rebuilt around the power budget that killed the first prototype: 90 mA down to 3 mA, four hours of field life out to four days, every stage measured on a shunt rig built to read microamps on a milliamp meter.</p>
+      <span class="go">Read the writeup →</span>
+    </a>
+
+    <a class="featured-item" href="projects/shell-eco-simulink/">
+      <span class="item-label label-green">V9 Complete</span>
       <h3>Shell Eco-Marathon Vehicle Dynamics Simulation</h3>
-      <p>Nine-version longitudinal dynamics model built up from a basic force balance into a full competition race sim. GPS track data, zone-aware driver strategy, grade force dynamics. Baseline: 621.3 km/L over 4 IMS laps, Article 226 valid.</p>
-    </div>
-    <div class="featured-item">
+      <p>Nine-version longitudinal dynamics model built up from a basic force balance into a full competition race sim. GPS track data, zone-aware driver strategy, grade force dynamics. Baseline 621.3 km/L over four IMS laps, Article 226 valid.</p>
+      <span class="go">Read the writeup →</span>
+    </a>
+
+    <a class="featured-item" href="projects/shell-eco-frame/shell-eco-chassis.html">
       <span class="item-label">In Progress</span>
-      <h3>Shell Eco-Marathon Chassis Development</h3>
-      <p>Frame Lead on the Junior Team. CAD is done — cleaned weldment, bulkhead added, aluminum material applied. FEA load cases coming once the Altair suite is set up.</p>
-    </div>
-    <div class="featured-item">
-      <span class="item-label">In Progress</span>
-      <h3>Madison Aerospace Club — Rocket Design</h3>
-      <p>Trade study across three Level 1 kit vehicles under a common motor. HI-TECH PK-56 selected at 3,170 ft predicted apogee. Eye bolt FEA done; launch April 4.</p>
-    </div>
-    <div class="featured-item">
-      <span class="item-label">Complete</span>
-      <h3>Formula SAE Chassis Structural Analysis</h3>
-      <p>Torsional stiffness, cornering, aerodynamic downforce, and frontal impact analysis of a tubular spaceframe in ANSYS Mechanical using beam element methods.</p>
-    </div>
+      <h3>Shell Eco-Marathon Chassis &amp; Composite Body</h3>
+      <p>Frame Lead on the Junior Team. Cutting chassis mass while holding torsional stiffness — FEA to target where material comes out, dial gauges to verify the prediction on the built frame. Next: a composite aero shell replacing the plexiglass body, the change the sensitivity study ranked highest.</p>
+      <span class="go">Read the writeup →</span>
+    </a>
+
   </div>
 
   <!-- Footer -->
