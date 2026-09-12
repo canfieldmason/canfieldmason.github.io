@@ -62,11 +62,7 @@
     .parts-table th { background: var(--ink); }
     .parts-table td { font-size: 0.88rem; }
     .parts-table td.mono { font-family: var(--font-mono); }
-
-    .tier-table td:nth-child(1) { font-family: var(--font-mono); font-weight: 600; }
-    .tier-table td:nth-child(2),
-    .tier-table td:nth-child(3) { font-family: var(--font-mono); }
-    .tier-table td:last-child { font-size: 0.8rem; color: var(--ink-muted); font-family: var(--font-mono); }
+    .parts-table tr.highlight td { background: var(--paper-card); font-weight: 600; }
 
     /* Two col layout */
     .concept-grid {
@@ -139,20 +135,110 @@
       padding: 14px 18px;
       margin: 18px 0;
       font-size: 0.92rem;
-      line-height: 1.9;
+      line-height: 2;
       overflow-x: auto;
+    }
+    .eq .lead {
+      font-size: 1rem;
+      font-weight: 600;
+      display: block;
       white-space: nowrap;
     }
+    .eq .old { color: var(--ink-muted); }
     .eq .note {
       display: block;
       font-family: var(--font-sans, inherit);
       font-size: 0.8rem;
       color: var(--ink-muted);
-      white-space: normal;
-      margin-top: 6px;
+      line-height: 1.6;
+      margin-top: 8px;
     }
 
-    /* ---- Savings model comparator ---- */
+    /* Three-up failure mode cards */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin: 24px 0 32px;
+    }
+    .mode-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0 0 16px;
+      overflow: hidden;
+      background: var(--paper-card);
+      box-shadow: var(--shadow-xs);
+    }
+    .mode-card h3 {
+      font-size: 0.8rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+      padding: 11px 16px;
+      text-align: center;
+      font-family: var(--font-mono);
+    }
+    .mode-card.bad h3     { background: #f2dada; color: #7d2b2b; }
+    .mode-card.meh h3     { background: #f7e8bf; color: #7a5c14; }
+    .mode-card.good h3    { background: #dcecd9; color: #2f5c2c; }
+    .mode-card ul {
+      margin: 0; padding: 0 18px 0 34px;
+      font-size: 0.86rem; line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .mode-card li { margin-bottom: 8px; }
+
+    /* Roll-packing diagram */
+    .pack {
+      margin: 22px 0 10px;
+    }
+    .pack-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 7px;
+    }
+    .pack-row {
+      display: flex;
+      gap: 4px;
+      align-items: stretch;
+      margin-bottom: 4px;
+    }
+    .pack-seg {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 4px;
+      min-width: 0;
+    }
+    .pack-seg.short { background: #c0392b; }
+    .pack-total {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      padding-left: 12px;
+      white-space: nowrap;
+    }
+    .pack-arrow {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin: 12px 0 16px;
+      padding-left: 4px;
+    }
+
+    /* ---- Equation comparator ---- */
     .calc {
       background: var(--paper-card);
       border: 1px solid var(--border);
@@ -168,10 +254,11 @@
     }
     .calc-inputs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: 1fr auto;
       gap: 14px 18px;
+      align-items: end;
       padding-bottom: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       border-bottom: 1px solid var(--border);
     }
     .field label {
@@ -181,38 +268,29 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--ink-muted);
-      margin-bottom: 5px;
+      margin-bottom: 7px;
       font-family: var(--font-mono);
     }
-    .field input, .field select {
-      width: 100%;
+    .field input[type=range] { width: 100%; accent-color: var(--blue); }
+    .field input[type=number] {
+      width: 92px;
       box-sizing: border-box;
       font-family: var(--font-mono);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 600;
       padding: 7px 9px;
       color: var(--ink);
       background: var(--paper, #fff);
       border: 1px solid var(--border);
       border-radius: 6px;
     }
-    .field input:focus, .field select:focus {
-      outline: 2px solid var(--blue);
-      outline-offset: -1px;
-    }
-    .field .hint {
-      display: block;
-      font-size: 0.72rem;
-      color: var(--ink-muted);
-      margin-top: 4px;
-      line-height: 1.4;
-    }
 
     .model-row {
       display: grid;
-      grid-template-columns: 210px 1fr;
+      grid-template-columns: 215px 1fr;
       gap: 16px;
       align-items: center;
-      padding: 13px 0;
+      padding: 12px 0;
       border-bottom: 1px solid var(--border);
     }
     .model-row:last-of-type { border-bottom: 0; }
@@ -232,7 +310,7 @@
     .model-name .sub {
       display: block;
       font-weight: 400;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--ink-muted);
       line-height: 1.45;
       margin-top: 2px;
@@ -248,7 +326,7 @@
       height: 16px;
       border-radius: 0 4px 4px 0;
       min-width: 2px;
-      transition: width 0.25s ease;
+      transition: width 0.2s ease;
     }
     .bar-value {
       font-family: var(--font-mono);
@@ -260,36 +338,59 @@
     .bar-value .delta {
       font-weight: 400;
       color: var(--ink-muted);
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       margin-left: 6px;
     }
-
-    .calc-out {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-      padding-top: 20px;
+    .calc-foot {
+      font-size: 0.79rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin: 18px 0 0;
+      padding-top: 16px;
       border-top: 1px solid var(--border);
     }
-    .calc-out .metric { box-shadow: none; }
-    .calc-foot {
-      font-size: 0.78rem;
-      color: var(--ink-muted);
-      line-height: 1.6;
+    #verdict {
+      font-size: 0.87rem;
+      line-height: 1.65;
       margin: 16px 0 0;
+      padding: 12px 15px;
+      border-radius: var(--radius-lg);
+      border-left: 3px solid var(--blue);
+      background: var(--paper, #fff);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .warn-note {
-      font-size: 0.8rem;
-      color: var(--ink-muted);
-      font-style: italic;
-      margin-top: 10px;
+    /* Savings bars */
+    .savings-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .savings-row .nm { font-size: 0.9rem; font-weight: 600; text-align: right; }
+    .savings-bar {
+      height: 40px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 14px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-sizing: border-box;
     }
 
     @media (max-width: 640px) {
       .concept-grid { grid-template-columns: 1fr; }
       .model-row { grid-template-columns: 1fr; gap: 8px; }
+      .calc-inputs { grid-template-columns: 1fr; }
+      .savings-row { grid-template-columns: 1fr; }
+      .savings-row .nm { text-align: left; }
     }
 
   </style>
@@ -314,136 +415,222 @@
 
   <div class="project-header">
     <h1>Carpet Roll Length Optimization</h1>
-    <p class="project-subtitle">Engineering Intern, Mohawk Industries — Glasgow, KY</p>
+    <p class="project-subtitle">Engineering Intern · Mohawk Industries · Glasgow, VA · Summer 2026</p>
     <div class="tags" style="margin-top: 14px;">
       <span class="tag">Six Sigma</span>
       <span class="tag">Minitab 22</span>
       <span class="tag">Regression</span>
-      <span class="tag">ANOVA / Tukey HSD</span>
       <span class="tag">Process Capability</span>
       <span class="tag">I-MR Control Charts</span>
       <span class="tag">SQL (SEQUEL)</span>
       <span class="tag">Excel</span>
       <span class="tag">Energy Analysis</span>
+      <span class="tag">LOTO</span>
       <span class="tag">Internship</span>
     </div>
   </div>
 
   <p style="max-width: 760px; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.8; margin-bottom: 32px;">
-    Every roll of carpet coming off the tufting line at Glasgow was wound to the same
-    preset — 900 yards — regardless of what was on it. A dense, thin-piled style and a
-    heavy, lofty one got the same number, which meant one was leaving hundreds of yards
-    of drum capacity unused while the other was running within an inch of the point where
-    the roll has to be split. Over a summer I measured 226 rolls across 31 styles, built
-    a geometric and statistical model of roll thickness, and turned "load it by feel"
-    into capability-tested wind targets. A second project with the maintenance department
-    applied the fan affinity laws to a supply fan on a VFD and produced a validated
-    energy savings case alongside it.
+    Every roll of carpet leaving the tufting floor at Glasgow was wound to a length nobody
+    could defend with data. The plant had been pushing roll size up since 2017 — from a
+    373 ft average to 614 ft — using a rule of thumb called "Make Rolls Big," because the
+    equation that was supposed to do the job had drifted badly enough that a rule of thumb
+    beat it. Over a summer I measured more than 500 rolls across 89 styles, rebuilt the
+    length model from the roll geometry up, and replaced the legacy equation with one that
+    predicts 86% of the variance instead of 73%. On identical production, it is worth two
+    to three times what it replaced.
   </p>
 
   <div class="metric-row">
     <div class="metric">
-      <span class="value">226</span>
-      <span class="label">Rolls measured across 31 styles</span>
+      <span class="value">$44.8K</span>
+      <span class="label">Annual savings, standard equation — $65.3K on the big-roll variant</span>
     </div>
     <div class="metric">
-      <span class="value">+120 yd</span>
-      <span class="label">Confirmed Tier 4 target vs. the legacy 900 yd preset</span>
+      <span class="value">2–3×</span>
+      <span class="label">The savings of the model it replaced, same production, same sample set</span>
     </div>
     <div class="metric">
-      <span class="value">Ppk 2.04</span>
-      <span class="label">Best confirmed capability, style 80665 — above the 1.67 six sigma threshold</span>
+      <span class="value">86.1%</span>
+      <span class="label">Adjusted R², against 73.3% for the legacy TDAS equation</span>
     </div>
     <div class="metric">
-      <span class="value">$4,100/yr</span>
-      <span class="label">Validated VFD energy savings, 37,800 kWh and 9.9 t CO<sub>2</sub></span>
+      <span class="value">500+</span>
+      <span class="label">Rolls measured across 89 styles characterized</span>
     </div>
   </div>
 
   <div class="status-box">
     <strong>Outcome</strong>
-    A three-tool decision framework went into use on the floor before the internship
-    ended: a confirmed capability-tested target where one exists, an ANOVA tier
-    assignment where it doesn't, and a screening regression for styles with no samples
-    at all. Presented at the Mohawk intern expo at headquarters.
+    A replacement length equation, a documented safety floor, and a roll-packing case
+    showing 6% fewer rolls per year at identical output — 30.9 tons of CO<sub>2</sub>
+    avoided alongside the dollars. Presented at the Mohawk Intern Expo 2026.
   </div>
 
   <hr>
 
-  <!-- =================== HOW IT STARTED =================== -->
-  <h2>How the Project Started</h2>
+  <!-- =================== THE PLANT =================== -->
+  <h2>The Plant</h2>
 
   <p>
-    I came into Glasgow as a mechanical engineering intern without this project assigned.
-    It surfaced the way most useful problems do — as a complaint. Rolls were being split
-    because they came out too big, and other rolls were going out light, and nobody could
-    tell me which styles did which or why. The preset was 900 yards because 900 yards was
-    what the preset had always been.
+    Glasgow opened in 1934 as Lee's and Sons Blue Ridge Mill, under a motto the plant still
+    runs on: <em>"Quality first, then yardage."</em> It produces nearly all of Mohawk's
+    carpet tile — millions of square yards and hundreds of styles a year, residential
+    through commercial. Year to date during my internship the plant ran over 26.1 million
+    feet of carpet, producing more than 17.4 million square yards of tile.
   </p>
 
   <p>
-    The legacy tool for this was a TDAS equation of the form
-    <span style="font-family: var(--font-mono);">1190&nbsp;×&nbsp;e<sup>−0.017&nbsp;×&nbsp;FW</sup></span>,
-    a single exponential in face weight. When I fit it against current production data it
-    was clearly drifted — the coefficients had been set against a product mix that no
-    longer existed. That gave the project its shape: not "tune the old equation," but
-    "measure what is actually on the drum and build the model back up from geometry."
+    That scale is the whole reason this project is worth anything. A few feet per roll is
+    invisible. A few feet per roll across every roll the plant winds for a year is a
+    budget line.
   </p>
 
-  <div class="placeholder">Photo: tufting line / finished rolls on the floor at Glasgow</div>
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Photo: aerial view of the Glasgow plant</div>
+      <figcaption>Glasgow, VA. Built 1934 as Lee's and Sons Blue Ridge Mill.</figcaption>
+    </figure>
+    <figure>
+      <div class="placeholder">Photo: tufting machine on the floor</div>
+      <figcaption>Tufting. My department for the summer, and where the roll gets wound.</figcaption>
+    </figure>
+  </div>
 
   <hr>
 
   <!-- =================== PROBLEM =================== -->
-  <h2>The Problem: Loading By Feel</h2>
+  <h2>Why Are Rolls Undersized?</h2>
 
   <p>
-    A roll is wound on a 4.25&Prime; radius cardboard core and can grow to a maximum outer
-    radius of about 21.5&Prime; before it exceeds handling and racking limits. How many yards
-    fit inside that annulus depends entirely on how thick one wrapped layer of that
-    particular carpet is — which varies with face weight, stitch density, pile height, and
-    backing. A flat yardage preset ignores all of it.
+    This was not a plant ignoring the problem. Glasgow had been working to maximize roll
+    size since 2017 and had improved every year — average roll length went from
+    <strong>373 ft</strong> in 2017 to <strong>614 ft</strong> by the time I arrived. But
+    the tool doing the work was the "Make Rolls Big" model, a heuristic the floor trusted
+    precisely because it outperformed the TDAS equation that was supposed to be the
+    authority.
   </p>
 
   <p>
-    Two real examples from the floor made the case better than any statistic:
+    A heuristic has a ceiling, and the ceiling is that it treats styles as interchangeable.
+    They aren't. Face weight, stitch rate, thickness and backing all change how much
+    carpet fits inside the same physical envelope, and none of that reaches a single flat
+    number.
   </p>
-
-  <table class="parts-table">
-    <thead>
-      <tr>
-        <th>Style</th>
-        <th>Wound to</th>
-        <th>Avg. outer radius</th>
-        <th>Headroom left</th>
-        <th>Consequence</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mono">83103</td>
-        <td class="mono">900 yd</td>
-        <td class="mono">18.9&Prime;</td>
-        <td class="mono">2.6&Prime;</td>
-        <td>Roughly 200 yards of capacity left on the drum, every roll</td>
-      </tr>
-      <tr>
-        <td class="mono">83160</td>
-        <td class="mono">900 yd</td>
-        <td class="mono">20.2&Prime;</td>
-        <td class="mono">1.4&Prime;</td>
-        <td>Under 100 yards of room — same preset, nearly at the split limit</td>
-      </tr>
-    </tbody>
-  </table>
 
   <div class="box-yellow">
-    <strong>Why the two failure modes are not symmetric:</strong> under-loading quietly
-    loses capacity at every downstream step — more rolls per order, more handling, more
-    truck space, more rack positions. Over-loading is loud and expensive: the roll has to
-    be split, which forces a seam, wastes yardage on both sides of the cut, and creates a
-    quality event that can come back as a customer claim. A good target pushes toward the
-    ceiling without ever touching it, which is precisely a process capability problem.
+    <strong>The headroom, in one style:</strong> 83103 is one of Glasgow's highest-volume
+    styles. It runs at 900 ft and averages just an <strong>18.9&Prime; radius</strong> —
+    leaving <strong>2.6&Prime;</strong> of unused radius and <strong>over 250 ft</strong> of
+    carpet on the table, every single roll.
+  </div>
+
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Photo: roll being wound on the precoat line</div>
+      <figcaption>A roll on the precoat roll-up, where the real size ceiling lives.</figcaption>
+    </figure>
+    <figure>
+      <div class="placeholder">Photo: finished rolls racked in the warehouse</div>
+      <figcaption>Finished goods. Every roll here occupies a rack slot, a core, and a set of handling moves regardless of how much carpet is on it.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Failure modes</h3>
+
+  <div class="mode-grid">
+    <div class="mode-card bad">
+      <h3>Over-Loading</h3>
+      <ul>
+        <li>Roll splits → forced seams → footage wasted</li>
+        <li>Production delays and quality defects</li>
+        <li>Increase in customer claims and additional footage needs</li>
+      </ul>
+    </div>
+    <div class="mode-card meh">
+      <h3>Under-Loading</h3>
+      <ul>
+        <li>Capacity lost at every step: more rolls for the same order</li>
+        <li>Added transportation and storage cost</li>
+        <li>More handling for the same output</li>
+      </ul>
+    </div>
+    <div class="mode-card good">
+      <h3>The Opportunity</h3>
+      <ul>
+        <li>Quality annual savings by maximizing footage to the limit</li>
+        <li>Consistent max-length rolls, minimal splits</li>
+        <li>Smoother processing and storage</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- =================== CONSTRAINT =================== -->
+  <h2>The Binding Constraint</h2>
+
+  <p>
+    Before modeling anything I had to establish what actually stops a roll from growing.
+    Rack height and tufting machine limits both matter, but neither is the real cap — the
+    binding constraint is <strong>precoat roll-up</strong>.
+  </p>
+
+  <div class="eq">
+    <span class="lead">r<sub>max</sub> = 21.5&Prime; carpet radius&nbsp;&nbsp;over an&nbsp;&nbsp;8.5&Prime; diameter core</span>
+    <span class="note">Every style in the plant shares this same ceiling. The entire question is how close each one can safely get to it without causing a split — which is a process capability problem, not a guessing problem.</span>
+  </div>
+
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Photo: tape measure across a roll at the precoat roll-up</div>
+      <figcaption>Measuring to the 21.5&Prime; ceiling at precoat. Identifying this as the true constraint — rather than rack height — set the target for everything downstream.</figcaption>
+    </figure>
+  </div>
+
+  <hr>
+
+  <!-- =================== K CONSTANT =================== -->
+  <h2>The Backbone Math: K and Inverse Thickness</h2>
+
+  <p>
+    With the envelope fixed, length becomes pure geometry. The wound carpet occupies the
+    annulus between the core and the maximum radius; that usable area divided by the
+    thickness of one wrapped layer gives the length.
+  </p>
+
+  <div class="eq">
+    Usable area = π ( 21.5<sup>2</sup> − 4.25<sup>2</sup> ) = <strong>1,394.7 in<sup>2</sup></strong><br>
+    1,394.7 ÷ 36 ÷ (1/12) &nbsp;→&nbsp; <strong>K = 14.0717 ft</strong><br>
+    <span class="lead">Max Length = K × (1 / Thickness) = 14.0717 × Inv_T</span>
+    <span class="note">K folds the drum geometry and the unit conversion into a single constant, so every result downstream comes out in the feet the floor actually uses.</span>
+  </div>
+
+  <h3>Why invert the thickness?</h3>
+
+  <p>
+    Max Length divided by Thickness is a hyperbola — awkward to regress, badly behaved at
+    the thin end, and it produces non-constant residual variance. Taking the reciprocal
+    fixes all of that at once, and a higher Inv_T simply means a thinner layer and a longer
+    roll.
+  </p>
+
+  <div class="box">
+    <p style="margin-bottom: 0;">
+      The payoff I cared about most was maintainability. Because the relationship is linear
+      in Inv_T, <strong>future iterations can be run rapidly with the same equations and the
+      same dataset — without resampling and recalculating.</strong> If the core size, the
+      rack height, or the roll-up allowance changes, K changes and everything downstream
+      follows from a cell reference. That is what makes this a tool rather than a one-time
+      study.
+    </p>
+  </div>
+
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Diagram: annulus — 8.5&Prime; core inside 21.5&Prime; max radius</div>
+      <figcaption>The usable winding annulus. Everything in the model is a consequence of this cross-section.</figcaption>
+    </figure>
   </div>
 
   <hr>
@@ -451,461 +638,285 @@
   <!-- =================== DATA COLLECTION =================== -->
   <h2>Data Collection</h2>
 
-  <p>
-    There was no instrumented way to get layer thickness, so I measured it by hand and
-    backed it out of the geometry. For every roll: a tape measure from the outside of the
-    core to the outer edge of the roll, taken at the 4 and 8 o'clock positions and
-    averaged, to cancel the ovality a roll picks up sitting on its side.
-  </p>
-
   <div class="phase-grid">
     <div class="phase-card done">
       <span class="phase-label">Step 1</span>
       <h3>Measure Two Radii</h3>
-      <p>Tape measure from the edge of the cardboard core to the outer edge of the roll, at the 4 and 8 o'clock positions.</p>
+      <p>Each roll measured at the 4 and 8 o'clock positions with a tape, from core edge to outer edge — averaging out the ovality a roll picks up resting on its side.</p>
     </div>
     <div class="phase-card done">
       <span class="phase-label">Step 2</span>
-      <h3>Average and Record</h3>
-      <p>Roll number and averaged radius into Excel, then style, actual production length, face weight, stitch rate and backing pulled from SEQUEL.</p>
+      <h3>Average &amp; Record</h3>
+      <p>Roll number and averaged radius logged in Excel; Inv_T computed from the geometry.</p>
     </div>
     <div class="phase-card done">
       <span class="phase-label">Step 3</span>
-      <h3>Compute Thickness</h3>
-      <p>Back the per-layer thickness out of the annulus the wound carpet occupies and the known production length.</p>
+      <h3>Join Specifications</h3>
+      <p>Style, actual length, face weight and SPI pulled from SEQUEL and matched to each roll.</p>
     </div>
   </div>
-
-  <div class="eq">
-    Thickness = [ (r<sub>avg</sub>/12 + 4.25/12)<sup>2</sup> − (4.25/12)<sup>2</sup> ] ÷ Length
-    <span class="note">Per-layer thickness in inches. Production length is taken from the precoat production length column in SEQUEL, which is always populated — tag length frequently is not, and using it silently drops rolls from the dataset.</span>
-  </div>
-
-  <div class="figure-grid">
-    <figure>
-      <div class="placeholder">Photo: measuring roll radius with a tape at the 4 o'clock position</div>
-      <figcaption>Radius measurement on the floor. Two positions averaged per roll to remove ovality from the roll resting on its side.</figcaption>
-    </figure>
-    <figure>
-      <div class="placeholder">Screenshot: Excel data collection sheet / SEQUEL pull</div>
-      <figcaption>Roll number, averaged radius and production data joined in Excel. 226 rolls across 31 styles by the end of the summer.</figcaption>
-    </figure>
-  </div>
-
-  <hr>
-
-  <!-- =================== K CONSTANT =================== -->
-  <h2>The K Constant and Inverse Thickness</h2>
-
-  <p>
-    Maximum length is a pure geometry problem once thickness is known. The wound carpet
-    occupies the annulus between the core and the maximum radius, so the usable
-    cross-sectional area divided by the layer thickness gives the length — the same way
-    you would find the length of a rolled-up tape.
-  </p>
-
-  <div class="eq">
-    r<sub>MAX</sub> = 21.5&Prime;,&nbsp;&nbsp; r<sub>core</sub> = 4.25&Prime;<br>
-    L<sub>MAX</sub> = π ( r<sub>MAX</sub><sup>2</sup> − r<sub>core</sub><sup>2</sup> ) ÷ Thickness<br>
-    π ( 21.5<sup>2</sup> − 4.25<sup>2</sup> ) = 1394.7 in<sup>2</sup><br>
-    1394.7 ÷ 36 ÷ (1/12) = <strong>14.0717 = K</strong><br>
-    L<sub>MAX</sub> = 14.0717 ÷ Thickness
-    <span class="note">K folds the drum geometry and the inch-to-yard conversion into one constant, so every downstream result is expressed in the same units the floor uses.</span>
-  </div>
-
-  <p>
-    The statistically important move was to stop modeling thickness and start modeling its
-    reciprocal. <span style="font-family: var(--font-mono);">MaxLength</span> is a
-    <em>hyperbolic</em> function of thickness, which is awkward to regress, badly behaved
-    at the low end, and produces non-constant residual variance. Inverting it fixes all
-    three at once:
-  </p>
-
-  <div class="eq">
-    Inv_T = 1 / Thickness&nbsp;&nbsp;&nbsp;⟹&nbsp;&nbsp;&nbsp;<strong>MaxLength = K × Inv_T</strong>
-    <span class="note">High Inv_T means a thinner layer, and therefore a longer roll. Because the relationship to length is now strictly linear, every tool downstream — linear regression, ANOVA, control charts, capability indices — becomes valid on Inv_T and translates directly back into yards by multiplying by K.</span>
-  </div>
-
-  <div class="box">
-    <h3>Worked example — style 83103, 16 samples</h3>
-    <ul>
-      <li>Average measured thickness: <strong>0.12592&Prime;</strong></li>
-      <li>Inverse thickness: <strong>79.4</strong></li>
-      <li>MaxLength = 14.0717 × 79.4 = <strong>1,117 yards</strong> theoretical</li>
-      <li>Capability tested at a 1,020 yard target: <strong>Ppk = 1.47</strong></li>
-    </ul>
-    <p style="margin-bottom: 0;">
-      1,117 yards is where the roll physically runs out of drum. 1,020 is where it can be
-      wound every time without one going over. The gap between those two numbers is the
-      entire point of the capability analysis.
-    </p>
-  </div>
-
-  <hr>
-
-  <!-- =================== ANOVA =================== -->
-  <h2>Sorting the Styles: ANOVA and Tukey HSD</h2>
-
-  <p>
-    With 226 samples across 31 styles, the first question was whether styles actually
-    differ in Inv_T or whether the spread was just measurement noise — and if they do
-    differ, which ones are genuinely distinct from each other rather than merely different
-    on paper. That is a one-way ANOVA followed by Tukey's HSD, run in Minitab.
-  </p>
 
   <div class="metric-row">
     <div class="metric">
-      <span class="value">F = 39.54</span>
-      <span class="label">One-way ANOVA on Inv_T by style</span>
+      <span class="value">89</span>
+      <span class="label">Styles characterized</span>
     </div>
     <div class="metric">
-      <span class="value">p &lt; 0.001</span>
-      <span class="label">Style differences are real, not noise</span>
+      <span class="value">500+</span>
+      <span class="label">Rolls measured</span>
     </div>
     <div class="metric">
-      <span class="value">R² = 88.3%</span>
-      <span class="label">Variance in Inv_T explained by style identity</span>
-    </div>
-    <div class="metric">
-      <span class="value">s = 2.54</span>
-      <span class="label">Pooled standard deviation, 14 distinct Tukey groups</span>
+      <span class="value">Inv_T</span>
+      <span class="label">The single response variable everything regresses against</span>
     </div>
   </div>
 
   <p>
-    Tukey grouped the 31 styles into 14 statistically distinguishable sets. Fourteen
-    presets is not something an operator is going to manage, so I collapsed the groups into
-    six tiers that respect the Tukey boundaries but are coarse enough to actually run:
+    One data discipline point that mattered more than it sounds: production length came from
+    the precoat production length column, which is always populated, rather than tag length,
+    which frequently is not. Using tag length silently drops rolls out of the dataset, and
+    the rolls it drops are not random.
   </p>
 
-  <table class="parts-table tier-table">
+  <div class="placeholder">Screenshot: Excel collection sheet joined against the SEQUEL pull</div>
+
+  <hr>
+
+  <!-- =================== VARIABLES =================== -->
+  <h2>Sorting Through the Variables</h2>
+
+  <table class="parts-table">
     <thead>
       <tr>
-        <th>Tier</th>
-        <th>Inv_T range</th>
-        <th>Theoretical max</th>
-        <th>Styles</th>
+        <th>Variable</th>
+        <th>Units</th>
+        <th>What it measures</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Tier 4</td>
-        <td>78.9 – 81.6</td>
-        <td>~1,100 – 1,150 yd</td>
-        <td>80664, 80669, 80678, 80665, 83155, 83103, 80519, 88922</td>
+        <td class="mono">Face Weight</td>
+        <td class="mono">oz / yd²</td>
+        <td>Ounces of fiber in one square yard. Higher face weight means more yarn and more thickness.</td>
       </tr>
       <tr>
-        <td>Tier 3H</td>
-        <td>75.7 – 79.9</td>
-        <td>~1,065 – 1,125 yd</td>
-        <td>80543, 80561, 80557, 80668, 88965, 83172</td>
+        <td class="mono">Stitch Per Inch</td>
+        <td class="mono">lengthwise</td>
+        <td>Density of tufts woven in a one-inch row. Higher density is more durable but harder to compact.</td>
       </tr>
       <tr>
-        <td>Tier 3</td>
-        <td>71.5 – 75.4</td>
-        <td>~1,007 – 1,061 yd</td>
-        <td>88923, 80743, 83152, 83145, 83160</td>
+        <td class="mono">Pile Height</td>
+        <td class="mono">in, free-standing</td>
+        <td>How tall the tufts stand above the primary backing. Some styles are flat overall; others rely on variation to build texture.</td>
       </tr>
       <tr>
-        <td>Tier 2</td>
-        <td>63.9 – 70.1</td>
-        <td>~900 – 987 yd</td>
-        <td>8M063, 83144, 80528, 88998, 83183, 80681</td>
+        <td class="mono">Gauge</td>
+        <td class="mono">needles / in</td>
+        <td>Needle spacing across the width (1/12 = 12 needles per inch). Over <strong>88%</strong> of production was 12<sup>th</sup> gauge.</td>
       </tr>
       <tr>
-        <td>Tier 2B</td>
-        <td>64.5 (SD 5.25)</td>
-        <td>~908 yd</td>
-        <td>80558 — isolated for high variability</td>
-      </tr>
-      <tr>
-        <td>Tier 1</td>
-        <td>52.6</td>
-        <td>~740 yd</td>
-        <td>81846 — shear pile</td>
+        <td class="mono">Backing Type</td>
+        <td class="mono">—</td>
+        <td>The fabric the tufts are woven through. Non-woven and woven styles behave differently in sampling; <strong>91%</strong> was non-woven.</td>
       </tr>
     </tbody>
   </table>
 
   <p>
-    Two of those tiers exist because of variance rather than mean. 80558 sits squarely in
-    the Tier 2 mean but carries a standard deviation of 5.25 against a pooled 2.54 — more
-    than double the spread of its neighbours. Averaging it into the tier would have handed
-    it a target it could not hold, so it got its own conservative bucket. 81846 is a shear
-    pile construction whose behaviour has nothing to do with the loop styles around it.
+    The gauge and backing concentrations are what made a single general equation defensible.
+    When 88% of production shares a gauge and 91% shares a backing family, splitting the
+    model across those factors buys noise, not accuracy.
+  </p>
+
+  <hr>
+
+  <!-- =================== THICKNESS GAUGE =================== -->
+  <h2>Refining the Metric — and a Negative Result</h2>
+
+  <p>
+    With face weight, SPI and pile height all in play, I went after a sharper measurement
+    and started taking readings with a manual thickness gauge. The motivation was concrete:
+    a textured style with peaks and valleys can log the same free-standing pile height as a
+    consistently flat one, but the two compress completely differently on the drum. A
+    measured thickness separates them where pile height cannot.
+  </p>
+
+  <p>
+    It improved the equation. It also turned out that measured thickness is
+    <strong>~96.7% collinear with face weight</strong> (r = 0.967, 95% CI 0.922–0.986), which
+    means most of what it contributes was already sitting in a column I could pull from
+    SEQUEL for free.
   </p>
 
   <div class="box-yellow">
-    <strong>A methodology trap worth naming:</strong> R² computed on per-style averages
-    looks spectacular, because averaging has already removed the within-style scatter you
-    are trying to model. The honest metric is roll-level R², computed against individual
-    measurements. I kept both in front of me all summer specifically so I would not quote
-    the flattering one.
+    <strong>Why I kept this in the presentation instead of burying it:</strong> a predictor
+    that requires physically handling every roll, and duplicates 97% of a number already in
+    the spec system, is not a predictor you deploy. Establishing that cleanly is worth more
+    to the plant than the marginal R² would have been, because it closes the question rather
+    than leaving it open as a "we should really measure thickness someday."
+  </div>
+
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Photo: manual thickness gauge on a carpet sample</div>
+      <figcaption>Manual thickness gauge. Sharper than pile height on textured styles, and almost entirely redundant with face weight.</figcaption>
+    </figure>
+    <figure>
+      <div class="placeholder">Minitab matrix plot — MeasThickness, FW, SPI, HiPile</div>
+      <figcaption>Matrix plot with 95% CIs for Pearson correlation. Measured thickness against face weight: r = 0.967.</figcaption>
+    </figure>
   </div>
 
   <hr>
 
-  <!-- =================== SIX SIGMA =================== -->
-  <h2>Six Sigma: Control Charts and Process Capability</h2>
+  <!-- =================== ROLL TRACKING =================== -->
+  <h2>Roll Tracking: Proving It on Real Production</h2>
 
   <p>
-    Knowing a style's average Inv_T tells you nothing about whether you can safely wind to
-    it. Two styles with identical means and very different roll-to-roll spread need very
-    different targets. This is the part of the project that made the results defensible
-    rather than merely interesting, and it follows the standard order: prove stability
-    first, then measure capability.
+    A model that only lives in Minitab does not convince anyone on a tufting floor. Over the
+    summer I tracked <strong>more than 75 rolls run longer than 900 ft</strong>, processing
+    the requests and measuring the results after precoat.
+  </p>
+
+  <p>
+    The largest request I processed was a roll of 83103 run to <strong>1,075 ft</strong> —
+    175 ft longer than that style's normal run. It came off the line at a
+    <strong>19.625&Prime; radius</strong>, meaning even at 1,075 ft there was still another
+    200 ft of headroom before the 21.5&Prime; ceiling. And it was only the 12<sup>th</sup>
+    largest roll the plant made that year.
+  </p>
+
+  <table class="parts-table">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Style</th>
+        <th>Footage</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">1st</td><td class="mono">80498</td><td class="mono">1,370 ft</td><td>—</td></tr>
+      <tr><td class="mono">2nd</td><td class="mono">83122</td><td class="mono">1,182 ft</td><td>—</td></tr>
+      <tr><td class="mono">3rd</td><td class="mono">83154</td><td class="mono">1,158 ft</td><td>—</td></tr>
+      <tr class="highlight"><td class="mono">12th</td><td class="mono">83103</td><td class="mono">1,075 ft</td><td>My largest processed request — 200 ft of radius still unused</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    That leaderboard is the argument in a single table. Rolls well past 1,000 ft were already
+    being made successfully and routinely. The capability was clear and present; what was
+    missing was a defensible way to decide which styles could do it and by how much.
+  </p>
+
+  <div class="placeholder">Photo: Mohawk roll tag (roll 9109863, style 83103)</div>
+
+  <hr>
+
+  <!-- =================== SIX SIGMA =================== -->
+  <h2>Six Sigma: Control Charts and Capability</h2>
+
+  <p>
+    This is the part that turns an interesting regression into a number you can actually
+    wind to. It runs in the standard order — prove the process is stable first, then measure
+    how much of the tolerance it consumes.
   </p>
 
   <h3>Step 1 — I-MR control charts</h3>
 
   <p>
-    An Individuals and Moving Range chart confirms the winding process is in statistical
-    control before its capability is assessed. Capability indices computed on an unstable
-    process are meaningless — they describe a distribution that is not actually holding
-    still. Points outside the control limits on either the individuals or the moving range
-    chart mean the style gets reviewed rather than tiered. Every Tier 4 style came back in
-    control.
+    An Individuals and Moving Range chart confirms the process is in statistical control
+    before capability is assessed. The Individuals chart tracks the process average for
+    shifts and trends; the Moving Range chart plots the difference between consecutive
+    points, capturing short-term variation. Capability computed on an unstable process is
+    meaningless — it describes a distribution that is not holding still.
   </p>
 
-  <div class="figure-grid">
-    <figure>
-      <div class="placeholder">Minitab I-MR chart — style 80665 (Tier 4)</div>
-      <figcaption>80665, a Tier 4 style, in statistical control across both the individuals and moving range charts.</figcaption>
-    </figure>
-    <figure>
-      <div class="placeholder">Minitab I-MR chart — style 88923 (Tier 3)</div>
-      <figcaption>88923, a Tier 3 style, shown for contrast against a different tier's spread.</figcaption>
-    </figure>
-  </div>
-
-  <h3>Step 2 — Capability against a one-sided specification</h3>
+  <h3>Step 2 — Capability against a one-sided limit</h3>
 
   <p>
-    This is a one-sided problem, which is what makes it interesting. There is no lower
-    limit worth defending — a slightly short roll is a minor loss. There is only an upper
-    limit: the radius at which the roll must be split. So the specification is set as an
-    upper bound on Inv_T, derived from the target yardage through the same K constant:
+    There is no meaningful lower specification here. A slightly short roll is a minor loss.
+    The only limit worth defending is the upper one, so the specification is set as an upper
+    bound on thickness derived from the candidate target footage:
   </p>
 
   <div class="eq">
-    USL<sub>Inv_T</sub> = 14.0717 ÷ Target Yardage
-    <span class="note">A candidate wind target converts directly into a specification limit on the measured quantity. Raising the target tightens the spec, and capability falls — which is exactly the tradeoff the analysis is meant to expose.</span>
+    <span class="lead">USL = 14.0717 ÷ target footage</span>
+    <span class="note">Above 1.33 is capable; above 1.67 is six sigma. Cpk uses the within-order spread; Ppk uses the overall spread, so Ppk is the honest number for a target that has to survive real production across orders.</span>
   </div>
-
-  <table class="parts-table">
-    <thead>
-      <tr>
-        <th>Index</th>
-        <th>What it uses</th>
-        <th>Reading</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mono">Cpk</td>
-        <td>Within-subgroup (short-term) variation</td>
-        <td>What the process is capable of at its best</td>
-      </tr>
-      <tr>
-        <td class="mono">Ppk</td>
-        <td>Overall deviation, roll-to-roll and long-term</td>
-        <td>What the process actually delivers in production</td>
-      </tr>
-      <tr>
-        <td class="mono">≥ 1.33</td>
-        <td>—</td>
-        <td>Capable</td>
-      </tr>
-      <tr>
-        <td class="mono">≥ 1.67</td>
-        <td>—</td>
-        <td>Six sigma capable</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>
-    I reported Ppk as the governing number rather than Cpk. Cpk describes short-term
-    capability and would have made several targets look better than they were; Ppk carries
-    the between-run and between-order variation that a wind target has to survive in real
-    production. Where the two diverged sharply, that gap was itself the finding: it means
-    the style's sample was dominated by rolls from one or two production orders, and the
-    between-order variation is being understated. Those styles were flagged as needing
-    more diverse sampling before a target could be confirmed, not given a target anyway.
-  </p>
 
   <div class="figure-grid">
     <figure>
-      <div class="placeholder">Minitab process capability report (Ppk / Cpk) — style 80665</div>
-      <figcaption>Capability report at the 1,020 yard target. Ppk = 2.04, comfortably past the 1.67 six sigma threshold.</figcaption>
+      <div class="placeholder">Minitab I-MR chart — Thickness_In, style 80665</div>
+      <figcaption>Style 80665 in statistical control across both the individuals and moving range charts — the precondition for any capability claim.</figcaption>
+    </figure>
+    <figure>
+      <div class="placeholder">Minitab capability report — Thickness_In, style 80519</div>
+      <figcaption>Capability report for 80519: Ppk 2.30, Cpk 2.16, both well past the 1.67 six sigma threshold.</figcaption>
     </figure>
   </div>
 
-  <hr>
-
-  <!-- =================== REGRESSION =================== -->
-  <h2>The Screening Regression</h2>
-
   <p>
-    Tiers only help with styles I had measured. The plant runs far more styles than 31, and
-    new ones arrive continuously. For those, I needed to predict Inv_T from specification
-    data alone — numbers already sitting in TuftingSpecsPro before a single roll is wound.
-  </p>
-
-  <div class="eq">
-    Inv_T = 101.1 − 1.70(FW) − 0.0412(FW<sup>2</sup>) + 1.181(Stitches/in)
-    <span class="note">FW in oz/yd². Stitches per inch is the stitch/3in specification divided by three. Multiply the result by K = 14.0717 for theoretical maximum yards.</span>
-  </div>
-
-  <h3>Why these predictors</h3>
-
-  <ul>
-    <li>
-      <strong>Face weight</strong> is the primary driver. More yarn per square yard means a
-      taller pile and a thicker layer per wrap. It carries the bulk of the signal.
-    </li>
-    <li>
-      <strong>The squared face weight term</strong> captures diminishing returns. Thickness
-      does not keep climbing linearly with face weight — at high weights the pile begins to
-      support itself and compress differently under winding tension, and the curve flattens.
-      A purely linear model systematically over-predicted thickness at the heavy end.
-    </li>
-    <li>
-      <strong>Stitches per inch</strong> was the term that separated styles the other
-      predictors could not tell apart. A denser stitch pulls the pile tighter, so the same
-      face weight compresses thinner per yard. This mattered directly: styles with identical
-      face weight and identical specifications on paper were coming out hundreds of feet
-      apart in capacity, and stitch density was the variable that explained it.
-    </li>
-  </ul>
-
-  <div class="box">
-    <h3>Worked example — style 83103 (FW = 14.0, stitch/3in = 30.6)</h3>
-    <ul>
-      <li>Inv_T = 101.1 − 1.70(14.0) − 0.0412(196) + 1.181(10.2) = <strong>81.4</strong></li>
-      <li>81.4 × 14.0717 = <strong>1,145 yd</strong> theoretical maximum</li>
-      <li>Lower 90% prediction bound: <strong>1,053 yd</strong></li>
-    </ul>
-    <p style="margin-bottom: 0;">
-      The measured Inv_T for this style, from 16 physical samples, was 79.4 — a theoretical
-      1,117 yards. The equation over-predicts by about 28 yards, which is the honest
-      accuracy of a screening tool built on spec sheet columns.
-    </p>
-  </div>
-
-  <h3>What the equation cannot do</h3>
-
-  <p>
-    Roll-level R² sat at about 66%. That is genuinely useful for a first target on a style
-    nobody has measured, and it is not good enough to set a confirmed wind target. I spent
-    a fair amount of the summer establishing <em>why</em>, because a supervisor asking for
-    a better number deserves an explanation rather than a shrug.
-  </p>
-
-  <ul>
-    <li>
-      Specification columns describe what the style was <em>designed</em> to be. Two rolls
-      built to identical specifications can behave differently on the drum because of loop
-      geometry under winding tension — real texture that no spec column records.
-    </li>
-    <li>
-      Measured free-standing pile height correlates with face weight at r ≈ 0.97, VIF ≈ 17.
-      It is effectively a restatement of face weight and adds almost nothing predictive, so
-      it did not survive into the final form.
-    </li>
-    <li>
-      A Chow test on backing type returned p = 0.103 — a single equation legitimately fits
-      both PF and woven backings when face weight is the predictor, so splitting the
-      equation by backing was not statistically justified.
-    </li>
-    <li>
-      The ceiling on spec-sheet-only prediction for this dataset is roughly 40–50% of
-      variance within standard stock. Physical caliper measurement per style is the only
-      path past it, and would plausibly reach R² of 0.85–0.95. Communicating that ceiling
-      clearly was as much of the deliverable as the equation itself.
-    </li>
-  </ul>
-
-  <div class="box-yellow">
-    <strong>Where the model is deliberately conservative:</strong> confirmed big-roll
-    styles such as 83128 and 80561 out-perform the general equation by roughly 85 feet,
-    because at high footage the pile compresses under its own accumulated winding tension
-    in a way the model does not capture. I left that conservatism in rather than fitting
-    around it. An equation that occasionally leaves 85 feet on the drum is a much cheaper
-    error than one that occasionally forces a split.
-  </div>
-
-  <h3>Model stability</h3>
-
-  <p>
-    Before handing the equation over I checked that it was not being held up by a handful
-    of points. Removing the two highest Cook's distance styles (8M042, 8M044) moved the
-    coefficients by less than 0.5% and shifted MaxLength predictions by ±4 yards. The fit
-    is stable. I also ran a Box-Cox transformation and AIC/BIC comparison against the
-    exponential form my supervisor initially preferred, so the choice of functional form was
-    an empirical result rather than my opinion.
+    Where Ppk and Cpk diverge sharply, the gap is itself the finding: it means the style's
+    sample was dominated by rolls from one or two production orders, so between-order
+    variation is being understated. Those styles needed more diverse sampling before
+    confirming a target — not a target anyway.
   </p>
 
   <hr>
 
-  <!-- =================== SAVINGS CALCULATOR =================== -->
-  <h2>The Savings Case: Three Models, Three Answers</h2>
+  <!-- =================== EQUATION =================== -->
+  <h2>The Production Equation</h2>
 
   <p>
-    The three tools do not compete — they sit in priority order, and which one applies
-    depends on how much is known about the style in front of you. A confirmed
-    capability-tested target beats a tier assignment, and a tier assignment beats a
-    screening prediction. The calculator below shows what each is worth per roll and per
-    year against the 900 yard legacy preset.
+    The final form is exponential in face weight, fitted on the log scale so the model is
+    linear where it is estimated and multiplicative where it is used. That structure is also
+    what makes it extensible — additional predictors drop into the exponent without changing
+    anything around them.
   </p>
 
+  <div class="eq">
+    <span class="lead">General form:&nbsp;&nbsp;Length = K × e<sup>(b₀ + b₁x₁ + b₂x₂ + … + b<sub>n</sub>x<sub>n</sub>)</sup></span>
+    <span class="lead" style="color: var(--blue);">Target Roll Length = 14.0717 × e<sup>(4.8793 − 0.03198 · Face Weight)</sup></span>
+    <span class="lead old">Previous (TDAS) = 1190 × e<sup>(−0.017 · Face Weight)</sup></span>
+    <span class="note">
+      New equation: S = 0.09006 · adjusted R² <strong>86.1%</strong> · predicted R²
+      <strong>85.6%</strong>. &nbsp;Previous equation: R² 73.3%.<br>
+      To prevent excessive splitting, a flat <strong>−115 ft</strong> is applied as a 97.5%
+      safety floor (z·S·K).
+    </span>
+  </div>
+
+  <p>
+    Predicted R² of 85.6% against an adjusted 86.1% is the number I was most pleased with.
+    Those two figures staying within half a point of each other is the evidence that the
+    model generalizes to rolls it has never seen, rather than having memorized the sample —
+    which is exactly the failure mode that left the legacy equation drifted.
+  </p>
+
+  <!-- Comparator -->
   <div class="calc">
-    <h3>Wind target comparison</h3>
+    <h3>Legacy vs. new, by face weight</h3>
     <p class="calc-sub">
-      Pick a tier or enter specifications directly. Yardage figures come from the
-      analysis; the volume and value inputs are yours to set — I have left them at neutral
-      placeholders rather than publishing internal rates.
+      Both published equations, evaluated side by side. Drag face weight to see where the
+      legacy TDAS equation was giving away footage and where it was quietly inviting splits.
     </p>
 
     <div class="calc-inputs">
       <div class="field">
-        <label for="tier">Tier</label>
-        <select id="tier">
-          <option value="4">Tier 4</option>
-          <option value="3H">Tier 3H</option>
-          <option value="3">Tier 3</option>
-          <option value="2">Tier 2</option>
-          <option value="2B">Tier 2B</option>
-          <option value="1">Tier 1</option>
-        </select>
-        <span class="hint" id="tierStyles"></span>
+        <label for="fwRange">Face weight (oz / yd²)</label>
+        <input type="range" id="fwRange" min="13" max="39" step="0.5" value="14">
       </div>
       <div class="field">
-        <label for="fw">Face weight (oz/yd²)</label>
-        <input type="number" id="fw" value="14.0" step="0.1" min="8" max="30">
-        <span class="hint">Drives the regression model</span>
-      </div>
-      <div class="field">
-        <label for="spi">Stitch / 3 in</label>
-        <input type="number" id="spi" value="30.6" step="0.1" min="15" max="60">
-        <span class="hint">Divided by 3 inside the equation</span>
-      </div>
-      <div class="field">
-        <label for="rolls">Rolls per year</label>
-        <input type="number" id="rolls" value="1000" step="50" min="0">
-        <span class="hint">Placeholder — set to your volume</span>
-      </div>
-      <div class="field">
-        <label for="rate">Value per yard ($)</label>
-        <input type="number" id="rate" value="1.00" step="0.05" min="0">
-        <span class="hint">Placeholder — capacity value, not sale price</span>
+        <label for="fw">Value</label>
+        <input type="number" id="fw" value="14" step="0.5" min="13" max="39">
       </div>
     </div>
 
     <div class="model-row">
       <div class="model-name">
         <span class="swatch" style="background: var(--ink-muted);"></span>
-        <span>Legacy preset<span class="sub">Flat 900 yd, every style</span></span>
+        <span>Legacy TDAS<span class="sub">1190 · e^(−0.017·FW) — R² 73.3%</span></span>
       </div>
       <div class="bar-track">
         <div class="bar" id="bar0" style="background: var(--ink-muted);"></div>
@@ -916,7 +927,7 @@
     <div class="model-row">
       <div class="model-name">
         <span class="swatch" style="background: var(--blue);"></span>
-        <span>Screening regression<span class="sub">Priority 3 — spec data only, no samples</span></span>
+        <span>New equation<span class="sub">Raw prediction, before safety floor</span></span>
       </div>
       <div class="bar-track">
         <div class="bar" id="bar1" style="background: var(--blue);"></div>
@@ -927,7 +938,7 @@
     <div class="model-row">
       <div class="model-name">
         <span class="swatch" style="background: var(--green);"></span>
-        <span>Tier assignment<span class="sub">Priority 2 — ANOVA / Tukey group</span></span>
+        <span>Standard wind target<span class="sub">New equation − 115 ft safety floor</span></span>
       </div>
       <div class="bar-track">
         <div class="bar" id="bar2" style="background: var(--green);"></div>
@@ -938,7 +949,7 @@
     <div class="model-row">
       <div class="model-name">
         <span class="swatch" style="background: var(--ink);"></span>
-        <span>Theoretical maximum<span class="sub">Reference only — the split limit, never a target</span></span>
+        <span>Big Ones variant<span class="sub">Confirmed high-capacity styles, ≈ +85 ft</span></span>
       </div>
       <div class="bar-track">
         <div class="bar" id="bar3" style="background: var(--ink);"></div>
@@ -946,69 +957,240 @@
       </div>
     </div>
 
-    <div class="calc-out">
-      <div class="metric">
-        <span class="value" id="outYd">—</span>
-        <span class="label">Additional yards per roll, tier target vs. legacy preset</span>
-      </div>
-      <div class="metric">
-        <span class="value" id="outAnnYd">—</span>
-        <span class="label">Additional yards per year at the volume set above</span>
-      </div>
-      <div class="metric">
-        <span class="value" id="outAnnVal">—</span>
-        <span class="label">Annual capacity value at the rate set above</span>
-      </div>
-      <div class="metric">
-        <span class="value" id="outPct">—</span>
-        <span class="label">Increase in yards per roll</span>
-      </div>
-    </div>
+    <p id="verdict"></p>
 
     <p class="calc-foot">
-      <strong>How the tier target is derived:</strong> the only field-confirmed target from
-      the summer is Tier 4 at 1,020 yd, capability tested at Ppk 2.04 on 80665 and 1.47 on
-      83103. That target sits at 0.919 of the tier's lower theoretical bound. The remaining
-      tiers apply the same 0.919 factor to their own lower bound and round to the nearest
-      10 yards, so every tier carries the same margin as the one that was actually proven.
-      The regression figure shown is the lower 90% prediction bound, not the point estimate
-      — the point estimate is the physical limit, not a wind target.
+      The two equations cross at a face weight of about <strong>29.5 oz/yd²</strong>. Below
+      that the legacy equation under-predicts and the plant loses footage on every roll;
+      above it the legacy equation over-predicts, which is the expensive direction — that is
+      where a split comes from. A single drifted exponential cannot be wrong in only one
+      direction, which is precisely why "Make Rolls Big" outperformed it in practice.
+      The Big Ones offset is the margin by which the general equation conservatively
+      under-predicts confirmed large-roll styles.
     </p>
   </div>
 
-  <div class="warn-note">
-    Rolls per year and value per yard are illustrative inputs only. Mohawk production
-    volumes and internal cost figures are not published here.
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Chart: Sample vs. Equation Prediction per Face Weight</div>
+      <figcaption>Sampled maximums against all three equation variants across the full face weight range, 13–39 oz/yd².</figcaption>
+    </figure>
   </div>
 
   <hr>
 
-  <!-- =================== ENERGY =================== -->
-  <h2>Second Project: VFD Energy Savings on a Spinning Supply Fan</h2>
+  <!-- =================== MECHANISM =================== -->
+  <h2>How the Savings Actually Happen</h2>
 
   <p>
-    Alongside the roll work I partnered with the maintenance department on an energy case
-    for a supply fan in spinning. The fan ran at full speed continuously; the question was
-    what reduced-speed operation on a variable frequency drive would actually be worth.
-    That is a fan affinity laws problem, and the answer is dramatic enough that it is worth
-    writing out.
+    This is the part I had to get right, because the intuitive version of the argument is
+    wrong. Longer rolls do not create carpet. The savings come from somewhere more specific.
   </p>
 
-  <div class="eq">
-    Q<sub>2</sub>/Q<sub>1</sub> = (N<sub>2</sub>/N<sub>1</sub>)&nbsp;&nbsp;&nbsp;&nbsp;
-    ΔP<sub>2</sub>/ΔP<sub>1</sub> = (N<sub>2</sub>/N<sub>1</sub>)<sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
-    <strong>P<sub>2</sub>/P<sub>1</sub> = (N<sub>2</sub>/N<sub>1</sub>)<sup>3</sup></strong>
-    <span class="note">Flow scales with speed, pressure with the square of speed, and shaft power with the cube. Airflow and power do not trade off one for one — this is what makes speed control on a fan so much better than throttling it.</span>
+  <p>
+    Backing changes force a short roll at a fixed cumulative yardage, and that break lands at
+    the same point no matter how long the individual rolls are. Between breaks, the same
+    footage repacks into <strong>fewer, longer rolls</strong> — and every roll eliminated
+    takes its core, its wrap, its handling moves and its rack slot with it.
+  </p>
+
+  <div class="pack">
+    <div class="pack-label">Before · 5 rolls</div>
+    <div class="pack-row">
+      <div class="pack-seg" style="flex: 900;">900</div>
+      <div class="pack-seg" style="flex: 900;">900</div>
+      <div class="pack-seg" style="flex: 900;">900</div>
+      <div class="pack-seg" style="flex: 900;">900</div>
+      <div class="pack-seg short" style="flex: 350;">350</div>
+      <div class="pack-total">3,950 ft</div>
+    </div>
+    <div class="pack-arrow">↓ &nbsp;repack at a conservative 1,020 ft target — the break still lands at 3,950 ft</div>
+    <div class="pack-label">After · 4 rolls</div>
+    <div class="pack-row">
+      <div class="pack-seg" style="flex: 1020;">1020</div>
+      <div class="pack-seg" style="flex: 1020;">1020</div>
+      <div class="pack-seg" style="flex: 1020;">1020</div>
+      <div class="pack-seg" style="flex: 890;">890</div>
+      <div class="pack-total">3,950 ft</div>
+    </div>
   </div>
+
+  <p>
+    Identical output, identical break point, one fewer roll — and the stub roll at the end
+    goes from a 350 ft runt to a near-full 890 ft. The 6% reduction in rolls per year is
+    this diagram, repeated across the plant's production.
+  </p>
+
+  <div class="info-box">
+    <strong>What fewer rolls actually save</strong>
+    Cardboard cores and stretch-wrap · handling and forklift moves · warehouse rack slots ·
+    fewer rolls to track and manage · reduced trim and turn-up waste at every roll change.
+  </div>
+
+  <hr>
+
+  <!-- =================== SAVINGS =================== -->
+  <h2>The Savings Case</h2>
+
+  <p>
+    Run against identical production on the same sample set, the new equations are worth two
+    to three times the model they replaced:
+  </p>
+
+  <div style="margin: 26px 0 10px;">
+    <div class="savings-row">
+      <div class="nm">Legacy</div>
+      <div class="savings-bar" style="width: 33.7%; background: var(--ink-muted);">$22.0K</div>
+    </div>
+    <div class="savings-row">
+      <div class="nm">Standard</div>
+      <div class="savings-bar" style="width: 68.6%; background: var(--green);">$44.8K</div>
+    </div>
+    <div class="savings-row">
+      <div class="nm">Big Ones</div>
+      <div class="savings-bar" style="width: 100%; background: var(--ink);">$65.3K</div>
+    </div>
+  </div>
+
+  <p style="font-size: 0.83rem; color: var(--ink-muted); margin-bottom: 30px;">
+    Annual savings by equation, identical production and sample set.
+  </p>
 
   <table class="parts-table">
     <thead>
       <tr>
-        <th>Speed</th>
-        <th>Airflow</th>
-        <th>Shaft power</th>
-        <th>Power reduction</th>
+        <th>Equation</th>
+        <th>24&Prime;×24&Prime; tiles</th>
+        <th>12&Prime;×36&Prime; tiles</th>
+        <th>Labor</th>
+        <th>Total</th>
+        <th>Rolls</th>
+        <th>CO<sub>2</sub> reduced</th>
       </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">Standard</td>
+        <td class="mono">$22,600</td>
+        <td class="mono">$12,700</td>
+        <td class="mono">$9,500</td>
+        <td class="mono"><strong>$44,800</strong></td>
+        <td class="mono">−6%</td>
+        <td class="mono">30.9 t</td>
+      </tr>
+      <tr class="highlight">
+        <td class="mono">Big Ones</td>
+        <td class="mono">$31,900</td>
+        <td class="mono">$19,700</td>
+        <td class="mono">$13,700</td>
+        <td class="mono"><strong>$65,300</strong></td>
+        <td class="mono">−9%</td>
+        <td class="mono">45.1 t</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="metric-row">
+    <div class="metric">
+      <span class="value">$44.7K</span>
+      <span class="label">Annual savings with the standard equation</span>
+    </div>
+    <div class="metric">
+      <span class="value">6%</span>
+      <span class="label">Fewer rolls per year at identical production</span>
+    </div>
+    <div class="metric">
+      <span class="value">30.9 t</span>
+      <span class="label">CO<sub>2</sub> avoided annually — the footprint of 2.7 Georgians</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- =================== NEXT STEPS =================== -->
+  <h2>Next Steps</h2>
+
+  <div class="phase-grid">
+    <div class="phase-card active">
+      <span class="phase-label">Immediate</span>
+      <h3>Replace the TDAS equation</h3>
+      <p>Swap the legacy length equation for the new form, then run one maximum roll per order at the calculated length and measure each after precoat.</p>
+    </div>
+    <div class="phase-card active">
+      <span class="phase-label">Ongoing</span>
+      <h3>Recalculate on broader data</h3>
+      <p>With additional high-length data across a wider slice of the product mix, refit the regression and re-derive the safety factor from the observed fit.</p>
+    </div>
+    <div class="phase-card pending">
+      <span class="phase-label">Capital</span>
+      <h3>5&Prime; cores from backings</h3>
+      <p>Primary backing already ships on 5&Prime; cores. Minor precoat retrofitting could cut the need to order 8.5&Prime; cores entirely.</p>
+    </div>
+    <div class="phase-card pending">
+      <span class="phase-label">Upcoming</span>
+      <h3>Roll out and count the dollars</h3>
+      <p>Deploy the final equation plant-wide and measure realized savings against the projection.</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>The core change is the highest-leverage item on the list</h3>
+    <p style="margin-bottom: 0;">
+      Going from an 8.5&Prime; core to a 5&Prime; core shifts K from 14.0717 to
+      <strong>14.33</strong> — a bigger usable annulus for free. That gains roughly
+      <strong>13–21 ft per style</strong> across the face weight range and saves an
+      additional <strong>$5.8K</strong> in reduced seam waste alone. Because the model is
+      linear in Inv_T, absorbing that change is editing one constant, not rerunning the
+      study. This is the maintainability argument paying off in the most direct way possible.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- =================== MORE WITH MOHAWK =================== -->
+  <h2>More With Mohawk</h2>
+
+  <p>
+    The roll project was the main assignment, but two other pieces of work took up real time
+    over the summer, and both ended up being things I'd point to first in an interview.
+  </p>
+
+  <h3>Lock Out / Tag Out</h3>
+
+  <p>
+    I helped convert, document and digitize <strong>over 100 LOTO procedures</strong> for
+    tufting equipment — the step-by-step energy isolation instructions that keep someone from
+    being killed by a machine that restarts while they're inside it. Unglamorous, entirely
+    procedural, and the single most direct contribution I made to making Glasgow a safer
+    place.
+  </p>
+
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Screenshot: digitized LOTO procedure, tufting machine</div>
+      <figcaption>One of the digitized procedures — lockout points, application process, and per-step verification.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Energy Savings: Fan Affinity Laws and a VFD</h3>
+
+  <p>
+    I partnered with Maintenance to quantify the savings from slowing large supply fans with
+    a variable frequency drive rather than running them flat out continuously. This is a fan
+    affinity laws problem, and the cube relationship between speed and shaft power is what
+    makes the answer so lopsided:
+  </p>
+
+  <div class="eq">
+    Q₂/Q₁ = (N₂/N₁)&nbsp;&nbsp;&nbsp;&nbsp;
+    ΔP₂/ΔP₁ = (N₂/N₁)<sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>P₂/P₁ = (N₂/N₁)<sup>3</sup></strong>
+    <span class="note">Flow scales with speed, pressure with the square, shaft power with the cube. Giving up 20% of airflow buys back nearly half the power draw — which is why speed control beats throttling by such a wide margin.</span>
+  </div>
+
+  <table class="parts-table">
+    <thead>
+      <tr><th>Speed</th><th>Airflow</th><th>Shaft power</th><th>Power reduction</th></tr>
     </thead>
     <tbody>
       <tr><td class="mono">100%</td><td class="mono">100%</td><td class="mono">100%</td><td class="mono">—</td></tr>
@@ -1018,14 +1200,6 @@
       <tr><td class="mono">60%</td><td class="mono">60%</td><td class="mono">21.6%</td><td class="mono">78.4%</td></tr>
     </tbody>
   </table>
-
-  <p>
-    Giving up 20% of airflow buys back nearly half the power draw. The work was to
-    establish what the process actually required rather than what the fan happened to be
-    delivering, convert the resulting speed reduction into annual kilowatt-hours across
-    real run hours, and validate the case against measured draw rather than nameplate
-    figures.
-  </p>
 
   <div class="metric-row">
     <div class="metric">
@@ -1037,68 +1211,17 @@
       <span class="label">Annual energy cost avoided</span>
     </div>
     <div class="metric">
-      <span class="value">9.9 t</span>
-      <span class="label">CO<sub>2</sub> emissions avoided per year</span>
-    </div>
-    <div class="metric">
-      <span class="value">1 fan</span>
-      <span class="label">Single unit — the method generalizes across the plant's fan population</span>
+      <span class="value">9.92 t</span>
+      <span class="label">CO<sub>2</sub> avoided per year</span>
     </div>
   </div>
 
-  <div class="placeholder">Figure: VFD setpoint / measured power draw before and after (pending)</div>
-
-  <div class="info-box">
-    <strong>Why this one mattered out of proportion to its size</strong>
-    A validated savings case on one fan is a small number. The transferable part is the
-    method: affinity laws, measured baseline draw, real run hours, a defensible utility
-    rate and emissions factor. Every constant-speed fan in the plant is a candidate for the
-    same analysis, and the case gives maintenance a template rather than a one-off result.
+  <div class="figure-grid">
+    <figure>
+      <div class="placeholder">Photo: Siemens motor nameplate on the supply fan</div>
+      <figcaption>Nameplate data off the fan motor. The savings case was built on measured draw and real run hours rather than nameplate assumptions alone.</figcaption>
+    </figure>
   </div>
-
-  <hr>
-
-  <!-- =================== FRAMEWORK =================== -->
-  <h2>What Actually Went to the Floor</h2>
-
-  <p>
-    A model nobody uses is a model that failed. The deliverable was not the regression — it
-    was a decision rule simple enough to apply at a winder, backed by an Excel workbook that
-    did the lookups.
-  </p>
-
-  <div class="phase-grid">
-    <div class="phase-card done">
-      <span class="phase-label">Priority 1</span>
-      <h3>Confirmed Capability Target</h3>
-      <p>If the style has a capability-tested target with Ppk ≥ 1.33, use it. This is the strongest evidence available and overrides everything below.</p>
-    </div>
-    <div class="phase-card done">
-      <span class="phase-label">Priority 2</span>
-      <h3>Tier Assignment</h3>
-      <p>If the style is measured but not yet capability confirmed, use its ANOVA/Tukey tier target.</p>
-    </div>
-    <div class="phase-card done">
-      <span class="phase-label">Priority 3</span>
-      <h3>Screening Prediction</h3>
-      <p>No samples: run the regression on spec sheet data and use the lower 90% bound as a starting target.</p>
-    </div>
-    <div class="phase-card done">
-      <span class="phase-label">Fallback</span>
-      <h3>Analog Method</h3>
-      <p>For a brand new style with unusual specs, match to the nearest spec-similar known style and inherit its target until samples exist.</p>
-    </div>
-  </div>
-
-  <p>
-    The workbook behind it was built for the floor, not for me: AVERAGEIF across sheets,
-    LARGE with tie-breaker helper columns, IFERROR wrapping on every operator-facing cell,
-    and TEXT() wrapping on style code lookups because the codes are stored as numbers in
-    text-formatted cells and a naive VLOOKUP silently returns #N/A. Deliberately no XLOOKUP
-    — the deployment target had to stay LibreOffice compatible.
-  </p>
-
-  <div class="placeholder">Screenshot: operator-facing wind target lookup workbook</div>
 
   <hr>
 
@@ -1106,27 +1229,25 @@
   <h2>What I'd Do Differently</h2>
 
   <p>
-    I would have started physical caliper measurement in week two instead of week eight.
-    The single most valuable thing I learned is that the spec sheet has a hard predictive
-    ceiling — roughly 40–50% of variance within standard stock — and no amount of clever
-    modeling gets past it. Direct thickness measurement on a sample per style plausibly
-    reaches R² of 0.85–0.95. I spent real time exhausting the regression approaches before
-    accepting that the constraint was the data, not the method.
+    I would have found the binding constraint in week one instead of week three. I spent
+    early time characterizing rack height and tufting machine limits before establishing
+    that precoat roll-up was the actual ceiling. Every measurement taken before that was
+    answering a question that didn't govern the outcome.
   </p>
 
   <p>
-    I would also build the sampling plan around production orders rather than rolls. Several
-    styles showed large Ppk/Cpk gaps purely because their sample was dominated by rolls from
-    one or two orders, which understates between-run variation and inflates apparent
-    capability. Ten rolls from ten different orders would have been worth more than thirty
-    from three.
+    I would also structure the sampling around production orders rather than rolls. Several
+    styles showed large gaps between Ppk and Cpk purely because their sample was dominated by
+    rolls from one or two orders, which understates between-run variation and makes
+    capability look better than it is. Ten rolls from ten different orders is worth more than
+    thirty rolls from three.
   </p>
 
   <p>
-    The 8M series is still unsolved. Individual variance within those styles is high enough
-    that spec-based prediction is not reliable at any reasonable sample size, and physical
-    measurement is the only honest path. Naming that clearly was more useful to the plant
-    than publishing an equation with a confidence interval wide enough to be meaningless.
+    The thickness gauge work is the result I'm most ambivalent about and most glad I did. It
+    consumed real hours and ended as a negative finding — 96.7% collinear with a number
+    already in the spec system. But an unanswered "we should measure thickness someday" would
+    have sat in the plant's backlog indefinitely, and now it doesn't.
   </p>
 
   <hr>
@@ -1140,7 +1261,7 @@
     <tbody>
       <tr>
         <td>Statistics</td>
-        <td>Minitab 22 — regression, Best Subsets, one-way ANOVA, Tukey HSD, I-MR control charts, Ppk/Cpk capability, Box-Cox, Chow test</td>
+        <td>Minitab 22 — regression on the log scale, Best Subsets, I-MR control charts, Ppk/Cpk process capability, correlation matrix plots, Box-Cox and AIC/BIC model comparison</td>
       </tr>
       <tr>
         <td>Data</td>
@@ -1148,19 +1269,17 @@
       </tr>
       <tr>
         <td>Analysis &amp; delivery</td>
-        <td>Python (regression, outlier detection, model comparison); Excel and LibreOffice for operator-facing workbooks</td>
+        <td>Python for regression, outlier detection and model comparison; Excel and LibreOffice for operator-facing workbooks</td>
       </tr>
       <tr>
         <td>Measurement</td>
-        <td>Tape measure and caliper sampling on the production floor, 226 rolls</td>
+        <td>Tape measure and manual thickness gauge on the production floor — 500+ rolls across 89 styles</td>
       </tr>
     </tbody>
   </table>
 
   <p style="color: var(--ink-muted); font-style: italic; font-size: 0.9rem; margin-top: 24px;">
-    Summer 2026 internship, Mohawk Industries, Glasgow KY. Presented at the intern expo at
-    company headquarters. Production volumes and internal cost figures are deliberately
-    omitted.
+    Summer 2026, Mohawk Industries, Glasgow VA — Tufting. Presented at Mohawk Intern Expo 2026.
   </p>
 
   <div class="footer-nav">
@@ -1173,84 +1292,63 @@
 <script>
 (function () {
   var K = 14.0717;
-  var LEGACY = 900;
-  var MARGIN = 0.919;  // confirmed T4 target 1,020 / lower theoretical bound 1,110
+  var SAFETY = 115;        // ft, 97.5% safety floor (z·S·K)
+  var BIG_OFFSET = 85;     // ft, confirmed large-roll styles above the general equation
+  var PRESET = 900;        // legacy floor preset, ft
 
-  var TIERS = {
-    '4':  { lowInvT: 78.9, hiInvT: 81.6, target: 1020, confirmed: true,
-            styles: '80664, 80669, 80678, 80665, 83155, 83103, 80519, 88922' },
-    '3H': { lowInvT: 75.7, hiInvT: 79.9, target: 980,  confirmed: false,
-            styles: '80543, 80561, 80557, 80668, 88965, 83172' },
-    '3':  { lowInvT: 71.5, hiInvT: 75.4, target: 920,  confirmed: false,
-            styles: '88923, 80743, 83152, 83145, 83160' },
-    '2':  { lowInvT: 63.9, hiInvT: 70.1, target: 830,  confirmed: false,
-            styles: '8M063, 83144, 80528, 88998, 83183, 80681' },
-    '2B': { lowInvT: 64.5, hiInvT: 64.5, target: 830,  confirmed: false,
-            styles: '80558 — isolated for high variability (SD 5.25)' },
-    '1':  { lowInvT: 52.6, hiInvT: 52.6, target: 680,  confirmed: false,
-            styles: '81846 — shear pile' }
-  };
-
-  function regressionInvT(fw, stitchPer3in) {
-    var spi = stitchPer3in / 3;
-    return 101.1 - 1.70 * fw - 0.0412 * fw * fw + 1.181 * spi;
-  }
+  function legacy(fw)   { return 1190 * Math.exp(-0.017 * fw); }
+  function current(fw)  { return K * Math.exp(4.8793 - 0.03198 * fw); }
 
   var el = function (id) { return document.getElementById(id); };
   var fmt = function (n) { return Math.round(n).toLocaleString(); };
 
-  function render() {
-    var tierKey = el('tier').value;
-    var tier = TIERS[tierKey];
-    var fw = parseFloat(el('fw').value) || 0;
-    var spi3 = parseFloat(el('spi').value) || 0;
-    var rolls = parseFloat(el('rolls').value) || 0;
-    var rate = parseFloat(el('rate').value) || 0;
-
-    el('tierStyles').textContent = tier.styles;
-
-    var invT = regressionInvT(fw, spi3);
-    var regMax = Math.max(0, invT * K);
-    var regTarget = regMax * MARGIN;          // lower 90% prediction bound, same margin basis
-    var theoretical = tier.hiInvT * K;
-    var tierTarget = tier.target;
+  function render(fw) {
+    var raw    = current(fw);
+    var target = raw - SAFETY;
+    var big    = target + BIG_OFFSET;
+    var old    = legacy(fw);
 
     var vals = [
-      { v: LEGACY,      note: 'baseline' },
-      { v: regTarget,   note: null },
-      { v: tierTarget,  note: tier.confirmed ? 'confirmed, Ppk 2.04' : 'derived' },
-      { v: theoretical, note: 'split limit' }
+      { v: old,    note: 'legacy' },
+      { v: raw,    note: 'physical max' },
+      { v: target, note: 'wind target' },
+      { v: big,    note: 'confirmed big-roll styles' }
     ];
-
     var max = Math.max.apply(null, vals.map(function (x) { return x.v; })) || 1;
 
     vals.forEach(function (x, i) {
       el('bar' + i).style.width = (Math.max(0, x.v) / max * 100) + '%';
-      var delta = x.v - LEGACY;
-      var deltaTxt = '';
-      if (i > 0) {
-        deltaTxt = ' <span class="delta">' + (delta >= 0 ? '+' : '−') +
-                   fmt(Math.abs(delta)) + ' yd' + (x.note ? ' · ' + x.note : '') + '</span>';
-      } else if (x.note) {
-        deltaTxt = ' <span class="delta">' + x.note + '</span>';
-      }
-      el('val' + i).innerHTML = fmt(x.v) + ' yd' + deltaTxt;
+      var d = x.v - PRESET;
+      el('val' + i).innerHTML = fmt(x.v) + ' ft <span class="delta">' +
+        (d >= 0 ? '+' : '−') + fmt(Math.abs(d)) + ' vs 900 ft preset · ' + x.note + '</span>';
     });
 
-    var gain = tierTarget - LEGACY;
-    el('outYd').textContent = (gain >= 0 ? '+' : '−') + fmt(Math.abs(gain)) + ' yd';
-    el('outAnnYd').textContent = fmt(gain * rolls) + ' yd';
-    el('outAnnVal').textContent = '$' + fmt(gain * rolls * rate);
-    el('outPct').textContent = (gain >= 0 ? '+' : '−') +
-      (Math.abs(gain) / LEGACY * 100).toFixed(1) + '%';
+    var gap = target - old;
+    var msg;
+    if (fw < 29.5) {
+      msg = '<strong>At ' + fw + ' oz/yd², the legacy equation gives away ' + fmt(Math.abs(gap)) +
+            ' ft per roll.</strong> It under-predicts here, which is the quiet failure — capacity ' +
+            'lost on every roll with nothing on the floor to signal it.';
+    } else {
+      msg = '<strong>At ' + fw + ' oz/yd², the legacy equation over-predicts by ' + fmt(Math.abs(gap)) +
+            ' ft per roll.</strong> This is the expensive direction: a target above what the style ' +
+            'can actually hold is where forced seams and customer claims come from.';
+    }
+    el('verdict').innerHTML = msg;
   }
 
-  ['tier', 'fw', 'spi', 'rolls', 'rate'].forEach(function (id) {
-    el(id).addEventListener('input', render);
-    el(id).addEventListener('change', render);
+  var range = el('fwRange'), num = el('fw');
+
+  range.addEventListener('input', function () {
+    num.value = range.value;
+    render(parseFloat(range.value));
+  });
+  num.addEventListener('input', function () {
+    var v = parseFloat(num.value);
+    if (!isNaN(v) && v >= 13 && v <= 39) { range.value = v; render(v); }
   });
 
-  render();
+  render(parseFloat(range.value));
 })();
 </script>
 
