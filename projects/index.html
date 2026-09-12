@@ -8,8 +8,10 @@
   <style>
     .page-intro {
       color: var(--ink-soft);
-      margin-bottom: 40px;
+      margin-bottom: 8px;
       font-size: 0.97rem;
+      max-width: 680px;
+      line-height: 1.75;
     }
 
     .projects-grid .project-card h3 {
@@ -53,7 +55,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ink-muted);
-      margin: 44px 0 18px;
+      margin: 52px 0 6px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -64,6 +66,127 @@
       flex: 1;
       height: 1px;
       background: var(--border);
+    }
+
+    .category-note {
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+      margin: 0 0 20px;
+      line-height: 1.6;
+      max-width: 640px;
+    }
+
+    /* ---------- Featured: tall portrait columns ---------- */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+      margin: 22px 0 10px;
+      align-items: stretch;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xs);
+      padding: 0 0 20px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+      border-color: var(--ink-muted);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .feature-card.accent-green::before { background: var(--green); }
+    .feature-card.accent-blue::before  { background: var(--blue); }
+    .feature-card.accent-ink::before   { background: var(--ink); }
+
+    .feature-metric {
+      padding: 22px 22px 0;
+    }
+    .feature-metric .num {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      display: block;
+      letter-spacing: -0.02em;
+    }
+    .accent-green .feature-metric .num { color: var(--green); }
+    .accent-blue  .feature-metric .num { color: var(--blue); }
+    .accent-ink   .feature-metric .num { color: var(--ink); }
+
+    .feature-metric .cap {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin-top: 7px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-body {
+      padding: 16px 22px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-context {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.04rem;
+      line-height: 1.28;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+
+    .feature-card p {
+      font-size: 0.87rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin: 0 0 16px;
+      flex: 1;
+    }
+
+    .feature-card .tags { margin-bottom: 16px; }
+
+    .feature-link {
+      padding: 0 22px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .feature-card:hover .feature-link { text-decoration: underline; }
+
+    @media (max-width: 620px) {
+      .feature-metric .num { font-size: 1.7rem; }
     }
   </style>
 </head>
@@ -85,49 +208,108 @@
 
   <a href="/index.html" class="back-link">Back to Home</a>
 
-  <h1 style="margin-bottom: 8px;">Engineering Projects</h1>
+  <h1 style="margin-bottom: 10px;">Engineering Projects</h1>
   <p class="page-intro">
-    Vehicle dynamics simulation, structural analysis, aerodynamics, embedded systems, and mechanical
-    design — all with full technical writeups.
+    Manufacturing statistics, vehicle dynamics simulation, structural analysis, aerodynamics,
+    and embedded systems — each with a full technical writeup covering the method, the
+    measurements, and what didn't work.
   </p>
 
-  <!-- Featured Projects -->
-  <div class="category-label">Featured</div>
-  <div class="projects-grid">
+  <!-- ============ TIER 1: FEATURED ============ -->
+  <div class="category-label">Start Here</div>
+  <p class="category-note">
+    Three projects carried end to end — a problem defined, instrumented, modeled, and closed
+    out with a measured result.
+  </p>
 
-    <div class="project-card featured">
-      <div>
-        <span class="status-badge badge-complete">V9 Complete</span>
-        <h3>Shell Eco-Marathon Vehicle Dynamics Simulation</h3>
+  <div class="featured-grid">
+
+    <a class="feature-card accent-green" href="mohawk.html">
+      <div class="feature-metric">
+        <span class="num">$44.8K</span>
+        <span class="cap">Annual savings identified — 2–3× the model it replaced</span>
+      </div>
+      <div class="feature-body">
+        <span class="feature-context">Internship · Mohawk Industries</span>
+        <h3>Carpet Roll Length Optimization</h3>
+        <p>
+          Replaced a drifted legacy equation governing how much carpet goes on every roll at
+          a plant running 26M+ ft a year. Measured 500+ rolls across 89 styles, rebuilt the
+          model from the winding geometry up, and validated wind targets with I-MR control
+          charts and process capability. Adjusted R² 86.1% against the legacy 73.3%.
+        </p>
+        <div class="tags">
+          <span class="tag">Six Sigma</span>
+          <span class="tag">Minitab</span>
+          <span class="tag">Regression</span>
+          <span class="tag">Process Capability</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <span class="feature-link">View project →</span>
+    </a>
+
+    <a class="feature-card accent-blue" href="early-ear/">
+      <div class="feature-metric">
+        <span class="num">30×</span>
+        <span class="cap">Measured current reduction, V1 to V2 — 4 hours to 4 days of field life</span>
+      </div>
+      <div class="feature-body">
+        <span class="feature-context">Personal Project · Hardware</span>
+        <h3>EarlyEar — Cattle Health Monitor</h3>
+        <p>
+          A low-power ear tag for early detection of Bovine Respiratory Disease. Redesigned
+          around the power budget that killed the first prototype: four sensors on one I²C
+          bus, a versioned telemetry protocol with CRC, and a shunt-and-DMM method built to
+          measure microamps on a meter that only resolves milliamps.
+        </p>
+        <div class="tags">
+          <span class="tag">ESP32-S3</span>
+          <span class="tag">Embedded C++</span>
+          <span class="tag">Low Power Design</span>
+          <span class="tag">Instrumentation</span>
+          <span class="tag">SolidWorks</span>
+        </div>
+      </div>
+      <span class="feature-link">View project →</span>
+    </a>
+
+    <a class="feature-card accent-ink" href="shell-eco-simulink/">
+      <div class="feature-metric">
+        <span class="num">621.3</span>
+        <span class="cap">km/L baseline, Article 226 valid — nine model versions</span>
+      </div>
+      <div class="feature-body">
+        <span class="feature-context">JMU Shell Eco-Marathon</span>
+        <h3>Vehicle Dynamics &amp; Fuel Economy Simulation</h3>
+        <p>
+          Physics-based longitudinal dynamics and fuel consumption model built up through
+          nine versions. V9 runs four IMS Infield laps against a GPS-derived track profile
+          with a zone-aware three-mode driver strategy and a five-parameter sensitivity
+          sweep.
+        </p>
         <div class="tags">
           <span class="tag">MATLAB</span>
           <span class="tag">Simulink</span>
           <span class="tag">Stateflow</span>
           <span class="tag">Vehicle Dynamics</span>
           <span class="tag">Energy Modeling</span>
-          <span class="tag">GPS Integration</span>
         </div>
-        <p>Physics-based longitudinal dynamics and fuel consumption model built up through nine versions. V9 runs four IMS Infield laps with a GPS-derived track profile, zone-aware three-mode driver strategy, and five-parameter sensitivity sweep. Baseline: 621.3 km/L, Article 226 valid.</p>
       </div>
-      <a class="view-link" href="shell-eco-simulink/">View project →</a>
-    </div>
+      <span class="feature-link">View project →</span>
+    </a>
 
-    <div class="project-card featured">
-      <div>
-        <span class="status-badge badge-wip">In Progress</span>
-        <h3>Shell Eco-Marathon Chassis Structural Analysis</h3>
-        <div class="tags">
-          <span class="tag">Altair</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">Structural Analysis</span>
-          <span class="tag">Weldments</span>
-        </div>
-        <p>I'm the Frame Lead for the Junior Team at JMU, responsible for chassis layout, FEA validation, and integration with suspension, powertrain, and body. CAD is done; FEA load cases are next once the Altair suite is set up.</p>
-      </div>
-      <a class="view-link" href="shell-eco-frame/shell-eco-chassis.html">View project →</a>
-    </div>
+  </div>
 
-    <div class="project-card featured">
+  <!-- ============ TIER 2: TEAM / BUILT ============ -->
+  <div class="category-label">Built &amp; Tested</div>
+  <p class="category-note">
+    Hardware that got fabricated, launched, or run — where the design had to survive contact
+    with reality.
+  </p>
+  <div class="projects-grid">
+
+    <div class="project-card">
       <div>
         <span class="status-badge badge-complete">Complete</span>
         <h3>Madison Aerospace Club — Rocket Design &amp; Simulation</h3>
@@ -142,11 +324,60 @@
       <a class="view-link" href="rocket.html">View project →</a>
     </div>
 
+    <div class="project-card">
+      <div>
+        <span class="status-badge badge-complete">Complete</span>
+        <h3>Project Streamline — Aerodynamic Vehicle Design</h3>
+        <div class="tags">
+          <span class="tag">CFD</span>
+          <span class="tag">Fusion 360</span>
+          <span class="tag">SolidWorks Flow Sim</span>
+          <span class="tag">Wind Tunnel</span>
+        </div>
+        <p>Full aerodynamic design cycle: CFD-driven geometry iteration, 3D-printed fabrication, and low-speed wind tunnel validation comparing simulated vs measured drag.</p>
+      </div>
+      <a class="view-link" href="streamline.html">View project →</a>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <span class="status-badge badge-complete">Complete</span>
+        <h3>Automated Plant Watering System</h3>
+        <div class="tags">
+          <span class="tag">Arduino</span>
+          <span class="tag">Embedded C++</span>
+          <span class="tag">Control Logic</span>
+          <span class="tag">Sensors</span>
+        </div>
+        <p>Dual-pump autonomous watering system with capacitive moisture sensing, pulsed control logic, MOSFET driver circuit, and manual override. Calibrated through iterative experimental testing.</p>
+      </div>
+      <a class="view-link" href="watering-system.html">View project →</a>
+    </div>
+
   </div>
 
-  <!-- Structural Analysis -->
+  <!-- ============ TIER 3: FEA ============ -->
   <div class="category-label">Structural Analysis &amp; FEA</div>
+  <p class="category-note">
+    Load case development and finite element work across vehicle structures, from spaceframes
+    to component-level mounting hardware.
+  </p>
   <div class="projects-grid">
+
+    <div class="project-card">
+      <div>
+        <span class="status-badge badge-wip">In Progress</span>
+        <h3>Shell Eco-Marathon Chassis Structural Analysis</h3>
+        <div class="tags">
+          <span class="tag">Altair</span>
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Structural Analysis</span>
+          <span class="tag">Weldments</span>
+        </div>
+        <p>I'm the Frame Lead for the Junior Team at JMU, responsible for chassis layout, FEA validation, and integration with suspension, powertrain, and body. CAD is done; FEA load cases are next once the Altair suite is set up.</p>
+      </div>
+      <a class="view-link" href="shell-eco-frame/shell-eco-chassis.html">View project →</a>
+    </div>
 
     <div class="project-card">
       <div>
@@ -195,24 +426,9 @@
 
   </div>
 
-  <!-- Aero & Design -->
-  <div class="category-label">Aerodynamics &amp; Design</div>
+  <!-- ============ TIER 4: CREDENTIALS ============ -->
+  <div class="category-label">Tools &amp; Certification</div>
   <div class="projects-grid">
-
-    <div class="project-card">
-      <div>
-        <span class="status-badge badge-complete">Complete</span>
-        <h3>Project Streamline — Aerodynamic Vehicle Design</h3>
-        <div class="tags">
-          <span class="tag">CFD</span>
-          <span class="tag">Fusion 360</span>
-          <span class="tag">SolidWorks Flow Sim</span>
-          <span class="tag">Wind Tunnel</span>
-        </div>
-        <p>Full aerodynamic design cycle: CFD-driven geometry iteration, 3D-printed fabrication, and low-speed wind tunnel validation comparing simulated vs measured drag.</p>
-      </div>
-      <a class="view-link" href="streamline.html">View project →</a>
-    </div>
 
     <div class="project-card">
       <div>
@@ -227,44 +443,6 @@
         <p>CSWA-certified parametric modeling with fully constrained sketches, clean feature trees, and design intent built for predictable rebuild behavior. CSWP in progress.</p>
       </div>
       <a class="view-link" href="SolidWorks.html">View project →</a>
-    </div>
-
-  </div>
-
-  <!-- Embedded -->
-  <div class="category-label">Embedded Systems &amp; IoT</div>
-  <div class="projects-grid">
-
-    <div class="project-card featured">
-      <div>
-        <span class="status-badge badge-wip">In Progress</span>
-        <h3>EarlyEar — Cattle Health Monitor</h3>
-        <div class="tags">
-          <span class="tag">ESP32-S3</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">FEA</span>
-          <span class="tag">Embedded C++</span>
-          <span class="tag">IoT</span>
-          <span class="tag">3D Printing</span>
-        </div>
-        <p>Solar-powered ear tag for early detection of Bovine Respiratory Disease. Monitors skin temperature via DS18B20 probe and movement via MPU-6050 IMU on an ESP32-S3 SuperMini. Compact PETG enclosure with angled solar bracket, currently designing in SolidWorks with FEA on the cantilevered bracket hang-off.</p>
-      </div>
-      <a class="view-link" href="early-ear/">View project →</a>
-    </div>
-
-    <div class="project-card">
-      <div>
-        <span class="status-badge badge-complete">Complete</span>
-        <h3>Automated Plant Watering System</h3>
-        <div class="tags">
-          <span class="tag">Arduino</span>
-          <span class="tag">Embedded C++</span>
-          <span class="tag">Control Logic</span>
-          <span class="tag">Sensors</span>
-        </div>
-        <p>Dual-pump autonomous watering system with capacitive moisture sensing, pulsed control logic, MOSFET driver circuit, and manual override. Calibrated through iterative experimental testing.</p>
-      </div>
-      <a class="view-link" href="watering-system.html">View project →</a>
     </div>
 
   </div>
